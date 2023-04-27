@@ -40,7 +40,7 @@ const Recomend_detail = () => {
           <div>
             <img
               className="RecomendDetailImg"
-              src="recommend_detail1.png"
+              src="img/recommend_detail1.png"
               alt=""
             />
           </div>
@@ -67,7 +67,7 @@ const Recomend_detail = () => {
           <div>
             <img
               className="RecomendDetailImg"
-              src="recommend_detail2.png"
+              src="img/recommend_detail2.png"
               //   src="https://placeholder.com/300x200"
               alt=""
             />
