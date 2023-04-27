@@ -13,23 +13,23 @@ const Recomend_Viewall = () => {
     <div className="listGroup">
       <ListGroup className="listGroup">
         <ListGroup.Item className="w-80">
-          <img className="listGroupImg" src="recommend_best1.png" />
+          <img className="listGroupImg" src="img/recommend_best1.png" />
           <div className="listGroupText">fasd fasd</div>
         </ListGroup.Item>
         <ListGroup.Item>
-          <img className="listGroupImg" src="recommend_best1.png" />
+          <img className="listGroupImg" src="img/recommend_best1.png" />
           <div className="listGroupText">Dapibus ac facilisis in</div>
         </ListGroup.Item>
         <ListGroup.Item>
-          <img className="listGroupImg" src="recommend_best1.png" />
+          <img className="listGroupImg" src="img/recommend_best1.png" />
           <div className="listGroupText">Morbi leo risus</div>
         </ListGroup.Item>
         <ListGroup.Item>
-          <img className="listGroupImg" src="recommend_best1.png" />
+          <img className="listGroupImg" src="img/recommend_best1.png" />
           <div className="listGroupText">Porta ac consectetur ac</div>
         </ListGroup.Item>
         <ListGroup.Item>
-          <img className="listGroupImg" src="recommend_best1.png" />
+          <img className="listGroupImg" src="img/recommend_best1.png" />
           <div className="listGroupText">Vestibulum at eros</div>
         </ListGroup.Item>
       </ListGroup>
