@@ -71,14 +71,20 @@
 
 .hr_Recomend {
     width: 90%;
+    margin-left: 20px;
 }
 
 .p_recomend {
     font-size: 1rem;
     font-weight: bold;
-    margin: 0 10px 10px auto;
+    margin: 0 20px 10px auto;
     float: right;
     display: block;
+    cursor: pointer;
+}
+
+.p_recomend:hover {
+    color: #537FE7;
 }
 
 .RecomendDetailBody {

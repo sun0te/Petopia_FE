@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import "../../Styles/RecomendStyle.css";
-import { BsHandThumbsUp, BsHeart } from "react-icons/bs";
+import { BsPerson, BsHandThumbsUp, BsHeart } from "react-icons/bs";
 
 const Recomend_detail = () => {
   const thumbsClick = () => {
@@ -32,7 +32,9 @@ const Recomend_detail = () => {
         <h4 className="h4_Recomend">게시글 제목</h4>
         <hr className="hr_Recomend" />
 
-        <p className="p_recomend">작성자 : petopia</p>
+        <p className="p_recomend">
+          <BsPerson /> petopia
+        </p>
         <br />
         <br />
 

@@ -33,19 +33,17 @@ const BoardWrite = () => {
     <>
       <div className="writeForm">
         <Form>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Group className="mb-3">
             <Form.Label></Form.Label>
             <Form.Control type="email" placeholder="글 제목을 입력하세요" />
           </Form.Group>
-          <Form.Group
-            className="mb-3 writeFormContent"
-            controlId="exampleForm.ControlTextarea1"
-          >
+          <Form.Group className="mb-3 writeFormContent">
             <Form.Label></Form.Label>
             <Form.Control
               as="textarea"
               rows={3}
               placeholder="글 내용을 입력하세요"
+              className="contentForm"
             />
           </Form.Group>
         </Form>
