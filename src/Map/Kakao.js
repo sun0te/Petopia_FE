@@ -19,6 +19,9 @@ const Kakao = ({ searchPlace }) => {
 
     const ps = new kakao.maps.services.Places();
 
+    const newPlaces = ["삼청동 맛집", "북촌 한옥마을", "경복궁"];
+    ps.setMap(null);
+
     ps.keywordSearch(searchPlace, placesSearchCB);
 
     function placesSearchCB(data, status, pagination) {
@@ -110,6 +113,7 @@ const Kakao = ({ searchPlace }) => {
               )}
               <span>{item.phone}</span>
             </div>
+            <hr />
           </div>
         ))}
         <div id="pagination"></div>

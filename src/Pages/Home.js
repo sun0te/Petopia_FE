@@ -62,7 +62,7 @@ const Home = () => {
               </button>
             </div>
             <div className="testlist">
-              <h4 align="center">주변 반려동물 동반 가능 장소</h4>
+              <h5 align="center">주변 반려동물 동반 가능 장소</h5>
               {alist.map((list, index) => {
                 return (
                   <div className="mainlist">

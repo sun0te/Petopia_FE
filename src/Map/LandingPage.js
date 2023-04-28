@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Kakao from "./Kakao";
 import { useNavigate } from "react-router-dom";
+import "./Kakao.css";
 
 const LandingPage = () => {
   let navigate = useNavigate();
