@@ -27,6 +27,7 @@
     width: 50%;
 }
 
+/* 로고 컨테이너 */
 .logo {
     padding-top: 13%;
     padding-left: 20%;
@@ -38,6 +39,7 @@
     height: auto;
 }
 
+/* 바탕 왼쪽  */
 .main-left {
     float  : right;
     align-items: center;
@@ -53,6 +55,7 @@
 .mainContent h1 {
     font-size: 1.8rem;
     font-weight: bold;
+    color: #0c0c0c8b;
     margin: 2em 0 5px 0;
 }
 
@@ -86,4 +89,22 @@ main {
 main section:last-of-type {
     margin-top: 50px;
     margin-bottom: 50px;
+}
+
+/* 미디어쿼리 */
+@media screen and (max-width: 850px) {
+
+    /* main-bg 안의 요소들 숨기기 */
+    .bg-left {
+        display: none;
+    }
+
+    /* main 요소 중앙에 배치 */
+    main {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 360px;
+    }
 }
