@@ -52,15 +52,13 @@ const Recomend_write = () => {
             <Form.Label></Form.Label>
             <Form.Control type="email" placeholder="글 제목을 입력하세요" />
           </Form.Group>
-          <Form.Group
-            className="mb-3 writeFormContent"
-            controlId="exampleForm.ControlTextarea1"
-          >
+          <Form.Group className="mb-3 writeFormContent">
             <Form.Label></Form.Label>
             <Form.Control
               as="textarea"
               rows={3}
               placeholder="글 내용을 입력하세요"
+              className="contentForm"
             />
           </Form.Group>
 
@@ -127,7 +125,7 @@ const Recomend_write = () => {
                 id="flexCheckDefault"
               />
               <label class="form-check-label" for="flexCheckDefault">
-                15 KG 이상 대형견은 입장할 수 없어요
+                15 kg 이상 대형견은 입장할 수 없어요
               </label>
             </div>
           </div>
