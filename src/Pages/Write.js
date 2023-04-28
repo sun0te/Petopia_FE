@@ -2,9 +2,9 @@ import React from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import "../Styles/Main.css";
-import RecomendDetail from "../Components/RecomendComponent/Recomend_detail.js";
+import BoardWrite from "../Components/BoardWrite.js";
 
-const RouteTrip = () => {
+const Login = () => {
   return (
     <section className="full-bg">
       <section className="left-bg">
@@ -27,8 +27,7 @@ const RouteTrip = () => {
       <main className="RouteTripSection">
         <Header />
         <section>
-          <RecomendDetail />
-          {/* <p>여행 추천 페이지입니다</p> */}
+          <BoardWrite />
         </section>
         <Footer />
       </main>
@@ -36,4 +35,4 @@ const RouteTrip = () => {
   );
 };
 
-export default RouteTrip;
+export default Login;

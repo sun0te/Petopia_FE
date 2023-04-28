@@ -43,8 +43,14 @@ const Recomend = () => {
 
       <h3 className="h3_Recomend">전체 보기</h3>
 
+      <div className="recomendWriteBtn">
+        <Button className="searchBtn" variant="outline-primary" size="sm">
+          추천 등록하기
+        </Button>
+      </div>
+
       <Recomend_Viewall />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
