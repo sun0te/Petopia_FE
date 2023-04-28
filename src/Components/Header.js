@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom"; // 추가
+import { NavLink } from "react-router-dom";
 import "../Styles/Header.css";
 
 const Header = ({ page }) => {
@@ -12,37 +12,35 @@ const Header = ({ page }) => {
         </Button>
         <Button variant="outline-primary">회원가입</Button>
       </div>
-      <div className="headerContainer">
-        <div className="headerCategoryConteiner">
-          {/* 카테고리 */}
-          <ul className="nav nav-tabs">
-            <li className="nav-item">
-              <Link className="nav-link active" to="/">
-                HOME
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/userboard">
-                커뮤니티
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/routetrip">
-                여행추천
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/notice">
-                공지사항
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/usermypage">
-                마이페이지
-              </Link>
-            </li>
-          </ul>
-        </div>
+      <div className="headerCategoryConteiner">
+        {/* 카테고리 */}
+        <ul className="nav nav-tabs">
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/" exact>
+              HOME
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/userboard">
+              커뮤니티
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/routetrip">
+              여행추천
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/notice">
+              공지사항
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/usermypage">
+              마이페이지
+            </NavLink>
+          </li>
+        </ul>
       </div>
     </header>
   );

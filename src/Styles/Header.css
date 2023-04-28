@@ -12,27 +12,54 @@
     font-size: 12px;
 }
 
-/* 카테고리를 포함하는 부모 div */
+/* 두 번째 줄 header 카테고리를 포함하는 부모 div */
 .headerCategoryContainer {
-    background-color: #f8f9fa;
+    display: flex;
+    overflow-x: hidden;
 }
 
 /* 카테고리 목록 ul */
 .nav-tabs {
-    display: flex;
-    justify-content: space-between;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    /* 줄바꿈 금지 */
     padding: 10px;
+    padding-bottom: 0;
 }
 
 /* 카테고리 목록 li */
 .nav-item {
     margin-right: 10px;
     font-size: 14px;
+    white-space: nowrap;
+    /* 줄바꿈 금지 */
+}
+
+/* 카테고리 폰트 색상 */
+.nav-link {
+    color: #484848 !important;
+    padding: 5px 10px;   /* 링크 내용의 패딩 조절 */
 }
 
 /* 활성화된 카테고리 링크 */
 .nav-link.active {
     background-color: #fff;
-    color: #000;
+    color: #537FE7 !important;
     border-color: #dee2e6 #dee2e6 #fff;
+}
+
+/* hover 시 색상 변경 */
+.nav-link:hover {
+    color: #537FE7 !important;
+}
+
+/* 숨긴 카테고리 목록 */
+.hidden-nav-tabs {
+    position: absolute;
+    left: -1000em;
+    /* 왼쪽에 숨김 */
+}
+
+.headerCategoryContainer:hover .hidden-nav-tabs {
+    left: 0;
 }
