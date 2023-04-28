@@ -23,6 +23,11 @@
     margin: 10px auto 10px 0;
 }
 
+.recomendWriteBtn {
+    float: right;
+    margin: -10px 35px 10px auto;
+}
+
 /* Recomend_best-------------------------------- */
 
 .card {
@@ -171,4 +176,41 @@
 .boardListBtn {
     align-items: center;
     justify-content: center;
+}
+
+/* Recomend_write --------------------------------------*/
+
+.recomendP {
+    font-size: 1rem;
+    font-weight: bold;
+    float: left;
+    clear: both;
+    margin-left: 10px
+}
+
+.radioBtnDiv {
+    margin: 0 auto 40px 60px;
+}
+
+.btnGroup {
+    margin: 0 10px 0 0;
+    border-radius: 0;
+}
+
+.btnGroup:hover {
+    background-color: #6c757d;
+    color: #fff;
+  }
+
+.btnGroup:active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.form-check {
+    clear: both;
+}
+
+.recomendCheckDiv {
+    margin-left: 20px;
 }

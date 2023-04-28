@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import "../Styles/Main.css";
-import RecomendDetail from "../Components/RecomendComponent/Recomend_detail.js";
+import RecomendWrite from "../Components/RecomendComponent/Recomend_write.js";
 
 const RouteTrip = () => {
   return (
@@ -27,7 +27,7 @@ const RouteTrip = () => {
       <main className="RouteTripSection">
         <Header />
         <section>
-          <RecomendDetail />
+          <RecomendWrite />
           {/* <p>여행 추천 페이지입니다</p> */}
         </section>
         <Footer />
