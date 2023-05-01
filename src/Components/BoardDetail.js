@@ -2,8 +2,10 @@ import "bootstrap/dist/css/bootstrap.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
-import "../../Styles/RecomendStyle.css";
+import "../Styles/RecomendStyle.css";
 import { BsPerson, BsHandThumbsUp, BsHeart } from "react-icons/bs";
+import Comment from "./Comment";
+import Reply from "./Reply";
 
 const Recomend_detail = () => {
   const thumbsClick = () => {
@@ -23,7 +25,7 @@ const Recomend_detail = () => {
               className="me-1 w-75 searchBar"
               aria-label="Search"
             />
-            <Button className="searchBtn btn-sm" variant="outline-primary">
+            <Button className="searchBtn" variant="outline-primary" size="sm">
               검색
             </Button>
           </Form>
@@ -85,55 +87,34 @@ const Recomend_detail = () => {
             </p>
           </div>
 
-          <Card className="cardRecomendDetail">
-            <Card.Body className="cardRecomendDetailBody jangso">
-              ✅ 장소 정보
-            </Card.Body>
-            <Card.Body className="cardRecomendDetailBody">
-              📌 어떤 종류의 장소인가요? <br /> <br />- 공원
-            </Card.Body>
-            <Card.Body className="cardRecomendDetailBody">
-              📌 반려견 동반 시 유의사항 <br /> <br />
-              - 펫방석 혹은 담요 제공하지 않음 <br />
-              - 마킹이 심한 반려견은 매너벨트 착용
-              <br />
-              - 15 kg이 넘는 대형견은 업체 문의
-              <br /> - 심한 짖음, 공격성 있는 반려견 동반 불가
-            </Card.Body>
-
-            <Card.Body className="cardRecomendDetailBodyAlert">
-              💡기본적인 펫티켓을 꼭 지켜주세요💡
-            </Card.Body>
-          </Card>
-
-          <div className="thumbsHeart">
-            <br />
-            <div className="thumbs">
-              <p className="thumbsHeartText">추천해요</p>
-              <button type="button" class="btn btn-lg">
-                <BsHandThumbsUp
-                  className="thumbsHeartIcon"
-                  onClick={thumbsClick}
-                />
-              </button>
-              <span className="thumbsHeartSpan">32</span>
-            </div>
-
-            <br />
-
-            <div className="heart">
-              <p className="thumbsHeartText">저장할래요</p>
-              <button type="button" class="btn btn-lg">
-                <BsHeart className="thumbsHeartIcon" />
-              </button>
-              <span className="thumbsHeartSpan">8</span>
-            </div>
-          </div>
-
-          <div className="Div_boardListBtn">
-            <button type="button" class="btn btn-outline-primary boardListBtn">
+          <div className="Div_boardListBtn boardListBtnDetailDiv">
+            <button
+              type="button"
+              class="btn btn-sm btn-outline-primary boardListBtn boardListBtnDetail"
+            >
               글목록
             </button>
+          </div>
+
+          <div className="boardCommentDiv">
+            <Comment />
+            <Comment />
+            <Reply />
+          </div>
+
+          <div className="writeCommentDiv">
+            <Form.Group className="mb-3 writeFormContent">
+              <Form.Label></Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="댓글을 입력하세요"
+                className="writeCommentTextarea"
+              />
+              <Button className="btn-sm writeCommentBtn" variant="primary">
+                댓글달기
+              </Button>
+            </Form.Group>
           </div>
         </div>
       </div>

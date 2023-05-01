@@ -50,7 +50,11 @@ const Recomend_write = () => {
         <Form>
           <Form.Group className="mb-3">
             <Form.Label></Form.Label>
-            <Form.Control type="email" placeholder="글 제목을 입력하세요" />
+            <Form.Control
+              className="writeTitle"
+              type="email"
+              placeholder="글 제목을 입력하세요"
+            />
           </Form.Group>
           <Form.Group className="mb-3 writeFormContent">
             <Form.Label></Form.Label>
@@ -179,14 +183,14 @@ const Recomend_write = () => {
         </div>
         <div className="btns">
           <button
-            className="btn btn-outline-primary submit"
+            className="btn btn-sm btn-outline-primary submit"
             onClick={handleUploadClick}
           >
             작성 완료
           </button>
           <button
             type="button"
-            className="btn btn-outline-primary boardListBtn"
+            className="btn btn-sm btn-outline-primary boardListBtn"
           >
             글목록
           </button>

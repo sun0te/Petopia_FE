@@ -4,7 +4,7 @@
 }
 
 .h2_Recomend {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
     margin: 30px auto 10px 30px;
 }
@@ -17,6 +17,7 @@
 
 .searchBar {
     margin: 10px 5px 10px auto;
+    font-size: 0.7rem;
 }
 
 .searchBtn {
@@ -32,6 +33,7 @@
 
 .card {
     margin: 30px auto 10px auto;
+    cursor: pointer;
 }
 
 .cardTitle {
@@ -115,17 +117,18 @@
 
 .cardRecomendDetailBody {
     margin: 0 auto 10px 10px;
+    font-size: 0.8rem;
 }
 
 .jangso {
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 .cardRecomendDetailBodyAlert {
     margin: 0 auto 10px 10px;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
 }
 
 /*추천해요, 저장할래요 div*/
@@ -219,4 +222,40 @@
 
 .recomendCheckDiv {
     margin-left: 20px;
+}
+
+/* BoardDetail ------------------------------------*/
+
+.boardCommentDiv {
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    border-radius: 2px;
+    width: 300px;
+    margin: 0 0 0 30px;
+}
+
+.boardListBtnDetailDiv {
+    margin-left: 230px;
+    
+}
+
+/* writeCommentDiv  --------------------------------*/
+
+.writeCommentDiv {
+    margin: 20px 0 0 30px;
+}
+
+.writeCommentTextarea {
+    display: inline-block;
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    border-radius: 1px;
+    width: 230px;
+    height: 70px;
+    font-size: 0.7rem;
+    margin: 20px 0 0 0;
+}
+
+
+.writeCommentBtn {
+    margin: -60px 0 0 7px;
+    font-size: 0.7rem;
 }

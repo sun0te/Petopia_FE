@@ -2,9 +2,9 @@ import React from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import "../Styles/Main.css";
-import LoginComponent from "../Components/LoginComponent.js";
+import BoardDetail from "../Components/BoardDetail.js";
 
-const Login = () => {
+const RouteTrip = () => {
   return (
     <section className="full-bg">
       <section className="left-bg">
@@ -27,7 +27,7 @@ const Login = () => {
       <main className="RouteTripSection">
         <Header />
         <section>
-          <LoginComponent />
+          <BoardDetail />
         </section>
         <Footer />
       </main>
@@ -35,4 +35,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default RouteTrip;
