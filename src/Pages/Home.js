@@ -32,6 +32,8 @@ const Home = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000, // 4초 간격
   };
 
   return (
@@ -48,6 +50,37 @@ const Home = () => {
               </div>
             ))}
           </Slider>
+
+          {/*지도 코드 들어갈 위치 */}
+
+          {/* 여행지 추천 div */}
+          <div className="recommendation">
+            <p>경로 추천</p>
+            <div className="column">
+              <div className="image-wrapper">
+                <img src="https://placehold.it/120x120" alt="image" />
+              </div>
+            </div>
+            <div className="column">
+              <div className="stars-wrapper">
+                <span className="star">&#9733;</span>
+                <span className="star">&#9733;</span>
+                <span className="star">&#9733;</span>
+                <span className="star">&#9733;</span>
+                <span className="star">&#9734;</span>
+              </div>
+            </div>
+          </div>
+
+          {/* 커뮤니티 게시글 div */}
+          <div className="recommendation">
+            <p>인기 게시글</p>
+            <div className="column">
+              <div className="image-wrapper">
+                <img src="https://placehold.it/120x120" alt="image" />
+              </div>
+            </div>
+          </div>
         </section>
         <Footer />
       </main>

@@ -83,16 +83,20 @@ main {
     /* 모바일 평균 크기로 지정 */
     height: 100%;
     background-color: #ffffff;
+    /* 스크롤 생성 */
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 /* 본문 내용을 담는 section 요소를 Header와 Footer 사이에 배치 */
 main section:last-of-type {
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 1px;
+    margin-bottom: 5px;
 }
 
+
 /* 미디어쿼리 */
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 870px) {
 
     /* main-bg 안의 요소들 숨기기 */
     .bg-left {
