@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styles/Main.css";
+import "../Styles/BgLeft.css";
 
 const BgLeft = () => {
   return (

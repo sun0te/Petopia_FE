@@ -13,18 +13,40 @@
 }
 
 /* 두 번째 줄 header 카테고리를 포함하는 부모 div */
-.headerCategoryContainer {
+.headerCategoryConteiner {
     display: flex;
-    overflow-x: hidden;
+    display: -webkit-flex;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    /* 스크롤바를 보이지 않게 하기 위해 auto로 설정 */
+    -ms-overflow-style: none;
+    /* IE, Edge용 스크롤바 제거 */
+    scrollbar-width: none;
+    /* Firefox용 스크롤바 제거 */
+    scroll-behavior: smooth;
+    touch-action: pan-y;
+    /* 스크롤 시 부드럽게 이동하도록 설정 */
+}
+
+.headerCategoryConteiner::-webkit-scrollbar {
+    /* Chrome, Safari용 스크롤바 제거 */
+    display: none;
 }
 
 /* 카테고리 목록 ul */
 .nav-tabs {
-    display: inline-flex;
+    display: flex;
     flex-wrap: nowrap;
-    /* 줄바꿈 금지 */
     padding: 10px;
     padding-bottom: 0;
+    /* 요소들을 좌우로 스크롤할 수 있도록 함 */
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-tabs.hidden {
+    /* 숨겨진 카테고리 요소들을 표시하기 위해 이동 거리를 조정 */
+    transform: translateX(-100%);
 }
 
 /* 카테고리 목록 li */
@@ -32,13 +54,12 @@
     margin-right: 10px;
     font-size: 14px;
     white-space: nowrap;
-    /* 줄바꿈 금지 */
 }
 
 /* 카테고리 폰트 색상 */
 .nav-link {
     color: #484848 !important;
-    padding: 5px 10px;   /* 링크 내용의 패딩 조절 */
+    padding: 5px 10px;
 }
 
 /* 활성화된 카테고리 링크 */
@@ -51,15 +72,4 @@
 /* hover 시 색상 변경 */
 .nav-link:hover {
     color: #537FE7 !important;
-}
-
-/* 숨긴 카테고리 목록 */
-.hidden-nav-tabs {
-    position: absolute;
-    left: -1000em;
-    /* 왼쪽에 숨김 */
-}
-
-.headerCategoryContainer:hover .hidden-nav-tabs {
-    left: 0;
 }

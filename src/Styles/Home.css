@@ -1,0 +1,35 @@
+/* 슬라이더 컨테이너 */
+.slick-slider {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 이미지 슬라이드 */
+.slick-slide img {
+    width: 100%;
+    height: auto;
+}
+
+/* 캡션 */
+.caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px 20px;
+    text-align: center;
+}
