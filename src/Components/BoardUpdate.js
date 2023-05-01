@@ -6,7 +6,7 @@ import { useEffect, useState, useRef } from "react";
 import { BsTrash3 } from "react-icons/bs";
 import ListGroup from "react-bootstrap/ListGroup";
 
-const BoardWrite = () => {
+const BoardUpdate = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
 
   const inputRef = useRef(null);
@@ -31,14 +31,14 @@ const BoardWrite = () => {
 
   return (
     <>
+      <h2 className="h2_BoardUpdate">게시글 수정</h2>
       <div className="writeForm">
         <Form>
           <Form.Group className="mb-3">
             <Form.Label></Form.Label>
             <Form.Control
-              className="writeTitle"
               type="email"
-              placeholder="글 제목을 입력하세요"
+              placeholder="수정할 글 제목을 입력하세요"
             />
           </Form.Group>
           <Form.Group className="mb-3 writeFormContent">
@@ -46,7 +46,7 @@ const BoardWrite = () => {
             <Form.Control
               as="textarea"
               rows={3}
-              placeholder="글 내용을 입력하세요"
+              placeholder="수정할 글 내용을 입력하세요"
               className="contentForm"
             />
           </Form.Group>
@@ -100,14 +100,14 @@ const BoardWrite = () => {
         </div>
         <div className="btns">
           <button
-            className="btn btn-sm btn-outline-primary submit"
+            className="btn btn-outline-primary submit"
             onClick={handleUploadClick}
           >
-            작성 완료
+            수정 완료
           </button>
           <button
             type="button"
-            className="btn btn-sm btn-outline-primary boardListBtn"
+            className="btn btn-outline-primary boardListBtn"
           >
             글목록
           </button>
@@ -117,4 +117,4 @@ const BoardWrite = () => {
   );
 };
 
-export default BoardWrite;
+export default BoardUpdate;

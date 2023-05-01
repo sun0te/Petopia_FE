@@ -2,9 +2,9 @@ import React from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import "../Styles/Main.css";
-import SignUpComponent from "../Components/SignUpComponent.js";
+import BoardUpdate from "../Components/BoardUpdate.js";
 
-const Register = () => {
+const Login = () => {
   return (
     <section className="full-bg">
       <section className="left-bg">
@@ -27,7 +27,7 @@ const Register = () => {
       <main className="RouteTripSection">
         <Header />
         <section>
-          <SignUpComponent />
+          <BoardUpdate />
         </section>
         <Footer />
       </main>
@@ -35,4 +35,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

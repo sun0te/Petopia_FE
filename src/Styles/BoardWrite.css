@@ -5,6 +5,12 @@
     margin: -50px auto 30px 15px;
 }
 
+.writeTitle {
+    border: 0px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+    border-radius: 0;
+}
+
 .writeFormContent {
     margin: -20px 0 0 0;
 }
@@ -12,6 +18,7 @@
 .contentForm {
     height: 300px;
     font-size: 0.8rem;
+    border-radius: 0;
 }
 
 .uploadInput {
@@ -76,16 +83,25 @@
     border-radius: 0.25rem;
     cursor: pointer;
     align-items: center;
-    margin-right: 50px;
+    margin-right: 60px;
     margin-left: auto;
 }
 
 .boardListBtn {
     margin-left: 10px;
+    margin-right: 5px;
+    
 }
 
 .btns {
     display: flex;
     justify-content: center;
     margin-top: 100px;
+}
+
+/* BoardUpdate -----------------------------------*/
+
+.h2_BoardUpdate {
+    margin: -40px 0 40px 20px;
+    font-size: 1.5rem;
 }
