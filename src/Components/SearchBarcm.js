@@ -9,6 +9,10 @@ const SearchBar = styled(Form.Control)`
   height: 25px;
   padding: 5px 30px 5px 10px;
   border-radius: 20px;
+  font-size: 13px;
+  &::placeholder {
+    color: gray;
+  }
 `;
 
 const SearchBarcm = () => {
@@ -50,10 +54,10 @@ const SearchBarcm = () => {
               position: "absolute",
               left: "88%",
               top: "50%",
-              transform: "translateY(-58%)",
+              transform: "translateY(-65%)",
               fontSize: "18px",
-              color: "#6c757d",
-              cursor: "pointer", 
+              color: "black",
+              cursor: "pointer",
             }}
             onClick={handleSearch}
           />

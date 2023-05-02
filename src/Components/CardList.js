@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
-
 const NoticeList = styled.div`
   display: flex;
   flex-direction: column;
@@ -13,7 +12,6 @@ const NoticeList = styled.div`
   .cardti {
     display: flex;
     align-items: center;
-    margin-left: 10px;
     margin-top: 5px;
     vertical-align: middle;
   }
@@ -34,7 +32,6 @@ const Thumbnail = styled.img`
   width: 130px;
   height: 85px;
   margin-right: 10px;
-  margin-top: 12px;
   flex-shrink: 0;
 `;
 
@@ -57,22 +54,31 @@ const CardComments = styled.div`
   line-height: 21px;
 `;
 
-
 const CardInfoContainer = styled.div`
   display: flex;
-  justify-content: space-between;
   margin-top: 3px;
-  flex-direction: column;
 `;
 
 const CardInfo = styled.p`
-  margin: 0 10px;
   font-size: 12px;
+  display: inline-block;
+  &:not(:first-child):before {
+    display: inline-block;
+    width: 1px;
+    height: 11px;
+    margin: 0 8px;
+    background: black;
+    vertical-align: -1px;
+    content: "";
+  }
 `;
+//신기함
 
-const CarDdate = styled(CardInfo)`
+const CardDate = styled.p`
   margin-top: 10px;
   text-align: right;
+  font-size: 12px;
+  margin: 0 10px;
 `;
 
 const CardList = () => {
@@ -146,6 +152,7 @@ const CardList = () => {
         console.error(error);
       });
   }, []);
+
   return (
     <NoticeList>
       {lists.map((notice) => (
@@ -161,7 +168,7 @@ const CardList = () => {
               <CardInfo>조회수 {notice.views}</CardInfo>
               <CardInfo>추천 수 {notice.recommends}</CardInfo>
             </CardInfoContainer>
-            <CarDdate>{notice.date}</CarDdate>
+            <CardDate>{notice.date}</CardDate>
           </ContentContainer>
         </NoticeCard>
       ))}
