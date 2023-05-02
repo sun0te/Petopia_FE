@@ -79,7 +79,7 @@ main {
     left: 50%;
     width: 360px;
     /* 모바일 평균 크기로 지정 */
-    height: 100%;
+    min-height: 100vh;
     background-color: #ffffff;
 }
 
@@ -87,6 +87,10 @@ main {
 main section:last-of-type {
     margin-top: 1px;
     margin-bottom: 5px;
+}
+
+section {
+    min-height: 70vh;
 }
 
 
