@@ -37,6 +37,7 @@ const BoardUpdate = () => {
           <Form.Group className="mb-3">
             <Form.Label></Form.Label>
             <Form.Control
+              className="writeTitle"
               type="email"
               placeholder="수정할 글 제목을 입력하세요"
             />

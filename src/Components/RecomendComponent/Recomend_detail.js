@@ -110,7 +110,7 @@ const Recomend_detail = () => {
             <br />
             <div className="thumbs">
               <p className="thumbsHeartText">추천해요</p>
-              <button type="button" class="btn btn-lg">
+              <button type="button" className="btn btn-lg">
                 <BsHandThumbsUp
                   className="thumbsHeartIcon"
                   onClick={thumbsClick}
@@ -123,7 +123,7 @@ const Recomend_detail = () => {
 
             <div className="heart">
               <p className="thumbsHeartText">저장할래요</p>
-              <button type="button" class="btn btn-lg">
+              <button type="button" className="btn btn-lg">
                 <BsHeart className="thumbsHeartIcon" />
               </button>
               <span className="thumbsHeartSpan">8</span>
@@ -131,9 +131,22 @@ const Recomend_detail = () => {
           </div>
 
           <div className="Div_boardListBtn">
-            <button type="button" class="btn btn-outline-primary boardListBtn">
+            <button
+              type="button"
+              className="btn btn-outline-primary boardListBtn"
+            >
               글목록
             </button>
+
+            <div className="reportBtnDiv">
+              <Button
+                className="btm-sm reportBtn"
+                variant="outline-danger"
+                style={{ padding: "4px 0px 3px 0px" }}
+              >
+                🚨신고
+              </Button>
+            </div>
           </div>
         </div>
       </div>

@@ -16,12 +16,12 @@ const Recomend = () => {
         <Form className="d-flex">
           <Form.Control
             type="search"
-            placeholder="Search"
+            placeholder="검색할 내용을 입력하세요"
             className="me-1 w-75 searchBar"
             aria-label="Search"
           />
           <Button className="searchBtn" variant="outline-primary" size="sm">
-            Search
+            검색
           </Button>
         </Form>
       </div>
@@ -44,9 +44,11 @@ const Recomend = () => {
       <h3 className="h3_Recomend">전체 보기</h3>
 
       <div className="recomendWriteBtn">
-        <Button className="searchBtn" variant="outline-primary" size="sm">
-          추천 등록하기
-        </Button>
+        <Link to="/routetripwrite">
+          <Button className="searchBtn" variant="outline-primary" size="sm">
+            추천 등록하기
+          </Button>
+        </Link>
       </div>
 
       <Recomend_Viewall />
