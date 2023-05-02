@@ -28,6 +28,7 @@ const TitleSearchWrap = styled.div`
   justify-content: space-between;
   width: 100%;
   margin-bottom: 5px;
+  align-items: center;
 `;
 
 const Title = styled.h2`

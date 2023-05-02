@@ -15,11 +15,11 @@ const NoticeList = styled.div`
     color: inherit;
     text-decoration: none;
     box-sizing: border-box;
+    width: 100%;
   }
   .cardti {
     display: flex;
     align-items: center;
-    margin-top: 5px;
     vertical-align: middle;
   }
 `;
@@ -40,14 +40,11 @@ const Thumbnail = styled.img`
   height: 85px;
   margin-right: 10px;
   flex-shrink: 0;
+  margin-bottom: 0;
 `;
 
 const ContentContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  flex: 1;
-  margin-top: 3px;
+  width: 100%;
 `;
 
 const CardTitle = styled.div`
@@ -62,21 +59,24 @@ const CardComments = styled.div`
 `;
 
 const CardInfoContainer = styled.div`
-  display: flex;
   margin-top: 3px;
 `;
 
 const CardInfo = styled.p`
   font-size: 12px;
-  display: inline-block;
-  &:not(:first-child):before {
-    display: inline-block;
-    width: 1px;
-    height: 11px;
-    margin: 0 8px;
-    background: black;
-    vertical-align: -1px;
-    content: "";
+  display: flex;
+  margin: 0;
+  &:not(:first-child) {
+    display:inline-block;
+    vertical-align:top; 
+  &:last-child:before {
+     display:inline-block;
+     width: 1px;
+     height: 11px;
+     margin:0 6px;
+     background: black;
+     vertical-align: -1px;
+    content:'';
   }
 `;
 

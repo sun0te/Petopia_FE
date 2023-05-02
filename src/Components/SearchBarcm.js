@@ -54,7 +54,7 @@ const SearchBarcm = () => {
               position: "absolute",
               left: "88%",
               top: "50%",
-              transform: "translateY(-65%)",
+              transform: "translateY(-50%)",
               fontSize: "18px",
               color: "black",
               cursor: "pointer",
