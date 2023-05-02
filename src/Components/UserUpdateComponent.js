@@ -1,14 +1,10 @@
-import Form from "react-bootstrap/Form";
-import Stack from "react-bootstrap/Stack";
 import "../Styles/Login.css";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const SignUpComponent = () => {
+const UserUpdateComponent = () => {
   const name = useRef("");
   const nickname = useRef("");
-  const email = useRef("");
-  const birthdate = useRef("");
   const password1 = useRef("");
   const password2 = useRef("");
 
@@ -16,34 +12,23 @@ const SignUpComponent = () => {
 
   const navigate = useNavigate();
 
-  const checkCharacter = (event) => {
+  const clickUserUpdate = (event) => {
     if (
       regCheck.test(name.current.value) ||
       regCheck.test(nickname.current.value) ||
       regCheck.test(password1.current.value) ||
       regCheck.test(password2.current.value)
     ) {
-      //event.preventDefault();
+      event.preventDefault();
       alert("특수문자는 포함될 수 없습니다.");
     } else if (password1.current.value !== password2.current.value) {
-      //event.preventDefault();
+      event.preventDefault();
       alert("비밀번호가 일치하지 않습니다.");
       return;
     } else {
-      alert("회원가입을 환영합니다.");
+      alert("회원 정보를 수정하였습니다.");
       navigate("/login");
     }
-    console.log(
-      name.current.value +
-        "\n" +
-        nickname.current.value +
-        "\n" +
-        email.current.value +
-        "\n" +
-        birthdate.current.value +
-        "\n" +
-        password1.current.value
-    );
   };
 
   return (
@@ -51,31 +36,12 @@ const SignUpComponent = () => {
       <div className="container">
         <div className="input-form-backgroud row">
           <div className="input-form col-md-12 mx-auto signUpForm">
-            <h4 className="mb-3 signUpText">회원가입</h4>
-
-            <div>
-              <img
-                className="socialLoginLogoLeft"
-                src="img/naver.png"
-                alt=""
-                type="button"
-              />
-
-              <img
-                className="socialLoginLogoRight"
-                src="img/kakao.png"
-                alt=""
-                type="button"
-              />
-            </div>
-
-            <br />
-            <p className="p_or">- OR -</p>
+            <h4 className="mb-3 signUpText">회원 정보 수정</h4>
 
             <form
-              className="validation-form"
+              className="validation-form is-invalid"
               id="submitForm"
-              onSubmit={(event) => checkCharacter(event)}
+              onSubmit={(event) => clickUserUpdate(event)}
             >
               <div className="signUpRow">
                 <div className="col-md-5 mb-3 signUpName">
@@ -116,42 +82,6 @@ const SignUpComponent = () => {
 
               <div className="mb-3 signUpRow">
                 {/* <Form.Text muted className="formText">
-                  이메일
-                </Form.Text> */}
-                <label htmlFor="email"></label>
-                <input
-                  type="email"
-                  className="form-control signUpFormInput"
-                  id="email"
-                  name="email"
-                  placeholder="이메일"
-                  ref={email}
-                  maxLength="40"
-                  required
-                />
-                <div className="invalid-feedback">이메일을 입력해주세요.</div>
-              </div>
-
-              <div className="mb-3 signUpRow">
-                {/* <Form.Text muted className="formText">
-                  생년월일
-                </Form.Text> */}
-                <label htmlFor="birth"></label>
-                <input
-                  type="date"
-                  className="form-control signUpFormInput signUpFormInputDate"
-                  id="birth"
-                  name="birth"
-                  placeholder="서울특별시 강남구"
-                  data-placeholder="생년월일"
-                  ref={birthdate}
-                  required
-                />
-                <div className="invalid-feedback">생년월일을 입력해주세요.</div>
-              </div>
-
-              <div className="mb-3 signUpRow">
-                {/* <Form.Text muted className="formText">
                   비밀번호
                 </Form.Text> */}
                 <label htmlFor="address"></label>
@@ -187,25 +117,14 @@ const SignUpComponent = () => {
                   비밀번호를 다시 한 번 입력해주세요.
                 </div>
               </div>
-              {/* <hr class="mb-4" /> */}
-              {/* <div class="custom-control custom-checkbox">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="aggrement"
-                  required
-                />
-                <label class="custom-control-label" htmlFor="aggrement">
-                  개인정보 수집 및 이용에 동의합니다.
-                </label>
-              </div> */}
+
               <br />
               <div className="mb-4 signUpBtnDiv">
                 <button
-                  className="btn btn-primary btn-sm btn-block signUpBtn"
+                  className="btn btn-primary btn-sm btn-block signUpBtn findBtn"
                   type="submit"
                 >
-                  가입 완료
+                  수정
                 </button>
               </div>
             </form>
@@ -216,4 +135,4 @@ const SignUpComponent = () => {
   );
 };
 
-export default SignUpComponent;
+export default UserUpdateComponent;

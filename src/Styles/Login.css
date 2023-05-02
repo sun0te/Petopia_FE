@@ -71,7 +71,6 @@
     width: 40px;
     float: left;
     margin: 2px -10px -5px 2px;
-    
 }
 
 .signUpLogo {
@@ -146,7 +145,7 @@ input[type='date']:valid::before {
 display: none;
 }
 
-#name, #nickname, #address, #email, #password1, #password2{
+#name, #nickname, #birth, #email, #password1, #password2{
     border: 0;
     border-bottom: 1px solid rgba(128, 128, 128, 0.5);
     border-radius: 0;
@@ -161,16 +160,15 @@ input[type="date"] {
 }
 
 input[type="date"]::before {
-    font-size: 10px;
+    font-size: 0.7rem;
 }
 
 input[type="date"]:focus {
-    font-size: 10px;
+    font-size: 0.7rem;
 }
 
 input[type="date"]:active {
-    
-    font-size: 10px;
+    font-size: 0.7rem;
 }
 
 
@@ -181,3 +179,33 @@ input[type="date"]::-webkit-datetime-edit-year-field {
   color: gray;
   font-size: 10px;
 }
+
+/* FindAccount ---------------------------------*/
+
+.findBtn {
+    width: 100px;
+    margin-left: 77px;
+}
+
+.findEmailP {
+    margin-top: 20px;
+}
+
+.findPasswordDiv {
+    text-align: center;
+}
+
+.findPasswordP {
+    margin: 20px 20px 0 0;
+    display: inline-block;
+}
+
+.findPwDiv {
+    margin: 40px 0 20px 0;
+}
+
+.sendVerificationBtn {
+    display: inline-block;
+}
+
+/**/

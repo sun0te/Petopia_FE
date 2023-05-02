@@ -1,5 +1,6 @@
 import "../Styles/Login.css";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 const LoginComponent = () => {
   const email = useRef("");
@@ -8,17 +9,15 @@ const LoginComponent = () => {
   const clickLogin = () => {
     sessionStorage.setItem("email", email.current.value);
     const sessionEmail = sessionStorage.getItem("email");
-    alert(
-      email.current.value + "\n" + password.current.value + "\n" + sessionEmail
-    );
+    alert("세션값 임시 설정(email : " + sessionEmail + ")\n");
   };
 
   return (
     <>
-      <div class="container">
-        <div class="input-form-backgroud row">
-          <div class="input-form col-md-12 mx-auto signUpForm">
-            <h4 class="mb-3 signUpText">로그인</h4>
+      <div className="container">
+        <div className="input-form-backgroud row">
+          <div className="input-form col-md-12 mx-auto signUpForm">
+            <h4 className="mb-3 signUpText">로그인</h4>
 
             <div>
               <img
@@ -39,47 +38,49 @@ const LoginComponent = () => {
             <br />
             <p className="p_or">- OR -</p>
 
-            <form class="validation-form" onSubmit={clickLogin} novalidate>
-              <div class="mb-3 signUpRow">
+            <form className="validation-form" onSubmit={clickLogin}>
+              <div className="mb-3 signUpRow">
                 {/* <Form.Text muted className="formText">
                   이메일
                 </Form.Text> */}
-                <label for="email"></label>
+                <label htmlFor="email"></label>
                 <input
                   type="email"
-                  class="form-control signUpFormInput"
+                  className="form-control signUpFormInput"
                   id="email"
                   placeholder="이메일"
                   ref={email}
-                  name={email}
+                  name="email"
                   required
                 />
-                <div class="invalid-feedback">이메일을 입력해주세요.</div>
+                <div className="invalid-feedback">이메일을 입력해주세요.</div>
               </div>
 
-              <div class="mb-3 signUpRow">
+              <div className="mb-3 signUpRow">
                 {/* <Form.Text muted className="formText">
                   비밀번호
                 </Form.Text> */}
-                <label for="address"></label>
+                <label htmlFor="password"></label>
                 <input
                   type="password"
                   className="form-control signUpFormInput "
                   id="password1"
                   placeholder="비밀번호"
-                  ref={password}
-                  name={password}
+                  //ref={password}
+                  name="password"
                   required
                 />
-                <div class="invalid-feedback">비밀번호를 입력해주세요.</div>
+                <div className="invalid-feedback">비밀번호를 입력해주세요.</div>
               </div>
+              <Link to="/findaccountemail" style={{ textDecoration: "none" }}>
+                <p className="p_idpw">아이디/비밀번호 찾기</p>
+              </Link>
 
-              <p className="p_idpw">아이디/비밀번호 찾기</p>
               <br />
 
-              <div class="mb-4 signUpBtnDiv">
+              <div className="mb-4 signUpBtnDiv">
                 <button
-                  class="btn btn-outline-primary btn-sm btn-block signUpBtn"
+                  className="btn btn-outline-primary btn-sm btn-block signUpBtn"
                   type="submit"
                 >
                   로그인

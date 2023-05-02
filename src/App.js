@@ -3,6 +3,9 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
+import UserUpdate from "./Pages/UserUpdate";
+import FindAccountEmail from "./Pages/FindAccountEmail";
+import FindAccountPassword from "./Pages/FindAccountPassword";
 import Notice from "./Pages/Notice";
 import RouteTrip from "./Pages/RouteTrip";
 import RouteTripDetail from "./Pages/RouteTripDetail";
@@ -23,6 +26,9 @@ const App = () => {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/userupdate" element={<UserUpdate />} />
+      <Route path="/findaccountemail" element={<FindAccountEmail />} />
+      <Route path="/findaccountpassword" element={<FindAccountPassword />} />
       <Route path="/notice" element={<Notice />} />
       <Route path="/routetrip" element={<RouteTrip />} />
       <Route path="/routetripwrite" element={<RouteTripWrite />} />
