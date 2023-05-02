@@ -1,0 +1,216 @@
+.RecomendBody {
+    margin: auto;
+    
+}
+
+.h2_Recomend {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 30px auto 10px 30px;
+}
+
+.h3_Recomend {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 30px auto 10px 40px;
+}
+
+.searchBar {
+    margin: 10px 5px 10px auto;
+}
+
+.searchBtn {
+    margin: 10px auto 10px 0;
+}
+
+.recomendWriteBtn {
+    float: right;
+    margin: -10px 35px 10px auto;
+}
+
+/* Recomend_best-------------------------------- */
+
+.card {
+    margin: 30px auto 10px auto;
+}
+
+.cardTitle {
+    font-weight: bold;
+}
+
+/* Recomend_viewall-------------------------------- */
+
+.listGroup {
+    margin: 30px auto 30px auto;
+    width: 90%;
+}
+
+.listGroupImg {
+    width: 50px;
+    height: 50px;
+    display: inline;
+    margin-right: 20px;
+}
+
+.listGroupText {
+    display: inline;
+    font-weight:600
+}
+
+.pagenation {
+    margin: 10px auto 30px auto;
+}
+
+/* Recomend_detail-------------------------------- */
+
+.h4_Recomend {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 30px auto 10px 40px;
+}
+
+.hr_Recomend {
+    width: 90%;
+}
+
+.p_recomend {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0 10px 10px auto;
+    float: right;
+    display: block;
+}
+
+.RecomendDetailBody {
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.RecomendDetailImg {
+    display: block;
+    margin: 0 auto 10px auto;
+    width: 300px;
+    height: 200px;
+   
+}
+
+.RecomendDetailP {
+    display: block;
+    margin: 0 auto 10px auto;
+    width: 70%;
+}
+
+.cardRecomendDetail {
+    width: 85%;
+    background-color: rgb(218, 216, 216);
+}
+
+.cardRecomendDetailBody {
+    margin: 0 auto 10px 10px;
+}
+
+.jangso {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.cardRecomendDetailBodyAlert {
+    margin: 0 auto 10px 10px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/*추천해요, 저장할래요 div*/
+.thumbsHeart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto 10px 40px;
+}
+
+.thumbs {
+    margin: 30px;
+}
+
+.heart {
+    margin: 30px;
+}
+
+.thumbsHeartText {
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+}
+
+.thumbsHeartSpan {
+    margin: 0 10px 0 10px;
+    display: inline;
+    padding: 0 10px 0 15px;
+}
+
+.btn-lg {
+    display: inline;
+}
+
+
+.thumbsHeartIcon {
+    display: inline;
+    font-size: 2rem;
+}
+
+.thumbsHeartIcon:hover {
+    color: #537FE7;
+    opacity:0.9;
+}
+
+.Div_boardListBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto 30px auto;
+}
+
+.boardListBtn {
+    align-items: center;
+    justify-content: center;
+}
+
+/* Recomend_write --------------------------------------*/
+
+.recomendP {
+    font-size: 1rem;
+    font-weight: bold;
+    float: left;
+    clear: both;
+    margin-left: 10px
+}
+
+.radioBtnDiv {
+    margin: 0 auto 40px 60px;
+}
+
+.btnGroup {
+    margin: 0 10px 0 0;
+    border-radius: 0;
+}
+
+.btnGroup:hover {
+    background-color: #6c757d;
+    color: #fff;
+  }
+
+.btnGroup:active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.form-check {
+    clear: both;
+}
+
+.recomendCheckDiv {
+    margin-left: 20px;
+}

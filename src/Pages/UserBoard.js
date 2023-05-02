@@ -1,11 +1,17 @@
 import React from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
-import UserRegion from "../Pages/UserRegion";
+import BoardList from "../Components/BoardList";
 import "../Styles/Main.css";
-import { Route, Routes } from "react-router-dom";
+import "../Styles/UserBoard.css";
+import FreeBoardSelect from "../Components/UserBoards/FreeBoardSelect";
+import RegionBoardSelect from "../Components/UserBoards/RegionBoardSelect";
+import Button from "react-bootstrap/Button";
 
 const UserBoard = () => {
+  const toWrite = () => {
+    window.location.href = "/Write";
+  };
   return (
     <section className="full-bg">
       <section className="left-bg">
@@ -25,14 +31,24 @@ const UserBoard = () => {
         </div>
       </section>
 
-      <main>
+      <main className="UserBoardSection">
         <Header />
         <section>
-          <div>
-            <Routes>
-              <Route path="userboard/userregion" element={<UserRegion />} />
-            </Routes>
-            <div>지역별 커뮤니티 게시판</div>
+          <div className="wrapper">
+            <div className="selectBoxes">
+              <FreeBoardSelect />
+              <RegionBoardSelect />
+            </div>
+            <div className="totalBoard">
+              <br />
+              <hr />
+              <div className="totalBoardTitle">전체 글 보기</div>
+              <br />
+              <BoardList />
+              <Button type="button" class="btn btn-primary" onClick={toWrite}>
+                글쓰기
+              </Button>
+            </div>
           </div>
         </section>
         <Footer />
