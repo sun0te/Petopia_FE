@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.selectBox {
+  display: inline-block;
+  margin: 10px 1.5%;
+  padding: 20px;
+  border: 1px solid #537fe7;
+  font-size: 12px;
+  border-radius: 20px;
+  width: 156px;
+  height: 100%;
+  box-shadow: 3px 3px 3px #b0b0b0;
+}
+
+.selectBox:hover {
+  background-color: #537fe7;
+  color: #ffffff;
+  cursor: pointer;
+  transform: all ease 2s 0s;
+}
+
+.boardTitle {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.boardExplain {
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 100;
+}
+.totalBoardTitle {
+  margin: 40px 15px 0 15px;
+  font-size: 26px;
+  font-weight: 600;
+}

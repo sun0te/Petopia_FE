@@ -2,10 +2,9 @@ import React from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import "../Styles/Main.css";
-import "../Styles/UserRegion.css";
-import RegionLocationSelect from "../Components/UserBoards/RegionLocationSelect.js";
+import RecomendWrite from "../Components/RecomendComponent/Recomend_write.js";
 
-const UserRegion = () => {
+const RouteTrip = () => {
   return (
     <section className="full-bg">
       <section className="left-bg">
@@ -25,10 +24,11 @@ const UserRegion = () => {
         </div>
       </section>
 
-      <main className="UserRegionSection">
+      <main className="RouteTripSection">
         <Header />
         <section>
-          <RegionLocationSelect />
+          <RecomendWrite />
+          {/* <p>여행 추천 페이지입니다</p> */}
         </section>
         <Footer />
       </main>
@@ -36,4 +36,4 @@ const UserRegion = () => {
   );
 };
 
-export default UserRegion;
+export default RouteTrip;

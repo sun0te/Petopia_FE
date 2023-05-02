@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import "../Styles/Main.css";
+import Recomend from "../Components/Recomend.js";
 
 const RouteTrip = () => {
   return (
@@ -23,12 +24,11 @@ const RouteTrip = () => {
         </div>
       </section>
 
-      <main>
+      <main className="RouteTripSection">
         <Header />
         <section>
-          {/* 여기에 모바일 화면 
-          개발하시면 됩니다*/}
-          <p>여행 추천 페이지입니다</p>
+          <Recomend />
+          {/* <p>여행 추천 페이지입니다</p> */}
         </section>
         <Footer />
       </main>

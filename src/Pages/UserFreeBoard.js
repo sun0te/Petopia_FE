@@ -1,7 +1,9 @@
 import React from "react";
-import Header from "../Components/Header.js";
-import Footer from "../Components/Footer.js";
+import Header from "../Components/Header";
+import Footer from "../Components/Footer";
+import FreeBoardList from "../Components/UserBoards/FreeBoardList";
 import "../Styles/Main.css";
+import "../Styles/UserFreeBoard.css";
 
 const UserFreeBoard = () => {
   return (
@@ -23,12 +25,11 @@ const UserFreeBoard = () => {
         </div>
       </section>
 
-      <main>
+      <main className="UserFreeBoardSection">
         <Header />
         <section>
-          {/* 여기에 모바일 화면 
-          개발하시면 됩니다*/}
-          <p>자유 게시판 페이지입니다</p>
+          <div className="free_title">자유 게시판</div>
+          <FreeBoardList />
         </section>
         <Footer />
       </main>

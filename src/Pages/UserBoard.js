@@ -1,9 +1,17 @@
 import React from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
+import BoardList from "../Components/BoardList";
 import "../Styles/Main.css";
+import "../Styles/UserBoard.css";
+import FreeBoardSelect from "../Components/UserBoards/FreeBoardSelect";
+import RegionBoardSelect from "../Components/UserBoards/RegionBoardSelect";
+import Button from "react-bootstrap/Button";
 
 const UserBoard = () => {
+  const toWrite = () => {
+    window.location.href = "/Write";
+  };
   return (
     <section className="full-bg">
       <section className="left-bg">
@@ -23,12 +31,25 @@ const UserBoard = () => {
         </div>
       </section>
 
-      <main>
+      <main className="UserBoardSection">
         <Header />
         <section>
-          {/* 여기에 모바일 화면 
-          개발하시면 됩니다*/}
-          <p>자유/모임 전체 커뮤니티 페이지입니다</p>
+          <div className="wrapper">
+            <div className="selectBoxes">
+              <FreeBoardSelect />
+              <RegionBoardSelect />
+            </div>
+            <div className="totalBoard">
+              <br />
+              <hr />
+              <div className="totalBoardTitle">전체 글 보기</div>
+              <br />
+              <BoardList />
+              <Button type="button" class="btn btn-primary" onClick={toWrite}>
+                글쓰기
+              </Button>
+            </div>
+          </div>
         </section>
         <Footer />
       </main>
