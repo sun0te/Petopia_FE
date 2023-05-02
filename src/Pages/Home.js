@@ -50,12 +50,12 @@ const Home = () => {
               </div>
             ))}
           </Slider>
-
           {/*지도 코드 들어갈 위치 */}
-
           {/* 여행지 추천 div */}
           <div className="recommendation">
-            <p>경로 추천</p>
+            <div className="boardTitle">
+              <p>경로 추천</p>
+            </div>
             <div className="column">
               <div className="image-wrapper">
                 <img src="https://placehold.it/120x120" alt="image" />
@@ -71,10 +71,11 @@ const Home = () => {
               </div>
             </div>
           </div>
-
           {/* 커뮤니티 게시글 div */}
           <div className="recommendation">
-            <p>인기 게시글</p>
+            <div className="boardTitle">
+              <p>인기게시글</p>
+            </div>
             <div className="column">
               <div className="image-wrapper">
                 <img src="https://placehold.it/120x120" alt="image" />
