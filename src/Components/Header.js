@@ -7,10 +7,12 @@ const Header = ({ page }) => {
   return (
     <header>
       <div className="headerBtns">
-        <Button variant="primary" className="mr-2">
+        <Button variant="primary" className="mr-2" as={NavLink} to="/login">
           로그인
         </Button>
-        <Button variant="outline-primary">회원가입</Button>
+        <Button variant="outline-primary" as={NavLink} to="/register">
+          회원가입
+        </Button>
       </div>
       <div className="headerCategoryConteiner">
         {/* 카테고리 */}

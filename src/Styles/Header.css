@@ -12,6 +12,25 @@
     font-size: 12px;
 }
 
+/* 로그인 버튼 */
+.headerBtns .btn-primary {
+    background-color: #537FE7;
+    width: 6em;
+    margin-right: 10px;
+    font-size: 12px;
+    border-radius: 7px;
+}
+
+/* 회원가입 버튼 */
+.headerBtns .btn-outline-primary {
+    background-color: transparent;
+    border: 2px solid #537FE7;
+    color: #537FE7;
+    margin-right: 10px;
+    font-size: 12px;
+    border-radius: 7px;
+}
+
 /* 두 번째 줄 header 카테고리를 포함하는 부모 div */
 .headerCategoryConteiner {
     display: flex;
