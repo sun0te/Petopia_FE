@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
+
 const NoticeList = styled.div`
   display: flex;
   flex-direction: column;
@@ -24,26 +25,25 @@ const NoticeCard = styled.div`
   border: 1px solid #c9c1c1;
   border-radius: 10px;
   padding: 10px;
-  margin: 10px 0;
+  margin: 5px 0;
   width: 100%;
   height: 100%;
 `;
 
 const Thumbnail = styled.img`
   width: 130px;
-  height: 83px;
+  height: 85px;
   margin-right: 10px;
-  margin-top: 7px;
+  margin-top: 12px;
   flex-shrink: 0;
 `;
-
-
 
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100%;
+  flex: 1;
+  margin-top: 3px;
 `;
 
 const CardTitle = styled.div`
@@ -72,7 +72,7 @@ const CardInfo = styled.p`
 
 const CarDdate = styled(CardInfo)`
   margin-top: 10px;
-  margin-left: 180px;
+  text-align: right;
 `;
 
 const CardList = () => {

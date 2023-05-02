@@ -1,7 +1,9 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import CardList from "./CardList";
 import SearchBarcm from "./SearchBarcm";
+import Button from "react-bootstrap/Button";
 
 const NoticeContainer = styled.div`
   display: flex;
@@ -23,6 +25,7 @@ const TitleSearchWrap = styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: 400px;
+  margin-bottom: 5px;
 `;
 
 const Title = styled.h2`
@@ -32,6 +35,9 @@ const Title = styled.h2`
 `;
 
 function NoticeBoard () {
+  const [session, setSession] = useState("admin"); //버튼 보이게 하기 위해 작성 추후 삭제
+  //const session = sessionStorage.getItem("id"); 로그인 id 받아올 때 쓰면 됨 
+
   return (
     <NoticeContainer>
         <BoardWrapper>
@@ -40,9 +46,8 @@ function NoticeBoard () {
             <SearchBarcm />
           </TitleSearchWrap>
           <CardList />
-          <button >글쓰기</button>
+          {session === "admin" && <Button className="mt-2" variant="primary" size="sm">글쓰기</Button>}
         </BoardWrapper>
-      
     </NoticeContainer>
   );
 };
