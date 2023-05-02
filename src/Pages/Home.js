@@ -4,28 +4,143 @@ import Footer from "../Components/Footer.js";
 import "../Styles/Main.css";
 import "../Styles/MainIh.css";
 import { useNavigate } from "react-router-dom";
-import AccompanyingList from "../Components/AccompanyingList.js";
-import Kakao from "../Map/Kakao.js";
+import Kakao2 from "../Map/Kakao2.js";
+import axios from "axios";
 
 const Home = () => {
   let navigate = useNavigate();
 
-  const [alist, setAlist] = useState([
-    { 지역: "서울", 시설명: "XX카페", 카테고리: "카페" },
-    { 지역: "인천", 시설명: "XX공원", 카테고리: "공원" },
-    { 지역: "강원도", 시설명: "XX음식점", 카테고리: "음식점" },
-  ]);
+  // 카테고리 분류 useState
+  const [maplist1, setMaplist1] = useState([]);
+  const [maplist2, setMaplist2] = useState([]);
+  const [maplist3, setMaplist3] = useState([]);
+  const [maplist4, setMaplist4] = useState([]);
+  const [maplist5, setMaplist5] = useState([]);
+  const [maplist6, setMaplist6] = useState([]);
+  const [maplist7, setMaplist7] = useState([]);
+  const [maplist8, setMaplist8] = useState([]);
+  const [maplist9, setMaplist9] = useState([]);
+  const [maplist10, setMaplist10] = useState([]);
+  const [maplist11, setMaplist11] = useState([]);
+  const [maplist12, setMaplist12] = useState([]);
 
-  const test123 = () => {
-    setAlist([
-      ...alist,
-      {
-        지역: "경기",
-        시설명: "XX병원",
-        카테고리: "병원",
-      },
-    ]);
+  // DB로부터 특정지역의 카테고리(업소)를 불러오기 위한 useState
+  const [city, setCity] = useState("경기도"); // 지역1 DB 컬럼 city_name에 해당
+  const [county, setCounty] = useState("안양시 만안구"); // 지역2 DB 컬럼 county_name에 해당
+
+  useEffect(() => {
+    getList(); // 메인페이지 랜더링시 DB데이터 받아오는 함수 호출 ( 지역 선택시 )
+  }, [city, county]);
+
+  // DB로부터 장소 받아오기
+  const getList = () => {
+    axios
+      .get("/list", {})
+      .then((res) => {
+        const { data } = res;
+        const category1 = []; // 동물병원
+        const category2 = []; // 동물약국
+        const category3 = []; // 문예회관
+        const category4 = []; // 미술관
+        const category5 = []; // 미용
+        const category6 = []; // 박물관
+        const category7 = []; // 반려동물용품
+        const category8 = []; // 식당
+        const category9 = []; // 여행지
+        const category10 = []; // 위탁관리
+        const category11 = []; // 카페
+        const category12 = []; // 펜션
+
+        // db로부터 데이터 받아올 때 카테고리 분류하는 작업
+        for (var i = 0; i < data.length; i++) {
+          if (
+            data[i].category3 === "동물병원" &&
+            data[i].city_name === city &&
+            data[i].county_name === county
+            // data[i].category3 === "여행지"
+          ) {
+            category1.push(data[i]);
+          } else if (
+            data[i].category3 === "동물약국" &&
+            data[i].city_name === city &&
+            data[i].county_name === county
+          ) {
+            category2.push(data[i]);
+          } else if (
+            // 문예회관 데이터 1000개이하 county_name선택 무관 전체출력
+            data[i].category3 === "문예회관" &&
+            data[i].city_name === city
+          ) {
+            category3.push(data[i]);
+          } else if (
+            // 미술관 데이터 1000개이하 county_name선택 무관 전체출력
+            data[i].category3 === "미술관" &&
+            data[i].city_name === city
+          ) {
+            category4.push(data[i]);
+          } else if (
+            data[i].category3 === "미용" &&
+            data[i].city_name === city &&
+            data[i].county_name === county
+          ) {
+            category5.push(data[i]);
+          } else if (
+            data[i].category3 === "박물관" &&
+            data[i].city_name === city &&
+            data[i].county_name === county
+          ) {
+            category6.push(data[i]);
+          } else if (
+            data[i].category3 === "반려동물용품" &&
+            data[i].city_name === city &&
+            data[i].county_name === county
+          ) {
+            category7.push(data[i]);
+          } else if (data[i].category3 === "식당") {
+            // 식당 데이터는 14개 지역선택 무관 전체출력
+            category8.push(data[i]);
+          } else if (
+            // 여행지 데이터 1000개이하 county_name선택 무관 전체출력
+            data[i].category3 === "여행지" &&
+            data[i].city_name === city
+          ) {
+            category9.push(data[i]);
+          } else if (data[i].category3 === "위탁관리") {
+            // 위탁관리 데이터 100개이하 지역선택 무관 전체출력
+            category10.push(data[i]);
+          } else if (
+            // 카페 데이터 1000개이하 county_name선택 무관 전체출력
+            data[i].category3 === "카페" &&
+            data[i].city_name === city
+          ) {
+            category11.push(data[i]);
+          } else if (
+            // 펜션 데이터 1000개이하 county_name선택 무관 전체출력
+            data[i].category3 === "펜션" &&
+            data[i].city_name === city
+          ) {
+            category12.push(data[i]);
+          }
+        }
+
+        setMaplist1(category1);
+        setMaplist2(category2);
+        setMaplist3(category3);
+        setMaplist4(category4);
+        setMaplist5(category5);
+        setMaplist6(category6);
+        setMaplist7(category7);
+        setMaplist8(category8);
+        setMaplist9(category9);
+        setMaplist10(category10);
+        setMaplist11(category11);
+        setMaplist12(category12);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
   };
+
   return (
     <section className="full-bg">
       <section className="left-bg">
@@ -53,26 +168,24 @@ const Home = () => {
             <h2 align="center">메인페이지</h2>
             <div className="testmap">
               <h3 align="center">지도</h3>
-              <button
-                onClick={() => {
-                  navigate("/map");
-                }}
-              >
-                지도 페이지 가기
-              </button>
-            </div>
-            <div className="testlist">
-              <h5 align="center">주변 반려동물 동반 가능 장소</h5>
-              {alist.map((list, index) => {
-                return (
-                  <div className="mainlist">
-                    <AccompanyingList key={index} list={list} />
-                  </div>
-                );
-              })}
-            </div>
-            <div>
-              <button onClick={test123}>리스트 추가</button>
+              <Kakao2
+                maplist1={maplist1}
+                maplist2={maplist2}
+                maplist3={maplist3}
+                maplist4={maplist4}
+                maplist5={maplist5}
+                maplist6={maplist6}
+                maplist7={maplist7}
+                maplist8={maplist8}
+                maplist9={maplist9}
+                maplist10={maplist10}
+                maplist11={maplist11}
+                maplist12={maplist12}
+                city={city}
+                setCity={setCity}
+                county={county}
+                setCounty={setCounty}
+              />
             </div>
           </div>
         </section>

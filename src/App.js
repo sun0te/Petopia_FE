@@ -11,8 +11,6 @@ import UserRegion from "./Pages/UserRegion";
 import UserRegionBoard from "./Pages/UserRegionBoard";
 import UserMypage from "./Pages/UserMypage";
 import NotFound from "./Pages/NotFound";
-import Kakao from "./Map/Kakao";
-import LandingPage from "./Map/LandingPage";
 
 const App = () => {
   return (
@@ -28,8 +26,6 @@ const App = () => {
       <Route path="/userregionboard" element={<UserRegionBoard />} />
       <Route path="/usermypage" element={<UserMypage />} />
       <Route path="*" element={<NotFound />} />
-      {/* 지도 테스트용 페이지 */}
-      <Route path="/map" element={<LandingPage />} />
     </Routes>
   );
 };
