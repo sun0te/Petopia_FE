@@ -27,7 +27,6 @@ const slides = [
 
 const Home = () => {
   const settings = {
-    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -51,35 +50,47 @@ const Home = () => {
             ))}
           </Slider>
           {/*지도 코드 들어갈 위치 */}
+          <div className="map">
+            <p>지도 위치</p>
+          </div>
           {/* 여행지 추천 div */}
           <div className="recommendation">
-            <div className="boardTitle">
+            <div className="recommendation-title">
               <p>경로 추천</p>
             </div>
-            <div className="column">
-              <div className="image-wrapper">
-                <img src="https://placehold.it/120x120" alt="image" />
-              </div>
+            <div className="image-wrapper">
+              <img src="https://placehold.it/120x120" alt="image" />
             </div>
-            <div className="column">
-              <div className="stars-wrapper">
-                <span className="star">&#9733;</span>
-                <span className="star">&#9733;</span>
-                <span className="star">&#9733;</span>
-                <span className="star">&#9733;</span>
-                <span className="star">&#9734;</span>
-              </div>
+            <div className="image-map-go">
+              <p>지도로 보기</p>
+            </div>
+            <div className="boardTitle">
+              <h7>경로추천 Title</h7>
+            </div>
+            <div className="stars-wrapper">
+              <span className="star">&#9733;</span>
+              <span className="star">&#9733;</span>
+              <span className="star">&#9733;</span>
+              <span className="star">&#9733;</span>
+              <span className="star">&#9734;</span>
             </div>
           </div>
           {/* 커뮤니티 게시글 div */}
           <div className="recommendation">
-            <div className="boardTitle">
+            <div className="recommendation-title">
               <p>인기게시글</p>
             </div>
-            <div className="column">
-              <div className="image-wrapper">
-                <img src="https://placehold.it/120x120" alt="image" />
-              </div>
+            <div className="boardTitle">
+              <h7>커뮤니티 게시글1 Title</h7>
+            </div>
+            <div className="boardContent">
+              <p>인기 커뮤니티 게시글 내용입니다...(더보기)</p>
+            </div>
+            <div className="boardTitle">
+              <h7>커뮤니티 게시글2 Title</h7>
+            </div>
+            <div className="boardContent">
+              <p>인기 커뮤니티 게시글 내용입니다...(더보기)</p>
             </div>
           </div>
         </section>

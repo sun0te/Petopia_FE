@@ -60,48 +60,43 @@
     display : hidden;
 }
 
-/* 전체 recommendation div */
+.map {
+    display: flex;
+    width: 100%;
+    min-height: 20em;
+    border: 1px solid #ccc;
+    justify-content: center;
+}
+
+/* 전체 추천 게시글 박스 div */
 .recommendation {
     display: flex;
+    position: relative;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width: 100%;
-    height: auto;
-    margin: 3em auto;
+    width: 80%;
+    margin: 1em auto;
     text-align: center;
     border: 1px solid #ccc;
-    box-shadow: 2px 2px #ccc;
-    padding: 5px;
-}
-
-/* boardTitle div */
-.boardTitle {
-    background-color: #ccc;
-    margin-bottom: 10px;
-    padding: 5px;
-}
-
-.boardTitle p {
-    font-weight: bold;
-    font-size: 1.2em;
-    margin: 0;
-}
-
-/* column div */
-.column {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
 }
 
-/* image-wrapper div */
+.recommendation-title {
+    display: block;
+    width : 100%;
+    margin-bottom: 10px;
+    background-color: #eaeaea;
+    justify-content: center;
+}
+
+.recommendation-title p {
+    font-size: 0.9em;
+    margin: 7px;
+}
+
 .image-wrapper {
     width: 120px;
     height: 120px;
-    margin-right: 10px;
 }
 
 /* image-wrapper div 내부 이미지 */
@@ -110,12 +105,48 @@
     height: 100%;
 }
 
-/* stars-wrapper div */
-.stars-wrapper {
-    font-size: 1.5em;
+.image-map-go {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-/* 각각의 별 모양 span */
+.stars-wrapper {
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+}
+
 .star {
     color: #ffd700;
+}
+
+.image-map-go p {
+    margin-top: 3px;
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+.boardTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 3px;
+}
+
+.boardTitle h7 {
+    font-size: 15px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.boardContent {
+    display: flex;
+    align-items: center;
+}
+
+.boardContent p {
+    font-size: 13px;
+    margin: 5px;
 }
