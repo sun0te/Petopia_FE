@@ -3,6 +3,7 @@ import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import "../Styles/Main.css";
 import NoticeBoard from "../Components/NoticeBoard.js";
+import styled from "styled-components";
 
 const Notice = () => {
   return (
@@ -26,11 +27,8 @@ const Notice = () => {
 
       <main>
         <Header />
-        <section>
+        <section className="wrap">
           <NoticeBoard />
-          {/* 여기에 모바일 화면 
-          개발하시면 됩니다*/}
-          <p>공지 페이지입니다</p>
         </section>
         <Footer />
       </main>

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const NoticeList = styled.div`
   display: flex;
@@ -9,6 +10,12 @@ const NoticeList = styled.div`
   width: 100%;
   max-width: 500px;
 
+  a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    box-sizing: border-box;
+  }
   .cardti {
     display: flex;
     align-items: center;
@@ -72,7 +79,6 @@ const CardInfo = styled.p`
     content: "";
   }
 `;
-//신기함
 
 const CardDate = styled.p`
   margin-top: 10px;
@@ -156,21 +162,23 @@ const CardList = () => {
   return (
     <NoticeList>
       {lists.map((notice) => (
-        <NoticeCard key={notice.id}>
-          <Thumbnail src={notice.thumbnailUrl} alt={notice.title} />
-          <ContentContainer>
-            <div className="cardti">
-              <CardTitle>{notice.title}</CardTitle>
-              <CardComments>({notice.comments})</CardComments>
-            </div>
-            <CardInfoContainer>
-              <CardInfo>작성자 {notice.author}</CardInfo>
-              <CardInfo>조회수 {notice.views}</CardInfo>
-              <CardInfo>추천 수 {notice.recommends}</CardInfo>
-            </CardInfoContainer>
-            <CardDate>{notice.date}</CardDate>
-          </ContentContainer>
-        </NoticeCard>
+        <Link className="linkstyle" to="/" key={notice.id}>
+          <NoticeCard>
+            <Thumbnail src={notice.thumbnailUrl} alt={notice.title} />
+            <ContentContainer>
+              <div className="cardti">
+                <CardTitle>{notice.title}</CardTitle>
+                <CardComments>({notice.comments})</CardComments>
+              </div>
+              <CardInfoContainer>
+                <CardInfo>작성자 {notice.author}</CardInfo>
+                <CardInfo>조회수 {notice.views}</CardInfo>
+                <CardInfo>추천 수 {notice.recommends}</CardInfo>
+              </CardInfoContainer>
+              <CardDate>{notice.date}</CardDate>
+            </ContentContainer>
+          </NoticeCard>
+        </Link>
       ))}
     </NoticeList>
   );

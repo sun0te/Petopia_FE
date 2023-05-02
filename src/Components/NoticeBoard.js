@@ -6,17 +6,19 @@ import SearchBarcm from "./SearchBarcm";
 import Button from "react-bootstrap/Button";
 
 const NoticeContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding: 0 15px;
+  max-height: 100%;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const BoardWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 5px;
-  margin-top: 20px;
+  margin-top: 10px;
   flex-direction: column;
 `;
 
@@ -24,7 +26,7 @@ const TitleSearchWrap = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 400px;
+  width: 100%;
   margin-bottom: 5px;
 `;
 
