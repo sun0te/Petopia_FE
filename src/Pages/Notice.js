@@ -12,7 +12,6 @@ const Notice = () => {
         <section>
           {/* 여기에 모바일 화면 
           개발하시면 됩니다*/}
-          <p>공지 페이지입니다</p>
         </section>
         <Footer />
       </main>

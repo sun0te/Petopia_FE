@@ -90,7 +90,7 @@ main section:last-of-type {
 }
 
 section {
-    min-height: 70vh;
+    min-height: calc(100vh - 27vh);
 }
 
 
