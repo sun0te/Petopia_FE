@@ -1,0 +1,85 @@
+.loginBox {
+    margin: 50px auto;
+    max-width: 500px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.KaKao-loginBtn,
+.Naver-loginBtn {
+    margin-bottom: 10px;
+}
+
+.KaKao-loginBtn button{
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ecdc2d;
+    color: #000000;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.Naver-loginBtn button {
+    width: 80%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #57d03f;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.loginBtn button {
+    width: 80%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4c8bf5;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.inputBox label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.inputBox input[type="email"],
+.inputBox input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    margin-bottom: 10px;
+}
+
+.registerBox {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.registerBox p {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.registerBox button {
+    border: none;
+    background-color: transparent;
+    color: #4c8bf5;
+    font-size: 14px;
+    cursor: pointer;
+}
