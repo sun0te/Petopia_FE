@@ -69,6 +69,10 @@ const Kakao2 = ({
   const [info, setInfo] = useState(); // infowindow를 관리하기 위한 useState
   const [selectedCategory, setSelectedCategory] = useState("hospital"); // 카테고리별 로직 구현을 위한 useState
   const [place, setPlace] = useState(makerOrigin); // 카테고리별 마커 이미지를 지도에 표시하기 위한 useState
+  const [makerimg, setMakerimg] = useState(
+    // 카테고리별 마커 이미지 표시를 위한 useState
+    "http://localhost:3000/hospital.png"
+  );
 
   useEffect(() => {
     setInfo(false); // 다른 카테고리를 누르고 다시 원래 카테고리를 눌렀을때 infowindow 가 켜져있는 버그 해결
@@ -86,8 +90,9 @@ const Kakao2 = ({
     const pensionMenu = document.getElementById("pensionMenu");
 
     if (selectedCategory === "hospital") {
+      // 마커 이미지를 병원으로 변경하고
+      setMakerimg("http://localhost:3000/hospital.png");
       // 병원 카테고리를 선택된 스타일로 변경하고
-      setPlace(makerOrigin); // 카테고리별 개별 이미지 예시
       hospitalMenu.className = "menu_selected";
 
       // 병원을 제외한 카테고리는 선택되지 않은 스타일로 바꿉니다
@@ -103,7 +108,8 @@ const Kakao2 = ({
       cafeMenu.className = "";
       pensionMenu.className = "";
     } else if (selectedCategory === "pharmacy") {
-      // 약국 카테고리를 선택된 스타일로 변경하고
+      // 마커 이미지를 약국으로 변경하고
+      setMakerimg("http://localhost:3000/pharmacy.png");
 
       // 약국을 제외한 카테고리는 선택되지 않은 스타일로 바꿉니다
       hospitalMenu.className = "";
@@ -119,7 +125,8 @@ const Kakao2 = ({
       cafeMenu.className = "";
       pensionMenu.className = "";
     } else if (selectedCategory === "culturalCenter") {
-      // 문예회관 카테고리를 선택된 스타일로 변경하고
+      // 마커 이미지를 문예회관으로 변경하고
+      setMakerimg("http://localhost:3000/culturalCenter.png");
 
       // 문예회관을 제외한 카테고리는 선택되지 않은 스타일로 바꿉니다
       hospitalMenu.className = "";
@@ -135,7 +142,8 @@ const Kakao2 = ({
       cafeMenu.className = "";
       pensionMenu.className = "";
     } else if (selectedCategory === "artmuseum") {
-      // 미술관 카테고리를 선택된 스타일로 변경하고
+      // 마커 이미지를 미술관으로 변경하고
+      setMakerimg("http://localhost:3000/artmuseum.png");
 
       // 미술관을 제외한 카테고리는 선택되지 않은 스타일로 바꿉니다
 
@@ -152,7 +160,8 @@ const Kakao2 = ({
       cafeMenu.className = "";
       pensionMenu.className = "";
     } else if (selectedCategory === "beauty") {
-      // 미용 카테고리를 선택된 스타일로 변경하고
+      // 마커 이미지를 미용으로 변경하고
+      setMakerimg("http://localhost:3000/beauty.png");
 
       // 미용을 제외한 카테고리는 선택되지 않은 스타일로 바꿉니다
 
@@ -169,7 +178,8 @@ const Kakao2 = ({
       cafeMenu.className = "";
       pensionMenu.className = "";
     } else if (selectedCategory === "museum") {
-      // 박물관 카테고리를 선택된 스타일로 변경하고
+      // 마커 이미지를 박물관으로 변경하고
+      setMakerimg("http://localhost:3000/museum.png");
 
       // 박물관을 제외한 카테고리는 선택되지 않은 스타일로 바꿉니다
       hospitalMenu.className = "";
@@ -185,7 +195,8 @@ const Kakao2 = ({
       cafeMenu.className = "";
       pensionMenu.className = "";
     } else if (selectedCategory === "petGoods") {
-      // 애완용품 카테고리를 선택된 스타일로 변경하고
+      // 마커 이미지를 애완용품으로 변경하고
+      setMakerimg("http://localhost:3000/petGoods.png");
 
       // 애완용품을 제외한 카테고리는 선택되지 않은 스타일로 바꿉니다
 
@@ -202,7 +213,8 @@ const Kakao2 = ({
       cafeMenu.className = "";
       pensionMenu.className = "";
     } else if (selectedCategory === "restaurant") {
-      // 식당 카테고리를 선택된 스타일로 변경하고
+      // 마커 이미지를 식당으로 변경하고
+      setMakerimg("http://localhost:3000/restaurant.png");
 
       // 식당을 제외한 카테고리는 선택되지 않은 스타일로 바꿉니다
 
@@ -219,7 +231,8 @@ const Kakao2 = ({
       cafeMenu.className = "";
       pensionMenu.className = "";
     } else if (selectedCategory === "travel") {
-      // 여행지 카테고리를 선택된 스타일로 변경하고
+      // 마커 이미지를 여행지로 변경하고
+      setMakerimg("http://localhost:3000/travel.png");
 
       // 여행지를 제외한 카테고리는 선택되지 않은 스타일로 바꿉니다
 
@@ -236,7 +249,8 @@ const Kakao2 = ({
       cafeMenu.className = "";
       pensionMenu.className = "";
     } else if (selectedCategory === "management") {
-      // 위탁관리 카테고리를 선택된 스타일로 변경하고
+      // 마커 이미지를 위탁관리로 변경하고
+      setMakerimg("http://localhost:3000/management.png");
 
       // 위탁관리 제외한 카테고리는 선택되지 않은 스타일로 바꿉니다
       hospitalMenu.className = "";
@@ -252,7 +266,8 @@ const Kakao2 = ({
       cafeMenu.className = "";
       pensionMenu.className = "";
     } else if (selectedCategory === "cafe") {
-      // 카페 카테고리를 선택된 스타일로 변경하고
+      // 마커 이미지를 카페로 변경하고
+      setMakerimg("http://localhost:3000/cafe.png");
 
       // 카페를 제외한 카테고리는 선택되지 않은 스타일로 바꿉니다
 
@@ -269,7 +284,8 @@ const Kakao2 = ({
       cafeMenu.className = "menu_selected";
       pensionMenu.className = "";
     } else if (selectedCategory === "pension") {
-      // 펜션 카테고리를 선택된 스타일로 변경하고
+      // 마커 이미지를 펜션으로 변경하고
+      setMakerimg("http://localhost:3000/pension.png");
 
       // 펜션을 제외한 카테고리는 선택되지 않은 스타일로 바꿉니다
 
@@ -298,7 +314,7 @@ const Kakao2 = ({
           onClick={() => setInfo(position)} // 마커 클릭시 infowindow 출력
           image={{
             // 마커 이미지 옵션
-            src: markerImageSrc,
+            src: makerimg,
             size: imageSize,
             options: {
               spriteSize: spriteSize,
@@ -318,7 +334,7 @@ const Kakao2 = ({
             <CustomOverlayMap position={position}>
               <div className="mapwrapinfo">
                 <div className="mapinfo">
-                  <div className="maptitle">
+                  <div className="maptitle infoellipsis">
                     {position.facility_name}
                     <div
                       className="mapclose"
@@ -655,6 +671,8 @@ const Kakao2 = ({
         setCity={setCity}
         county={county}
         setCounty={setCounty}
+        location={location}
+        setLoacation={setLoacation}
       />
     </>
   );
