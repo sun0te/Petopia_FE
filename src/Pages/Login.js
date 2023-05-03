@@ -62,11 +62,9 @@ const Login = () => {
           <div className="loginBox">
             <div className="KaKao-loginBtn">
               {/* 카카오 연동 로그인 */}
-              <button>카카오로 로그인</button>
             </div>
             <div className="Naver-loginBtn">
               {/* 네이버 연동 로그인 */}
-              <button>네이버로 로그인</button>
             </div>
             <div className="inputBox">
               {/* 이메일 입력창 */}

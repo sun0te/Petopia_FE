@@ -7,32 +7,33 @@
     flex-direction: column;
 }
 
-.KaKao-loginBtn,
+.KaKao-loginBtn {
+    height: 46px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    background-image: url('../../public/img/kakao_login.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
 .Naver-loginBtn {
-    margin-bottom: 10px;
-}
-
-.KaKao-loginBtn button{
-    width: 80%;
+    height: 50px;
+    width: 100%;
+    margin: 20px auto;
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #ecdc2d;
-    color: #000000;
-    font-size: 16px;
     cursor: pointer;
-}
-
-.Naver-loginBtn button {
-    width: 80%;
-    margin-bottom: 20px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #57d03f;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
+    background-image: url('../../public/img/naver_login.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 }
 
 .loginBtn button {
@@ -45,14 +46,6 @@
     color: #fff;
     font-size: 16px;
     cursor: pointer;
-}
-
-.inputBox label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 14px;
-    text-align: left;
-    font-weight: bold;
 }
 
 .inputBox input[type="email"],
