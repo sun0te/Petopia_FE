@@ -5,13 +5,15 @@ const Footer = () => {
   return (
     <footer>
       <div className="footerContainer">
-        <img src="../../img/logo.png" alt="Petoia logo" />
+        <div className="footer-logo">
+          <img src="../../img/logo.png" alt="Petoia logo" />
+        </div>
         <div className="socialIcons">
           <FaYoutube />
           <FaTwitter />
           <FaGoogle />
         </div>
-        <p>© 2023 Petopia. All Rights Reserved.</p>
+        <p className="myFooterText">© 2023 Petopia. All Rights Reserved.</p>
       </div>
     </footer>
   );
