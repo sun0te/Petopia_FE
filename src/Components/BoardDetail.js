@@ -2,8 +2,10 @@ import "bootstrap/dist/css/bootstrap.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
-import "../../Styles/RecomendStyle.css";
+import "../Styles/RecomendStyle.css";
 import { BsPerson, BsHandThumbsUp, BsHeart } from "react-icons/bs";
+import Comment from "./Comment";
+import Reply from "./Reply";
 
 const Recomend_detail = () => {
   const thumbsClick = () => {
@@ -23,13 +25,24 @@ const Recomend_detail = () => {
               className="me-1 w-75 searchBar"
               aria-label="Search"
             />
-            <Button className="searchBtn btn-sm" variant="outline-primary">
+            <Button className="searchBtn" variant="outline-primary" size="sm">
               검색
             </Button>
           </Form>
         </div>
 
         <h4 className="h4_Recomend">게시글 제목</h4>
+
+        <div className="detailReportBtnDiv">
+          <Button
+            className="btm-sm reportBtn"
+            variant="outline-danger"
+            style={{ padding: "4px 0px 3px 0px" }}
+          >
+            🚨신고
+          </Button>
+        </div>
+
         <hr className="hr_Recomend" />
 
         <p className="p_recomend">
@@ -85,68 +98,68 @@ const Recomend_detail = () => {
             </p>
           </div>
 
-          <Card className="cardRecomendDetail">
-            <Card.Body className="cardRecomendDetailBody jangso">
-              ✅ 장소 정보
-            </Card.Body>
-            <Card.Body className="cardRecomendDetailBody">
-              📌 어떤 종류의 장소인가요? <br /> <br />- 공원
-            </Card.Body>
-            <Card.Body className="cardRecomendDetailBody">
-              📌 반려견 동반 시 유의사항 <br /> <br />
-              - 펫방석 혹은 담요 제공하지 않음 <br />
-              - 마킹이 심한 반려견은 매너벨트 착용
-              <br />
-              - 15 kg이 넘는 대형견은 업체 문의
-              <br /> - 심한 짖음, 공격성 있는 반려견 동반 불가
-            </Card.Body>
-
-            <Card.Body className="cardRecomendDetailBodyAlert">
-              💡기본적인 펫티켓을 꼭 지켜주세요💡
-            </Card.Body>
-          </Card>
-
-          <div className="thumbsHeart">
-            <br />
-            <div className="thumbs">
-              <p className="thumbsHeartText">추천해요</p>
-              <button type="button" className="btn btn-lg">
-                <BsHandThumbsUp
-                  className="thumbsHeartIcon"
-                  onClick={thumbsClick}
-                />
-              </button>
-              <span className="thumbsHeartSpan">32</span>
-            </div>
-
-            <br />
-
-            <div className="heart">
-              <p className="thumbsHeartText">저장할래요</p>
-              <button type="button" className="btn btn-lg">
-                <BsHeart className="thumbsHeartIcon" />
-              </button>
-              <span className="thumbsHeartSpan">8</span>
-            </div>
-          </div>
-
-          <div className="Div_boardListBtn">
+          <div className="Div_boardListBtn boardListBtnDetailDiv">
             <button
               type="button"
-              className="btn btn-outline-primary boardListBtn"
+              className="btn btn-sm btn-outline-primary boardListBtn boardListBtnDetail"
             >
               글목록
             </button>
+          </div>
 
-            <div className="reportBtnDiv">
-              <Button
-                className="btm-sm reportBtn"
-                variant="outline-danger"
-                style={{ padding: "4px 0px 3px 0px" }}
-              >
-                🚨신고
+          <div className="boardCommentDiv">
+            <Comment
+              commentProfile="img/recommend_detail2.png"
+              commentWriter="fasd"
+              commentTime="14 시간 전"
+              commentContent="굿"
+            />
+            <Comment
+              commentProfile="img/facebook.png"
+              commentWriter="fasd1234"
+              commentContent="Porta ac consectetur acPorta cteturPorta ac consectetur acPorta cteturPorta ac consectetur acPorta ctetur"
+              commentTime="14 시간 전"
+            />
+            <Reply
+              replyProfile="img/recommend_best3.png"
+              replyWriter="reple 1"
+              replyTime="24 시간 전"
+              replyContent="?"
+            />
+            <Reply
+              replyProfile="img/googlelogo.png"
+              replyWriter="reple 2"
+              replyTime="24 시간 전"
+              replyContent="Porta ac consectetur acPorta ctetur"
+            />
+            <Comment
+              commentProfile="img/dog_main.png"
+              commentWriter="qwerty"
+              commentTime="24 시간 전"
+              commentContent="둣"
+            />
+
+            <Reply
+              replyProfile="img/recommend_detail1.png"
+              replyWriter="reple 3"
+              replyTime="24 시간 전"
+              replyContent="fasd"
+            />
+          </div>
+
+          <div className="writeCommentDiv">
+            <Form.Group className="mb-3 writeFormContent">
+              <Form.Label></Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="댓글을 입력하세요"
+                className="writeCommentTextarea"
+              />
+              <Button className="btn-sm writeCommentBtn" variant="primary">
+                댓글달기
               </Button>
-            </div>
+            </Form.Group>
           </div>
         </div>
       </div>

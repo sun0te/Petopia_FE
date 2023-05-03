@@ -13,7 +13,7 @@ const RouteTrip = () => {
         <Header />
         <section>
           <RecomendWrite />
-          {/* <p>여행 추천 페이지입니다</p> */}
+          {/* <p>여행 추천 작성 페이지입니다</p> */}
         </section>
         <Footer />
       </main>

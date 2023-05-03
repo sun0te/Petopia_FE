@@ -2,9 +2,9 @@ import React from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
-import SignUpComponent from "../Components/SignUpComponent.js";
+import UserUpdateComponent from "../Components/UserUpdateComponent.js";
 
-const Register = () => {
+const UserUpdate = () => {
   return (
     <>
       <BgLeft />
@@ -12,7 +12,7 @@ const Register = () => {
       <main className="RouteTripSection">
         <Header />
         <section>
-          <SignUpComponent />
+          <UserUpdateComponent />
         </section>
         <Footer />
       </main>
@@ -20,4 +20,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default UserUpdate;

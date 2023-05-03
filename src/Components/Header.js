@@ -1,18 +1,21 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../Styles/Header.css";
 
 const Header = ({ page }) => {
   return (
     <header>
       <div className="headerBtns">
-        <Button variant="primary" className="mr-2" as={NavLink} to="/login">
-          로그인
-        </Button>
-        <Button variant="outline-primary" as={NavLink} to="/register">
-          회원가입
-        </Button>
+        <Link to="/login">
+          <Button variant="primary" className="mr-2">
+            로그인
+          </Button>
+        </Link>
+
+        <Link to="/register">
+          <Button variant="outline-primary">회원가입</Button>
+        </Link>
       </div>
       <div className="headerCategoryConteiner">
         {/* 카테고리 */}
