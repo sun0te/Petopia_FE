@@ -108,9 +108,43 @@ const Recomend_detail = () => {
           </div>
 
           <div className="boardCommentDiv">
-            <Comment />
+            <Comment
+              commentProfile="img/recommend_detail2.png"
+              commentWriter="fasd"
+              commentTime="14 시간 전"
+              commentContent="굿"
+            />
+            <Comment
+              commentProfile="img/facebook.png"
+              commentWriter="fasd1234"
+              commentContent="Porta ac consectetur acPorta cteturPorta ac consectetur acPorta cteturPorta ac consectetur acPorta ctetur"
+              commentTime="14 시간 전"
+            />
+            <Reply
+              replyProfile="img/recommend_best3.png"
+              replyWriter="reple 1"
+              replyTime="24 시간 전"
+              replyContent="?"
+            />
+            <Reply
+              replyProfile="img/googlelogo.png"
+              replyWriter="reple 2"
+              replyTime="24 시간 전"
+              replyContent="Porta ac consectetur acPorta ctetur"
+            />
+            <Comment
+              commentProfile="img/dog_main.png"
+              commentWriter="qwerty"
+              commentTime="24 시간 전"
+              commentContent="둣"
+            />
 
-            <Reply />
+            <Reply
+              replyProfile="img/recommend_detail1.png"
+              replyWriter="reple 3"
+              replyTime="24 시간 전"
+              replyContent="fasd"
+            />
           </div>
 
           <div className="writeCommentDiv">

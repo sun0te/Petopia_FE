@@ -1,9 +1,9 @@
 .commentDiv {
+    display: block;
     height: auto;
     margin-bottom: 10px;
-    border-left: 1px solid #537fe738;
+    border-top: 1px solid #537fe738;
     overflow:auto;
-
 }
 
 /* .signUpLogoDiv {
@@ -15,18 +15,19 @@
 
 .commentProfileDiv {
     display: inline-block;
-    margin: 2px -10px -5px 2px;
+    margin: -10px -10px -5px 2px;
 }
 
 .commentContentDiv {
     display: inline-block;
-    margin: -30px 0 10px 30px;
+    margin: 10px 0 10px 0px;
     text-align: start;
+    width: 253px;
 }
 
 .commentProfileImg {
     border-radius: 50px;
-    margin: 5px 10px -10px 5px;
+    margin: -40px 10px -10px 5px;
     width: 40px;
     height: 40px;
     cursor: pointer;
@@ -61,9 +62,10 @@
 }
 
 .commentDate {
+    position: fixed;
     display: inline;
     float: right;
-    margin: 2px 5px 0 0;
+    margin: 0px 5px 0 20px;
     font-size: 0.7rem;
     color: gray;
 }
@@ -71,8 +73,19 @@
 /* replyDiv -------------------------------------*/
 
 .replyDiv {
-    height: auto;
-    margin: 0 0 20px 60px;
-    border-left: 1px solid #537fe738;
-    overflow:auto;
+    margin: 0 0 0 50px;
+}
+
+.replyCommentDiv{
+    display: inline-block;
+    margin: 10px 0 10px 0px;
+    text-align: start;
+    width: 100px;
+}
+
+.replyContentDiv {
+    display: inline-block;
+    margin: 10px 0 10px 0px;
+    text-align: start;
+    width: 190px;
 }

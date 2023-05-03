@@ -85,50 +85,50 @@ const Recomend_write = () => {
 
           <p className="recomendP">2. 반려견 동반시 유의사항 * </p>
           <div className="recomendCheckDiv">
-            <div class="form-check">
+            <div className="form-check">
               <input
-                class="form-check-input"
+                className="form-check-input"
                 type="checkbox"
                 value=""
                 id="flexCheckDefault"
               />
-              <label class="form-check-label" for="flexCheckDefault">
+              <label className="form-check-label" htmlFor="flexCheckDefault">
                 펫 방석 혹은 담요를 제공해요
               </label>
             </div>
 
-            <div class="form-check">
+            <div className="form-check">
               <input
-                class="form-check-input"
+                className="form-check-input"
                 type="checkbox"
                 value=""
                 id="flexCheckDefault"
               />
-              <label class="form-check-label" for="flexCheckDefault">
+              <label className="form-check-label" htmlFor="flexCheckDefault">
                 펫 간식을 제공해요
               </label>
             </div>
 
-            <div class="form-check">
+            <div className="form-check">
               <input
-                class="form-check-input"
+                className="form-check-input"
                 type="checkbox"
                 value=""
                 id="flexCheckDefault"
               />
-              <label class="form-check-label" for="flexCheckDefault">
+              <label className="form-check-label" htmlFor="flexCheckDefault">
                 매너벨트 착용 필수에요
               </label>
             </div>
 
-            <div class="form-check">
+            <div className="form-check">
               <input
-                class="form-check-input"
+                className="form-check-input"
                 type="checkbox"
                 value=""
                 id="flexCheckDefault"
               />
-              <label class="form-check-label" for="flexCheckDefault">
+              <label className="form-check-label" htmlFor="flexCheckDefault">
                 15 kg 이상 대형견은 입장할 수 없어요
               </label>
             </div>
@@ -173,7 +173,7 @@ const Recomend_write = () => {
                       className="imgDeleteBtn"
                       onClick={() => handleRemoveImage(index)}
                     >
-                      <BsTrash3 />
+                      <BsTrash3 className="trachCanIcon" />
                     </button>
                   </div>
                 </div>

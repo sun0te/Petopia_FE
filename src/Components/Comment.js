@@ -1,26 +1,22 @@
 import "../Styles/Comment.css";
 
-const Comment = () => {
+const Comment = (props) => {
   return (
     <>
       <div className="commentDiv">
         <div className="commentProfileDiv">
           <img
             className="commentProfileImg"
-            src="img/recommend_detail2.png"
+            src={props.commentProfile}
             alt=""
           />
         </div>
         <div className="commentContentDiv">
-          <p className=" commentNickname">fasd1234</p>
+          <p className=" commentNickname">{props.commentWriter}</p>
 
-          <span className="commentDate">14 시간 전</span>
+          <span className="commentDate">{props.commentTime}</span>
           <br />
-          <p className="comment">
-            Porta ac consectetur acPorta ac consectetur acPorta ac consectetur
-            acPorta ac consectetur acPorta ac consectetur acPorta ac consectetur
-            acPorta ac consectetur acPorta ac consectetur acPorta ac consectetur
-          </p>
+          <p className="comment">{props.commentContent}</p>
           <br />
           <p className="writeReply">답글 작성</p>
         </div>
