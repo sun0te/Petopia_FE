@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
-import "../Styles/Main.css";
 import "../Styles/UserRegion.css";
 import BgLeft from "../Components/BgLeft.js";
 

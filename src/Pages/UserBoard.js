@@ -2,7 +2,6 @@ import React from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import UserRegion from "../Pages/UserRegion";
-import "../Styles/Main.css";
 import { Route, Routes } from "react-router-dom";
 import BgLeft from "../Components/BgLeft.js";
 
