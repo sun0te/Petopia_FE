@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 
-const Modal1 = ({ open, close, city, setCity, county, setCounty }) => {
+const Modal1 = ({
+  open,
+  close,
+  city,
+  setCity,
+  county,
+  setCounty,
+  location,
+  setLocation,
+}) => {
   const [view, setView] = useState(0); // 지역선택 useState , view=0 city_name 리스트 view=1 county_name 리스트
   const [citycheck1, setCitycheck1] = useState(""); // 지역선택 로직을 위한 ustState1
   const [citycheck2, setCitycheck2] = useState([]); // 지역선택 로직을 위한 ustState2
@@ -302,7 +311,7 @@ const Modal1 = ({ open, close, city, setCity, county, setCounty }) => {
       {open ? (
         <div className="mapModalContainer">
           <div className="mapModalHeader">
-            <b>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;지역선택</b>
+            <b>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;지역선택</b>
             <button
               className="mapModalBtn1"
               onClick={() => {

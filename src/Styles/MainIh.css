@@ -2,14 +2,14 @@
     margin: auto;
     width: 100%;
     height: auto;
-    border: 3px solid black;
+    /* border: 3px solid black; */
 }
 
 .testmap{
     width: 100%;
     height: 300px;
     margin: auto;
-    border: 1px solid green;
+    /* border: 1px solid green; */
 }
 
 .testlist{
