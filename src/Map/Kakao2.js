@@ -329,7 +329,7 @@ const Kakao2 = ({
         {/* 기존 마커의 infowindow가 열린 상태에서 다른 마커를 누르면 기존 마커의 infowindow 종료 */}
         {info &&
           info.lat === position.lat &&
-          info.lng === position.lng && ( // infowindow 같이켜지는 현상 해결 하기 위해 겹칠수 없는 데이터를 조건문에 할당
+          info.lng === position.lng && ( // infowindow 같이켜지는 현상 해결 하기 위해 겹칠수 없는 데이터(좌표)를 조건문에 할당
             /* 마커위에 infowindow 표시 */
             <CustomOverlayMap position={position}>
               <div className="mapwrapinfo">

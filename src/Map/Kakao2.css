@@ -32,7 +32,7 @@
 }
 
 .mapbox, .mapbox *{margin:0;padding:0;color:#000;}   
-.mapbox {position:absolute;overflow:hidden;bottom:10px;right:10px;width:auto;height:auto;z-index:1;border:1px solid #537FE7;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:12px;text-align:center;background-color:#fff;}
+.mapbox {position:absolute;overflow:hidden;bottom:10px;right:10px;width:auto;height:auto;z-index:1;border:1px solid #537FE7;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:12px;text-align:center;background-color:#fff;font-weight: bold;}
 .mapbox li{list-style:none; float: left; width:50px;height:50px;padding-top:5px;cursor:pointer;} 
 .mapbox .ico_comm {display:block;margin:0 auto 2px;width:22px;height:26px;background:url('http://localhost:3000/mapicon.png') no-repeat;} 
 
