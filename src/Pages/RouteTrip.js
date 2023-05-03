@@ -2,7 +2,6 @@ import React from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
-import "../Styles/Main.css";
 import Recomend from "../Components/Recomend.js";
 
 const RouteTrip = () => {
