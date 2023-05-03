@@ -4,20 +4,38 @@ import Footer from "../Components/Footer.js";
 import UserRegion from "../Pages/UserRegion";
 import { Route, Routes } from "react-router-dom";
 import BgLeft from "../Components/BgLeft.js";
+import BoardList from "../Components/BoardList";
+import "../Styles/UserBoard.css";
+import FreeBoardSelect from "../Components/UserBoards/FreeBoardSelect";
+import RegionBoardSelect from "../Components/UserBoards/RegionBoardSelect";
+import Button from "react-bootstrap/Button";
 
 const UserBoard = () => {
+  const toWrite = () => {
+    window.location.href = "/Write";
+  };
   return (
     <>
       <BgLeft />
 
-      <main>
+      <main className="UserBoardSection">
         <Header />
         <section>
-          <div>
-            <Routes>
-              <Route path="userboard/userregion" element={<UserRegion />} />
-            </Routes>
-            <div>지역별 커뮤니티 게시판</div>
+          <div className="wrapper">
+            <div className="selectBoxes">
+              <FreeBoardSelect />
+              <RegionBoardSelect />
+            </div>
+            <div className="totalBoard">
+              <br />
+              <hr />
+              <div className="totalBoardTitle">전체 글 보기</div>
+              <br />
+              <BoardList />
+              <Button type="button" class="btn btn-primary" onClick={toWrite}>
+                글쓰기
+              </Button>
+            </div>
           </div>
         </section>
         <Footer />

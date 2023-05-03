@@ -2,8 +2,11 @@ import React from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
+import "../Styles/UserRegion.css";
 
-const UserRegionBoard = () => {
+import RegionBoardList from "../Components/UserBoards/RegionBoardList.js";
+
+const UserRegionBoard = ({ id }) => {
   return (
     <>
       <BgLeft />
@@ -13,10 +16,12 @@ const UserRegionBoard = () => {
         <section>
           {/* 여기에 모바일 화면 
           개발하시면 됩니다*/}
-          <p>지역별 모임 게시판 페이지입니다</p>
+         <div className="local_title">{id}지역 게시판</div>
+          <RegionBoardList />
         </section>
         <Footer />
       </main>
+      
     </>
   );
 };

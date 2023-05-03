@@ -1,0 +1,11 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.free_title {
+  margin: 20px;
+  clear: both;
+  font-size: 26px;
+  font-weight: 600;
+}
