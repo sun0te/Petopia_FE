@@ -39,6 +39,7 @@
 .cardTitle {
     font-weight: bold;
     font-size: 1rem;
+    margin: -5px 0 -5px 0;
 }
 
 /* Recomend_viewall-------------------------------- */
@@ -46,6 +47,10 @@
 .listGroup {
     margin: 30px auto 30px auto;
     width: 90%;
+}
+
+.recommendListItem {
+    padding: 3px 0 3px 3px;
 }
 
 .listGroupImg {

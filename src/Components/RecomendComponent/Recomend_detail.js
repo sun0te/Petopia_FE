@@ -30,6 +30,15 @@ const Recomend_detail = () => {
         </div>
 
         <h4 className="h4_Recomend">게시글 제목</h4>
+        <div className="detailReportBtnDiv">
+          <Button
+            className="btm-sm reportBtn"
+            variant="outline-danger"
+            style={{ padding: "4px 0px 3px 0px" }}
+          >
+            🚨신고
+          </Button>
+        </div>
         <hr className="hr_Recomend" />
 
         <p className="p_recomend">

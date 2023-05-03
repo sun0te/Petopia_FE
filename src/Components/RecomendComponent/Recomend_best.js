@@ -11,7 +11,7 @@ const Recomend_best = (props) => {
     <>
       <Card className="card" style={{ width: "18rem" }} onClick={toBest}>
         <Card.Img variant="top" src={props.picture} />
-        <Card.Body>
+        <Card.Body className="cardBody">
           <Card.Title className="cardTitle">{props.title}</Card.Title>
         </Card.Body>
       </Card>

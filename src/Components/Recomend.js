@@ -30,7 +30,7 @@ const Recomend = () => {
 
       <Recomend_best
         picture="img/recommend_best1.png"
-        title="안동 한옥마을의 전경이 한 눈.."
+        title="안동 한옥마을의 전경이 한 눈..안동 한옥마을의 전경이 한 눈..안동 한옥마을의 전경이 한 눈..안동 한옥마을의 전경이 한 눈..안동 한옥마을의 전경이 한 눈..안동 한옥마을의 전경이 한 눈..안동 한옥마을의 전경이 한 눈.."
       />
       <Recomend_best
         picture="img/recommend_best2.png"
