@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const NoticeList = styled.div`
   display: flex;
@@ -8,12 +9,16 @@ const NoticeList = styled.div`
   align-items: center;
   width: 100%;
   max-width: 500px;
-
+  a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    box-sizing: border-box;
+    width: 100%;
+  }
   .cardti {
     display: flex;
     align-items: center;
-    margin-left: 10px;
-    margin-top: 5px;
     vertical-align: middle;
   }
 `;
@@ -24,24 +29,21 @@ const NoticeCard = styled.div`
   border: 1px solid #c9c1c1;
   border-radius: 10px;
   padding: 10px;
-  margin: 10px 0;
+  margin: 5px 0;
   width: 100%;
   height: 100%;
 `;
 
 const Thumbnail = styled.img`
   width: 130px;
-  height: 83px;
+  height: 85px;
   margin-right: 10px;
-  margin-top: 7px;
   flex-shrink: 0;
+  margin-bottom: 0;
 `;
 
 const ContentContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+  width: 100%;
 `;
 
 const CardTitle = styled.div`
@@ -56,20 +58,32 @@ const CardComments = styled.div`
 `;
 
 const CardInfoContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
   margin-top: 3px;
-  flex-direction: column;
 `;
 
 const CardInfo = styled.p`
-  margin: 0 10px;
   font-size: 12px;
+  display: flex;
+  margin: 0;
+  &:not(:first-child) {
+    display:inline-block;
+    vertical-align:top; 
+  &:last-child:before {
+     display:inline-block;
+     width: 1px;
+     height: 11px;
+     margin:0 6px;
+     background: black;
+     vertical-align: -1px;
+    content:'';
+  }
 `;
 
-const CarDdate = styled(CardInfo)`
+const CardDate = styled.p`
   margin-top: 10px;
-  margin-left: 180px;
+  text-align: right;
+  font-size: 12px;
+  margin: 0 10px;
 `;
 
 const CardList = () => {
@@ -146,24 +160,27 @@ const CardList = () => {
         console.error(error);
       });
   }, []);
+
   return (
     <NoticeList>
       {lists.map((notice) => (
-        <NoticeCard key={notice.id} onClick={toDetail}>
-          <Thumbnail src={notice.thumbnailUrl} alt={notice.title} />
-          <ContentContainer>
-            <div className="cardti">
-              <CardTitle>{notice.title}</CardTitle>
-              <CardComments>({notice.comments})</CardComments>
-            </div>
-            <CardInfoContainer>
-              <CardInfo>작성자 {notice.author}</CardInfo>
-              <CardInfo>조회수 {notice.views}</CardInfo>
-              <CardInfo>추천 수 {notice.recommends}</CardInfo>
-            </CardInfoContainer>
-            <CarDdate>{notice.date}</CarDdate>
-          </ContentContainer>
-        </NoticeCard>
+        <Link className="linkstyle" to="/" key={notice.id}>
+          <NoticeCard onClick={toDetail}>
+            <Thumbnail src={notice.thumbnailUrl} alt={notice.title} />
+            <ContentContainer>
+              <div className="cardti">
+                <CardTitle>{notice.title}</CardTitle>
+                <CardComments>({notice.comments})</CardComments>
+              </div>
+              <CardInfoContainer>
+                <CardInfo>작성자 {notice.author}</CardInfo>
+                <CardInfo>조회수 {notice.views}</CardInfo>
+                <CardInfo>추천 수 {notice.recommends}</CardInfo>
+              </CardInfoContainer>
+              <CardDate>{notice.date}</CardDate>
+            </ContentContainer>
+          </NoticeCard>
+        </Link>
       ))}
     </NoticeList>
   );

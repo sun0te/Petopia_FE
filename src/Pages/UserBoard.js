@@ -45,9 +45,15 @@ const UserBoard = () => {
               <div className="totalBoardTitle">전체 글 보기</div>
               <br />
               <BoardList />
-              <Button type="button" class="btn btn-primary" onClick={toWrite}>
-                글쓰기
-              </Button>
+              <div class="div_boardwrite_btn">
+                <Button
+                  type="button"
+                  class="btn btn-primary boardwrite_btn"
+                  onClick={toWrite}
+                >
+                  글쓰기
+                </Button>
+              </div>
             </div>
           </div>
         </section>

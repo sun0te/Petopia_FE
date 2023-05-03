@@ -1,8 +1,9 @@
 import React from "react";
 
 import BoardList from "../BoardList.js";
-import "../../Styles/Main.css";
 import Button from "react-bootstrap/Button";
+import "../../Styles/Main.css";
+import "../../Styles/UserBoard.css";
 
 const RegionBoardList = () => {
   const toRegionWrite = () => {
@@ -11,9 +12,15 @@ const RegionBoardList = () => {
   return (
     <>
       <BoardList />
-      <Button type="button" class="btn btn-primary" onClick={toRegionWrite}>
-        글쓰기
-      </Button>
+      <div class="div_boardwrite_btn">
+        <Button
+          type="button"
+          class="btn btn-primary boardwrite_btn"
+          onClick={toRegionWrite}
+        >
+          글쓰기
+        </Button>
+      </div>
     </>
   );
 };
