@@ -1,5 +1,9 @@
 footer {
     position: relative;
+    /* full-bg를 기준으로 배치 */
+    bottom: 0;
+    left: 0;
+    width : 100%;
     background-color: #f5f5f5;
     padding: 1rem;
 }

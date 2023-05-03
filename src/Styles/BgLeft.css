@@ -111,3 +111,9 @@ section {
         width: 360px;
     }
 }
+
+/* RouteTripSection -------------------------------*/
+
+.RouteTripSection {
+    overflow: scroll;
+}
