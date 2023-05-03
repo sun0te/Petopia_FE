@@ -178,41 +178,41 @@ const Home = () => {
       <main>
         <Header />
         <section>
-          <Slider {...settings}>
-            {slides.map((slide) => (
-              <div key={slide.id}>
-                <img src={slide.image} alt={slide.caption} />
-                <div className="caption">{slide.caption}</div>
-              </div>
-            ))}
-          </Slider>
+          <div className="homeSlider">
+            <Slider {...settings}>
+              {slides.map((slide) => (
+                <div key={slide.id}>
+                  <img src={slide.image} alt={slide.caption} />
+                  <div className="caption">{slide.caption}</div>
+                </div>
+              ))}
+            </Slider>
+          </div>
           {/*지도 코드 들어갈 위치 */}
-          <div className="map">
-            <div className="containerIh">
-              <h2 align="center">메인페이지</h2>
-              <div className="testmap">
-                <h3 align="center">지도</h3>
-                <Kakao2
-                  maplist1={maplist1}
-                  maplist2={maplist2}
-                  maplist3={maplist3}
-                  maplist4={maplist4}
-                  maplist5={maplist5}
-                  maplist6={maplist6}
-                  maplist7={maplist7}
-                  maplist8={maplist8}
-                  maplist9={maplist9}
-                  maplist10={maplist10}
-                  maplist11={maplist11}
-                  maplist12={maplist12}
-                  city={city}
-                  setCity={setCity}
-                  county={county}
-                  setCounty={setCounty}
-                />
-              </div>
+          
+          <div className="containerIh">
+            <div className="testmap">
+              <Kakao2
+                maplist1={maplist1}
+                maplist2={maplist2}
+                maplist3={maplist3}
+                maplist4={maplist4}
+                maplist5={maplist5}
+                maplist6={maplist6}
+                maplist7={maplist7}
+                maplist8={maplist8}
+                maplist9={maplist9}
+                maplist10={maplist10}
+                maplist11={maplist11}
+                maplist12={maplist12}
+                city={city}
+                setCity={setCity}
+                county={county}
+                setCounty={setCounty}
+              />
             </div>
           </div>
+
           {/* 여행지 추천 div */}
           <div className="recommendation">
             <div className="recommendation-title">
