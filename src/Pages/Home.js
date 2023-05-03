@@ -6,6 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
+import BoardList from "../Components/BoardList";
+import Board from "../Components/Board";
 import { useNavigate } from "react-router-dom";
 import Kakao2 from "../Map/Kakao2.js";
 import axios from "axios";
@@ -188,7 +190,7 @@ const Home = () => {
             </Slider>
           </div>
           {/*지도 코드 들어갈 위치 */}
-          
+
           <div className="containerIh">
             <div className="testmap">
               <Kakao2
@@ -239,18 +241,9 @@ const Home = () => {
             <div className="recommendation-title">
               <p>인기게시글</p>
             </div>
-            <div className="boardTitle">
-              <h7>커뮤니티 게시글1 Title</h7>
-            </div>
-            <div className="boardContent">
-              <p>인기 커뮤니티 게시글 내용입니다...(더보기)</p>
-            </div>
-            <div className="boardTitle">
-              <h7>커뮤니티 게시글2 Title</h7>
-            </div>
-            <div className="boardContent">
-              <p>인기 커뮤니티 게시글 내용입니다...(더보기)</p>
-            </div>
+            <Board />
+            <Board />
+            <Board />
           </div>
         </section>
         <Footer />
