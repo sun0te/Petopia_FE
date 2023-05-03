@@ -6,10 +6,21 @@ import "../Styles/RecomendStyle.css";
 import { BsPerson, BsHandThumbsUp, BsHeart } from "react-icons/bs";
 import Comment from "./Comment";
 import Reply from "./Reply";
+import { useState } from "react";
+import ReportModal from "./ReportModal";
 
 const Recomend_detail = () => {
   const thumbsClick = () => {
     alert("thumbs up clicked");
+  };
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
   return (
@@ -38,6 +49,7 @@ const Recomend_detail = () => {
             className="btm-sm reportBtn"
             variant="outline-danger"
             style={{ padding: "4px 0px 3px 0px" }}
+            onClick={openModal}
           >
             🚨신고
           </Button>
@@ -52,6 +64,15 @@ const Recomend_detail = () => {
         <br />
 
         <div className="RecomendDetailBody">
+          <ReportModal
+            open={modalOpen}
+            close={closeModal}
+            header="Modal heading"
+          >
+            {/* Modal.js <main> {props.children} </main>에 내용이 입력된다. */}
+            리액트 함수형 모달 팝업창입니다. 쉽게 만들 수 있어요. 같이
+            만들어봐요!
+          </ReportModal>
           <div>
             <img
               className="RecomendDetailImg"
