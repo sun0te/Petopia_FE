@@ -1,0 +1,43 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.wrapper {
+  margin: 0 10px;
+  padding: 10px;
+  overflow: auto;
+}
+
+.local_title {
+  margin: 020px;
+
+  clear: both;
+  font-size: 30px;
+}
+
+.content {
+  display: inline-block;
+  margin: 10px 5%;
+  padding: 20px;
+  border: 1px solid #537fe7;
+  font-size: 12px;
+  border-radius: 20px;
+  clear: both;
+  width: 40%;
+}
+
+.locationTag {
+  display: block;
+  margin: 0 auto;
+  width: 80px;
+  text-align: center;
+  border-radius: 20px;
+  border: 1px solid #537fe7;
+  color: #ffffff;
+  background-color: #537fe7;
+}
+
+.content_title {
+  margin-top: 10px;
+}

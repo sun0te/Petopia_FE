@@ -1,7 +1,9 @@
 import React from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
+import UserRegion from "../Pages/UserRegion";
 import "../Styles/Main.css";
+import { Route, Routes } from "react-router-dom";
 
 const UserBoard = () => {
   return (
@@ -26,9 +28,12 @@ const UserBoard = () => {
       <main>
         <Header />
         <section>
-          {/* 여기에 모바일 화면 
-          개발하시면 됩니다*/}
-          <p>자유/모임 전체 커뮤니티 페이지입니다</p>
+          <div>
+            <Routes>
+              <Route path="userboard/userregion" element={<UserRegion />} />
+            </Routes>
+            <div>지역별 커뮤니티 게시판</div>
+          </div>
         </section>
         <Footer />
       </main>
