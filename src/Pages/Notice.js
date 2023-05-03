@@ -2,6 +2,8 @@ import React from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
+import NoticeBoard from "../Components/NoticeBoard.js";
+import styled from "styled-components";
 
 const Notice = () => {
   return (
@@ -9,9 +11,8 @@ const Notice = () => {
       <BgLeft />
       <main>
         <Header />
-        <section>
-          {/* 여기에 모바일 화면 
-          개발하시면 됩니다*/}
+        <section className="wrap">
+          <NoticeBoard />
         </section>
         <Footer />
       </main>

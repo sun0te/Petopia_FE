@@ -1,3 +1,7 @@
+.wrap {
+  height: calc(100% - 369px);
+}
+
 /* full-bg 클래스를 가진 section 요소를 화면 전체에 꽉 차게 배치 */
 .full-bg {
     position: fixed;
@@ -35,8 +39,8 @@
 }
 
 .logo img {
-    width: 11em;
-    height: auto;
+  width: 11em;
+  height: auto;
 }
 
 /* 바탕 왼쪽  */
