@@ -26,26 +26,31 @@ const MyInquiry = () => {
         <h4>1:1문의</h4>
       </div>
       <hr className="inquiryhr1" />
-      {inquirytest.map((a, i) => (
-        <div
-          className="inquiryMain"
-          onClick={() => {
-            // MyInquiryDetail 이동 or 해당 리스트를 제목,내용으로 변경
-          }}
-        >
-          <div className="test9">
-            <b className="test10">{a.title}</b>
-            <br />
-            {a.answer === 0 ? (
-              <div className="inquiryStatus">처리중</div>
-            ) : (
-              <div className="inquiryStatus">답변완료</div>
-            )}
-            <b className="test11">{a.date}</b>
+      {inquirytest.length !== 0 ? (
+        inquirytest.map((a, i) => (
+          <div
+            className="inquiryMain"
+            onClick={() => {
+              // MyInquiryDetail 이동 or 해당 리스트를 제목,내용으로 변경
+            }}
+          >
+            <div className="inquiryMain1">
+              <b className="inquiryMainTitle">{a.title}</b>
+              <br />
+              {a.answer === 0 ? (
+                <div className="inquiryStatus">처리중</div>
+              ) : (
+                <div className="inquiryStatus">답변완료</div>
+              )}
+              <b className="inquiryMainDate">{a.date}</b>
+            </div>
+            <hr className="inquiryhr2" />
           </div>
-          <hr className="inquiryhr2" />
-        </div>
-      ))}
+        ))
+      ) : (
+        <div className="inquiryNone">문의내역이 없습니다.</div>
+      )}
+
       <div className="inquiryBox">
         <button
           className="inquiryBtn"

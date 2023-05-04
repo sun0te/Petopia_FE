@@ -40,7 +40,7 @@ const Write123 = () => {
             <Form.Control
               className="writeTitle"
               type="email"
-              placeholder="제목을 입력하세요"
+              placeholder="제목"
             />
           </Form.Group>
           <Form.Group className="mb-3 writeFormContent">
@@ -48,8 +48,9 @@ const Write123 = () => {
             <Form.Control
               as="textarea"
               rows={3}
-              placeholder="글 내용을 입력하세요"
+              placeholder="문의 내용을 입력하세요"
               className="contentForm"
+              style={{ resize: "none" }}
             />
           </Form.Group>
         </Form>
@@ -75,7 +76,6 @@ const Write123 = () => {
             ref={inputRef}
           />
         </div>
-
         <div className="uploadImgDiv">
           <ListGroup>
             {selectedFiles.map((file, index) => (
@@ -100,6 +100,7 @@ const Write123 = () => {
             ))}
           </ListGroup>
         </div>
+        <br /> <br /> <br />
         <div className="inquiryWriteBox">
           <button
             className="inquiryBtn"

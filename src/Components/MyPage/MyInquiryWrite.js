@@ -1,32 +1,106 @@
-import React from "react";
+import React, { useState, useRef } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+import { BsTrash3 } from "react-icons/bs";
+import ListGroup from "react-bootstrap/ListGroup";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 const MyInquiryWrite = () => {
+  const [selectedFiles, setSelectedFiles] = useState([]);
+
+  const inputRef = useRef(null);
+
+  const handleFileInputChange = (event) => {
+    setSelectedFiles([...selectedFiles, ...event.target.files]);
+  };
+
+  const handleRemoveImage = (index) => {
+    const newFiles = [...selectedFiles];
+    newFiles.splice(index, 1);
+    setSelectedFiles(newFiles);
+  };
+
+  const handleUploadClick = () => {
+    console.log(selectedFiles);
+  };
+
+  const handleClick = () => {
+    inputRef.current.click();
+  };
+
   return (
     <>
       <div className="inquiryHeader">
         <h4>1:1문의</h4>
       </div>
-      <hr className="inquiryhr1" />
-      <div>
-        <form>
-          <div className="inquiryWriteContainer">
-            <h6>제목</h6>
-            <input
-              className="inquiryWriteInput"
-              type="text"
-              size={38}
-              placeholder=""
+      <div className="writeForm">
+        <Form>
+          <Form.Group className="mb-3">
+            <Form.Label></Form.Label>
+            <Form.Control
+              className="writeTitle"
+              type="email"
+              placeholder="제목"
             />
-            <br />
-            <br />
-            <h6>내용</h6>
-            <textarea
-              className="inquiryWriteTextArea"
-              rows={10}
-              cols={40}
-            ></textarea>
+          </Form.Group>
+          <Form.Group className="mb-3 writeFormContent">
+            <Form.Label></Form.Label>
+            <Form.Control
+              as="textarea"
+              rows={3}
+              placeholder="문의 내용을 입력하세요"
+              className="contentForm"
+              style={{ resize: "none" }}
+            />
+          </Form.Group>
+        </Form>
+      </div>
+
+      <div>
+        <div>
+          <div className="uploadBtn">
+            <Button
+              variant="outline-secondary"
+              className=""
+              onClick={handleClick}
+            >
+              <img className="uploadBtnImg" src="img/uploading.png" alt="" />
+            </Button>
           </div>
-        </form>
+
+          <input
+            className="uploadInput"
+            type="file"
+            multiple
+            onChange={handleFileInputChange}
+            ref={inputRef}
+          />
+        </div>
+        <div className="uploadImgDiv">
+          <ListGroup>
+            {selectedFiles.map((file, index) => (
+              <ListGroup.Item className="listGroupItem">
+                <div key={index}>
+                  <img
+                    className="uploadImg"
+                    src={URL.createObjectURL(file)}
+                    alt={`${file.name}`}
+                  />
+                  <p className="imgTitle">{file.name}</p>
+                  <div className="imgDeleteBtnDiv">
+                    <button
+                      className="imgDeleteBtn"
+                      onClick={() => handleRemoveImage(index)}
+                    >
+                      <BsTrash3 />
+                    </button>
+                  </div>
+                </div>
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+        </div>
+        <br /> <br /> <br />
         <div className="inquiryWriteBox">
           <button
             className="inquiryBtn"
@@ -40,6 +114,7 @@ const MyInquiryWrite = () => {
             className="inquiryBtn2"
             onClick={() => {
               // window.confirm 후 MyInquiry 이동
+              handleUploadClick();
             }}
           >
             취소

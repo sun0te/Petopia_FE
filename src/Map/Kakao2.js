@@ -372,7 +372,7 @@ const Kakao2 = ({
                           </a>
                         )
                       ) : (
-                        <a href="#" className="maplink" rel="noreferrer">
+                        <a className="maplink" rel="noreferrer">
                           홈페이지 정보없음
                         </a>
                       )}
