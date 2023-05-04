@@ -36,7 +36,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(62, 62, 62, 0.5);
   color: #ffffff;
   font-size: 24px;
   font-weight: bold;
@@ -68,7 +68,7 @@
 .containerIh {
     position: relative;
     display: flex;
-    margin: auto;
+    margin: 0.8em auto;
     width: 100%;
     height: auto;
     justify-content: center;
