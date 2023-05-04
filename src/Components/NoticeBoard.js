@@ -4,6 +4,7 @@ import styled from "styled-components";
 import CardList from "./CardList";
 import SearchBarcm from "./SearchBarcm";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 const NoticeContainer = styled.div`
   padding: 0 15px;
@@ -24,22 +25,27 @@ const BoardWrapper = styled.div`
 
 const TitleSearchWrap = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   width: 100%;
-  margin-bottom: 5px;
-  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 30px;
+`;
+
+const Search = styled.div`
+  justify-content: center;
 `;
 
 const Title = styled.h2`
   font-size: 25px;
   font-weight: bold;
-  margin: 0;
-  text-align: center;
+  margin-top: 0;
+  margin-left: 20px;
+  align-items: left;
+  margin-bottom: 20px;
 `;
 
 function NoticeBoard() {
-  const [session, setSession] = useState("admin"); //버튼 보이게 하기 위해 작성 추후 삭제
+  const [session, setSession] = useState("admin"); //버튼 보이게 하기 위해 작성 추후 admin 삭제
   //const session = sessionStorage.getItem("id"); 로그인 id 받아올 때 쓰면 됨
 
   return (
@@ -47,14 +53,18 @@ function NoticeBoard() {
       <BoardWrapper>
         <TitleSearchWrap>
           <Title>공지사항</Title>
-          <SearchBarcm />
+          <Search>
+            <SearchBarcm />
+          </Search>
         </TitleSearchWrap>
         <CardList />
-        {session === "admin" && (
-          <Button className="mt-2" variant="primary" size="sm">
-            글쓰기
-          </Button>
-        )}
+        <Link to="/write">
+          {session === "admin" && (
+            <Button className="mt-2" variant="primary" size="sm">
+              글쓰기
+            </Button>
+          )}
+        </Link>
       </BoardWrapper>
     </NoticeContainer>
   );

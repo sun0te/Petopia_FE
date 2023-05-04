@@ -4,13 +4,17 @@ import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import "../Styles/RecomendStyle.css";
 import { BsPerson, BsHandThumbsUp, BsHeart } from "react-icons/bs";
+import React, { useState, useEffect } from "react";
 import Comment from "./Comment";
 import Reply from "./Reply";
+import { Link } from "react-router-dom";
 
 const Recomend_detail = () => {
   const thumbsClick = () => {
     alert("thumbs up clicked");
   };
+  const [session, setSession] = useState("admin"); //버튼 보이게 하기 위해 작성 추후 admin 삭제하고 id
+  //const session = sessionStorage.getItem("id"); 로그인 id 받아올 때 쓰면 됨
 
   return (
     <>
@@ -107,6 +111,17 @@ const Recomend_detail = () => {
             </button>
           </div>
 
+          {session === "admin" && (
+            <Link to="/update">
+              <button
+                type="button"
+                className="btn btn-sm btn-primary boardListBtn boardListBtnDetail"
+              >
+                글 수정
+              </button>{" "}
+            </Link>
+          )}
+
           <div className="boardCommentDiv">
             <Comment
               commentProfile="img/recommend_detail2.png"
@@ -166,5 +181,4 @@ const Recomend_detail = () => {
     </>
   );
 };
-
 export default Recomend_detail;
