@@ -1,4 +1,6 @@
-
+.loginComponent {
+    margin-top: 100px;
+}
 
 .signUpForm {
     font-size: 0.7rem;
@@ -92,12 +94,14 @@
 .p_or {
     color: gray;
     margin: 0px 0 0 0px;
+    text-align: center;
 }
 
 .p_idpw {
     color: gray;
     margin: 0px 0 0 0px;
     cursor: pointer;
+    text-align: center;
 }
 
 
@@ -189,6 +193,7 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 
 .findEmailP {
     margin-top: 20px;
+    text-align: center;
 }
 
 .findPasswordDiv {

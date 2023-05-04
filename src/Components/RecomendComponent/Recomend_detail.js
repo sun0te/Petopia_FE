@@ -5,13 +5,29 @@ import Card from "react-bootstrap/Card";
 import "../../Styles/RecomendStyle.css";
 import { BsPerson, BsHandThumbsUp, BsHeart } from "react-icons/bs";
 
+import React, { useState } from "react";
+import ReportModal from "../../Modal/ReportModal";
+
 const Recomend_detail = () => {
   const thumbsClick = () => {
     alert("thumbs up clicked");
   };
 
+  // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <>
+      <ReportModal open={modalOpen} close={closeModal} header="Modal heading">
+        text
+      </ReportModal>
       <div className="RecomendBody">
         <h2 className="h2_Recomend">공간 보기</h2>
 
@@ -30,6 +46,16 @@ const Recomend_detail = () => {
         </div>
 
         <h4 className="h4_Recomend">게시글 제목</h4>
+        <div className="detailReportBtnDiv">
+          <Button
+            className="btm-sm reportBtn"
+            variant="outline-danger"
+            style={{ padding: "4px 0px 3px 0px" }}
+            onClick={openModal}
+          >
+            🚨신고
+          </Button>
+        </div>
         <hr className="hr_Recomend" />
 
         <p className="p_recomend">
@@ -109,7 +135,7 @@ const Recomend_detail = () => {
           <div className="thumbsHeart">
             <br />
             <div className="thumbs">
-              <p className="thumbsHeartText">추천해요</p>
+              {/* <p className="thumbsHeartText">추천해요</p> */}
               <button type="button" className="btn btn-lg">
                 <BsHandThumbsUp
                   className="thumbsHeartIcon"
@@ -122,7 +148,7 @@ const Recomend_detail = () => {
             <br />
 
             <div className="heart">
-              <p className="thumbsHeartText">저장할래요</p>
+              {/* <p className="thumbsHeartText">저장할래요</p> */}
               <button type="button" className="btn btn-lg">
                 <BsHeart className="thumbsHeartIcon" />
               </button>
@@ -138,7 +164,7 @@ const Recomend_detail = () => {
               글목록
             </button>
 
-            <div className="reportBtnDiv">
+            {/* <div className="reportBtnDiv">
               <Button
                 className="btm-sm reportBtn"
                 variant="outline-danger"
@@ -146,7 +172,7 @@ const Recomend_detail = () => {
               >
                 🚨신고
               </Button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

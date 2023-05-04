@@ -48,7 +48,7 @@ const SignUpComponent = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container loginComponent">
         <div className="input-form-backgroud row">
           <div className="input-form col-md-12 mx-auto signUpForm">
             <h4 className="mb-3 signUpText">회원가입</h4>
