@@ -32,10 +32,12 @@
 }
 
 .mapbox, .mapbox *{margin:0;padding:0;color:#000;}   
-.mapbox {position:absolute;overflow:hidden;bottom:10px;right:10px;width:auto;height:auto;z-index:1;border:1px solid #537FE7;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:12px;text-align:center;background-color:#fff;font-weight: bold;}
-.mapbox li{list-style:none; float: left; width:50px;height:50px;padding-top:5px;cursor:pointer;} 
+.mapbox {position:absolute;overflow:hidden;bottom:10px;right:10px;width:auto;height:auto;z-index:1;border:1px solid #537FE7;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:12px;text-align:center;background-color:#fff;font-weight: bold; border-radius: 5px;}
+.mapbox li{list-style:none; float: left; width:50px;height:50px;padding-top:5px;cursor:pointer; } 
 .mapbox .ico_comm {display:block;margin:0 auto 2px;width:22px;height:26px;background:url('http://localhost:3000/mapicon.png') no-repeat;} 
-
+.mapbox:hover{
+    background-color: #eee;
+}
 .mapwrapinfo {position: absolute;left: 0;bottom: 30px;width: 230px;height: 122px;margin-left: -114px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
 .mapwrapinfo * {padding: 0;margin: 0;}
 .mapwrapinfo .mapinfo {width: 286px;height: 110px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
@@ -49,6 +51,9 @@
 .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
 /* .mapinfo .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;} */
 .mapinfo:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
-.mapinfo .maplink {color: #5085BB;}
+.mapinfo .maplink {color: #5085BB; text-decoration: none;}
+.maplink:hover{
+    text-decoration: underline;
+}
 .infoellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 

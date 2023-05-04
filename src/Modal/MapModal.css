@@ -15,7 +15,7 @@
 
   .mapmodal > .mapModalContainer {
     width: 90%;
-    max-width: 375px;
+    max-width: 350px;
     max-height: 400px;
     margin: 0 auto;
     border-radius: 0.3rem;
@@ -109,7 +109,7 @@
     /* list-style: none; */
     text-align: center;
     list-style:none;
-    margin: 0 58px;
+    margin: 0 35px;
     width: 170px;
     margin-top: 5px;
     padding: 5px;

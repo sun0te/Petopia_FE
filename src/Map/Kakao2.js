@@ -350,14 +350,27 @@ const Kakao2 = ({
                     </div>
                     <div>
                       {position.homepage !== "정보없음" ? (
-                        <a
-                          href={position.homepage}
-                          target="_blank"
-                          className="maplink"
-                          rel="noreferrer"
-                        >
-                          홈페이지
-                        </a>
+                        position.homepage.indexOf("http") === 0 ? (
+                          <>
+                            <a
+                              href={position.homepage}
+                              target="_blank"
+                              className="maplink"
+                              rel="noreferrer"
+                            >
+                              홈페이지
+                            </a>
+                          </>
+                        ) : (
+                          <a
+                            href={"http://" + position.homepage}
+                            target="_blank"
+                            className="maplink"
+                            rel="noreferrer"
+                          >
+                            홈페이지
+                          </a>
+                        )
                       ) : (
                         <a href="#" className="maplink" rel="noreferrer">
                           홈페이지 정보없음
