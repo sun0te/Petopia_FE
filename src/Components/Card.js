@@ -36,7 +36,7 @@ const NoticeCard = styled.div`
 `;
 
 const Thumbnail = styled.img`
-  width: 130px;
+  width: 90px;
   height: 85px;
   margin-right: 10px;
   flex-shrink: 0;
@@ -87,65 +87,19 @@ const CardDate = styled.p`
   margin: 0 10px;
 `;
 
-const CardList = () => {
+const Card = () => {
   const [lists, setlists] = useState([
     {
       id: 1,
-      title: "테스트입니다.",
+      title: "이번 주 인기 글",
       content: "테스트입니다.",
       date: "2023-04-25",
       author: "홍길동",
-      views: 10,
-      comments: 3,
+      views: 200,
+      comments: 37,
       thumbnailUrl: "https://via.placeholder.com/150",
-      recommends: 10,
-    },
-    {
-      id: 2,
-      title: "테스트입니다",
-      content: "테스트",
-      date: "2023-04-25",
-      author: "홍길동",
-      views: 10,
-      comments: 2,
-      thumbnailUrl: "https://via.placeholder.com/150",
-      recommends: 10,
-    },
-    {
-      id: 3,
-      title: "테스트입니다",
-      content: "테스트",
-      date: "2023-04-25",
-      author: "admin",
-      views: 10,
-      comments: 5,
-      thumbnailUrl: "https://via.placeholder.com/150",
-      recommends: 10,
-    },
-
-    {
-      id: 4,
-      title: "테스트입니다",
-      content: "테스트",
-      date: "2023-04-25",
-      author: "관리자",
-      views: 10,
-      comments: 2,
-      thumbnailUrl: "https://via.placeholder.com/150",
-      recommends: 10,
-    },
-
-    {
-      id: 5,
-      title: "테스트입니다",
-      content: "테스트",
-      date: "2023-04-25",
-      author: "관리자2",
-      views: 10,
-      comments: 2000,
-      thumbnailUrl: "https://via.placeholder.com/150",
-      recommends: 10,
-    },
+      recommends: 70,
+    }
   ]);
 
   useEffect(() => {
@@ -163,6 +117,7 @@ const CardList = () => {
     <NoticeList>
       {lists.map((notice) => (
         <Link className="linkstyle" to="/" key={notice.id}>
+          <NoticeCard>
             <Thumbnail src={notice.thumbnailUrl} alt={notice.title} />
             <ContentContainer>
               <div className="cardti">
@@ -176,12 +131,11 @@ const CardList = () => {
               </CardInfoContainer>
               <CardDate>{notice.date}</CardDate>
             </ContentContainer>
-          
+          </NoticeCard>
         </Link>
-        
       ))}
     </NoticeList>
   );
 };
 
-export default CardList;
+export default Card;
