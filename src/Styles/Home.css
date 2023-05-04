@@ -36,7 +36,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(62, 62, 62, 0.5);
   color: #ffffff;
   font-size: 24px;
   font-weight: bold;
@@ -65,24 +65,18 @@
     display : hidden;
 }
 
-.testmap {
-    display: block;
-    position: absolute;
-}
-
 .containerIh {
     position: relative;
     display: flex;
-    margin: auto;
+    margin: 0.8em auto;
     width: 100%;
     height: auto;
     justify-content: center;
-    margin-top: 10em;
     border: 1px solid #8d8d8d;
 }
 
 .testmap {
-    position: inherit;
+    display: block;
     width: 100%;
     height: auto;
     /* border: 1px solid green; */
@@ -92,8 +86,6 @@
     width: 100%;
     height: auto;
     margin: 0 auto;
-
-    margin-top: 30px;
     border: 1px solid orange;
 }
 

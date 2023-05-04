@@ -1,9 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Card from "./Card";
-import SearchBarcm from "./SearchBarcm";
-
-import { BsWindowDock } from "react-icons/bs";
 
 const NoticeContainer = styled.div`
   display: flex;
