@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import "../../Styles/RecomendStyle.css";
 import { BsPerson, BsHandThumbsUp, BsHeart } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 import React, { useState } from "react";
 import ReportModal from "../../Modal/ReportModal";
@@ -157,12 +158,14 @@ const Recomend_detail = () => {
           </div>
 
           <div className="Div_boardListBtn">
-            <button
-              type="button"
-              className="btn btn-outline-primary boardListBtn"
-            >
-              글목록
-            </button>
+            <Link to="/routetrip">
+              <button
+                type="button"
+                className="btn btn-outline-primary boardListBtn"
+              >
+                글목록
+              </button>
+            </Link>
 
             {/* <div className="reportBtnDiv">
               <Button
