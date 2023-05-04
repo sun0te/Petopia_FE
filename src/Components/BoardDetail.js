@@ -109,18 +109,18 @@ const Recomend_detail = () => {
             >
               글목록
             </button>
-          </div>
 
-          {session === "admin" && (
-            <Link to="/update">
-              <button
-                type="button"
-                className="btn btn-sm btn-primary boardListBtn boardListBtnDetail"
-              >
-                글 수정
-              </button>{" "}
-            </Link>
-          )}
+            {session === "admin" && (
+              <Link to="/update">
+                <button
+                  type="button"
+                  className="btn btn-sm btn-primary boardListBtn boardListBtnDetail"
+                >
+                  글 수정
+                </button>{" "}
+              </Link>
+            )}
+          </div>
 
           <div className="boardCommentDiv">
             <Comment
