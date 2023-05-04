@@ -158,6 +158,7 @@
 .cardRecomendDetail {
     width: 85%;
     background-color: rgb(218, 216, 216);
+    margin-left: 28px;
 }
 
 .cardRecomendDetailBody {
