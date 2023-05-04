@@ -31,14 +31,23 @@ const Recomend = () => {
       <Recomend_best
         picture="img/recommend_best1.png"
         title="안동 한옥마을의 전경이 한 눈..안동 한옥마을의 전경이 한 눈..안동 한옥마을의 전경이 한 눈..안동 한옥마을의 전경이 한 눈..안동 한옥마을의 전경이 한 눈..안동 한옥마을의 전경이 한 눈..안동 한옥마을의 전경이 한 눈.."
+        writer="petopia"
+        view="111"
+        like="5"
       />
       <Recomend_best
         picture="img/recommend_best2.png"
         title="양양 여행코스 추천!!"
+        writer="fasd"
+        view="612"
+        like="63"
       />
       <Recomend_best
         picture="img/recommend_best3.png"
         title="송도 센트럴파크 안 가면 손해야"
+        writer="qwer"
+        view="437"
+        like="44"
       />
 
       <h3 className="h3_Recomend">전체 보기</h3>
