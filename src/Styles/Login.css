@@ -118,7 +118,6 @@
     color: gray;
     margin: 0px 0 0 0px;
     cursor: pointer;
-    text-align: center;
 }
 
 .p_idpw:hover {
@@ -234,4 +233,7 @@ input[type="date"]::-webkit-datetime-edit-year-field {
     display: inline-block;
 }
 
-/**/
+.p_find {
+    margin: 20px 0 0 0;
+    text-align: center;
+}

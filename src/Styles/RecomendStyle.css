@@ -47,8 +47,15 @@
     margin: -5px 0 10px 0;
 }
 
+.recommendBestCardText {
+    
+    justify-content: center;
+    vertical-align: middle;
+    text-align: center;
+}
+
 .recommendIcon {
-    color: #252525af;
+    color: #537FE7;
 }
 
 .p_recommendWriter {
@@ -128,10 +135,20 @@
     float: right;
     display: block;
     cursor: pointer;
+    clear: both;
 }
 
 .p_recomend:hover {
     color: #537FE7;
+    
+}
+
+.p_recommendDate {
+    display: block;
+    float: right;
+    clear: both;
+    margin-right: 20px;
+    font-size: 0.9rem;
 }
 
 .RecomendDetailBody {
@@ -229,6 +246,7 @@
     align-items: center;
     justify-content: center;
     margin: 20px auto 30px auto;
+    text-align: center;
 }
 
 .boardListBtn {
