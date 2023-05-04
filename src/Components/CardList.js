@@ -176,8 +176,9 @@ const CardList = () => {
               </CardInfoContainer>
               <CardDate>{notice.date}</CardDate>
             </ContentContainer>
-          </NoticeCard>
+          
         </Link>
+        
       ))}
     </NoticeList>
   );
