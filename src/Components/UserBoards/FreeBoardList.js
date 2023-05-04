@@ -1,6 +1,7 @@
 import React from "react";
 
 import BoardList from "../BoardList.js";
+
 import Button from "react-bootstrap/Button";
 
 const FreeBoardList = () => {
@@ -10,9 +11,15 @@ const FreeBoardList = () => {
   return (
     <>
       <BoardList />
-      <Button type="button" class="btn btn-primary" onClick={toFreeWrite}>
-        글쓰기
-      </Button>
+      <div class="div_boardwrite_btn">
+        <Button
+          type="button"
+          class="btn btn-primary boardwrite_btn"
+          onClick={toFreeWrite}
+        >
+          글쓰기
+        </Button>
+      </div>
     </>
   );
 };
