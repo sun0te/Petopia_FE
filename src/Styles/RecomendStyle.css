@@ -4,19 +4,20 @@
 }
 
 .h2_Recomend {
-    font-size: 2rem;
+    font-size: 1.3rem;
     font-weight: bold;
     margin: 30px auto 10px 30px;
 }
 
 .h3_Recomend {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
-    margin: 30px auto 10px 40px;
+    margin: 50px auto 0px 40px;
 }
 
 .searchBar {
     margin: 10px 5px 10px auto;
+    font-size: 0.7rem;
 }
 
 .searchBtn {
@@ -32,10 +33,12 @@
 
 .card {
     margin: 30px auto 10px auto;
+    cursor: pointer;
 }
 
 .cardTitle {
     font-weight: bold;
+    font-size: 1rem;
 }
 
 /* Recomend_viewall-------------------------------- */
@@ -54,7 +57,8 @@
 
 .listGroupText {
     display: inline;
-    font-weight:600
+    font-weight:600;
+    font-size: 0.9rem;
 }
 
 .pagenation {
@@ -64,6 +68,7 @@
 /* Recomend_detail-------------------------------- */
 
 .h4_Recomend {
+    display: inline-block;
     font-size: 1rem;
     font-weight: bold;
     margin: 30px auto 10px 40px;
@@ -71,14 +76,20 @@
 
 .hr_Recomend {
     width: 90%;
+    margin-left: 20px;
 }
 
 .p_recomend {
     font-size: 1rem;
     font-weight: bold;
-    margin: 0 10px 10px auto;
+    margin: 0 20px 10px auto;
     float: right;
     display: block;
+    cursor: pointer;
+}
+
+.p_recomend:hover {
+    color: #537FE7;
 }
 
 .RecomendDetailBody {
@@ -109,17 +120,18 @@
 
 .cardRecomendDetailBody {
     margin: 0 auto 10px 10px;
+    font-size: 0.8rem;
 }
 
 .jangso {
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 .cardRecomendDetailBodyAlert {
     margin: 0 auto 10px 10px;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
 }
 
 /*추천해요, 저장할래요 div*/
@@ -178,6 +190,19 @@
     justify-content: center;
 }
 
+.reportBtnDiv {
+    display: inline;
+    margin-left: 60px;
+    margin-right: -110px;
+}
+
+.reportBtn {
+    text-align: center;
+    font-size: 5px;
+    width: 46px;
+    padding: -10px;
+}
+
 /* Recomend_write --------------------------------------*/
 
 .recomendP {
@@ -213,4 +238,47 @@
 
 .recomendCheckDiv {
     margin-left: 20px;
+}
+
+/* BoardDetail ------------------------------------*/
+
+.boardCommentDiv {
+    border: 0px;
+    border-radius: 2px;
+    width: 300px;
+    height: auto;
+    margin: 0 0 0 30px;
+}
+
+.boardListBtnDetailDiv {
+    margin-left: 230px;
+    
+}
+
+.detailReportBtnDiv {
+    display: inline;
+    float: right;
+    margin: 30px 20px 0 0;
+}
+
+/* writeCommentDiv  --------------------------------*/
+
+.writeCommentDiv {
+    margin: 20px 0 0 30px;
+}
+
+.writeCommentTextarea {
+    display: inline-block;
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    border-radius: 1px;
+    width: 230px;
+    height: 70px;
+    font-size: 0.7rem;
+    margin: 20px 0 0 0;
+}
+
+
+.writeCommentBtn {
+    margin: -60px 0 0 7px;
+    font-size: 0.7rem;
 }

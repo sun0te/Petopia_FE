@@ -1,5 +1,4 @@
 import React from "react";
-
 import BoardList from "../BoardList.js";
 import Button from "react-bootstrap/Button";
 import "../../Styles/Main.css";

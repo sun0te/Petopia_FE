@@ -50,17 +50,19 @@ const Recomend_write = () => {
         <Form>
           <Form.Group className="mb-3">
             <Form.Label></Form.Label>
-            <Form.Control type="email" placeholder="글 제목을 입력하세요" />
+            <Form.Control
+              className="writeTitle"
+              type="email"
+              placeholder="글 제목을 입력하세요"
+            />
           </Form.Group>
-          <Form.Group
-            className="mb-3 writeFormContent"
-            controlId="exampleForm.ControlTextarea1"
-          >
+          <Form.Group className="mb-3 writeFormContent">
             <Form.Label></Form.Label>
             <Form.Control
               as="textarea"
               rows={3}
               placeholder="글 내용을 입력하세요"
+              className="contentForm"
             />
           </Form.Group>
 
@@ -83,51 +85,51 @@ const Recomend_write = () => {
 
           <p className="recomendP">2. 반려견 동반시 유의사항 * </p>
           <div className="recomendCheckDiv">
-            <div class="form-check">
+            <div className="form-check">
               <input
-                class="form-check-input"
+                className="form-check-input"
                 type="checkbox"
                 value=""
                 id="flexCheckDefault"
               />
-              <label class="form-check-label" for="flexCheckDefault">
+              <label className="form-check-label" htmlFor="flexCheckDefault">
                 펫 방석 혹은 담요를 제공해요
               </label>
             </div>
 
-            <div class="form-check">
+            <div className="form-check">
               <input
-                class="form-check-input"
+                className="form-check-input"
                 type="checkbox"
                 value=""
                 id="flexCheckDefault"
               />
-              <label class="form-check-label" for="flexCheckDefault">
+              <label className="form-check-label" htmlFor="flexCheckDefault">
                 펫 간식을 제공해요
               </label>
             </div>
 
-            <div class="form-check">
+            <div className="form-check">
               <input
-                class="form-check-input"
+                className="form-check-input"
                 type="checkbox"
                 value=""
                 id="flexCheckDefault"
               />
-              <label class="form-check-label" for="flexCheckDefault">
+              <label className="form-check-label" htmlFor="flexCheckDefault">
                 매너벨트 착용 필수에요
               </label>
             </div>
 
-            <div class="form-check">
+            <div className="form-check">
               <input
-                class="form-check-input"
+                className="form-check-input"
                 type="checkbox"
                 value=""
                 id="flexCheckDefault"
               />
-              <label class="form-check-label" for="flexCheckDefault">
-                15 KG 이상 대형견은 입장할 수 없어요
+              <label className="form-check-label" htmlFor="flexCheckDefault">
+                15 kg 이상 대형견은 입장할 수 없어요
               </label>
             </div>
           </div>
@@ -171,7 +173,7 @@ const Recomend_write = () => {
                       className="imgDeleteBtn"
                       onClick={() => handleRemoveImage(index)}
                     >
-                      <BsTrash3 />
+                      <BsTrash3 className="trachCanIcon" />
                     </button>
                   </div>
                 </div>
@@ -181,14 +183,14 @@ const Recomend_write = () => {
         </div>
         <div className="btns">
           <button
-            className="btn btn-outline-primary submit"
+            className="btn btn-sm btn-outline-primary submit"
             onClick={handleUploadClick}
           >
             작성 완료
           </button>
           <button
             type="button"
-            className="btn btn-outline-primary boardListBtn"
+            className="btn btn-sm btn-outline-primary boardListBtn"
           >
             글목록
           </button>

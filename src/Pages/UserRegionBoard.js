@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
-import "../Styles/Main.css";
+import BgLeft from "../Components/BgLeft.js";
 import "../Styles/UserRegion.css";
 import RegionBoardList from "../Components/UserBoards/RegionBoardList.js";
 
@@ -10,6 +10,7 @@ const UserRegionBoard = () => {
   const location = useLocation();
   const title = location.state?.title || "";
   return (
+
     <section className="full-bg">
       <section className="left-bg">
         {/*배경 요소 디자인 */}

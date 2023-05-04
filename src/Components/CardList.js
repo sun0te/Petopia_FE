@@ -9,6 +9,7 @@ const NoticeList = styled.div`
   align-items: center;
   width: 100%;
   max-width: 500px;
+
   a {
     display: block;
     color: inherit;
@@ -87,9 +88,6 @@ const CardDate = styled.p`
 `;
 
 const CardList = () => {
-  const toDetail = () => {
-    window.location.href = "/boarddetail";
-  };
   const [lists, setlists] = useState([
     {
       id: 1,
@@ -165,7 +163,6 @@ const CardList = () => {
     <NoticeList>
       {lists.map((notice) => (
         <Link className="linkstyle" to="/" key={notice.id}>
-          <NoticeCard onClick={toDetail}>
             <Thumbnail src={notice.thumbnailUrl} alt={notice.title} />
             <ContentContainer>
               <div className="cardti">

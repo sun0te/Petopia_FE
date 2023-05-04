@@ -31,24 +31,23 @@ const BoardWrite = () => {
 
   return (
     <>
-      <h2>글 작성하기</h2>
-      <br />
-      <br />
       <div className="writeForm">
         <Form>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Group className="mb-3">
             <Form.Label></Form.Label>
-            <Form.Control type="email" placeholder="글 제목을 입력하세요" />
+            <Form.Control
+              className="writeTitle"
+              type="email"
+              placeholder="글 제목을 입력하세요"
+            />
           </Form.Group>
-          <Form.Group
-            className="mb-3 writeFormContent"
-            controlId="exampleForm.ControlTextarea1"
-          >
+          <Form.Group className="mb-3 writeFormContent">
             <Form.Label></Form.Label>
             <Form.Control
               as="textarea"
               rows={3}
               placeholder="글 내용을 입력하세요"
+              className="contentForm"
             />
           </Form.Group>
         </Form>
@@ -101,14 +100,14 @@ const BoardWrite = () => {
         </div>
         <div className="btns">
           <button
-            className="btn btn-outline-primary submit"
+            className="btn btn-sm btn-outline-primary submit"
             onClick={handleUploadClick}
           >
             작성 완료
           </button>
           <button
             type="button"
-            className="btn btn-outline-primary boardListBtn"
+            className="btn btn-sm btn-outline-primary boardListBtn"
           >
             글목록
           </button>

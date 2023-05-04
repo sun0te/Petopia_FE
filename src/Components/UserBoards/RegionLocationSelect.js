@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../Styles/Main.css";
 import "../../Styles/UserRegion.css";
 
 // import LocalTitle from "./LocalTitle";
