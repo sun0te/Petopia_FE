@@ -244,6 +244,8 @@ const Home = () => {
             <Board />
             <Board />
             <Board />
+            <Board />
+            <Board />
           </div>
         </section>
         <Footer />
