@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import CardList from "./CardList";
 import SearchBarcm from "./SearchBarcm";
-
 import { BsWindowDock } from "react-icons/bs";
 
 const NoticeContainer = styled.div`

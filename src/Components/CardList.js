@@ -162,7 +162,7 @@ const CardList = () => {
   return (
     <NoticeList>
       {lists.map((notice) => (
-        <Link className="linkstyle" to="/Detail" key={notice.id}>
+        <Link className="linkstyle" to="/detail" key={notice.id}>
           <NoticeCard>
             <Thumbnail src={notice.thumbnailUrl} alt={notice.title} />
             <ContentContainer>
