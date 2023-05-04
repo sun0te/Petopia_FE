@@ -188,10 +188,12 @@
 
 .thumbs {
     margin: 30px;
+    text-align: center;
 }
 
 .heart {
     margin: 30px;
+    text-align: center;
 }
 
 .thumbsHeartText {
@@ -212,6 +214,7 @@
 
 
 .thumbsHeartIcon {
+    
     display: inline;
     font-size: 2rem;
 }
