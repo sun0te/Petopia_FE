@@ -31,6 +31,18 @@ const MyInquiryUpdate = ({ inquirytest2, setInquiryAction }) => {
   return (
     <>
       <div className="inquiryHeader">
+        <div
+          className="inquiryBack"
+          onClick={() => {
+            if (window.confirm("뒤로가시겠습니까?")) {
+              setInquiryAction(2);
+            } else {
+              return;
+            }
+          }}
+        >
+          <b className="inquiryBackArrow">&lt;</b>
+        </div>
         <h4>1:1문의</h4>
       </div>
       <div className="writeForm">
@@ -117,7 +129,7 @@ const MyInquiryUpdate = ({ inquirytest2, setInquiryAction }) => {
         >
           수정
         </button>
-        <button
+        {/* <button
           className="inquiryBtn2"
           onClick={() => {
             if (window.confirm("취소하시겠습니까?")) {
@@ -128,7 +140,7 @@ const MyInquiryUpdate = ({ inquirytest2, setInquiryAction }) => {
           }}
         >
           취소
-        </button>
+        </button> */}
       </div>
     </>
   );
