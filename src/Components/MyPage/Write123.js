@@ -100,18 +100,23 @@ const Write123 = () => {
             ))}
           </ListGroup>
         </div>
-        <div className="btns">
+        <div className="inquiryWriteBox">
           <button
-            className="btn btn-sm btn-outline-primary submit"
-            onClick={handleUploadClick}
+            className="inquiryBtn"
+            onClick={() => {
+              // 저장 후 MyInquiry 이동
+            }}
           >
-            작성 완료
+            작성완료
           </button>
           <button
-            type="button"
-            className="btn btn-sm btn-outline-primary boardListBtn"
+            className="inquiryBtn2"
+            onClick={() => {
+              // window.confirm 후 MyInquiry 이동
+              handleUploadClick();
+            }}
           >
-            글목록
+            취소
           </button>
         </div>
       </div>
