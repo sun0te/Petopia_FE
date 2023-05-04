@@ -25,8 +25,8 @@ const Recomend_detail = () => {
 
   return (
     <>
-      <ReportModal open={modalOpen} close={closeModal} header="Modal heading">
-        text
+      <ReportModal open={modalOpen} close={closeModal} header="게시글 신고">
+        <p>이 게시글을 신고 하시겠습니까?</p>
       </ReportModal>
       <div className="RecomendBody">
         <h2 className="h2_Recomend">공간 보기</h2>
