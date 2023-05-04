@@ -163,6 +163,7 @@ const CardList = () => {
     <NoticeList>
       {lists.map((notice) => (
         <Link className="linkstyle" to="/" key={notice.id}>
+          <NoticeCard>
             <Thumbnail src={notice.thumbnailUrl} alt={notice.title} />
             <ContentContainer>
               <div className="cardti">
