@@ -101,14 +101,14 @@ const BoardUpdate = () => {
         </div>
         <div className="btns">
           <button
-            className="btn btn-outline-primary submit"
+            className="btn btn-sm btn-outline-primary submit"
             onClick={handleUploadClick}
           >
             수정 완료
           </button>
           <button
             type="button"
-            className="btn btn-outline-primary boardListBtn"
+            className="btn btn-sm btn-outline-primary boardListBtn"
           >
             글목록
           </button>

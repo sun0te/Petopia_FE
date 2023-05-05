@@ -1,7 +1,6 @@
 import "bootstrap/dist/css/bootstrap.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Card from "react-bootstrap/Card";
 import "../Styles/RecomendStyle.css";
 import { BsPerson, BsHandThumbsUp, BsHeart } from "react-icons/bs";
 import Comment from "./Comment";
@@ -28,7 +27,7 @@ const Recomend_detail = () => {
   return (
     <>
       <ReportModal open={modalOpen} close={closeModal} header="게시글 신고">
-        <p>이 게시글을 신고 하시겠습니까?</p>
+        <p>신고 사유를 선택해 주세요</p>
       </ReportModal>
       <div className="RecomendBody">
         <h2 className="h2_Recomend">공간 보기</h2>
@@ -50,6 +49,17 @@ const Recomend_detail = () => {
         <h4 className="h4_Recomend">게시글 제목</h4>
 
         <div className="detailReportBtnDiv">
+          {sessionStorage.getItem("email") === "admin@admim.com" ? (
+            <Button
+              className="btm-sm reportBtn"
+              variant="outline-secondary"
+              style={{ padding: "4px 0px 3px 0px", marginRight: "10px" }}
+              onClick={openModal}
+            >
+              삭제
+            </Button>
+          ) : null}
+
           <Button
             className="btm-sm reportBtn"
             variant="outline-danger"
@@ -65,6 +75,8 @@ const Recomend_detail = () => {
         <p className="p_recomend">
           <BsPerson /> petopia
         </p>
+        <p className="p_recommendDate">2023-05-05</p>
+
         <br />
         <br />
 

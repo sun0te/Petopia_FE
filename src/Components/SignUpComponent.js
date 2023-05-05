@@ -2,7 +2,7 @@ import Form from "react-bootstrap/Form";
 import Stack from "react-bootstrap/Stack";
 import "../Styles/Login.css";
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const SignUpComponent = () => {
   const name = useRef("");
@@ -188,17 +188,33 @@ const SignUpComponent = () => {
                 </div>
               </div>
               {/* <hr class="mb-4" /> */}
-              {/* <div class="custom-control custom-checkbox">
+              <div className="custom-control custom-checkbox signupCheckAgreeDiv">
                 <input
                   type="checkbox"
-                  class="custom-control-input"
+                  className="custom-control-input signupCheckAgreeBox"
                   id="aggrement"
                   required
                 />
-                <label class="custom-control-label" htmlFor="aggrement">
-                  개인정보 수집 및 이용에 동의합니다.
+                <label className="custom-control-label" htmlFor="aggrement">
+                  &nbsp;&nbsp;개인정보 수집 및 이용에 동의합니다.
                 </label>
-              </div> */}
+              </div>
+              <div className="findidpwsignupDiv">
+                <Link to="/findaccountemail" style={{ textDecoration: "none" }}>
+                  <p className="p_idpw">이메일 찾기 </p>
+                </Link>
+                |
+                <Link
+                  to="/findaccountpassword"
+                  style={{ textDecoration: "none" }}
+                >
+                  <p className="p_idpw"> 비밀번호 찾기 </p>
+                </Link>
+                |
+                <Link to="/login" style={{ textDecoration: "none" }}>
+                  <p className="p_idpw"> 로그인</p>
+                </Link>
+              </div>
               <br />
               <div className="mb-4 signUpBtnDiv">
                 <button
