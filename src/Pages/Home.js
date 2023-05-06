@@ -15,18 +15,19 @@ import axios from "axios";
 const slides = [
   {
     id: 1,
-    image: "https://placehold.it/360x240",
-    caption: "First slide",
+    image: "/img/Petopia_slide1.png",
   },
   {
     id: 2,
-    image: "https://placehold.it/360x240",
-    caption: "Second slide",
+    image: "/img/Petopia_slide2.png",
   },
   {
     id: 3,
-    image: "https://placehold.it/360x240",
-    caption: "Third slide",
+    image: "/img/Petopia_slide3.png",
+  },
+  {
+    id: 4,
+    image: "/img/Petopia_slide4.png",
   },
 ];
 
@@ -183,8 +184,7 @@ const Home = () => {
             <Slider {...settings}>
               {slides.map((slide) => (
                 <div key={slide.id}>
-                  <img src={slide.image} alt={slide.caption} />
-                  <div className="caption">{slide.caption}</div>
+                  <img src={slide.image}/>
                 </div>
               ))}
             </Slider>

@@ -30,20 +30,6 @@
     position: relative;
 }
 
-/* 캡션 */
-.caption {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(62, 62, 62, 0.5);
-  color: #ffffff;
-  font-size: 24px;
-  font-weight: bold;
-  padding: 10px 20px;
-  text-align: center;
-}
-
 /* 슬라이더 내부 버튼 */
 .slick-prev,
 .slick-next {
