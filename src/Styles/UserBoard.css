@@ -38,9 +38,10 @@
   font-weight: 100;
 }
 .totalBoardTitle {
-  margin: 40px 15px 0 15px;
-  font-size: 26px;
-  font-weight: 600;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 30px auto 10px 30px;
+  color: #537fe7;
 }
 
 /* RegionBoardList.js */
