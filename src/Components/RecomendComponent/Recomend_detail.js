@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import "../../Styles/RecomendStyle.css";
 import { BsPerson, BsHandThumbsUp, BsHeart } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 import React, { useState } from "react";
 import ReportModal from "../../Modal/ReportModal";
@@ -26,7 +27,7 @@ const Recomend_detail = () => {
   return (
     <>
       <ReportModal open={modalOpen} close={closeModal} header="게시글 신고">
-        <p>이 게시글을 신고 하시겠습니까?</p>
+        <p>신고 사유를 선택해 주세요</p>
       </ReportModal>
       <div className="RecomendBody">
         <h2 className="h2_Recomend">공간 보기</h2>
@@ -61,6 +62,8 @@ const Recomend_detail = () => {
         <p className="p_recomend">
           <BsPerson /> petopia
         </p>
+        <p className="p_recommendDate">2023-05-05</p>
+
         <br />
         <br />
 
@@ -157,12 +160,14 @@ const Recomend_detail = () => {
           </div>
 
           <div className="Div_boardListBtn">
-            <button
-              type="button"
-              className="btn btn-outline-primary boardListBtn"
-            >
-              글목록
-            </button>
+            <Link to="/routetrip">
+              <button
+                type="button"
+                className="btn btn-outline-primary boardListBtn"
+              >
+                글목록
+              </button>
+            </Link>
 
             {/* <div className="reportBtnDiv">
               <Button
