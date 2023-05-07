@@ -73,9 +73,11 @@ const FindPassword = () => {
             />
             <div className="invalid-feedback">생년월일을 입력해주세요.</div>
           </div>
-          <Link to="/findaccountemail" style={{ textDecoration: "none" }}>
-            <p className="p_idpw">이메일 찾기</p>
-          </Link>
+          <div className="p_find">
+            <Link to="/findaccountemail" style={{ textDecoration: "none" }}>
+              <p className="p_idpw">이메일 찾기</p>
+            </Link>
+          </div>
           <br />
 
           <div className="mb-4 signUpBtnDiv">
@@ -124,7 +126,7 @@ const FindPassword = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container loginComponent">
         <div className="input-form-backgroud row">
           <div className="input-form col-md-12 mx-auto signUpForm">
             <h4 className="mb-3 signUpText">비밀번호 찾기</h4>
