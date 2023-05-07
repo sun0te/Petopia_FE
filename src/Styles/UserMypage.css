@@ -1,0 +1,97 @@
+.user-mypage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #d5edff;
+    margin: 1em auto;
+}
+
+.user-nickname {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.hr-line {
+    border-top: 1px solid #626262;
+    width: 80%;
+    height: 1px;
+}
+
+.user-category {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.category-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 15px;
+    margin: 0 2em;
+}
+
+.category-count {
+    font-size: 15px;
+    color: rgb(26, 107, 187);
+    font-weight: bold;
+}
+
+/*============마이페이지 링크 이동 리스틑=================*/
+
+.user-sections {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    border-top: 1px solid #ccc;
+    margin-top: 1em;
+}
+
+.user-section {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+    min-height: 3.3em;
+    padding: 7px;
+    border-bottom: 1px solid #ccc;
+}
+
+.user-section-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+    margin-left: 2em;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e8e8e8;
+}
+
+.user-info-icon {
+    font-size: 1.5rem;
+    color: #646464;
+}
+
+.user-section-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #222;
+}
