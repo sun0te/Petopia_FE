@@ -1,37 +1,126 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import RatingSection from "./RatingSection";
 import Form from "react-bootstrap/Form";
 import "../Styles/Review.css";
 import BoardWrite from "./BoardWrite";
 import styled from "styled-components";
+import { BsTrash3 } from "react-icons/bs";
+import ListGroup from "react-bootstrap/ListGroup";
+import Button from "react-bootstrap/Button";
 
 const ReviewWriteComponent = () => {
-  const [selectedOption, setSelectedOption] = useState(""); // 상태 초기값은 빈 문자열로 설정
+  const [selectedOption, setSelectedOption] = useState("0"); // 1. 리뷰 종류(1 : 병원, 2 : 음식점/카페, 3 : 숙박, 4 : 기타)
 
   const handleOptionChange = (e) => {
     const selectedValue = e.target.value;
     setSelectedOption(selectedOption === selectedValue ? "" : selectedValue); // 선택된 값을 상태에 저장
   };
 
-  //const [reviewType, setReviewType] = useState("");
-
   // ratingIndex = 받을 평점
-  const [ratingIndex, setRatingIndex] = useState(0);
+  const [ratingIndex, setRatingIndex] = useState(0); // 2. 리뷰 점수
 
-  const reportReasonContent = useRef();
+  useEffect(() => {
+    // ratingIndex 값이 변경될 때마다 실행
+  }, [ratingIndex]);
 
-  const [costType, setCostType] = useState("0");
+  // 3. 비용
+  const medicalCost = useRef(); // 진료비
+  const surgeryCost = useRef(); // 수술비
+  const totalCost = useRef(); // 총 비용
 
-  const [compareOption, setCompareOption] = useState("0");
+  const [compareOption, setCompareOption] = useState("0"); // 4. 가격 대비(1 : 저렴한 편, 2 : 보통, 3 : 비싼 편)
 
   const handleConpareOptionChange = (e) => {
     setCompareOption(e.target.value); // 선택된 값을 상태에 저장
   };
 
-  const clickCostType = (e) => {
-    setCostType(e.target.value);
-    console.log(e.target.value);
+  const handleUploadClick = () => {
+    if (selectedOption === "0") {
+      alert("리뷰 종류를 선택해 주세요.");
+    } else if (ratingIndex === 0) {
+      alert("리뷰 점수를 선택해 주세요.");
+    } else if (
+      totalCost.current.value === "" ||
+      totalCost.current.value === undefined
+    ) {
+      alert("총 비용을 입력해 주세요.");
+    } else if (totalCost.current.value < 0) {
+      alert("총 비용은 0 원 이상으로 입력해 주세요.");
+    } else if (selectedOption === "1" && medicalCost.current.value < 0) {
+      alert("진료비는 0 원 이상으로 입력해 주세요.");
+    } else if (selectedOption === "1" && surgeryCost.current.value < 0) {
+      alert("수술비는 0 원 이상으로 입력해 주세요.");
+    } else if (compareOption === "0") {
+      alert("가격 대비를 선택해 주세요.");
+    }
+
+    // alert(
+    //   "selectedOption, 리뷰 종류 : " +
+    //     selectedOption +
+    //     "\n" +
+    //     "ratingIndex, 리뷰 점수 : " +
+    //     ratingIndex +
+    //     "\n" +
+    //     "medicalCost, 진료비 : " +
+    //     medicalCost.current.value +
+    //     "\n" +
+    //     "surgeryCost, 수술비 : " +
+    //     surgeryCost.current.value +
+    //     "\n" +
+    //     "totalCost, 총 비용 : " +
+    //     totalCost.current.value +
+    //     "\n" +
+    //     "compareOption, 가격 대비 : " +
+    //     compareOption
+    // );
+    consoleUpWrite();
+    console.log(selectedFiles);
   };
+
+  // 글 쓰기 컴포넌트 -----------------------------------------------------------------
+
+  const [selectedFiles, setSelectedFiles] = useState([]);
+
+  const inputRef = useRef(null);
+
+  const reviewWriteContentTextArea = useRef();
+
+  const handleFileInputChange = (event) => {
+    setSelectedFiles([...selectedFiles, ...event.target.files]);
+  };
+
+  const handleRemoveImage = (index) => {
+    const newFiles = [...selectedFiles];
+    newFiles.splice(index, 1);
+    setSelectedFiles(newFiles);
+  };
+
+  const handleClick = () => {
+    inputRef.current.click();
+  };
+
+  const consoleUpWrite = () => {
+    if (
+      reviewWriteContentTextArea.current.value === null ||
+      reviewWriteContentTextArea.current.value === "" ||
+      reviewWriteContentTextArea.current.value === undefined
+    ) {
+      alert("리뷰 내용을 입력해 주세요.");
+    } else if (selectedFiles.length === 0) {
+      alert("리뷰 사진을 한 장 이상 업로드 해주세요.");
+      // alert(
+      //   "reviewWriteContentTextArea, 리뷰 내용 : " +
+      //     reviewWriteContentTextArea.current.value +
+      //     "\n" +
+      //     "selectedFiles : " +
+      //     selectedFiles.map((file) => file.name + "\n")
+      // );
+    } else {
+      alert("리뷰 업로드");
+    }
+  };
+
+  // ---------------------------------------------------------------------------------
 
   return (
     <>
@@ -102,12 +191,6 @@ const ReviewWriteComponent = () => {
             <option value="2" onClick={(e) => clickCostType(e)}>
               기타
             </option>
-            <option value="3" onClick={(e) => clickCostType(e)}>
-              부적절한 작성자 닉네임
-            </option>
-            <option value="4" onClick={(e) => clickCostType(e)}>
-              직접 입력
-            </option>
           </Form.Select> */}
           {selectedOption === "1" ? (
             <div>
@@ -120,7 +203,7 @@ const ReviewWriteComponent = () => {
                       type="number"
                       placeholder="(원)"
                       name="reportReasonContent"
-                      ref={reportReasonContent}
+                      ref={medicalCost}
                     />
                   </td>
                 </tr>
@@ -132,7 +215,7 @@ const ReviewWriteComponent = () => {
                       type="number"
                       placeholder="(원)"
                       name="reportReasonContent"
-                      ref={reportReasonContent}
+                      ref={surgeryCost}
                     />
                   </td>
                 </tr>
@@ -142,9 +225,9 @@ const ReviewWriteComponent = () => {
                     <Form.Control
                       className="writeTitle reportReasonWrite reviewCostInputFormControl"
                       type="number"
-                      placeholder="&nbsp;* 필수 입력 &nbsp;(원)"
+                      placeholder="&nbsp;&nbsp;* 필수 입력 &nbsp;(원)"
                       name="reportReasonContent"
-                      ref={reportReasonContent}
+                      ref={totalCost}
                       required
                     />
                   </td>
@@ -155,6 +238,29 @@ const ReviewWriteComponent = () => {
             <div>
               <table className="reviewWriteTable">
                 <tr>
+                  <td>
+                    <Form.Control
+                      className="writeTitle reportReasonWrite reviewCostInputFormControl"
+                      type="hidden"
+                      placeholder="(원)"
+                      name="reportReasonContent"
+                      ref={medicalCost}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Form.Control
+                      className="writeTitle reportReasonWrite reviewCostInputFormControl"
+                      type="hidden"
+                      placeholder="(원)"
+                      name="reportReasonContent"
+                      ref={surgeryCost}
+                    />
+                  </td>
+                </tr>
+
+                <tr>
                   <td className="reviewTd">총 비용</td>
                   <td>
                     <div>
@@ -163,7 +269,7 @@ const ReviewWriteComponent = () => {
                         type="number"
                         placeholder="&nbsp;* 필수 입력 &nbsp;(원)"
                         name="reportReasonContent"
-                        ref={reportReasonContent}
+                        ref={totalCost}
                         required
                       />
                     </div>
@@ -218,7 +324,82 @@ const ReviewWriteComponent = () => {
 
       <div className="whiteSpace"></div>
       <div className="boardWriteDiv">
-        <BoardWrite />
+        {/* <BoardWrite /> */}
+        {/* 글쓰기 컴포넌트 -----------------------------------------------------------------------------------*/}
+        <div className="writeForm">
+          <Form>
+            <Form.Group className="mb-3 writeFormContent">
+              <Form.Label></Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="리뷰를 입력해 주세요."
+                className="contentForm reviewContentForm"
+                ref={reviewWriteContentTextArea}
+              />
+            </Form.Group>
+          </Form>
+        </div>
+        <div>
+          <div>
+            <div className="uploadBtn">
+              <Button
+                variant="outline-secondary"
+                className=""
+                onClick={handleClick}
+              >
+                <img className="uploadBtnImg" src="img/uploading.png" alt="" />
+              </Button>
+            </div>
+
+            <input
+              className="uploadInput"
+              type="file"
+              multiple
+              onChange={handleFileInputChange}
+              ref={inputRef}
+            />
+          </div>
+
+          <div className="uploadImgDiv">
+            <ListGroup>
+              {selectedFiles.map((file, index) => (
+                <ListGroup.Item className="listGroupItem">
+                  <div key={index}>
+                    <img
+                      className="uploadImg"
+                      src={URL.createObjectURL(file)}
+                      alt={`${file.name}`}
+                    />
+                    <p className="imgTitle">{file.name}</p>
+                    <div className="imgDeleteBtnDiv">
+                      <button
+                        className="imgDeleteBtn"
+                        onClick={() => handleRemoveImage(index)}
+                      >
+                        <BsTrash3 />
+                      </button>
+                    </div>
+                  </div>
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+          </div>
+          <div className="btns">
+            <button
+              className="btn btn-sm btn-outline-primary submit reviewWriteSubmit"
+              onClick={handleUploadClick}
+            >
+              작성 완료
+            </button>
+            {/* <button
+              type="button"
+              className="btn btn-sm btn-outline-primary boardListBtn"
+            >
+              글목록
+            </button> */}
+          </div>
+        </div>
       </div>
     </>
   );
