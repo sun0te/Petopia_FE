@@ -61,7 +61,6 @@
     margin-right: 10px;
     font-size: 14px;
     white-space: nowrap;
-    text-decoration: none;
 }
 
 /* 카테고리 폰트 색상 */
@@ -72,7 +71,7 @@
 }
 
 /* 활성화된 카테고리 링크 */
-.nav-item.active .nav-link {
+.nav-link.active {
     background-color: #fff;
     color: #537FE7 !important;
     border-color: #dee2e6 #dee2e6 #fff;

@@ -42,17 +42,3 @@
   font-size: 26px;
   font-weight: 600;
 }
-
-/* RegionBoardList.js */
-.div_boardwrite_btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 20px auto 30px auto;
-}
-
-.boardwrite_btn {
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
-}

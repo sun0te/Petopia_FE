@@ -1,9 +1,4 @@
 /* 슬라이더 컨테이너 */
-.homeSlider {
-    position: relative;
-    display: block;
-}
-
 .slick-slider {
   position: relative;
   display: block;
@@ -30,6 +25,20 @@
     position: relative;
 }
 
+/* 캡션 */
+.caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 10px 20px;
+  text-align: center;
+}
+
 /* 슬라이더 내부 버튼 */
 .slick-prev,
 .slick-next {
@@ -51,32 +60,12 @@
     display : hidden;
 }
 
-.containerIh {
-    position: relative;
+.map {
     display: flex;
-    margin: 0.8em auto;
     width: 100%;
-    height: auto;
+    min-height: 20em;
+    border: 1px solid #ccc;
     justify-content: center;
-    border: 1px solid #8d8d8d;
-}
-
-.testmap {
-    display: block;
-    width: 100%;
-    height: auto;
-    /* border: 1px solid green; */
-}
-
-.testlist {
-    width: 100%;
-    height: auto;
-    margin: 0 auto;
-    border: 1px solid orange;
-}
-
-.mainlist:hover {
-    opacity: 0.5;
 }
 
 /* 전체 추천 게시글 박스 div */
