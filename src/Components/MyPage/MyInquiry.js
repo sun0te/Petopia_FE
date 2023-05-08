@@ -4,6 +4,7 @@ import MyInquiryWrite from "./MyInquiryWrite";
 import MyInquiryDetail from "./MyInquiryDetail";
 import { useState } from "react";
 import MyInquiryUpdate from "./MyInquiryUpdate";
+import axios from "axios";
 
 const MyInquiry = () => {
   const [inquiryAction, setInquiryAction] = useState(0);
@@ -35,6 +36,32 @@ const MyInquiry = () => {
   ]);
   const [inquirytest2, setInquirytest2] = useState({});
 
+  // DB ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 연동 테스트 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+  const [inquirydb, setInquirydb] = useState([]);
+  const inquirydbtest = () => {
+    axios
+      .get("/inquirylist", {
+        params: { username: "test" },
+      })
+      .then((res) => {
+        // console.log("데이터 =>", res.data);
+        const { data } = res.data;
+        setInquirydb(data);
+        console.log(inquirydb);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
+
+  const inquirylogin = () => {
+    window.sessionStorage.setItem("id", "test");
+  };
+
+  const inquirylogout = () => {
+    window.sessionStorage.clear();
+  };
+
   return (
     <>
       {inquiryAction === 0 && ( // 문의 리스트
@@ -63,6 +90,27 @@ const MyInquiry = () => {
           setInquiryAction={setInquiryAction}
         />
       )}
+      <button
+        onClick={() => {
+          inquirydbtest();
+        }}
+      >
+        테스트
+      </button>
+      <button
+        onClick={() => {
+          inquirylogin();
+        }}
+      >
+        로그인테스트
+      </button>
+      <button
+        onClick={() => {
+          inquirylogout();
+        }}
+      >
+        로그아웃
+      </button>
     </>
   );
 };
