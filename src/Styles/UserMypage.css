@@ -106,7 +106,7 @@
 /*====================================*/
 
 .hr-line {
-    border-top: 1px solid #0077FF;
+    border-top: 1px solid rgb(121, 121, 121);
     width: 80%;
     height: auto;
 }
@@ -115,7 +115,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
 }
 
 .category-item {
@@ -128,8 +128,14 @@
 
 .category-count {
     font-size: 15px;
-    color: rgb(26, 107, 187);
+    color: rgb(55, 55, 55);
     font-weight: bold;
+}
+
+.separationArea {
+    width: 100%;
+    height: 1em;
+    background-color: #eeeeee;
 }
 
 /*============마이페이지 링크 이동 리스트=================*/
@@ -139,8 +145,7 @@
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    border-top: 1px solid #ccc;
-    margin-top: 1em;
+    border-top: 1px solid #eeeeee;
 }
 
 .user-section {
@@ -151,7 +156,7 @@
     width: 100%;
     min-height: 3.3em;
     padding: 7px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #eeeeee;
 }
 
 .user-section-icon {
@@ -164,12 +169,12 @@
     height: 37px;
     border-radius: 50%;
     background-color: #ffffff;
-    box-shadow: 0px 0px 2px #0077FF;
+    box-shadow: 0px 0px 2px #787878;
     border-radius: 50%;
 }
 
 .user-info-icon {
-    color: #0077FF;
+    color: #777777;
 }
 
 .user-section-title {
@@ -189,4 +194,22 @@
 
 .user-info-icon2{
     color: #646464;
+}
+
+.logout-button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 1em;
+}
+
+.logout-button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    color: #fff;
+    background-color: #0077ff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
 }

@@ -119,7 +119,7 @@ const UserMypage = () => {
               내 리뷰 <span className="category-count">7</span>
             </div>
           </div>
-
+          <div className="separationArea" />
           <div className="user-sections">
             <div className="user-section">
               <div className="user-section-icon">
@@ -157,6 +157,10 @@ const UserMypage = () => {
                 <FaAngleRight className="user-info-icon2" />
               </div>
             </div>
+          </div>
+          <div className="separationArea" />
+          <div class="logout-button-wrapper">
+            <button class="logout-button">로그아웃</button>
           </div>
         </section>
         {/* <MyInquiry /> */}
