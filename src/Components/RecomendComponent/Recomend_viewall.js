@@ -1,6 +1,8 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import Pagination from "react-bootstrap/Pagination";
 import "../../Styles/RecomendStyle.css";
+import Card from "react-bootstrap/Card";
+import { BsEye, BsHandThumbsUp, BsPerson } from "react-icons/bs";
 
 const Recomend_Viewall = () => {
   const pagination = () => {
@@ -12,25 +14,95 @@ const Recomend_Viewall = () => {
   return (
     <div className="listGroup">
       <ListGroup className="listGroup">
-        <ListGroup.Item className="w-80">
-          <img className="listGroupImg" src="img/recommend_best1.png" />
-          <div className="listGroupText">fasd fasd</div>
+        <ListGroup.Item className="w-80 recommendListItem">
+          <div className="recommendViewallImgDiv">
+            <img className="listGroupImg" src="img/recommend_best1.png" />
+          </div>
+
+          <div className="recommendViewallDiv">
+            <p className="listGroupText">fasd fasd</p>
+            <Card.Text className="recommendBestCardText">
+              <p className="p_recommendWriter">
+                <BsPerson className="recommendIcon" /> petopia
+              </p>
+              <BsEye className="recommendIcon" />
+              &nbsp; 1 &nbsp;&nbsp;
+              <BsHandThumbsUp className="recommendIcon" />
+              &nbsp; 1
+            </Card.Text>
+          </div>
         </ListGroup.Item>
-        <ListGroup.Item>
-          <img className="listGroupImg" src="img/recommend_best1.png" />
-          <div className="listGroupText">Dapibus ac facilisis in</div>
+        <ListGroup.Item className="w-80 recommendListItem">
+          <div className="recommendViewallImgDiv">
+            <img className="listGroupImg" src="img/recommend_best1.png" />
+          </div>
+
+          <div className="recommendViewallDiv">
+            <p className="listGroupText">fasd fasd</p>
+            <Card.Text className="recommendBestCardText">
+              <p className="p_recommendWriter">
+                <BsPerson className="recommendIcon" /> petopia
+              </p>
+              <BsEye className="recommendIcon" />
+              &nbsp; 1 &nbsp;&nbsp;
+              <BsHandThumbsUp className="recommendIcon" />
+              &nbsp; 1
+            </Card.Text>
+          </div>
         </ListGroup.Item>
-        <ListGroup.Item>
-          <img className="listGroupImg" src="img/recommend_best1.png" />
-          <div className="listGroupText">Morbi leo risus</div>
+        <ListGroup.Item className="w-80 recommendListItem">
+          <div className="recommendViewallImgDiv">
+            <img className="listGroupImg" src="img/recommend_best1.png" />
+          </div>
+
+          <div className="recommendViewallDiv">
+            <p className="listGroupText">여행 코스 추천합니다. 이 지역은...</p>
+            <Card.Text className="recommendBestCardText">
+              <p className="p_recommendWriter">
+                <BsPerson className="recommendIcon" /> petopia
+              </p>
+              <BsEye className="recommendIcon" />
+              &nbsp; 1 &nbsp;&nbsp;
+              <BsHandThumbsUp className="recommendIcon" />
+              &nbsp; 1
+            </Card.Text>
+          </div>
         </ListGroup.Item>
-        <ListGroup.Item>
-          <img className="listGroupImg" src="img/recommend_best1.png" />
-          <div className="listGroupText">Porta ac consectetur ac</div>
+        <ListGroup.Item className="w-80 recommendListItem">
+          <div className="recommendViewallImgDiv">
+            <img className="listGroupImg" src="img/recommend_best1.png" />
+          </div>
+
+          <div className="recommendViewallDiv">
+            <p className="listGroupText">fasd</p>
+            <Card.Text className="recommendBestCardText">
+              <p className="p_recommendWriter">
+                <BsPerson className="recommendIcon" /> petopia
+              </p>
+              <BsEye className="recommendIcon" />
+              &nbsp; 1 &nbsp;&nbsp;
+              <BsHandThumbsUp className="recommendIcon" />
+              &nbsp; 1
+            </Card.Text>
+          </div>
         </ListGroup.Item>
-        <ListGroup.Item>
-          <img className="listGroupImg" src="img/recommend_best1.png" />
-          <div className="listGroupText">Vestibulum at eros</div>
+        <ListGroup.Item className="w-80 recommendListItem">
+          <div className="recommendViewallImgDiv">
+            <img className="listGroupImg" src="img/recommend_best1.png" />
+          </div>
+
+          <div className="recommendViewallDiv">
+            <p className="listGroupText">fasd fasd</p>
+            <Card.Text className="recommendBestCardText">
+              <p className="p_recommendWriter">
+                <BsPerson className="recommendIcon" /> petopia
+              </p>
+              <BsEye className="recommendIcon" />
+              &nbsp; 1 &nbsp;&nbsp;
+              <BsHandThumbsUp className="recommendIcon" />
+              &nbsp; 1
+            </Card.Text>
+          </div>
         </ListGroup.Item>
       </ListGroup>
 

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const NoticeList = styled.div`
+const BoardBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +24,7 @@ const NoticeList = styled.div`
   }
 `;
 
-const NoticeCard = styled.div`
+const BoardCard = styled.div`
   display: flex;
   flex-direction: row;
   border: 1px solid #c9c1c1;
@@ -99,7 +99,7 @@ const Card = () => {
       comments: 37,
       thumbnailUrl: "https://via.placeholder.com/150",
       recommends: 70,
-    }
+    },
   ]);
 
   useEffect(() => {
@@ -114,10 +114,10 @@ const Card = () => {
   }, []);
 
   return (
-    <NoticeList>
+    <BoardBox>
       {lists.map((notice) => (
         <Link className="linkstyle" to="/" key={notice.id}>
-          <NoticeCard>
+          <BoardCard>
             <Thumbnail src={notice.thumbnailUrl} alt={notice.title} />
             <ContentContainer>
               <div className="cardti">
@@ -131,10 +131,10 @@ const Card = () => {
               </CardInfoContainer>
               <CardDate>{notice.date}</CardDate>
             </ContentContainer>
-          </NoticeCard>
+          </BoardCard>
         </Link>
       ))}
-    </NoticeList>
+    </BoardBox>
   );
 };
 
