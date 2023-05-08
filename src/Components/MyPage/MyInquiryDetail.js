@@ -1,7 +1,28 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const MyInquiryDetail = ({ inquirytest2, setInquiryAction }) => {
+const MyInquiryDetail = ({
+  inquirytest2,
+  setInquiryAction,
+  inquirydb,
+  inquirydbtest,
+}) => {
+  //문의 삭제
+  const inquiryDelete = () => {
+    axios
+      .post("/inquirydelete", {
+        id: inquirytest2.id,
+      })
+      .then((res) => {
+        inquirydbtest();
+        setInquiryAction(0);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
+
   return (
     <>
       <div className="inquiryHeader">
@@ -20,7 +41,7 @@ const MyInquiryDetail = ({ inquirytest2, setInquiryAction }) => {
         <div className="inquiryDetail2">
           <b className="inquiryMainTitle">{inquirytest2.title}</b>
           <br />
-          <b className="inquiryMainDate">{inquirytest2.date}</b>
+          <b className="inquiryMainDate">{inquirytest2.createDate}</b>
           <br />
           <br />
           <b className="inquiryMainTitle">문의내용</b>
@@ -58,6 +79,7 @@ const MyInquiryDetail = ({ inquirytest2, setInquiryAction }) => {
               onClick={() => {
                 if (window.confirm("삭제하시겠습니까?")) {
                   // 삭제 코드
+                  inquiryDelete();
                   setInquiryAction(0);
                 }
               }}

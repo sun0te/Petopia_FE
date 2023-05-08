@@ -177,3 +177,10 @@
     cursor:pointer;
     font-size: 28px;
 }
+
+.inquiryWriteAlert{
+    font-size: 12px;
+    margin-top: -10px;
+    margin-left: 13px;
+    color: red;
+}

@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "../../Styles/MyInquiry.css";
 
-const MyInquiryMain = ({ inquirytest, setInquiryAction, setInquirytest2 }) => {
+const MyInquiryMain = ({
+  inquirytest,
+  setInquiryAction,
+  setInquirytest2,
+  inquirydb,
+}) => {
   return (
     <>
       <div className="inquiryHeader">
         <h4>1:1문의</h4>
       </div>
       <hr className="inquiryhr1" />
-      {inquirytest.length !== 0 ? (
-        inquirytest.map((a, i) => (
+      {inquirydb.length !== 0 ? (
+        inquirydb.map((a, i) => (
           <div
             className="inquiryMain"
             onClick={() => {
@@ -26,7 +31,7 @@ const MyInquiryMain = ({ inquirytest, setInquiryAction, setInquirytest2 }) => {
               ) : (
                 <div className="inquiryStatus">답변완료</div>
               )}
-              <b className="inquiryMainDate">{a.date}</b>
+              <b className="inquiryMainDate">{a.createDate}</b>
             </div>
             <hr className="inquiryhr2" />
           </div>

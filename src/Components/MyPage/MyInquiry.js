@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MyInquiryMain from "./MyInquiryMain";
 import MyInquiryWrite from "./MyInquiryWrite";
 import MyInquiryDetail from "./MyInquiryDetail";
@@ -37,22 +37,6 @@ const MyInquiry = () => {
   const [inquirytest2, setInquirytest2] = useState({});
 
   // DB ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 연동 테스트 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-  const [inquirydb, setInquirydb] = useState([]);
-  const inquirydbtest = () => {
-    axios
-      .get("/inquirylist", {
-        params: { username: "test" },
-      })
-      .then((res) => {
-        // console.log("데이터 =>", res.data);
-        const { data } = res.data;
-        setInquirydb(data);
-        console.log(inquirydb);
-      })
-      .catch((e) => {
-        console.error(e);
-      });
-  };
 
   const inquirylogin = () => {
     window.sessionStorage.setItem("id", "test");
@@ -62,6 +46,37 @@ const MyInquiry = () => {
     window.sessionStorage.clear();
   };
 
+  // 문의 리스트 불러오기
+  const [inquirydb, setInquirydb] = useState([]);
+
+  useEffect(() => {
+    inquirydbtest();
+  }, []);
+
+  const inquirydbtest = () => {
+    axios
+      .get("/inquirylist", {
+        params: {
+          username:
+            window.sessionStorage.getItem("id") !== null
+              ? window.sessionStorage.getItem("id")
+              : "",
+        },
+      })
+      .then((res) => {
+        // console.log("데이터 =>", res);
+        const { data } = res;
+
+        setInquirydb(data);
+        // setInquiryAction(0);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
+
+  // DB ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 연동 테스트 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
   return (
     <>
       {inquiryAction === 0 && ( // 문의 리스트
@@ -69,11 +84,13 @@ const MyInquiry = () => {
           inquirytest={inquirytest}
           setInquiryAction={setInquiryAction}
           setInquirytest2={setInquirytest2}
+          inquirydb={inquirydb}
         />
       )}
       {inquiryAction === 1 && ( // 문의 작성
         <MyInquiryWrite
           inquirytest={inquirytest}
+          inquirydbtest={inquirydbtest}
           setInquirytest={setInquirytest}
           setInquiryAction={setInquiryAction}
         />
@@ -82,14 +99,20 @@ const MyInquiry = () => {
         <MyInquiryDetail
           inquirytest2={inquirytest2}
           setInquiryAction={setInquiryAction}
+          inquirydb={inquirydb}
+          inquirydbtest={inquirydbtest}
         />
       )}
       {inquiryAction === 3 && ( // 문의내용 수정
         <MyInquiryUpdate
           inquirytest2={inquirytest2}
           setInquiryAction={setInquiryAction}
+          inquirydbtest={inquirydbtest}
         />
       )}
+      <br />
+      <br />
+      <br />
       <button
         onClick={() => {
           inquirydbtest();

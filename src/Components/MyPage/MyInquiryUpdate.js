@@ -4,8 +4,9 @@ import { BsTrash3 } from "react-icons/bs";
 import ListGroup from "react-bootstrap/ListGroup";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import axios from "axios";
 
-const MyInquiryUpdate = ({ inquirytest2, setInquiryAction }) => {
+const MyInquiryUpdate = ({ inquirytest2, setInquiryAction, inquirydbtest }) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
 
   const inputRef = useRef(null);
@@ -26,6 +27,26 @@ const MyInquiryUpdate = ({ inquirytest2, setInquiryAction }) => {
 
   const handleClick = () => {
     inputRef.current.click();
+  };
+
+  // 문의 업데이트 , DB 연동 테스트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+  const titleRef = useRef();
+  const contentRef = useRef();
+
+  const inquiryUpdate = () => {
+    axios
+      .post("/inquiryupdate", {
+        id: inquirytest2.id,
+        title: titleRef.current.value,
+        content: contentRef.current.value,
+      })
+      .then((res) => {
+        inquirydbtest();
+      })
+      .catch((e) => {
+        console.error(e);
+      });
   };
 
   return (
@@ -53,6 +74,7 @@ const MyInquiryUpdate = ({ inquirytest2, setInquiryAction }) => {
               className="writeTitle"
               type="email"
               placeholder="제목"
+              ref={titleRef}
               defaultValue={inquirytest2.title}
             />
           </Form.Group>
@@ -63,6 +85,7 @@ const MyInquiryUpdate = ({ inquirytest2, setInquiryAction }) => {
               rows={3}
               placeholder="문의 내용을 입력하세요"
               className="contentForm"
+              ref={contentRef}
               defaultValue={inquirytest2.content}
               style={{ resize: "none" }}
             />
@@ -121,7 +144,8 @@ const MyInquiryUpdate = ({ inquirytest2, setInquiryAction }) => {
           onClick={() => {
             if (window.confirm("수정하시겠습니까?")) {
               // 저장 코드 들어감
-              setInquiryAction(2);
+              inquiryUpdate();
+              setInquiryAction(0);
             } else {
               return;
             }
