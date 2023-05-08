@@ -117,7 +117,7 @@ const ReviewWriteComponent = () => {
                   <td>
                     <Form.Control
                       className="writeTitle reportReasonWrite reviewCostInputFormControl"
-                      type="number"
+                      type="text"
                       placeholder="(원)"
                       name="reportReasonContent"
                       ref={reportReasonContent}
@@ -129,7 +129,7 @@ const ReviewWriteComponent = () => {
                   <td>
                     <Form.Control
                       className="writeTitle reportReasonWrite reviewCostInputFormControl"
-                      type="number"
+                      type="text"
                       placeholder="(원)"
                       name="reportReasonContent"
                       ref={reportReasonContent}
@@ -141,7 +141,7 @@ const ReviewWriteComponent = () => {
                   <td>
                     <Form.Control
                       className="writeTitle reportReasonWrite reviewCostInputFormControl"
-                      type="number"
+                      type="text"
                       placeholder="&nbsp;* 필수 입력 &nbsp;(원)"
                       name="reportReasonContent"
                       ref={reportReasonContent}
@@ -160,7 +160,7 @@ const ReviewWriteComponent = () => {
                     <div>
                       <Form.Control
                         className="writeTitle reportReasonWrite reviewCostInputFormControl"
-                        type="number"
+                        type="text"
                         placeholder="&nbsp;* 필수 입력 &nbsp;(원)"
                         name="reportReasonContent"
                         ref={reportReasonContent}
@@ -176,7 +176,7 @@ const ReviewWriteComponent = () => {
         </div>
         <Form className="mb-3 reviewWriteRadioBoxDiv">
           <div className="">
-            <p className="reviewWriteRadioBoxP reviewTd">가격 대비</p>
+            <p className="reviewWriteRadioBoxP">가격 대비</p>
             <div>
               <Form.Check
                 inline

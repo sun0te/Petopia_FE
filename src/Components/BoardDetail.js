@@ -49,14 +49,12 @@ const Recomend_detail = () => {
         <h4 className="h4_Recomend">게시글 제목</h4>
 
         <div className="detailReportBtnDiv">
-          {sessionStorage.getItem("email") === "admin@admin.com" ? (
+          {sessionStorage.getItem("email") === "admin@admim.com" ? (
             <Button
               className="btm-sm reportBtn"
               variant="outline-secondary"
               style={{ padding: "4px 0px 3px 0px", marginRight: "10px" }}
-              onClick={() => {
-                alert("delete btn clicked");
-              }}
+              onClick={openModal}
             >
               삭제
             </Button>
