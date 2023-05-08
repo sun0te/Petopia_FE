@@ -4,6 +4,8 @@ import styled from "styled-components";
 import CardList from "./CardList";
 import SearchBarcm from "./SearchBarcm";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const NoticeContainer = styled.div`
   padding: 0 15px;
@@ -24,37 +26,133 @@ const BoardWrapper = styled.div`
 
 const TitleSearchWrap = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   width: 100%;
-  margin-bottom: 5px;
-  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 30px;
+`;
+
+const Search = styled.div`
+  justify-content: center;
 `;
 
 const Title = styled.h2`
   font-size: 25px;
   font-weight: bold;
-  margin: 0;
-  text-align: center;
+  margin-top: 0;
+  margin-left: 20px;
+  align-items: left;
+  margin-bottom: 20px;
 `;
 
 function NoticeBoard() {
-  const [session, setSession] = useState("admin"); //버튼 보이게 하기 위해 작성 추후 삭제
+  const [session, setSession] = useState("admin"); //버튼 보이게 하기 위해 작성 추후 admin 삭제
   //const session = sessionStorage.getItem("id"); 로그인 id 받아올 때 쓰면 됨
+
+  const [lists, setLists] = useState([
+    {
+      id: 1,
+      title: "테스트입니다.",
+      content: "테스트입니다.",
+      date: "2023-04-25",
+      author: "홍길동",
+      views: 10,
+      comments: 3,
+      thumbnailUrl: "https://via.placeholder.com/150",
+      recommends: 10,
+    },
+    {
+      id: 2,
+      title: "테스트입니다",
+      content: "테스트",
+      date: "2023-04-25",
+      author: "홍길동",
+      views: 10,
+      comments: 2,
+      thumbnailUrl: "https://via.placeholder.com/150",
+      recommends: 10,
+    },
+    {
+      id: 3,
+      title: "테스트입니다",
+      content: "테스트",
+      date: "2023-04-25",
+      author: "admin",
+      views: 10,
+      comments: 5,
+      thumbnailUrl: "https://via.placeholder.com/150",
+      recommends: 10,
+    },
+
+    {
+      id: 4,
+      title: "테스트입니다",
+      content: "테스트",
+      date: "2023-04-25",
+      author: "관리자",
+      views: 10,
+      comments: 2,
+      thumbnailUrl: "https://via.placeholder.com/150",
+      recommends: 10,
+    },
+
+    {
+      id: 5,
+      title: "테스트입니다",
+      content: "테스트",
+      date: "2023-04-25",
+      author: "관리자2",
+      views: 10,
+      comments: 2000,
+      thumbnailUrl: "https://via.placeholder.com/150",
+      recommends: 10,
+    },
+  ]);
+
+  const [filteredLists, setFilteredLists] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("/lists")
+      .then((response) => {
+        setLists(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const handleSearch = (query) => {
+    const filteredLists = lists.filter((list) => {
+      const title = list.title.toLowerCase();
+      const content = list.content.toLowerCase();
+      const author = list.author.toLowerCase();
+      return (
+        title.includes(query) ||
+        content.includes(query) ||
+        author.includes(query)
+      );
+    });
+    setFilteredLists(filteredLists);
+  };
 
   return (
     <NoticeContainer>
       <BoardWrapper>
         <TitleSearchWrap>
           <Title>공지사항</Title>
-          <SearchBarcm />
+          <Search>
+            <SearchBarcm onSearch={handleSearch} />
+          </Search>
         </TitleSearchWrap>
-        <CardList />
-        {session === "admin" && (
-          <Button className="mt-2" variant="primary" size="sm">
-            글쓰기
-          </Button>
-        )}
+        <CardList lists={filteredLists.length > 0 ? filteredLists : lists} />
+        <Link to="/write">
+          {session === "admin" && (
+            <Button className="mt-2" variant="primary" size="sm">
+              글쓰기
+            </Button>
+          )}
+        </Link>
       </BoardWrapper>
     </NoticeContainer>
   );

@@ -21,6 +21,7 @@ import UserRegionBoard from "./Pages/UserRegionBoard";
 import UserMypage from "./Pages/UserMypage";
 import NotFound from "./Pages/NotFound";
 import FreeBoardDetail from "./Components/UserBoards/FreeBoardDetail";
+import MyPageReview from "./Pages/MyPageReview";
 
 const App = () => {
   return (
@@ -45,6 +46,7 @@ const App = () => {
       <Route path="/userregionboard" element={<UserRegionBoard />} />
       <Route path="boarddetail" element={<FreeBoardDetail />} />
       <Route path="/usermypage" element={<UserMypage />} />
+      <Route path="/mypagereview" element={<MyPageReview />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

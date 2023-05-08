@@ -5,7 +5,7 @@ import "../Styles/RecomendStyle.css";
 import { BsPerson, BsHandThumbsUp, BsHeart } from "react-icons/bs";
 import Comment from "./Comment";
 import Reply from "./Reply";
-
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import ReportModal from "../Modal/ReportModal";
 
@@ -13,6 +13,8 @@ const Recomend_detail = () => {
   const thumbsClick = () => {
     alert("thumbs up clicked");
   };
+  const [session, setSession] = useState("admin"); //버튼 보이게 하기 위해 작성 추후 admin 삭제하고 id
+  //const session = sessionStorage.getItem("id"); 로그인 id 받아올 때 쓰면 됨
 
   // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
   const [modalOpen, setModalOpen] = useState(false);
@@ -160,6 +162,17 @@ const Recomend_detail = () => {
             >
               글목록
             </button>
+
+            {session === "admin" && (
+              <Link to="/update">
+                <button
+                  type="button"
+                  className="btn btn-sm btn-primary boardListBtn boardListBtnDetail"
+                >
+                  글 수정
+                </button>{" "}
+              </Link>
+            )}
           </div>
 
           <div className="boardCommentDiv">
@@ -221,5 +234,4 @@ const Recomend_detail = () => {
     </>
   );
 };
-
 export default Recomend_detail;
