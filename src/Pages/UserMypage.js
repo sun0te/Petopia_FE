@@ -22,7 +22,7 @@ const UserMypage = () => {
   const [editingNickname, setEditingNickname] = useState(false);
   const [tempNickname, setTempNickname] = useState("");
   const [imageSrc, setImageSrc] = useState(null); // 이미지 미리보기 URL
-  const defaultProfileImage = "/img/dog_main.png"; // 기본 이미지 파일명
+  const defaultProfileImage = "/img/Default_profile.png"; // 기본 이미지 파일명
   const handleNicknameChange = (event) => {
     setTempNickname(event.target.value);
   };
@@ -159,6 +159,7 @@ const UserMypage = () => {
             </div>
           </div>
           <div className="separationArea" />
+          <br />
           <div class="logout-button-wrapper">
             <button class="logout-button">로그아웃</button>
           </div>
