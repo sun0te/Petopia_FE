@@ -1,5 +1,5 @@
 footer {
-    position: absolute;
+    position: relative;
     /* full-bg를 기준으로 배치 */
     bottom: 0;
     left: 0;
@@ -14,7 +14,7 @@ footer {
     align-items: center;
 }
 
-img {
+.footer-logo img {
     width: 100px;
     margin-bottom: 1rem;
 }
@@ -25,7 +25,7 @@ img {
     gap: 1rem;
 }
 
-p {
+.footerContainer .myFooterText {
     text-align: center;
     margin-top: 1rem;
     margin-bottom: 0;
