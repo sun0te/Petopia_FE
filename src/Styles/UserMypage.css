@@ -112,7 +112,7 @@
 .user-sections {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
     border-top: 1px solid #ccc;
     margin-top: 1em;
@@ -121,6 +121,7 @@
 .user-section {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin: auto;
     width: 100%;
     min-height: 3.3em;
@@ -134,19 +135,31 @@
     align-items: center;
     margin-right: 1rem;
     margin-left: 2em;
-    width: 40px;
-    height: 40px;
+    width: 37px;
+    height: 37px;
     border-radius: 50%;
-    background-color: #eceaea;
+    background-color: #537FE7;
 }
 
 .user-info-icon {
-    font-size: 1rem;
-    color: #646464;
+    color: #ffffff;
 }
 
 .user-section-title {
     font-size: 15px;
     font-weight: 500;
     color: #222;
+    flex-grow: 1;
+}
+
+.user-section-icon2 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+}
+
+.user-info-icon2{
+    color: #646464;
 }

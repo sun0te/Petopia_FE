@@ -10,7 +10,9 @@ import {
   FaEdit,
   FaCheck,
   FaTimes,
+  FaAngleRight
 } from "react-icons/fa";
+
 //import MyInquiry from "../Components/MyPage/MyInquiry.js";
 //import MyInquiryWrite from "../Components/MyPage/MyInquiryWrite.js";
 //import Write123 from "../Components/MyPage/Write123.js";
@@ -71,7 +73,7 @@ const UserMypage = () => {
                   className="edit-nickname-button"
                   onClick={handleEditClick}
                 >
-                  <FaEdit className="edit-icon" />
+                  <FaAngleRight className="edit-icon" />
                 </button>
               </>
             )}
@@ -97,24 +99,36 @@ const UserMypage = () => {
                 <FaUser className="user-info-icon" />
               </div>
               <div className="user-section-title">회원정보 수정</div>
+              <div className="user-section-icon2">
+                <FaAngleRight className="user-info-icon2" />
+              </div>
             </div>
             <div className="user-section">
               <div className="user-section-icon">
                 <FaHeart className="user-info-icon" />
               </div>
               <div className="user-section-title">관심목록</div>
+              <div className="user-section-icon2">
+                <FaAngleRight className="user-info-icon2" />
+              </div>
             </div>
             <div className="user-section">
               <div className="user-section-icon">
                 <FaComment className="user-info-icon" />
               </div>
               <div className="user-section-title">리뷰 관리</div>
+              <div className="user-section-icon2">
+                <FaAngleRight className="user-info-icon2" />
+              </div>
             </div>
             <div className="user-section">
               <div className="user-section-icon">
                 <FaEdit className="user-info-icon" />
               </div>
               <div className="user-section-title">1:1 문의</div>
+              <div className="user-section-icon2">
+                <FaAngleRight className="user-info-icon2" />
+              </div>
             </div>
           </div>
         </section>
