@@ -6,8 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
-import BoardList from "../Components/BoardList";
-import Board from "../Components/Board";
+import "../Styles/MainIh.css";
 import { useNavigate } from "react-router-dom";
 import Kakao2 from "../Map/Kakao2.js";
 import axios from "axios";
@@ -15,19 +14,18 @@ import axios from "axios";
 const slides = [
   {
     id: 1,
-    image: "/img/Petopia_slide1.png",
+    image: "https://placehold.it/360x240",
+    caption: "First slide",
   },
   {
     id: 2,
-    image: "/img/Petopia_slide2.png",
+    image: "https://placehold.it/360x240",
+    caption: "Second slide",
   },
   {
     id: 3,
-    image: "/img/Petopia_slide3.png",
-  },
-  {
-    id: 4,
-    image: "/img/Petopia_slide4.png",
+    image: "https://placehold.it/360x240",
+    caption: "Third slide",
   },
 ];
 
@@ -180,40 +178,41 @@ const Home = () => {
       <main>
         <Header />
         <section>
-          <div className="homeSlider">
-            <Slider {...settings}>
-              {slides.map((slide) => (
-                <div key={slide.id}>
-                  <img src={slide.image}/>
-                </div>
-              ))}
-            </Slider>
-          </div>
+          <Slider {...settings}>
+            {slides.map((slide) => (
+              <div key={slide.id}>
+                <img src={slide.image} alt={slide.caption} />
+                <div className="caption">{slide.caption}</div>
+              </div>
+            ))}
+          </Slider>
           {/*지도 코드 들어갈 위치 */}
-
-          <div className="containerIh">
-            <div className="testmap">
-              <Kakao2
-                maplist1={maplist1}
-                maplist2={maplist2}
-                maplist3={maplist3}
-                maplist4={maplist4}
-                maplist5={maplist5}
-                maplist6={maplist6}
-                maplist7={maplist7}
-                maplist8={maplist8}
-                maplist9={maplist9}
-                maplist10={maplist10}
-                maplist11={maplist11}
-                maplist12={maplist12}
-                city={city}
-                setCity={setCity}
-                county={county}
-                setCounty={setCounty}
-              />
+          <div className="map">
+            <div className="containerIh">
+              <h2 align="center">메인페이지</h2>
+              <div className="testmap">
+                <h3 align="center">지도</h3>
+                <Kakao2
+                  maplist1={maplist1}
+                  maplist2={maplist2}
+                  maplist3={maplist3}
+                  maplist4={maplist4}
+                  maplist5={maplist5}
+                  maplist6={maplist6}
+                  maplist7={maplist7}
+                  maplist8={maplist8}
+                  maplist9={maplist9}
+                  maplist10={maplist10}
+                  maplist11={maplist11}
+                  maplist12={maplist12}
+                  city={city}
+                  setCity={setCity}
+                  county={county}
+                  setCounty={setCounty}
+                />
+              </div>
             </div>
           </div>
-
           {/* 여행지 추천 div */}
           <div className="recommendation">
             <div className="recommendation-title">
@@ -241,11 +240,18 @@ const Home = () => {
             <div className="recommendation-title">
               <p>인기게시글</p>
             </div>
-            <Board />
-            <Board />
-            <Board />
-            <Board />
-            <Board />
+            <div className="boardTitle">
+              <h7>커뮤니티 게시글1 Title</h7>
+            </div>
+            <div className="boardContent">
+              <p>인기 커뮤니티 게시글 내용입니다...(더보기)</p>
+            </div>
+            <div className="boardTitle">
+              <h7>커뮤니티 게시글2 Title</h7>
+            </div>
+            <div className="boardContent">
+              <p>인기 커뮤니티 게시글 내용입니다...(더보기)</p>
+            </div>
           </div>
         </section>
         <Footer />

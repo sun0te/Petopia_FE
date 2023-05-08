@@ -44,19 +44,19 @@ const Kakao2 = ({
     longitude: 127.02770621963765,
   }); // 현재 위치를 저장할 useState , default 위치는 37, 127
 
-  // useEffect(() => {
-  //   navigator.geolocation.getCurrentPosition(successHandler, errorHandler); // 성공시 successHandler, 실패시 errorHandler 함수가 실행된다.
-  // }, []);
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(successHandler, errorHandler); // 성공시 successHandler, 실패시 errorHandler 함수가 실행된다.
+  }, []);
 
-  // const successHandler = (response) => {
-  //   console.log(response); // coords: GeolocationCoordinates {latitude: 위도, longitude: 경도, …} timestamp: 1673446873903
-  //   const { latitude, longitude } = response.coords;
-  //   setLoacation({ latitude, longitude });
-  // };
+  const successHandler = (response) => {
+    console.log(response); // coords: GeolocationCoordinates {latitude: 위도, longitude: 경도, …} timestamp: 1673446873903
+    const { latitude, longitude } = response.coords;
+    setLoacation({ latitude, longitude });
+  };
 
-  // const errorHandler = (error) => {
-  //   console.log(error);
-  // };
+  const errorHandler = (error) => {
+    console.log(error);
+  };
   // -----현재 위치 받아오기 종료-----
 
   const markerImageSrc = "http://localhost:3000/maker.png";
@@ -329,7 +329,7 @@ const Kakao2 = ({
         {/* 기존 마커의 infowindow가 열린 상태에서 다른 마커를 누르면 기존 마커의 infowindow 종료 */}
         {info &&
           info.lat === position.lat &&
-          info.lng === position.lng && ( // infowindow 같이켜지는 현상 해결 하기 위해 겹칠수 없는 데이터(좌표)를 조건문에 할당
+          info.lng === position.lng && ( // infowindow 같이켜지는 현상 해결 하기 위해 겹칠수 없는 데이터를 조건문에 할당
             /* 마커위에 infowindow 표시 */
             <CustomOverlayMap position={position}>
               <div className="mapwrapinfo">
@@ -350,27 +350,14 @@ const Kakao2 = ({
                     </div>
                     <div>
                       {position.homepage !== "정보없음" ? (
-                        position.homepage.indexOf("http") === 0 ? (
-                          <>
-                            <a
-                              href={position.homepage}
-                              target="_blank"
-                              className="maplink"
-                              rel="noreferrer"
-                            >
-                              홈페이지
-                            </a>
-                          </>
-                        ) : (
-                          <a
-                            href={"http://" + position.homepage}
-                            target="_blank"
-                            className="maplink"
-                            rel="noreferrer"
-                          >
-                            홈페이지
-                          </a>
-                        )
+                        <a
+                          href={position.homepage}
+                          target="_blank"
+                          className="maplink"
+                          rel="noreferrer"
+                        >
+                          홈페이지
+                        </a>
                       ) : (
                         <a href="#" className="maplink" rel="noreferrer">
                           홈페이지 정보없음

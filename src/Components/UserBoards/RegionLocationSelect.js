@@ -1,46 +1,35 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../Styles/UserRegion.css";
-
-// import LocalTitle from "./LocalTitle";
+import UserRegionBoard from "../../Pages/UserRegionBoard";
 
 const RegionLocationSelect = () => {
   const moveRegion = useNavigate();
-  const [regionClick, setRegionClick] = useState(null);
+  const [regionClick, setRegionClick] = useState();
   //const [prevClick, setPrevClick] = useState();
 
   const GetClick = (e) => {
-    setRegionClick(e.currentTarget.id);
-    // console.log(e.currentTarget);
-    // useNavigate로 지역명(id)를 UserRegionBoard.js 컴포넌트로 넘김
-    moveRegion("/userregionboard", { state: { title: e.currentTarget.id } });
+    setRegionClick(e.target.id);
+    console.log(e.target.id);
+    moveRegion("/userregionboard");
   };
 
   return (
     <>
-      <div className="wrapper">
-        <div className="local_title">지역별 모임 게시판</div>
-
-        <div className="wrapper1">
-          <div className="content" id="서울" onClick={(e) => GetClick(e)}>
-            <div className="locationTag">서울</div>
-            <div className="content_title">서울 지역 모임 게시판 입니다.</div>
-          </div>
-
-          <div className="content" id="경기 북부" onClick={(e) => GetClick(e)}>
-            <div className="locationTag">경기(북부)</div>
-            <div className="content_title">
-              경기 북부지역 모임 게시판 입니다.
-            </div>
-          </div>
-
-          <div className="content" id="경기 남부" onClick={(e) => GetClick(e)}>
-            <div className="locationTag">경기(남부)</div>
-            <div className="content_title">
-              경기 남부지역 모임 게시판 입니다.
-            </div>
-          </div>
-        </div>
+      <div className="local_title">지역별 모임 게시판</div>
+      <div className="wrapper1">
+        <UserRegionBoard className="content" id="서울" onClick={GetClick}>
+          <div className="locationTag">서울</div>
+          <div className="content_title">서울 지역 모임 게시판 입니다.</div>
+        </UserRegionBoard>
+        <UserRegionBoard className="content" id="경기 북부" onClick={GetClick}>
+          <div className="locationTag">경기(북)</div>
+          <div className="content_title">경기 북부지역 모임 게시판 입니다.</div>
+        </UserRegionBoard>
+        <UserRegionBoard className="content" id="경기 남부" onClick={GetClick}>
+          <div className="locationTag">경기(남)</div>
+          <div className="content_title">경기 남부지역 모임 게시판 입니다.</div>
+        </UserRegionBoard>
       </div>
     </>
   );
