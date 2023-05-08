@@ -1,14 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
 import "../Styles/UserMypage.css";
-import { FaUser, FaHeart, FaComment, FaEdit } from "react-icons/fa";
+import {
+  FaUser,
+  FaHeart,
+  FaComment,
+  FaEdit,
+  FaCheck,
+  FaTimes,
+} from "react-icons/fa";
 //import MyInquiry from "../Components/MyPage/MyInquiry.js";
 //import MyInquiryWrite from "../Components/MyPage/MyInquiryWrite.js";
 //import Write123 from "../Components/MyPage/Write123.js";
 
 const UserMypage = () => {
+  const [nickname, setNickname] = useState("사용자 닉네임");
+  const [editingNickname, setEditingNickname] = useState(false);
+  const [tempNickname, setTempNickname] = useState("");
+
+  const handleNicknameChange = (event) => {
+    setTempNickname(event.target.value);
+  };
+
+  const handleEditClick = () => {
+    setTempNickname(nickname);
+    setEditingNickname(true);
+  };
+
+  const handleConfirmClick = () => {
+    setNickname(tempNickname);
+    setEditingNickname(false);
+  };
+
+  const handleCancelClick = () => {
+    setEditingNickname(false);
+  };
+
   return (
     <>
       <BgLeft />
@@ -18,7 +47,34 @@ const UserMypage = () => {
         <section className="user-mypage">
           <div className="user-profile">
             <div className="profile-image" />
-            <p className="user-nickname">사용자 닉네임</p>
+            {editingNickname ? (
+              <>
+                <input
+                  type="text"
+                  value={tempNickname}
+                  onChange={handleNicknameChange}
+                  className="user-nickname-edit"
+                />
+                <div className="edit-buttons">
+                  <button className="edit-check" onClick={handleConfirmClick}>
+                    <FaCheck className="edit-icon" />
+                  </button>
+                  <button className="edit-cancle" onClick={handleCancelClick}>
+                    <FaTimes className="edit-icon" />
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="user-nickname">{nickname}</div>
+                <button
+                  className="edit-nickname-button"
+                  onClick={handleEditClick}
+                >
+                  <FaEdit className="edit-icon" />
+                </button>
+              </>
+            )}
           </div>
 
           <hr className="hr-line" />
