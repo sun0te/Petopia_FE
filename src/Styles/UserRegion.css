@@ -12,7 +12,7 @@
 }
 
 .local_title {
-  margin: 20px;
+  margin: 0 20px 20px 20px;
   clear: both;
   font-size: 26px;
   font-weight: 600;
@@ -22,7 +22,7 @@
   display: inline-block;
   margin: 10px 3.5%;
   padding: 15px;
-  border: 1px solid #537fe7;
+  border: 1px solid #99b8ff;
   font-size: 12px;
   border-radius: 15px;
   clear: both;
@@ -33,7 +33,7 @@
 
 .content:hover {
   color: #ffffff;
-  background-color: #537fe7;
+  background-color: #99b8ff;
   cursor: pointer;
   transform: all ease 2s 0s;
 }
@@ -44,9 +44,9 @@
   width: 80px;
   text-align: center;
   border-radius: 20px;
-  border: 1px solid #99b8ff;
+  border: 1px solid #537fe7;
   color: #ffffff;
-  background-color: #99b8ff;
+  background-color: #537fe7;
 }
 
 .content_title {
