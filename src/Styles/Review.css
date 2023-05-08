@@ -13,7 +13,7 @@
 }
 
 .ratingIndexText {
-    
+    font-weight: bolder;
     line-height: 35px;
     display: block;
     clear: both;
@@ -109,6 +109,17 @@
 
 .reviewWriteForm {
     padding: 20px;
-    width: 95%;
+    width: 93%;
     margin: 10px auto -30px auto;
+}
+
+/* BoardWrite */
+
+.reviewContentForm {
+    height: 200px;
+    font-size: 1rem;
+}
+
+.reviewWriteSubmit {
+    margin: 0 0 0 0;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { AiFillStar } from "react-icons/ai";
 import "../Styles/Review.css";
@@ -25,6 +25,11 @@ const PIndex = styled.p`
 
 const RatingSection = ({ ratingIndex, setRatingIndex }) => {
   const ArrayIndexes = [1, 2, 3, 4, 5];
+
+  useEffect(() => {
+    setRatingIndex(ratingIndex); // ratingIndex 값이 변경될 때마다 setRatingIndex 호출
+  }, [ratingIndex, setRatingIndex]);
+
   return (
     <RatingContainer className="raitingContainer">
       <div className="starDiv">
@@ -33,7 +38,17 @@ const RatingSection = ({ ratingIndex, setRatingIndex }) => {
             size={35}
             key={`rating_${index}`}
             className={arrayindex <= ratingIndex ? "active" : "inactive"}
-            onClick={() => setRatingIndex(arrayindex)}
+            onClick={() => {
+              setRatingIndex(arrayindex);
+              console.log(
+                "arrayindex : " +
+                  arrayindex +
+                  "\n" +
+                  "ratingIndex : " +
+                  ratingIndex
+              );
+              setRatingIndex(arrayindex); // 부모 컴포넌트에도 ratingIndex 값 전달
+            }}
           />
         ))}
       </div>
@@ -57,10 +72,12 @@ const RatingSection = ({ ratingIndex, setRatingIndex }) => {
   );
 };
 
-export default function App() {
-  const [ratingIndex, setRatingIndex] = useState(0);
+export default RatingSection;
 
-  return (
-    <RatingSection ratingIndex={ratingIndex} setRatingIndex={setRatingIndex} />
-  );
-}
+// export default function App() {
+//   const [ratingIndex, setRatingIndex] = useState(0);
+
+//   return (
+//     <RatingSection ratingIndex={ratingIndex} setRatingIndex={setRatingIndex} />
+//   );
+// }
