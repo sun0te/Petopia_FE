@@ -1,139 +1,61 @@
-import React, { useEffect } from "react";
-import MyInquiryMain from "./MyInquiryMain";
-import MyInquiryWrite from "./MyInquiryWrite";
-import MyInquiryDetail from "./MyInquiryDetail";
-import { useState } from "react";
-import MyInquiryUpdate from "./MyInquiryUpdate";
-import axios from "axios";
+import React, { useState } from "react";
+import "../../Styles/MyInquiry.css";
 
 const MyInquiry = () => {
-  const [inquiryAction, setInquiryAction] = useState(0);
   const [inquirytest, setInquirytest] = useState([
-    // 테스트 문의 데이터
     {
       title: "제목1",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       date: "2023-05-02",
       answer: 0,
     },
     {
       title: "제목2",
-      content:
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       date: "2023-05-03",
       answer: 0,
     },
     {
       title: "제목3",
-      content:
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
       date: "2023-05-04",
       answer: 1,
-      answerContent:
-        "펫토피아 XXX입니다. 펫토피아를 이용해주시는 고객님께 감사의 말씀드립니다.",
     },
   ]);
-  const [inquirytest2, setInquirytest2] = useState({});
-
-  // DB ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 연동 테스트 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
-  const inquirylogin = () => {
-    window.sessionStorage.setItem("id", "test");
-  };
-
-  const inquirylogout = () => {
-    window.sessionStorage.clear();
-  };
-
-  // 문의 리스트 불러오기
-  const [inquirydb, setInquirydb] = useState([]);
-
-  useEffect(() => {
-    inquirydbtest();
-  }, []);
-
-  const inquirydbtest = () => {
-    axios
-      .get("/inquirylist", {
-        params: {
-          username:
-            window.sessionStorage.getItem("id") !== null
-              ? window.sessionStorage.getItem("id")
-              : "",
-        },
-      })
-      .then((res) => {
-        // console.log("데이터 =>", res);
-        const { data } = res;
-
-        setInquirydb(data);
-        // setInquiryAction(0);
-      })
-      .catch((e) => {
-        console.error(e);
-      });
-  };
-
-  // DB ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 연동 테스트 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
   return (
     <>
-      {inquiryAction === 0 && ( // 문의 리스트
-        <MyInquiryMain
-          inquirytest={inquirytest}
-          setInquiryAction={setInquiryAction}
-          setInquirytest2={setInquirytest2}
-          inquirydb={inquirydb}
-        />
-      )}
-      {inquiryAction === 1 && ( // 문의 작성
-        <MyInquiryWrite
-          inquirytest={inquirytest}
-          inquirydbtest={inquirydbtest}
-          setInquirytest={setInquirytest}
-          setInquiryAction={setInquiryAction}
-        />
-      )}
-      {inquiryAction === 2 && ( // 문의 상세내용
-        <MyInquiryDetail
-          inquirytest2={inquirytest2}
-          setInquiryAction={setInquiryAction}
-          inquirydb={inquirydb}
-          inquirydbtest={inquirydbtest}
-        />
-      )}
-      {inquiryAction === 3 && ( // 문의내용 수정
-        <MyInquiryUpdate
-          inquirytest2={inquirytest2}
-          setInquiryAction={setInquiryAction}
-          inquirydbtest={inquirydbtest}
-        />
-      )}
-      <br />
-      <br />
-      <br />
-      <button
-        onClick={() => {
-          inquirydbtest();
-        }}
-      >
-        테스트
-      </button>
-      <button
-        onClick={() => {
-          inquirylogin();
-        }}
-      >
-        로그인테스트
-      </button>
-      <button
-        onClick={() => {
-          inquirylogout();
-        }}
-      >
-        로그아웃
-      </button>
+      <div className="inquiryHeader">
+        <h4>1:1문의</h4>
+      </div>
+      <hr className="inquiryhr1" />
+      {inquirytest.map((a, i) => (
+        <div
+          className="inquiryMain"
+          onClick={() => {
+            // MyInquiryDetail 이동 or 해당 리스트를 제목,내용으로 변경
+          }}
+        >
+          <div className="test9">
+            <b className="test10">{a.title}</b>
+            <br />
+            {a.answer === 0 ? (
+              <div className="inquiryStatus">처리중</div>
+            ) : (
+              <div className="inquiryStatus">답변완료</div>
+            )}
+            <b className="test11">{a.date}</b>
+          </div>
+          <hr className="inquiryhr2" />
+        </div>
+      ))}
+      <div className="inquiryBox">
+        <button
+          className="inquiryBtn"
+          onClick={() => {
+            // MyInquiryWrite 이동
+          }}
+        >
+          문의하기
+        </button>
+      </div>
     </>
   );
 };

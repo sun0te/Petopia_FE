@@ -3,7 +3,7 @@
 }
 
 .inquiryhr1{
-    width: 90%; 
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -13,29 +13,28 @@
 
 .inquiryMain{
     margin: 0 auto;
+
+    /* margin-top: 10px; */
     width: 90%;
 }
 
-.inquiryNone{
-    margin: 10px auto;
-    text-align: center;
-    width: 90%;
-}
-
-.inquiryMain1{
+.test9{
+    /* width: 100%; */
     padding: 5px;
+    /* border: 1px solid black; */
 }
 
-.inquiryMain1:hover{
+.test9:hover{
     background-color: lightgray;
     opacity: 0.9;
 }
 
-.inquiryMainTitle{
+.test10{
     font-size: 14px;
+
 }
 
-.inquiryMainDate{
+.test11{
     font-size: 14px;
     color:#888;
 }
@@ -93,6 +92,7 @@
 
 .inquiryWriteContainer{
     width: 90%;
+    /* border: 1px solid black; */
     margin: 0 auto;
     margin-top: 20px;
 }
@@ -118,69 +118,4 @@
     justify-content: center;
     align-items: center;
     margin-top: 5px;
-}
-
-.inquiryDetail1{
-    margin: 0 auto;
-    width: 90%;
-}
-
-.inquiryDetail2{
-    padding: 5px;
-}
-
-.inquiryDetailContent{
-    margin-top: 10px;
-    max-width: 90%;
-    padding: 5px;
-    border: 2px solid lightgray;
-    border-radius: 7px;
-    background-color: lightgray;
-}
-
-.inquiryDetailAnswer{
-    margin: 0 auto;
-    width: 90%;
-}
-
-.inquiryAnswerTitle{
-    margin-left: 220px;
-    font-size: 14px;
-}
-
-.inquiryDetailContent1{
-    margin-top: 10px;
-    margin-left: 20px;
-    max-width: 90%;
-    padding: 5px;
-    border: 2px solid lightgray;
-    border-radius: 7px;
-    background-color: lightgray;
-}
-
-.detailSpace{
-    margin-top: 10px;
-}
-
-.inquiryBack{
-    position: absolute; 
-    left: 10px;
-    top:134px;
-     float: left;
-    text-align: center;
-    height: auto;
-    width: 30px;
-    /* border: 1px solid black; */
-}
-
-.inquiryBackArrow{
-    cursor:pointer;
-    font-size: 28px;
-}
-
-.inquiryWriteAlert{
-    font-size: 12px;
-    margin-top: -10px;
-    margin-left: 13px;
-    color: red;
 }
