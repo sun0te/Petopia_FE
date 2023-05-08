@@ -21,7 +21,8 @@ const UserMypage = () => {
   const [nickname, setNickname] = useState("사용자 닉네임");
   const [editingNickname, setEditingNickname] = useState(false);
   const [tempNickname, setTempNickname] = useState("");
-
+  const [imageSrc, setImageSrc] = useState(null); // 이미지 미리보기 URL
+  const defaultProfileImage = "/img/dog_main.png"; // 기본 이미지 파일명
   const handleNicknameChange = (event) => {
     setTempNickname(event.target.value);
   };
@@ -40,6 +41,17 @@ const UserMypage = () => {
     setEditingNickname(false);
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImageSrc(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <>
       <BgLeft />
@@ -48,7 +60,22 @@ const UserMypage = () => {
         <Header />
         <section className="user-mypage">
           <div className="user-profile">
-            <div className="profile-image" />
+            <div className="profile-image">
+              <label htmlFor="profile-image-upload">
+                <img
+                  src={imageSrc || defaultProfileImage}
+                  alt="프로필 이미지"
+                  className="profile-image-preview"
+                />
+              </label>
+              <input
+                type="file"
+                id="profile-image-upload"
+                accept="image/*"
+                onChange={handleImageChange}
+                style={{ display: "none" }}
+              />
+            </div>
             {editingNickname ? (
               <>
                 <input
