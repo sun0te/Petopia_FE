@@ -95,13 +95,13 @@ const UserBoard = (props) => {
                     <div className="RegionSelectBtns">
                       <button
                         type="button"
-                        class="btn btn-primary RegionSelectBox"
+                        class="btn btn-primary RegionSelectBox btn-sm"
                       >
                         전체
                       </button>
                       <button
                         type="button"
-                        class="btn btn-primary RegionSelectBox"
+                        class="btn btn-primary RegionSelectBox btn-sm"
                         onClick={() => {
                           setModalOpen(true);
                         }}
