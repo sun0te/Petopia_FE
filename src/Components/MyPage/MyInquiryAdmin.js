@@ -10,7 +10,7 @@ import BgLeft from "../BgLeft.js";
 const MyInquiryAdmin = () => {
   const [inquiryAdminAction, setInquiryAdminAction] = useState(0);
   const [inquiryAdmintest, setInquiryAdmintest] = useState([
-    // 테스트 문의 데이터
+    // 테스트 문의 데이터 ( 관리자 문의 리스트는 전체를 가져와야함 )
     {
       title: "제목1",
       content:

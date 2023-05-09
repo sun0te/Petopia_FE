@@ -38,3 +38,48 @@
 .inquiryadminDetailContent{
     margin-top: 20px;
 }
+
+.inquiryadminStatus{
+    position: absolute;
+    right: 30px;
+    margin-top: -10px;
+    padding: 0 5px;
+    font-size: 14px;
+    text-align: center;
+    width: auto;
+    border: 1px solid #537FE7;
+    border-radius: 5px;
+    background-color: #537FE7;
+    color: #eee;
+    font-size: 12px;
+}
+
+.inquiryadminStatusWait{
+    position: absolute;
+    right: 30px;
+    margin-top: -10px;
+    padding: 0 5px;
+    font-size: 14px;
+    text-align: center;
+    width: auto;
+    border: 2px solid red;
+    border-radius: 5px;
+    /* background-color: #537FE7; */
+    color: red;
+    font-size: 12px;
+}
+
+.inquiryadminStatusComplete{
+    position: absolute;
+    right: 30px;
+    margin-top: -10px;
+    padding: 0 5px;
+    font-size: 14px;
+    text-align: center;
+    width: auto;
+    border: 2px solid #537FE7;
+    border-radius: 5px;
+    /* background-color: #537FE7; */
+    color: #537FE7;
+    font-size: 12px;
+}

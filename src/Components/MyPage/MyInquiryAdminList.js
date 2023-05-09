@@ -42,9 +42,9 @@ const MyInquiryAdminList = ({
               <b className="inquiryMainTitle">{a.title}</b>
               <br />
               {a.answer === 0 ? (
-                <div className="inquiryStatus">처리중</div>
+                <div className="inquiryadminStatusWait">답변 대기</div>
               ) : (
-                <div className="inquiryStatus">답변완료</div>
+                <div className="inquiryadminStatusComplete">답변 완료</div>
               )}
               <b className="inquiryMainDate">{a.createDate}</b>
             </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import MyInquiryAdminWrite from "./MyInquiryAdminWrite";
 
 const MyInquiryAdminDetail = ({
   inquiryAdmintest,
@@ -49,6 +50,7 @@ const MyInquiryAdminDetail = ({
         </>
       ) : null}
       <br />
+      {inquiryAdmintest2.answer === 0 ? <MyInquiryAdminWrite /> : null}
       <div className="inquiryWriteBox">
         {inquiryAdmintest2.answer === 0 ? (
           <>
@@ -58,18 +60,7 @@ const MyInquiryAdminDetail = ({
                 setInquiryAdminAction(0);
               }}
             >
-              수정
-            </button>
-            <button
-              className="inquiryBtn2"
-              onClick={() => {
-                if (window.confirm("삭제하시겠습니까?")) {
-                  // 삭제 코드
-                  setInquiryAdminAction(0);
-                }
-              }}
-            >
-              삭제
+              저장
             </button>
           </>
         ) : null}
