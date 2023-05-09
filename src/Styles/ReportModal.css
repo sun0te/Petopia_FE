@@ -102,3 +102,24 @@
   white-space: normal;
   word-wrap:break-word;
 }
+
+/* media query ------------------------------------------------------------------------------------------ */
+@media screen and (min-width: 800px) {
+
+  .reportmodal > .reportModalSectionDiv {
+    position: absolute;
+    top: 40%;
+    left: 35%;
+    width: 90%;
+    max-width: 375px;
+    max-height: 260px;
+    margin: 0 auto 0 18px;
+    border-radius: 0.3rem;
+    background-color: #fff;
+    /* 팝업이 열릴때 스르륵 열리는 효과 */
+    animation: reportmodal-show 0.3s;
+    overflow: hidden;
+    transform: translate(0%, -10%);
+  }
+
+}
