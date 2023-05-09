@@ -1,4 +1,5 @@
 .inquiryHeader{
+    padding: 10px 0;
     text-align: center;
 }
 
@@ -165,7 +166,7 @@
 .inquiryBack{
     position: absolute; 
     left: 10px;
-    top:134px;
+    top:110px;
      float: left;
     text-align: center;
     height: auto;

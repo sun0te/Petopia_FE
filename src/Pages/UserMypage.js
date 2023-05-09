@@ -3,6 +3,7 @@ import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
 import MyInquiry from "../Components/MyPage/MyInquiry.js";
+import MyInquiryAdmin from "../Components/MyPage/MyInquiryAdmin.js";
 
 const UserMypage = () => {
   return (
@@ -16,7 +17,8 @@ const UserMypage = () => {
           개발하시면 됩니다*/}
           <p>마이페이지 입니다</p>
           {/* 1:1 문의 */}
-          <MyInquiry />
+          {/* <MyInquiry /> */}
+          <MyInquiryAdmin />
         </section>
         <Footer />
       </main>
