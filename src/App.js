@@ -23,8 +23,6 @@ import NotFound from "./Pages/NotFound";
 import FreeBoardDetail from "./Components/UserBoards/FreeBoardDetail";
 import MyInquiry from "./Components/MyPage/MyInquiry";
 import MyInquiryAdmin from "./Components/MyPage/MyInquiryAdmin";
-import MyInquiry from "./Components/MyPage/MyInquiry";
-import MyInquiryAdmin from "./Components/MyPage/MyInquiryAdmin";
 
 const App = () => {
   return (
