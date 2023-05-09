@@ -18,7 +18,7 @@ const UserMypage = () => {
           <p>마이페이지 입니다</p>
           {/* 1:1 문의 */}
           {/* <MyInquiry /> */}
-          <MyInquiryAdmin />
+          {/* <MyInquiryAdmin /> */}
         </section>
         <Footer />
       </main>
