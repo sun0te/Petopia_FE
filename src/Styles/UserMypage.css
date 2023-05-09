@@ -196,6 +196,13 @@
     color: #646464;
 }
 
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 1em;
+    width: 100%;
+}
+
 .logout-button-wrapper {
     display: flex;
     justify-content: center;
@@ -210,6 +217,24 @@
     border: none;
     color: #fff;
     background-color: #0077ff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.admin-button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 1em;
+}
+
+.admin-button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    color: #fff;
+    background-color: #ff3300;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
     cursor: pointer;
 }

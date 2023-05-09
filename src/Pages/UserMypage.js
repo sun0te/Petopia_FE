@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
+import { NavLink } from "react-router-dom";
 import "../Styles/UserMypage.css";
 import {
   FaUser,
@@ -12,10 +13,6 @@ import {
   FaTimes,
   FaAngleRight
 } from "react-icons/fa";
-
-//import MyInquiry from "../Components/MyPage/MyInquiry.js";
-//import MyInquiryWrite from "../Components/MyPage/MyInquiryWrite.js";
-//import Write123 from "../Components/MyPage/Write123.js";
 
 const UserMypage = () => {
   const [nickname, setNickname] = useState("사용자 닉네임");
@@ -159,14 +156,15 @@ const UserMypage = () => {
             </div>
           </div>
           <div className="separationArea" />
-          <br />
-          <div class="logout-button-wrapper">
-            <button class="logout-button">로그아웃</button>
+          <div class="button-wrapper">
+            <div class="logout-button-wrapper">
+              <button class="logout-button">로그아웃</button>
+            </div>
+            <div class="admin-button-wrapper">
+              <button class="admin-button">관리자 페이지</button>
+            </div>
           </div>
         </section>
-        {/* <MyInquiry /> */}
-        {/* <MyInquiryWrite /> */}
-        {/* <Write123 /> */}
         <Footer />
       </main>
     </>

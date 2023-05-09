@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import "../Styles/Header.css";
+import { FaUser, FaCog, FaArrowLeft } from "react-icons/fa";
 
 const Header = ({ page }) => {
   const [scrollX, setScrollX] = useState(0);
@@ -57,13 +57,15 @@ const Header = ({ page }) => {
     <header>
       <div className="headerBtns">
         <NavLink to="/login">
-          <Button variant="primary" className="mr-2">
-            로그인
-          </Button>
+          <div className="headerBtns">
+            <FaUser className="user-info-icon" />
+          </div>
         </NavLink>
 
-        <NavLink to="/register">
-          <Button variant="outline-primary">회원가입</Button>
+        <NavLink to="/usermypage">
+          <div className="headerBtns">
+            <FaCog className="user-info-icon" />
+          </div>
         </NavLink>
       </div>
       <div
@@ -111,15 +113,6 @@ const Header = ({ page }) => {
             onClick={handleCategoryClick}
           >
             <div className="nav-link">공지사항</div>
-          </NavLink>
-          <NavLink
-            to="/usermypage"
-            className="nav-item"
-            activeClassName="active"
-            data-href="/usermypage"
-            onClick={handleCategoryClick}
-          >
-            <div className="nav-link">마이페이지</div>
           </NavLink>
         </div>
       </div>
