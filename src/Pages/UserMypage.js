@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
-<<<<<<< HEAD
-=======
+
 import { NavLink } from "react-router-dom";
->>>>>>> 0857cc970e36ce7c7a08d3fb61ceb04f8c200d2e
+
 import "../Styles/UserMypage.css";
 import {
   FaUser,
@@ -16,15 +15,9 @@ import {
   FaTimes,
   FaAngleRight,
 } from "react-icons/fa";
-<<<<<<< HEAD
 
-//import MyInquiry from "../Components/MyPage/MyInquiry.js";
-//import MyInquiryWrite from "../Components/MyPage/MyInquiryWrite.js";
-//import Write123 from "../Components/MyPage/Write123.js";
-=======
 import MyInquiry from "../Components/MyPage/MyInquiry.js";
 import MyInquiryAdmin from "../Components/MyPage/MyInquiryAdmin.js";
->>>>>>> 0857cc970e36ce7c7a08d3fb61ceb04f8c200d2e
 
 const UserMypage = () => {
   const [nickname, setNickname] = useState("사용자 닉네임");
