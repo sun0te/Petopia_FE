@@ -54,7 +54,9 @@ const Recomend_detail = () => {
               className="btm-sm reportBtn"
               variant="outline-secondary"
               style={{ padding: "4px 0px 3px 0px", marginRight: "10px" }}
-              onClick={openModal}
+              onClick={() => {
+                alert("delete btn clicked");
+              }}
             >
               삭제
             </Button>
