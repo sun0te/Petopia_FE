@@ -14,7 +14,7 @@ const LoginComponent = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container loginComponent">
         <div className="input-form-backgroud row">
           <div className="input-form col-md-12 mx-auto signUpForm">
             <h4 className="mb-3 signUpText">로그인</h4>
@@ -72,9 +72,22 @@ const LoginComponent = () => {
                 />
                 <div className="invalid-feedback">비밀번호를 입력해주세요.</div>
               </div>
-              <Link to="/findaccountemail" style={{ textDecoration: "none" }}>
-                <p className="p_idpw">아이디/비밀번호 찾기</p>
-              </Link>
+              <div className="findidpwsignupDiv">
+                <Link to="/findaccountemail" style={{ textDecoration: "none" }}>
+                  <p className="p_idpw">이메일 찾기 </p>
+                </Link>
+                |
+                <Link
+                  to="/findaccountpassword"
+                  style={{ textDecoration: "none" }}
+                >
+                  <p className="p_idpw"> 비밀번호 찾기 </p>
+                </Link>
+                |
+                <Link to="/register" style={{ textDecoration: "none" }}>
+                  <p className="p_idpw"> 회원가입</p>
+                </Link>
+              </div>
 
               <br />
 

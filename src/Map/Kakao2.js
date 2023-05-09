@@ -44,19 +44,19 @@ const Kakao2 = ({
     longitude: 127.02770621963765,
   }); // 현재 위치를 저장할 useState , default 위치는 37, 127
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(successHandler, errorHandler); // 성공시 successHandler, 실패시 errorHandler 함수가 실행된다.
-  }, []);
+  // useEffect(() => {
+  //   navigator.geolocation.getCurrentPosition(successHandler, errorHandler); // 성공시 successHandler, 실패시 errorHandler 함수가 실행된다.
+  // }, []);
 
-  const successHandler = (response) => {
-    console.log(response); // coords: GeolocationCoordinates {latitude: 위도, longitude: 경도, …} timestamp: 1673446873903
-    const { latitude, longitude } = response.coords;
-    setLoacation({ latitude, longitude });
-  };
+  // const successHandler = (response) => {
+  //   console.log(response); // coords: GeolocationCoordinates {latitude: 위도, longitude: 경도, …} timestamp: 1673446873903
+  //   const { latitude, longitude } = response.coords;
+  //   setLoacation({ latitude, longitude });
+  // };
 
-  const errorHandler = (error) => {
-    console.log(error);
-  };
+  // const errorHandler = (error) => {
+  //   console.log(error);
+  // };
   // -----현재 위치 받아오기 종료-----
 
   const markerImageSrc = "http://localhost:3000/maker.png";
@@ -372,7 +372,7 @@ const Kakao2 = ({
                           </a>
                         )
                       ) : (
-                        <a className="maplink" rel="noreferrer">
+                        <a href="#" className="maplink" rel="noreferrer">
                           홈페이지 정보없음
                         </a>
                       )}

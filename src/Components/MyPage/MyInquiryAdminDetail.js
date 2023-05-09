@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import MyInquiryAdminWrite from "./MyInquiryAdminWrite";
+import MyInquiryAdminUpdate from "./MyInquiryAdminUpdate";
 
 const MyInquiryAdminDetail = ({
   inquiryAdmintest,
@@ -7,6 +8,8 @@ const MyInquiryAdminDetail = ({
   setInquiryAdmintest2,
   setInquiryAdminAction,
 }) => {
+  const [inquiryadmincheck, setInquiryadmincheck] = useState(0);
+
   return (
     <>
       <div className="inquiryHeader">
@@ -37,23 +40,35 @@ const MyInquiryAdminDetail = ({
       </div>
       <br />
       <hr className="inquiryhr1" />
-      {inquiryAdmintest2.answer === 1 ? (
+      {/* 답변 */}
+      {inquiryAdmintest2.answer === 1 && inquiryadmincheck === 0 ? (
         <>
           <div className="inquiryDetail1">
             <div className="detailSpace">
-              <b className="inquiryAnswerTitle">펫토피아 답변</b>
+              <b className="inquiryAdminAnswerTitle">답변</b>
             </div>
-            <div className="inquiryDetailContent1">
+            <div className="inquiryAdminDetailContent1">
               {inquiryAdmintest2.answerContent}
             </div>
+          </div>
+          <div className="inquiryWriteBox">
+            {" "}
+            <button
+              className="inquiryBtn"
+              onClick={() => {
+                setInquiryadmincheck(1);
+              }}
+            >
+              수정
+            </button>
           </div>
         </>
       ) : null}
       <br />
-      {inquiryAdmintest2.answer === 0 ? <MyInquiryAdminWrite /> : null}
-      <div className="inquiryWriteBox">
-        {inquiryAdmintest2.answer === 0 ? (
-          <>
+      {inquiryAdmintest2.answer === 0 && inquiryadmincheck === 0 ? (
+        <>
+          <MyInquiryAdminWrite />
+          <div className="inquiryWriteBox">
             <button
               className="inquiryBtn"
               onClick={() => {
@@ -62,9 +77,28 @@ const MyInquiryAdminDetail = ({
             >
               저장
             </button>
-          </>
-        ) : null}
-      </div>
+          </div>
+        </>
+      ) : null}
+
+      {inquiryadmincheck === 1 ? (
+        <>
+          <MyInquiryAdminUpdate
+            inquiryAdmintest2={inquiryAdmintest2}
+            setInquiryAdminAction={setInquiryAdminAction}
+          />
+          <div className="inquiryWriteBox">
+            <button
+              className="inquiryBtn"
+              onClick={() => {
+                setInquiryAdminAction(0);
+              }}
+            >
+              저장
+            </button>
+          </div>
+        </>
+      ) : null}
     </>
   );
 };

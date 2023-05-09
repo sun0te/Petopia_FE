@@ -1,12 +1,11 @@
+import React, { useState, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import "../Styles/BoardWrite.css";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import { useEffect, useState, useRef } from "react";
 import { BsTrash3 } from "react-icons/bs";
 import ListGroup from "react-bootstrap/ListGroup";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
-const BoardWrite = () => {
+const Write123 = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
 
   const inputRef = useRef(null);
@@ -29,11 +28,11 @@ const BoardWrite = () => {
     inputRef.current.click();
   };
 
-  const writeContentTextArea = useRef();
-  const [writeContentText, setWriteContentText] = useState(0); //글자수
-
   return (
     <>
+      <div className="inquiryHeader">
+        <h4>1:1문의</h4>
+      </div>
       <div className="writeForm">
         <Form>
           <Form.Group className="mb-3">
@@ -41,7 +40,7 @@ const BoardWrite = () => {
             <Form.Control
               className="writeTitle"
               type="email"
-              placeholder="글 제목을 입력하세요"
+              placeholder="제목을 입력하세요"
             />
           </Form.Group>
           <Form.Group className="mb-3 writeFormContent">
@@ -51,14 +50,8 @@ const BoardWrite = () => {
               rows={3}
               placeholder="글 내용을 입력하세요"
               className="contentForm"
-              ref={writeContentTextArea}
-              maxLength={300}
-              onChange={() => {
-                setWriteContentText(writeContentTextArea.current.value.length);
-              }}
             />
           </Form.Group>
-          <p className="writeContentTextP">{writeContentText}/300</p>
         </Form>
       </div>
 
@@ -85,9 +78,9 @@ const BoardWrite = () => {
 
         <div className="uploadImgDiv">
           <ListGroup>
-            {selectedFiles.map((file) => (
-              <ListGroup.Item className="listGroupItem" id="listGroupItemId">
-                <div key={file.name}>
+            {selectedFiles.map((file, index) => (
+              <ListGroup.Item className="listGroupItem">
+                <div key={index}>
                   <img
                     className="uploadImg"
                     src={URL.createObjectURL(file)}
@@ -97,7 +90,7 @@ const BoardWrite = () => {
                   <div className="imgDeleteBtnDiv">
                     <button
                       className="imgDeleteBtn"
-                      onClick={() => handleRemoveImage(file.name)}
+                      onClick={() => handleRemoveImage(index)}
                     >
                       <BsTrash3 />
                     </button>
@@ -126,4 +119,4 @@ const BoardWrite = () => {
   );
 };
 
-export default BoardWrite;
+export default Write123;

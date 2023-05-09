@@ -29,6 +29,9 @@ const BoardUpdate = () => {
     inputRef.current.click();
   };
 
+  const writeContentTextArea = useRef();
+  const [writeContentText, setWriteContentText] = useState(0); //글자수
+
   return (
     <>
       <h2 className="h2_BoardUpdate">게시글 수정</h2>
@@ -49,8 +52,14 @@ const BoardUpdate = () => {
               rows={3}
               placeholder="수정할 글 내용을 입력하세요"
               className="contentForm"
+              ref={writeContentTextArea}
+              maxLength={300}
+              onChange={() => {
+                setWriteContentText(writeContentTextArea.current.value.length);
+              }}
             />
           </Form.Group>
+          <p className="writeContentTextP">{writeContentText}/300</p>
         </Form>
       </div>
 
@@ -78,7 +87,7 @@ const BoardUpdate = () => {
         <div className="uploadImgDiv">
           <ListGroup>
             {selectedFiles.map((file, index) => (
-              <ListGroup.Item className="listGroupItem">
+              <ListGroup.Item className="listGroupItem" id="listGroupItemId">
                 <div key={index}>
                   <img
                     className="uploadImg"
@@ -101,14 +110,14 @@ const BoardUpdate = () => {
         </div>
         <div className="btns">
           <button
-            className="btn btn-outline-primary submit"
+            className="btn btn-sm btn-outline-primary submit"
             onClick={handleUploadClick}
           >
             수정 완료
           </button>
           <button
             type="button"
-            className="btn btn-outline-primary boardListBtn"
+            className="btn btn-sm btn-outline-primary boardListBtn"
           >
             글목록
           </button>

@@ -39,6 +39,15 @@ const MyInquiryAdmin = () => {
         "펫토피아 XXX입니다. 펫토피아를 이용해주시는 고객님께 감사의 말씀드립니다.",
       username: "test3",
     },
+    {
+      title: "제목4",
+      content:
+        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      createDate: "2023-05-04",
+      answer: 0,
+      answerContent: "",
+      username: "test3",
+    },
   ]);
   const [inquiryAdmintest2, setInquiryAdmintest2] = useState({});
 
