@@ -48,7 +48,6 @@ const Title = styled.h2`
 function NoticeBoard() {
   const [session, setSession] = useState("admin"); //버튼 보이게 하기 위해 작성 추후 admin 삭제
   //const session = sessionStorage.getItem("id"); 로그인 id 받아올 때 쓰면 됨
-
   const [lists, setLists] = useState([
     {
       id: 1,

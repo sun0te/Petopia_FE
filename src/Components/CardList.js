@@ -1,6 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
 import styled from "styled-components";
-import axios from "axios";
 import { Link } from "react-router-dom";
 
 const NoticeList = styled.div`
