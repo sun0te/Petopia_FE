@@ -17,7 +17,7 @@
   width: 90%;
   max-width: 350px;
   max-height: 480px;
-  margin: 30px auto;
+  margin: 10px auto;
   border-radius: 0.5rem;
   box-shadow: 3px 3px 3px #b0b0b0;
   background-color: #fff;
@@ -33,7 +33,7 @@
 .regionModal > .regionModalContainer > .regionModalHeader {
   position: relative;
   margin-bottom: 10px;
-  padding: 16px 64px 16px 16px;
+  padding: 16px 50px 16px 16px;
   border-radius: 0.5rem;
   /* background-color: #f1f1f1; */
   background-color: #d3e0ff;
@@ -59,7 +59,7 @@
   opacity: 0.5;
 }
 
-ul {
+.regionModal > .regionModalContainer > .regionModalMain > .regionModalList {
   columns: 2;
   -webkit-columns: 2;
   -moz-columns: 2;
@@ -91,7 +91,7 @@ ul {
   opacity: 0.5;
 }
 
-.regionmodal.openModal {
+.regionmodal.openRegion {
   display: flex;
   align-items: center;
   /* 팝업이 열릴때 스르륵 열리는 효과 */
