@@ -6,18 +6,16 @@ import { NavLink } from "react-router-dom";
 import "../Styles/UserMypage.css";
 import {
   FaUser,
-  FaHeart,
-  FaComment,
-  FaEdit,
+  FaFlag,
+  FaInfoCircle,
+  FaChartBar,
   FaCheck,
   FaTimes,
-  FaAngleRight
+  FaAngleRight,
 } from "react-icons/fa";
-import MyInquiry from "../Components/MyPage/MyInquiry.js";
-import MyInquiryAdmin from "../Components/MyPage/MyInquiryAdmin.js";
 
-const UserMypage = () => {
-  const [nickname, setNickname] = useState("사용자 닉네임");
+const AdminMypage = () => {
+  const [nickname, setNickname] = useState("관리자");
   const [editingNickname, setEditingNickname] = useState(false);
   const [tempNickname, setTempNickname] = useState("");
   const [imageSrc, setImageSrc] = useState(null); // 이미지 미리보기 URL
@@ -109,49 +107,48 @@ const UserMypage = () => {
 
           <div className="user-category">
             <div className="category-item">
-              내 글 <span className="category-count">3</span>
+              관리자 글 <span className="category-count">3</span>
             </div>
             <div className="category-item">
-              내 댓글 <span className="category-count">2</span>
-            </div>
-            <div className="category-item">
-              내 리뷰 <span className="category-count">7</span>
+              관리자 댓글 <span className="category-count">2</span>
             </div>
           </div>
           <div className="separationArea" />
           <div className="user-sections">
+            <NavLink to="/adminuserlist" className="active-link">
+              <div className="user-section">
+                <div className="user-section-icon">
+                  <FaUser className="user-info-icon" />
+                </div>
+                <div className="user-section-title">회원 관리</div>
+                <div className="user-section-icon2">
+                  <FaAngleRight className="user-info-icon2" />
+                </div>
+              </div>
+            </NavLink>
             <div className="user-section">
               <div className="user-section-icon">
-                <FaUser className="user-info-icon" />
+                <FaFlag className="user-info-icon" />
               </div>
-              <div className="user-section-title">회원정보 수정</div>
+              <div className="user-section-title">신고 관리</div>
               <div className="user-section-icon2">
                 <FaAngleRight className="user-info-icon2" />
               </div>
             </div>
             <div className="user-section">
               <div className="user-section-icon">
-                <FaHeart className="user-info-icon" />
+                <FaInfoCircle className="user-info-icon" />
               </div>
-              <div className="user-section-title">관심목록</div>
+              <div className="user-section-title">1:1 문의 관리</div>
               <div className="user-section-icon2">
                 <FaAngleRight className="user-info-icon2" />
               </div>
             </div>
             <div className="user-section">
               <div className="user-section-icon">
-                <FaComment className="user-info-icon" />
+                <FaChartBar className="user-info-icon" />
               </div>
-              <div className="user-section-title">리뷰 관리</div>
-              <div className="user-section-icon2">
-                <FaAngleRight className="user-info-icon2" />
-              </div>
-            </div>
-            <div className="user-section">
-              <div className="user-section-icon">
-                <FaEdit className="user-info-icon" />
-              </div>
-              <div className="user-section-title">1:1 문의</div>
+              <div className="user-section-title">통계</div>
               <div className="user-section-icon2">
                 <FaAngleRight className="user-info-icon2" />
               </div>
@@ -162,11 +159,6 @@ const UserMypage = () => {
             <div class="logout-button-wrapper">
               <button class="logout-button">로그아웃</button>
             </div>
-            <div class="admin-button-wrapper">
-              <NavLink to="/adminmypage">
-                <button class="admin-button">관리자 페이지</button>
-              </NavLink>
-            </div>
           </div>
         </section>
         <Footer />
@@ -175,4 +167,4 @@ const UserMypage = () => {
   );
 };
 
-export default UserMypage;
+export default AdminMypage;
