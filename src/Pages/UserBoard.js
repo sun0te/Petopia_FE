@@ -86,6 +86,7 @@ const UserBoard = (props) => {
             {/* -- 자유 게시판 / 지역 게시판 선택 버튼 끝 -- */}
 
             <div className="totalBoard">
+
               <div className="totalBoardTitle">{boards} 게시판 보기</div>
               <br />
               {/* 전체 지역 게시판 글 or 특정 지역 게시판 글 선택 버튼 */}
@@ -109,6 +110,7 @@ const UserBoard = (props) => {
                         지역 선택...
                       </button>
                     </div>
+
                     <RegionModal
                       open={modalOpen}
                       close={() => setModalOpen(false)}

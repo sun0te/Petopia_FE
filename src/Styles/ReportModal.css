@@ -40,6 +40,7 @@
   .reportModalHeaderText {
     text-align: center;
     margin-left: 40px;
+    color: rgb(25, 25, 25);
   }
 
   .reportmodal > .reportModalSectionDiv > .reportModalHeaderDiv .reportModalCloseBtn {
@@ -98,4 +99,6 @@
 .reportReasonWrite {
   margin: 20px 0 0 0;
   font-size: 0.7rem;
+  white-space: normal;
+  word-wrap:break-word;
 }

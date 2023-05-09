@@ -29,6 +29,9 @@ const BoardWrite = () => {
     inputRef.current.click();
   };
 
+  const writeContentTextArea = useRef();
+  const [writeContentText, setWriteContentText] = useState(0); //글자수
+
   return (
     <>
       <div className="writeForm">
@@ -48,8 +51,14 @@ const BoardWrite = () => {
               rows={3}
               placeholder="글 내용을 입력하세요"
               className="contentForm"
+              ref={writeContentTextArea}
+              maxLength={300}
+              onChange={() => {
+                setWriteContentText(writeContentTextArea.current.value.length);
+              }}
             />
           </Form.Group>
+          <p className="writeContentTextP">{writeContentText}/300</p>
         </Form>
       </div>
 
@@ -76,9 +85,9 @@ const BoardWrite = () => {
 
         <div className="uploadImgDiv">
           <ListGroup>
-            {selectedFiles.map((file, index) => (
-              <ListGroup.Item className="listGroupItem">
-                <div key={index}>
+            {selectedFiles.map((file) => (
+              <ListGroup.Item className="listGroupItem" id="listGroupItemId">
+                <div key={file.name}>
                   <img
                     className="uploadImg"
                     src={URL.createObjectURL(file)}
@@ -88,7 +97,7 @@ const BoardWrite = () => {
                   <div className="imgDeleteBtnDiv">
                     <button
                       className="imgDeleteBtn"
-                      onClick={() => handleRemoveImage(index)}
+                      onClick={() => handleRemoveImage(file.name)}
                     >
                       <BsTrash3 />
                     </button>
