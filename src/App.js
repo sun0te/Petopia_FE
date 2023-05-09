@@ -13,6 +13,7 @@ import RouteTripWrite from "./Pages/RouteTripWrite";
 import Write from "./Pages/Write";
 import Update from "./Pages/Update";
 import Detail from "./Pages/Detail";
+import ReviewWrite from "./Pages/ReviewWrite";
 import UserBoard from "./Pages/UserBoard";
 import UserFreeBoard from "./Pages/UserFreeBoard";
 import UserRegion from "./Pages/UserRegion";
@@ -39,6 +40,7 @@ const App = () => {
       <Route path="/write" element={<Write />} />
       <Route path="/update" element={<Update />} />
       <Route path="/detail" element={<Detail />} />
+      <Route path="/reviewwrite" element={<ReviewWrite />} />
       <Route path="/userboard" element={<UserBoard />} />
       <Route path="/userfreeboard" element={<UserFreeBoard />} />
       <Route path="/userregion" element={<UserRegion />} />
