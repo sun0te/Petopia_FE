@@ -6,7 +6,6 @@ import "slick-carousel/slick/slick-theme.css";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
-import BoardList from "../Components/BoardList";
 import Board from "../Components/Board";
 import { useNavigate } from "react-router-dom";
 import Kakao2 from "../Map/Kakao2.js";
@@ -184,13 +183,13 @@ const Home = () => {
             <Slider {...settings}>
               {slides.map((slide) => (
                 <div key={slide.id}>
-                  <img src={slide.image}/>
+                  <img src={slide.image} />
                 </div>
               ))}
             </Slider>
           </div>
-          {/*지도 코드 들어갈 위치 */}
 
+          {/*지도 코드 들어갈 위치 */}
           <div className="containerIh">
             <div className="testmap">
               <Kakao2

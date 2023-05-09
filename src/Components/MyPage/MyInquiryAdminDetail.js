@@ -25,6 +25,7 @@ const MyInquiryAdminDetail = ({
           <b className="inquiryMainTitle">{inquiryAdmintest2.title}</b>
           <br />
           <b className="inquiryMainDate">{inquiryAdmintest2.createDate}</b>
+
           <div className="inquiryadminusername">
             <b>작성자 : {inquiryAdmintest2.username}</b>
           </div>

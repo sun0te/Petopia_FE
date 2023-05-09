@@ -8,6 +8,8 @@ import RegionBoardList from "../Components/UserBoards/RegionBoardList.js";
 
 const UserRegionBoard = () => {
   const location = useLocation();
+  // RegionLocationSelect.js 컴포넌트로부터 title(지역명) 전달 받음
+  // location.state 존재하면 location.state.title을 title 변수에 삽입, 아닐 경우 공백 삽입
   const title = location.state?.title || "";
   return (
     <>

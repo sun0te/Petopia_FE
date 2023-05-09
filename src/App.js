@@ -13,11 +13,14 @@ import RouteTripWrite from "./Pages/RouteTripWrite";
 import Write from "./Pages/Write";
 import Update from "./Pages/Update";
 import Detail from "./Pages/Detail";
+import ReviewWrite from "./Pages/ReviewWrite";
 import UserBoard from "./Pages/UserBoard";
 import UserFreeBoard from "./Pages/UserFreeBoard";
 import UserRegion from "./Pages/UserRegion";
 import UserRegionBoard from "./Pages/UserRegionBoard";
 import UserMypage from "./Pages/UserMypage";
+import AdminMypage from "./Pages/AdminMypage";
+import AdminUserList from "./Pages/AdminUserList";
 import NotFound from "./Pages/NotFound";
 import FreeBoardDetail from "./Components/UserBoards/FreeBoardDetail";
 import MyInquiry from "./Components/MyPage/MyInquiry";
@@ -39,6 +42,7 @@ const App = () => {
       <Route path="/write" element={<Write />} />
       <Route path="/update" element={<Update />} />
       <Route path="/detail" element={<Detail />} />
+      <Route path="/reviewwrite" element={<ReviewWrite />} />
       <Route path="/userboard" element={<UserBoard />} />
       <Route path="/userfreeboard" element={<UserFreeBoard />} />
       <Route path="/userregion" element={<UserRegion />} />
@@ -47,6 +51,8 @@ const App = () => {
       <Route path="/usermypage" element={<UserMypage />} />
       <Route path="/usermypageinquiry" element={<MyInquiry />} />
       <Route path="/usermypageinquiryadmin" element={<MyInquiryAdmin />} />
+      <Route path="/adminmypage" element={<AdminMypage />} />
+      <Route path="/adminuserlist" element={<AdminUserList />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
