@@ -73,11 +73,3 @@ const RatingSection = ({ ratingIndex, setRatingIndex }) => {
 };
 
 export default RatingSection;
-
-// export default function App() {
-//   const [ratingIndex, setRatingIndex] = useState(0);
-
-//   return (
-//     <RatingSection ratingIndex={ratingIndex} setRatingIndex={setRatingIndex} />
-//   );
-// }
