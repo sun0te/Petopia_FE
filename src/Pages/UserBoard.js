@@ -89,6 +89,7 @@ const UserBoard = (props) => {
 
               <div className="totalBoardTitle">{boards} 게시판 보기</div>
               <br />
+
               {/* 전체 지역 게시판 글 or 특정 지역 게시판 글 선택 버튼 */}
               {regionSelectBoxesView && (
                 <div className="RegionSelectBoxes">
@@ -120,6 +121,7 @@ const UserBoard = (props) => {
               )}
               {/* 게시판 목록 */}
               <BoardList />
+
               <div class="div_boardwrite_btn">
                 {/* 글쓰기 버튼 */}
                 <Button
