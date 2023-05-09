@@ -1,0 +1,40 @@
+.inquiryadminbox{
+    /* border: 1px solid black; */
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inquiryadminbox1{
+    float: left;
+    text-align: center;
+    padding: 10px 20px;
+    /* margin-left: 15px; */
+}
+
+.inquiryadminbox2{
+    float: left;
+    text-align: center;
+    padding: 10px 20px;
+}
+
+.inquiryadminbox3{
+    float: left;
+    text-align: center;
+    padding: 10px 20px;
+}
+
+.inquiryadmincount{
+    font-size: 12px;
+}
+
+.inquiryadminusername{
+    text-align: right;
+    font-size: 14px;
+    margin-bottom: -10px;
+}
+
+.inquiryadminDetailContent{
+    margin-top: 20px;
+}

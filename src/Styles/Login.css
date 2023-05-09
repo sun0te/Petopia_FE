@@ -227,6 +227,7 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 
 .findPwDiv {
     margin: 40px 0 20px 0;
+    text-align: center;
 }
 
 .sendVerificationBtn {

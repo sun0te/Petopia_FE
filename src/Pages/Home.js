@@ -6,7 +6,6 @@ import "slick-carousel/slick/slick-theme.css";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
-import BoardList from "../Components/BoardList";
 import Board from "../Components/Board";
 import { useNavigate } from "react-router-dom";
 import Kakao2 from "../Map/Kakao2.js";
@@ -15,18 +14,19 @@ import axios from "axios";
 const slides = [
   {
     id: 1,
-    image: "https://placehold.it/360x240",
-    caption: "First slide",
+    image: "/img/Petopia_slide1.png",
   },
   {
     id: 2,
-    image: "https://placehold.it/360x240",
-    caption: "Second slide",
+    image: "/img/Petopia_slide2.png",
   },
   {
     id: 3,
-    image: "https://placehold.it/360x240",
-    caption: "Third slide",
+    image: "/img/Petopia_slide3.png",
+  },
+  {
+    id: 4,
+    image: "/img/Petopia_slide4.png",
   },
 ];
 
@@ -183,14 +183,13 @@ const Home = () => {
             <Slider {...settings}>
               {slides.map((slide) => (
                 <div key={slide.id}>
-                  <img src={slide.image} alt={slide.caption} />
-                  <div className="caption">{slide.caption}</div>
+                  <img src={slide.image} />
                 </div>
               ))}
             </Slider>
           </div>
-          {/*지도 코드 들어갈 위치 */}
 
+          {/*지도 코드 들어갈 위치 */}
           <div className="containerIh">
             <div className="testmap">
               <Kakao2
