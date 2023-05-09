@@ -10,7 +10,7 @@ import {
   FaEdit,
   FaCheck,
   FaTimes,
-  FaAngleRight
+  FaAngleRight,
 } from "react-icons/fa";
 
 //import MyInquiry from "../Components/MyPage/MyInquiry.js";
