@@ -13,6 +13,8 @@ import {
   FaTimes,
   FaAngleRight
 } from "react-icons/fa";
+import MyInquiry from "../Components/MyPage/MyInquiry.js";
+import MyInquiryAdmin from "../Components/MyPage/MyInquiryAdmin.js";
 
 const UserMypage = () => {
   const [nickname, setNickname] = useState("사용자 닉네임");

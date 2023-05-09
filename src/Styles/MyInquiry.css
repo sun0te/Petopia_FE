@@ -1,4 +1,5 @@
 .inquiryHeader{
+    padding: 10px 0;
     text-align: center;
 }
 
@@ -118,4 +119,69 @@
     justify-content: center;
     align-items: center;
     margin-top: 5px;
+}
+
+.inquiryDetail1{
+    margin: 0 auto;
+    width: 90%;
+}
+
+.inquiryDetail2{
+    padding: 5px;
+}
+
+.inquiryDetailContent{
+    margin-top: 10px;
+    max-width: 90%;
+    padding: 5px;
+    border: 2px solid lightgray;
+    border-radius: 7px;
+    background-color: lightgray;
+}
+
+.inquiryDetailAnswer{
+    margin: 0 auto;
+    width: 90%;
+}
+
+.inquiryAnswerTitle{
+    margin-left: 220px;
+    font-size: 14px;
+}
+
+.inquiryDetailContent1{
+    margin-top: 10px;
+    margin-left: 20px;
+    max-width: 90%;
+    padding: 5px;
+    border: 2px solid lightgray;
+    border-radius: 7px;
+    background-color: lightgray;
+}
+
+.detailSpace{
+    margin-top: 10px;
+}
+
+.inquiryBack{
+    position: absolute; 
+    left: 10px;
+    top:110px;
+     float: left;
+    text-align: center;
+    height: auto;
+    width: 30px;
+    /* border: 1px solid black; */
+}
+
+.inquiryBackArrow{
+    cursor:pointer;
+    font-size: 28px;
+}
+
+.inquiryWriteAlert{
+    font-size: 12px;
+    margin-top: -10px;
+    margin-left: 13px;
+    color: red;
 }
