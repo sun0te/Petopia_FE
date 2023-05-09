@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../Styles/UserRegion.css";
 
-// import LocalTitle from "./LocalTitle";
-
 const RegionLocationSelect = () => {
   const moveRegion = useNavigate();
   const [regionClick, setRegionClick] = useState(null);
@@ -12,7 +10,7 @@ const RegionLocationSelect = () => {
   const GetClick = (e) => {
     setRegionClick(e.currentTarget.id);
     // console.log(e.currentTarget);
-    // useNavigate로 지역명(id)를 UserRegionBoard.js 컴포넌트로 넘김
+    // useNavigate로 지역명(id)를 UserRegionBoard.js 컴포넌트로 넘김 {title}
     moveRegion("/userregionboard", { state: { title: e.currentTarget.id } });
   };
 
