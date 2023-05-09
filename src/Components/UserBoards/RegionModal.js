@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import "../../Modal/MapModal.css";
+
+import "../../Styles/RegionModal.css";
+
 
 const RegionModal = ({ open, close }) => {
   const [cityChk1, setCityChk1] = useState("");
   return (
-    <div className={open ? "openModal regionModal" : "regionModal"}>
+    <div className={open ? "openRegion regionModal" : "regionModal"}>
+
       {open ? (
         <div className="regionModalContainer">
           <div className="regionModalHeader">

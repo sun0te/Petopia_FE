@@ -86,28 +86,31 @@ const UserBoard = (props) => {
             {/* -- 자유 게시판 / 지역 게시판 선택 버튼 끝 -- */}
 
             <div className="totalBoard">
-              <hr />
+
               <div className="totalBoardTitle">{boards} 게시판 보기</div>
               <br />
               {/* 전체 지역 게시판 글 or 특정 지역 게시판 글 선택 버튼 */}
               {regionSelectBoxesView && (
                 <div className="RegionSelectBoxes">
                   <RegionSelect>
-                    <button
-                      type="button"
-                      class="btn btn-primary RegionSelectBox"
-                    >
-                      전체
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-primary RegionSelectBox"
-                      onClick={() => {
-                        setModalOpen(true);
-                      }}
-                    >
-                      지역 선택...
-                    </button>
+                    <div className="RegionSelectBtns">
+                      <button
+                        type="button"
+                        class="btn btn-primary RegionSelectBox"
+                      >
+                        전체
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-primary RegionSelectBox"
+                        onClick={() => {
+                          setModalOpen(true);
+                        }}
+                      >
+                        지역 선택...
+                      </button>
+                    </div>
+
                     <RegionModal
                       open={modalOpen}
                       close={() => setModalOpen(false)}
