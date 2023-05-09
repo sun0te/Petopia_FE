@@ -44,6 +44,9 @@ const Recomend_write = () => {
     setPlaceOption(newValue);
   };
 
+  const writeContentTextArea = useRef();
+  const [writeContentText, setWriteContentText] = useState(0); //글자수
+
   return (
     <>
       <div className="writeForm">
@@ -63,11 +66,19 @@ const Recomend_write = () => {
               rows={3}
               placeholder="글 내용을 입력하세요"
               className="contentForm"
+              ref={writeContentTextArea}
+              maxLength={300}
+              onChange={() => {
+                setWriteContentText(writeContentTextArea.current.value.length);
+              }}
             />
           </Form.Group>
+          <p className="writeContentTextP">{writeContentText}/300</p>
 
           <div>
-            <p className="recomendP">1. 어떤 종류의 장소인가요? * </p>
+            <p className="recomendP" style={{ marginTop: "15px" }}>
+              1. 어떤 종류의 장소인가요? *{" "}
+            </p>
             <div className="radioBtnDiv">
               <RadioButton options={options} clickPlace={handleOptionChange} />
               {/* <p>{placeOption}</p> */}
@@ -160,7 +171,7 @@ const Recomend_write = () => {
         <div className="uploadImgDiv">
           <ListGroup>
             {selectedFiles.map((file, index) => (
-              <ListGroup.Item className="listGroupItem">
+              <ListGroup.Item className="listGroupItem" id="listGroupItemId">
                 <div key={index}>
                   <img
                     className="uploadImg"
@@ -173,7 +184,7 @@ const Recomend_write = () => {
                       className="imgDeleteBtn"
                       onClick={() => handleRemoveImage(index)}
                     >
-                      <BsTrash3 className="trachCanIcon" />
+                      <BsTrash3 />
                     </button>
                   </div>
                 </div>

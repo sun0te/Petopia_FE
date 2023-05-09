@@ -43,20 +43,7 @@ const FindEmail = () => {
                   <div className="invalid-feedback">이름을 입력해주세요.</div>
                 </div>
               </div>
-              <div className="mb-3 signUpRow">
-                <label htmlFor="address"></label>
-                <input
-                  type="date"
-                  className="form-control signUpFormInput signUpFormInputDate"
-                  id="birth"
-                  name="email"
-                  placeholder="생년월일"
-                  data-placeholder="생년월일"
-                  ref={birthdate}
-                  required
-                />
-                <div className="invalid-feedback">생년월일을 입력해주세요.</div>
-              </div>
+
               <div className="mb-3 signUpRow">
                 <label htmlFor="password"></label>
                 <input
@@ -71,6 +58,22 @@ const FindEmail = () => {
                 />
                 <div className="invalid-feedback">비밀번호를 입력해주세요.</div>
               </div>
+
+              <div className="mb-3 signUpRow">
+                <label htmlFor="address"></label>
+                <input
+                  type="date"
+                  className="form-control signUpFormInput signUpFormInputDate"
+                  id="birth"
+                  name="email"
+                  placeholder="생년월일"
+                  data-placeholder="생년월일"
+                  ref={birthdate}
+                  required
+                />
+                <div className="invalid-feedback">생년월일을 입력해주세요.</div>
+              </div>
+
               <div className="p_find">
                 <Link
                   to="/findaccountpassword"

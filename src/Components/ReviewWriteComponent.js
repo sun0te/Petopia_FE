@@ -2,14 +2,12 @@ import React, { useState, useRef, useEffect } from "react";
 import RatingSection from "./RatingSection";
 import Form from "react-bootstrap/Form";
 import "../Styles/Review.css";
-import BoardWrite from "./BoardWrite";
-import styled from "styled-components";
 import { BsTrash3 } from "react-icons/bs";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 
 const ReviewWriteComponent = () => {
-  const [selectedOption, setSelectedOption] = useState("0"); // 1. 리뷰 종류(1 : 병원, 2 : 음식점/카페, 3 : 숙박, 4 : 기타)
+  const [selectedOption, setSelectedOption] = useState("0"); // 3. 리뷰 종류(1 : 병원, 2 : 음식점/카페, 3 : 숙박, 4 : 기타)
 
   const handleOptionChange = (e) => {
     const selectedValue = e.target.value;
@@ -17,18 +15,18 @@ const ReviewWriteComponent = () => {
   };
 
   // ratingIndex = 받을 평점
-  const [ratingIndex, setRatingIndex] = useState(0); // 2. 리뷰 점수
+  const [ratingIndex, setRatingIndex] = useState(0); // 1. 리뷰 점수
 
   useEffect(() => {
     // ratingIndex 값이 변경될 때마다 실행
   }, [ratingIndex]);
 
-  // 3. 비용
+  // 4. 비용
   const medicalCost = useRef(); // 진료비
   const surgeryCost = useRef(); // 수술비
   const totalCost = useRef(); // 총 비용
 
-  const [compareOption, setCompareOption] = useState("0"); // 4. 가격 대비(1 : 저렴한 편, 2 : 보통, 3 : 비싼 편)
+  const [compareOption, setCompareOption] = useState("0"); // 2. 가격 대비(1 : 저렴한 편, 2 : 보통, 3 : 비싼 편)
 
   const handleConpareOptionChange = (e) => {
     setCompareOption(e.target.value); // 선택된 값을 상태에 저장
@@ -52,6 +50,8 @@ const ReviewWriteComponent = () => {
       alert("수술비는 0 원 이상으로 입력해 주세요.");
     } else if (compareOption === "0") {
       alert("가격 대비를 선택해 주세요.");
+    } else {
+      consoleUpWrite();
     }
 
     // alert(
@@ -73,7 +73,7 @@ const ReviewWriteComponent = () => {
     //     "compareOption, 가격 대비 : " +
     //     compareOption
     // );
-    consoleUpWrite();
+
     console.log(selectedFiles);
   };
 
@@ -84,6 +84,7 @@ const ReviewWriteComponent = () => {
   const inputRef = useRef(null);
 
   const reviewWriteContentTextArea = useRef();
+  const [reviewWriteContentText, setReviewWriteContentText] = useState(0); // 리뷰 글자수
 
   const handleFileInputChange = (event) => {
     setSelectedFiles([...selectedFiles, ...event.target.files]);
@@ -126,6 +127,55 @@ const ReviewWriteComponent = () => {
     <>
       <p className="reviewRatingP">리뷰 작성</p>
       <div className="signUpForm reviewWriteForm">
+        <p className="reviewTd">리뷰 점수</p>
+        <div className="reviewRatingComponent">
+          <RatingSection
+            ratingIndex={ratingIndex}
+            setRatingIndex={setRatingIndex}
+          />
+        </div>
+
+        <Form className="mb-3 reviewWriteRadioBoxDiv">
+          <div className="">
+            <p className="reviewWriteRadioBoxP reviewTd">가격 대비</p>
+            <div>
+              <Form.Check
+                inline
+                label="저렴한 편이에요"
+                type="radio"
+                name="radiogroup1"
+                id="radioBox1"
+                value="1"
+                checked={compareOption === "1"} // 첫 번째 옵션이 선택되었을 때 checked 값은 true
+                onChange={handleConpareOptionChange}
+                className="reviewWriteCompareOptionForm"
+              />
+              <Form.Check
+                inline
+                label="보통이에요"
+                type="radio"
+                name="radiogroup2"
+                id="radioBox2"
+                value="2"
+                checked={compareOption === "2"} //
+                onChange={handleConpareOptionChange}
+                className="reviewWriteCompareOptionForm"
+              />
+              <Form.Check
+                inline
+                label="비싼 편이에요"
+                type="radio"
+                name="radiogroup3"
+                id="radioBox3"
+                value="3"
+                checked={compareOption === "3"} //
+                onChange={handleConpareOptionChange}
+                className="reviewWriteCompareOptionForm"
+              />
+            </div>
+          </div>
+        </Form>
+
         <p className="reviewTd">리뷰 종류</p>
         <div className=" reviewWriteCheckBoxDiv">
           <div className="mb-3">
@@ -173,13 +223,7 @@ const ReviewWriteComponent = () => {
             </Form>
           </div>
         </div>
-        <p className="reviewTd">리뷰 점수</p>
-        <div className="reviewRatingComponent">
-          <RatingSection
-            ratingIndex={ratingIndex}
-            setRatingIndex={setRatingIndex}
-          />
-        </div>
+
         <div>
           {/* <Form.Select aria-label="신고 사유" size="sm" onChange={clickCostType}>
             <option value="0" disabled>
@@ -276,57 +320,13 @@ const ReviewWriteComponent = () => {
                   </td>
                 </tr>
               </table>
-              <div className="whiteSpace"></div>
+              {/* <div className="whiteSpace"></div> */}
             </div>
           )}
         </div>
-        <Form className="mb-3 reviewWriteRadioBoxDiv">
-          <div className="">
-            <p className="reviewWriteRadioBoxP reviewTd">가격 대비</p>
-            <div>
-              <Form.Check
-                inline
-                label="저렴한 편이에요"
-                type="radio"
-                name="radiogroup1"
-                id="radioBox1"
-                value="1"
-                checked={compareOption === "1"} // 첫 번째 옵션이 선택되었을 때 checked 값은 true
-                onChange={handleConpareOptionChange}
-                className="reviewWriteCompareOptionForm"
-              />
-              <Form.Check
-                inline
-                label="보통이에요"
-                type="radio"
-                name="radiogroup2"
-                id="radioBox2"
-                value="2"
-                checked={compareOption === "2"} //
-                onChange={handleConpareOptionChange}
-                className="reviewWriteCompareOptionForm"
-              />
-              <Form.Check
-                inline
-                label="비싼 편이에요"
-                type="radio"
-                name="radiogroup3"
-                id="radioBox3"
-                value="3"
-                checked={compareOption === "3"} //
-                onChange={handleConpareOptionChange}
-                className="reviewWriteCompareOptionForm"
-              />
-            </div>
-          </div>
-        </Form>
-      </div>
 
-      <div className="whiteSpace"></div>
-      <div className="boardWriteDiv">
-        {/* <BoardWrite /> */}
         {/* 글쓰기 컴포넌트 -----------------------------------------------------------------------------------*/}
-        <div className="writeForm">
+        <div className="reviewWriteContentForm">
           <Form>
             <Form.Group className="mb-3 writeFormContent">
               <Form.Label></Form.Label>
@@ -336,11 +336,26 @@ const ReviewWriteComponent = () => {
                 placeholder="리뷰를 입력해 주세요."
                 className="contentForm reviewContentForm"
                 ref={reviewWriteContentTextArea}
+                maxLength={300}
+                onChange={() => {
+                  setReviewWriteContentText(
+                    reviewWriteContentTextArea.current.value.length
+                  );
+                }}
               />
             </Form.Group>
           </Form>
+          <p className="reviewWriteContentTextP">
+            {reviewWriteContentText}/300
+          </p>
         </div>
-        <div>
+      </div>
+
+      {/* <div className="whiteSpace"></div>  --------------------------------------------------- white space */}
+      <div className="boardWriteDiv">
+        {/* <BoardWrite /> */}
+
+        <div className="reviewWriteBtnsDiv">
           <div>
             <div className="uploadBtn">
               <Button
@@ -361,10 +376,10 @@ const ReviewWriteComponent = () => {
             />
           </div>
 
-          <div className="uploadImgDiv">
+          <div className="uploadImgDiv reviewWriteUploadImgDiv">
             <ListGroup>
               {selectedFiles.map((file, index) => (
-                <ListGroup.Item className="listGroupItem">
+                <ListGroup.Item className="listGroupItem" id="listGroupItemId">
                   <div key={index}>
                     <img
                       className="uploadImg"
