@@ -113,15 +113,32 @@ const AdminUserReport = () => {
                     <h2>신고 내용</h2>
                   </div>
                   <div className="modal-body">
-                    <p>{selectedReport.reason}</p>
+                    {selectedReport.status === "완료" ? (
+                      <>
+                        <b>처리완료</b>
+                        <p>{selectedReport.reason}</p>
+                      </>
+                    ) : (
+                      <p>{selectedReport.reason}</p>
+                    )}
                   </div>
                   <div className="modal-footer">
-                    <button onClick={() => console.log("신고 처리")}>
-                      신고 처리
-                    </button>
-                    <button onClick={() => setSelectedReport(null)}>
-                      취소
-                    </button>
+                    {selectedReport.status === "완료" ? (
+                      <>
+                        <button onClick={() => setSelectedReport(null)}>
+                          취소
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button onClick={() => console.log("신고 처리")}>
+                          신고 처리
+                        </button>
+                        <button onClick={() => setSelectedReport(null)}>
+                          취소
+                        </button>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
