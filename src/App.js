@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
+import SocialLoginSuccess from "./Pages/SocialLoginSuccess";
 import UserUpdate from "./Pages/UserUpdate";
 import FindAccountEmail from "./Pages/FindAccountEmail";
 import FindAccountPassword from "./Pages/FindAccountPassword";
@@ -23,14 +24,24 @@ import NotFound from "./Pages/NotFound";
 import FreeBoardDetail from "./Components/UserBoards/FreeBoardDetail";
 import MyInquiry from "./Components/MyPage/MyInquiry";
 import MyInquiryAdmin from "./Components/MyPage/MyInquiryAdmin";
+import { useState, useEffect } from "react";
 
 const App = () => {
+  const [user, setUser] = useState(null);
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/naver" element={<Home />} />
+      <Route path="/login" element={<Login user={user} setUser={setUser} />} />
+      <Route
+        path="/register"
+        element={<Register user={user} setUser={setUser} />}
+      />
+      <Route path="/naver" element={<Login user={user} setUser={setUser} />} />
+      <Route
+        path="/socialloginsuccess"
+        element={<SocialLoginSuccess user={user} setUser={setUser} />}
+      />
       <Route path="/userupdate" element={<UserUpdate />} />
       <Route path="/findaccountemail" element={<FindAccountEmail />} />
       <Route path="/findaccountpassword" element={<FindAccountPassword />} />

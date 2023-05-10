@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
@@ -11,7 +12,7 @@ import {
   FaEdit,
   FaCheck,
   FaTimes,
-  FaAngleRight
+  FaAngleRight,
 } from "react-icons/fa";
 import MyInquiry from "../Components/MyPage/MyInquiry.js";
 import MyInquiryAdmin from "../Components/MyPage/MyInquiryAdmin.js";
@@ -49,6 +50,19 @@ const UserMypage = () => {
       };
       reader.readAsDataURL(file);
     }
+  };
+
+  // useEffect(() => {
+  //   // 네이버 로그인 SDK 초기화
+  //   window.naver && window.naver.login && window.naver.login.init();
+  // }, []);
+
+  const handleLogoutClick = () => {
+    // 네이버 로그아웃
+    localStorage.removeItem("com.naver.nid.access_token");
+    localStorage.removeItem("access_token");
+    sessionStorage.removeItem("email");
+    window.location.href = `http://localhost:3000/`;
   };
 
   return (
@@ -160,7 +174,9 @@ const UserMypage = () => {
           <div className="separationArea" />
           <div class="button-wrapper">
             <div class="logout-button-wrapper">
-              <button class="logout-button">로그아웃</button>
+              <button class="logout-button" onClick={handleLogoutClick}>
+                로그아웃
+              </button>
             </div>
             <div class="admin-button-wrapper">
               <button class="admin-button">관리자 페이지</button>

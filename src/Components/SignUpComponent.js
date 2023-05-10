@@ -1,10 +1,9 @@
-import Form from "react-bootstrap/Form";
-import Stack from "react-bootstrap/Stack";
 import "../Styles/Login.css";
 import { useRef, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import NaverLogin from "./SocialLogin/NaverLogin";
 
-const SignUpComponent = () => {
+const SignUpComponent = ({ user, setUser }) => {
   const name = useRef("");
   const nickname = useRef("");
   const email = useRef("");
@@ -46,6 +45,8 @@ const SignUpComponent = () => {
     );
   };
 
+  const [getToken, setGetToken] = useState("");
+
   return (
     <>
       <div className="container loginComponent">
@@ -54,12 +55,13 @@ const SignUpComponent = () => {
             <h4 className="mb-3 signUpText">회원가입</h4>
 
             <div>
-              <img
+              <NaverLogin setGetToken={setGetToken} setUser={setUser} />
+              {/* <img
                 className="socialLoginLogoLeft"
                 src="img/naver.png"
                 alt=""
                 type="button"
-              />
+              /> */}
 
               <img
                 className="socialLoginLogoRight"
