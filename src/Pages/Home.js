@@ -38,6 +38,8 @@ const Home = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 4000, // 4초 간격
+    dots: true, // 점 표시 활성화
+    arrows: false, // 좌우 화살표 비활성화
   };
 
   let navigate = useNavigate();
