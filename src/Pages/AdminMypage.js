@@ -126,15 +126,17 @@ const AdminMypage = () => {
                 </div>
               </div>
             </NavLink>
-            <div className="user-section">
-              <div className="user-section-icon">
-                <FaFlag className="user-info-icon" />
+            <NavLink to="/adminuserreport" className="active-link">
+              <div className="user-section">
+                <div className="user-section-icon">
+                  <FaFlag className="user-info-icon" />
+                </div>
+                <div className="user-section-title">신고 관리</div>
+                <div className="user-section-icon2">
+                  <FaAngleRight className="user-info-icon2" />
+                </div>
               </div>
-              <div className="user-section-title">신고 관리</div>
-              <div className="user-section-icon2">
-                <FaAngleRight className="user-info-icon2" />
-              </div>
-            </div>
+            </NavLink>
             <div className="user-section">
               <div className="user-section-icon">
                 <FaInfoCircle className="user-info-icon" />

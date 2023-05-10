@@ -21,6 +21,7 @@ import UserRegionBoard from "./Pages/UserRegionBoard";
 import UserMypage from "./Pages/UserMypage";
 import AdminMypage from "./Pages/AdminMypage";
 import AdminUserList from "./Pages/AdminUserList";
+import AdminUserReport from "./Pages/AdminUserReport";
 import NotFound from "./Pages/NotFound";
 import FreeBoardDetail from "./Components/UserBoards/FreeBoardDetail";
 import MyInquiry from "./Components/MyPage/MyInquiry";
@@ -54,6 +55,7 @@ const App = () => {
       <Route path="/usermypageinquiryadmin" element={<MyInquiryAdmin />} />
       <Route path="/adminmypage" element={<AdminMypage />} />
       <Route path="/adminuserlist" element={<AdminUserList />} />
+      <Route path="/adminuserreport" element={<AdminUserReport />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

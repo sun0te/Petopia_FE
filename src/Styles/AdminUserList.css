@@ -27,13 +27,17 @@ table {
     height: auto;
     border-collapse: collapse;
     text-align: center;
+    align-items: center;
 }
 
 th,
 td {
     border: 1px solid #ddd;
     padding: 10px;
-    min-width: 5em;
+    min-width: 2em;
+    white-space: nowrap;
+    text-align: center;
+    align-items: center;
 }
 
 th {
@@ -43,6 +47,7 @@ th {
 
 tbody tr:hover {
     background-color: #f5f5f5;
+    cursor: pointer;
 }
 
 input[type='checkbox'] {
