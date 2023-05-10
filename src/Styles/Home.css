@@ -102,12 +102,13 @@
 
 .recommendation-title p {
     font-size: 0.9em;
-    margin: 7px;
+    margin: 7px auto;
+    font-weight: bold;
 }
 
 .image-wrapper {
-    width: 120px;
-    height: 120px;
+    width: 220px;
+    height: 150px;
 }
 
 /* image-wrapper div 내부 이미지 */
@@ -124,32 +125,32 @@
 }
 
 .stars-wrapper {
-    font-size: 1.5em;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .star {
+    font-size: 1.5em;
+    margin: 0 5px 10px 0;
     color: #ffd700;
 }
 
 .image-map-go p {
-    margin-top: 3px;
-    margin-bottom: 5px;
     font-size: 12px;
+    margin: 0;
 }
 
 .boardTitle {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 3px;
+    margin: 10px 0 0 0;
 }
 
 .boardTitle h7 {
     font-size: 15px;
     font-weight: bold;
-    margin-right: 10px;
 }
 
 .boardContent {
@@ -160,4 +161,14 @@
 .boardContent p {
     font-size: 13px;
     margin: 5px;
+}
+
+.home-recommend-link {
+    display: flex;
+    width: 100%;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    color: inherit;
+    text-decoration: none;
 }
