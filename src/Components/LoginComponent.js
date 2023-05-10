@@ -1,15 +1,24 @@
 import "../Styles/Login.css";
-import { useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import NaverLogin from "./SocialLogin/NaverLogin";
 
-const LoginComponent = () => {
+const LoginComponent = ({ user, setUser }) => {
   const email = useRef("");
   const password = useRef("");
+
+  useEffect(() => {}, [user]);
 
   const clickLogin = () => {
     sessionStorage.setItem("email", email.current.value);
     const sessionEmail = sessionStorage.getItem("email");
     alert("세션값 임시 설정(email : " + sessionEmail + ")\n");
+  };
+
+  const [getToken, setGetToken] = useState("");
+
+  const handleNaverLogin = () => {
+    document.getElementById("naverIdLogin").click();
   };
 
   return (
@@ -20,12 +29,7 @@ const LoginComponent = () => {
             <h4 className="mb-3 signUpText">로그인</h4>
 
             <div>
-              <img
-                className="socialLoginLogoLeft"
-                src="img/naver.png"
-                alt=""
-                type="button"
-              />
+              <NaverLogin setGetToken={setGetToken} setUser={setUser} />
 
               <img
                 className="socialLoginLogoRight"
