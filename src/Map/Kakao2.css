@@ -14,13 +14,13 @@
 }
 .mapcategory .menu_selected {background:lightgray;border:1px solid lightgray; border-radius: 5px; transition: 0.8s;} 
 .mapcategory li{list-style:none; float: left; width:59px;height:55px;padding-top:5px;cursor:pointer;} 
-.mapcategory .ico_comm {display:block;margin:0 auto 2px;width:22px;height:26px;background:url('http://localhost:3000/maker.png') no-repeat;} 
-.mapcategory .ico_hospital {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/hospital1.png') no-repeat; background-size: cover;}  
-.mapcategory .ico_pharmacy {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/pharmacy1.png') no-repeat; background-size: cover;}   
-.mapcategory .ico_culturalCenter {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/culturalCenter1.png') no-repeat;background-size: cover;} 
-.mapcategory .ico_artmuseum {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/artmuseum1.png') no-repeat;background-size: cover;} 
-.mapcategory .ico_beauty {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/beauty1.png') no-repeat;background-size: cover;} 
-.mapcategory .ico_museum {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/museum1.png') no-repeat;background-size: cover;} 
+.mapcategory .ico_comm {display:block;margin:0 auto 2px;width:22px;height:26px;background:url('http://localhost:3000/mapimg/maker.png') no-repeat;} 
+.mapcategory .ico_hospital {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/mapimg/hospital1.png') no-repeat; background-size: cover;}  
+.mapcategory .ico_pharmacy {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/mapimg/pharmacy1.png') no-repeat; background-size: cover;}   
+.mapcategory .ico_culturalCenter {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/mapimg/culturalCenter1.png') no-repeat;background-size: cover;} 
+.mapcategory .ico_artmuseum {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/mapimg/artmuseum1.png') no-repeat;background-size: cover;} 
+.mapcategory .ico_beauty {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/mapimg/beauty1.png') no-repeat;background-size: cover;} 
+.mapcategory .ico_museum {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/mapimg/museum1.png') no-repeat;background-size: cover;} 
 .mapcategory li:hover{
     color: #999;
     opacity: 0.9;
@@ -43,13 +43,13 @@
 }
 .mapcategory2 .menu_selected {background:lightgray;border:1px solid lightgray; border-radius: 5px; transition: 0.8s;} 
 .mapcategory2 li{list-style:none; float: left; width:59px;height:55px;padding-top:5px;cursor:pointer;} 
-.mapcategory2 .ico_comm {display:block;margin:0 auto 2px;width:22px;height:26px;background:url('http://localhost:3000/maker.png') no-repeat;} 
-.mapcategory2 .ico_petGoods {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/petGoods1.png') no-repeat;background-size: cover;}  
-.mapcategory2 .ico_restaurant {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/restaurant1.png') no-repeat;background-size: cover;}   
-.mapcategory2 .ico_travel {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/travel1.png') no-repeat;background-size: cover;} 
-.mapcategory2 .ico_management {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/management1.png') no-repeat;background-size: cover;} 
-.mapcategory2 .ico_cafe {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/cafe1.png') no-repeat;background-size: cover;} 
-.mapcategory2 .ico_pension {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/pension1.png') no-repeat;background-size: cover;} 
+.mapcategory2 .ico_comm {display:block;margin:0 auto 2px;width:22px;height:26px;background:url('http://localhost:3000/mapimg/maker.png') no-repeat;} 
+.mapcategory2 .ico_petGoods {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/mapimg/petGoods1.png') no-repeat;background-size: cover;}  
+.mapcategory2 .ico_restaurant {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/mapimg/restaurant1.png') no-repeat;background-size: cover;}   
+.mapcategory2 .ico_travel {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/mapimg/travel1.png') no-repeat;background-size: cover;} 
+.mapcategory2 .ico_management {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/mapimg/management1.png') no-repeat;background-size: cover;} 
+.mapcategory2 .ico_cafe {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/mapimg/cafe1.png') no-repeat;background-size: cover;} 
+.mapcategory2 .ico_pension {display:block;margin:0 auto 2px;width:29px;height:29px;background:url('http://localhost:3000/mapimg/pension1.png') no-repeat;background-size: cover;} 
 .mapcategory2 li:hover{
     color: #999;
     opacity: 0.9;
@@ -58,7 +58,7 @@
 .mapbox, .mapbox *{margin:0;padding:0;color:#000;}   
 .mapbox {position:absolute;overflow:hidden;bottom:10px;right:10px;width:auto;height:auto;z-index:1;border:1px solid #537FE7;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:12px;text-align:center;background-color:#fff;font-weight: bold; border-radius: 5px;}
 .mapbox li{list-style:none; float: left; width:50px;height:50px;padding-top:5px;cursor:pointer; } 
-.mapbox .ico_comm {display:block;margin:0 auto 2px;width:22px;height:26px;background:url('http://localhost:3000/mapicon.png') no-repeat;} 
+.mapbox .ico_comm {display:block;margin:0 auto 2px;width:22px;height:26px;background:url('http://localhost:3000/mapimg/mapicon.png') no-repeat;} 
 .mapbox:hover{
     background-color: #eee;
 }
