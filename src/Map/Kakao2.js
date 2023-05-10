@@ -8,6 +8,7 @@ import {
 import "./Kakao2.css";
 import MapModal from "../Modal/MapModal";
 import "../Modal/MapModal.css";
+import { useNavigate } from "react-router-dom";
 
 const Kakao2 = ({
   maplist1,
@@ -27,6 +28,8 @@ const Kakao2 = ({
   county,
   setCounty,
 }) => {
+  const navigate = useNavigate();
+
   // -----모달창 관련 코드 시작
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -333,13 +336,22 @@ const Kakao2 = ({
           info.lng === position.lng && ( // infowindow 같이켜지는 현상 해결 하기 위해 겹칠수 없는 데이터(좌표)를 조건문에 할당
             /* 마커위에 infowindow 표시 */
             <CustomOverlayMap position={position}>
-              <div className="mapwrapinfo">
+              <div
+                className="mapwrapinfo"
+                onClick={() => {
+                  navigate("/usermypageinquiry");
+                  //리뷰 페이지 or 업소 상세페이지 이동 or 모달창 보여주기
+                }}
+              >
                 <div className="mapinfo">
                   <div className="maptitle infoellipsis">
                     {position.facility_name}
                     <div
                       className="mapclose"
-                      onClick={() => setInfo(false)}
+                      onClick={(e) => {
+                        e.stopPropagation(); // 버블링 해결
+                        setInfo(false);
+                      }}
                       title="닫기"
                     ></div>
                   </div>
