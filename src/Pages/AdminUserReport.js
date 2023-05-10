@@ -18,14 +18,63 @@ const AdminUserReport = () => {
       title: "허위 리뷰 작성",
       status: "완료",
       createDate: "2022-05-08",
-      reason: "선정성, 정치관련, 혐오감, 저작권 위반",
+      reason: "광고성, 도배, 허위정보",
     },
     {
       id: 3,
       title: "욕설 게시글",
       status: "대기 중",
       createDate: "2022-05-07",
-      reason: "부적절한 작성자 닉네임",
+      reason: "선정성, 정치관련, 혐오감, 저작권 위반",
+    },
+    {
+      id: 4,
+      title: "혐오 게시글",
+      status: "대기 중",
+      createDate: "2022-05-07",
+      reason: "선정성, 정치관련, 혐오감, 저작권 위반",
+    },
+    {
+      id: 2,
+      title: "허위 리뷰 작성",
+      status: "완료",
+      createDate: "2022-05-08",
+      reason: "광고성, 도배, 허위정보",
+    },
+    {
+      id: 2,
+      title: "허위 리뷰 작성",
+      status: "완료",
+      createDate: "2022-05-08",
+      reason: "광고성, 도배, 허위정보",
+    },
+    {
+      id: 2,
+      title: "허위 리뷰 작성",
+      status: "완료",
+      createDate: "2022-05-08",
+      reason: "광고성, 도배, 허위정보",
+    },
+    {
+      id: 2,
+      title: "허위 리뷰 작성",
+      status: "완료",
+      createDate: "2022-05-08",
+      reason: "광고성, 도배, 허위정보",
+    },
+    {
+      id: 2,
+      title: "허위 리뷰 작성",
+      status: "완료",
+      createDate: "2022-05-08",
+      reason: "광고성, 도배, 허위정보",
+    },
+    {
+      id: 2,
+      title: "허위 리뷰 작성",
+      status: "완료",
+      createDate: "2022-05-08",
+      reason: "광고성, 도배, 허위정보",
     },
   ]);
     
@@ -62,7 +111,6 @@ const AdminUserReport = () => {
               <tr>
                 <th className="admin-user-report-item-title">제목</th>
                 <th className="admin-user-report-item-date">날짜</th>
-                <th className="admin-user-report-item-st">진행사항</th>
               </tr>
             </thead>
             <tbody>

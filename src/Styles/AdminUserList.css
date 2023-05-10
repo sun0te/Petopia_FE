@@ -19,7 +19,6 @@
     padding: 20px;
     overflow-x: auto;
     max-width: calc(100% - 10px);
-    /* 60px는 padding 값의 두 배 */
 }
 
 table {
@@ -33,11 +32,12 @@ table {
 th,
 td {
     border: 1px solid #ddd;
-    padding: 10px;
+    padding: 5px;
     min-width: 2em;
     white-space: nowrap;
     text-align: center;
     align-items: center;
+    font-size: 13px;
 }
 
 th {
@@ -51,7 +51,8 @@ tbody tr:hover {
 }
 
 input[type='checkbox'] {
-    margin-right: 10px;
+    margin: 10px;
+    cursor: pointer;
 }
 
 .member-list-actions {
@@ -62,6 +63,7 @@ input[type='checkbox'] {
 }
 
 .member-list-actions button {
+    width: 5em;
     font-size: 1rem;
     padding: 0.5rem;
     margin: 1em;
