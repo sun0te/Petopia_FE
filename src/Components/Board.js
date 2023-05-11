@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Card from "./Card";
+import { Link } from "react-router-dom";
 
 const NoticeContainer = styled.div`
   display: flex;
@@ -14,6 +15,12 @@ const BoardWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  width: 100%;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
   width: 100%;
 `;
 
@@ -85,7 +92,9 @@ function Board() {
     <NoticeContainer>
       <BoardWrapper>
         {cards.map((card) => (
-          <Card key={card.id} {...card} />
+          <StyledLink to={`/${card.id}`} key={card.id}>
+            <Card {...card} />
+          </StyledLink>
         ))}
       </BoardWrapper>
     </NoticeContainer>
