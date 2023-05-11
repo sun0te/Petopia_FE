@@ -98,7 +98,7 @@ const ReviewMain = () => {
             </div>
           </div>
           <div className="reviewMainInfo">
-            <table border={0}>
+            <table border={0} className="reviewMainInfoTable">
               <thead>
                 <tr>
                   <th width={"100px"}>영업정보</th>
