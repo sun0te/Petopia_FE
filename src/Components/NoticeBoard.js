@@ -5,6 +5,8 @@ import CardList from "./CardList";
 import SearchBarcm from "./SearchBarcm";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
+import Paginationcm from "./Paginationcm";
+import { Link } from "react-router-dom";
 
 const NoticeContainer = styled.div`
   padding: 0 15px;
@@ -51,7 +53,8 @@ function NoticeBoard() {
       author: "홍길동",
       views: 10,
       comments: 3,
-      thumbnailUrl: "https://via.placeholder.com/150",
+      thumbnailUrl:
+        "https://images.pexels.com/photos/356378/pexels-photo-356378.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
       recommends: 10,
     },
     {
@@ -62,7 +65,8 @@ function NoticeBoard() {
       author: "홍길동",
       views: 10,
       comments: 2,
-      thumbnailUrl: "https://via.placeholder.com/150",
+      thumbnailUrl:
+        "https://images.pexels.com/photos/356378/pexels-photo-356378.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
       recommends: 10,
     },
     {
@@ -73,7 +77,8 @@ function NoticeBoard() {
       author: "admin",
       views: 10,
       comments: 5,
-      thumbnailUrl: "https://via.placeholder.com/150",
+      thumbnailUrl:
+        "https://images.pexels.com/photos/356378/pexels-photo-356378.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
       recommends: 10,
     },
 
@@ -85,7 +90,8 @@ function NoticeBoard() {
       author: "관리자",
       views: 10,
       comments: 2,
-      thumbnailUrl: "https://via.placeholder.com/150",
+      thumbnailUrl:
+        "https://images.pexels.com/photos/406014/pexels-photo-406014.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
       recommends: 10,
     },
 
@@ -97,7 +103,8 @@ function NoticeBoard() {
       author: "관리자2",
       views: 10,
       comments: 2000,
-      thumbnailUrl: "https://via.placeholder.com/150",
+      thumbnailUrl:
+        "https://images.pexels.com/photos/46024/pexels-photo-46024.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
       recommends: 10,
     },
   ]);
@@ -136,12 +143,15 @@ function NoticeBoard() {
           <Title>공지사항</Title>
           <SearchBarcm />
         </TitleSearchWrap>
-        <CardList />
-        {session === "admin" && (
-          <Button className="mt-2" variant="primary" size="sm">
-            글쓰기
-          </Button>
-        )}
+        <CardList lists={filteredLists.length > 0 ? filteredLists : lists} />
+        <Link to="/write">
+          {session === "admin" && (
+            <Button className="mt-2" variant="primary" size="sm">
+              글쓰기
+            </Button>
+          )}
+        </Link>
+        <Paginationcm />
       </BoardWrapper>
     </NoticeContainer>
   );
