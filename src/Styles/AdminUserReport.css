@@ -85,7 +85,8 @@
 }
 
 .admin-user-report-item-status-processing {
-    background-color: #ffb2b2;
+    background-color: #feacac;
+    border-radius: 10px;
 }
 
 .modal-wrapper {
@@ -148,7 +149,7 @@
 }
 
 @media screen and (max-width: 768px) {
-    
+
     .modal-wrapper {
         top: 0;
         left: 0;
