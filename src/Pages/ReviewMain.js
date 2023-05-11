@@ -16,6 +16,8 @@ const ReviewMain = () => {
     lat: 37.498004414546934,
     lng: 127.02770621963765,
   });
+  const [placehomepage, setPlacehomepage] = useState("");
+  const [homepageCheck, setHomepageCheck] = useState("");
 
   useEffect(() => {
     getPlace();
@@ -33,6 +35,12 @@ const ReviewMain = () => {
           lat: res.data.lat,
           lng: res.data.lng,
         });
+        setPlacehomepage(res.data.homepage);
+        if (res.data.homepage.includes(",")) {
+          // db에서 데이터 불러올 때 홈페이지가 여러개인 경우 첫번째 링크만 자르는 작업
+          const arraytest = res.data.homepage.split(",");
+          setHomepageCheck(arraytest[0]);
+        }
       });
   };
 
@@ -98,7 +106,7 @@ const ReviewMain = () => {
             </div>
           </div>
           <div className="reviewMainInfo">
-            <table border={0} className="reviewMainInfoTable">
+            <table border={0} className="reviewMainInfoTa">
               <thead>
                 <tr>
                   <th width={"100px"}>영업정보</th>
@@ -120,19 +128,53 @@ const ReviewMain = () => {
                 </tr>
                 <tr>
                   <td width={"100px"}>홈페이지</td>
-                  {placedata.homepage === "정보없음" ? (
-                    <td>{placedata.homepage}</td>
+                  {placehomepage.includes(",") === true ? ( // 홈페이지가 여러개일 경우 첫번째 링크만 가져옴
+                    homepageCheck.includes("http") === true ? (
+                      <td>
+                        <a
+                          href={homepageCheck}
+                          target="blank"
+                          className="reviewMainInfoLink"
+                        >
+                          바로가기
+                        </a>
+                      </td>
+                    ) : (
+                      <td>
+                        <a
+                          href={"http://" + homepageCheck}
+                          target="blank"
+                          className="reviewMainInfoLink"
+                        >
+                          바로가기
+                        </a>
+                      </td>
+                    )
+                  ) : placedata.homepage !== "정보없음" ? ( // 홈페이지가 하나일 경우
+                    placehomepage.includes("http") === true ? ( // http가 붙어 있는지 확인
+                      <td>
+                        <a
+                          href={placedata.homepage}
+                          target="blank"
+                          className="reviewMainInfoLink"
+                        >
+                          바로가기
+                        </a>
+                      </td>
+                    ) : (
+                      // http가 붙어있지 않으면 붙임
+                      <td>
+                        <a
+                          href={"http://" + placedata.homepage}
+                          target="blank"
+                          className="reviewMainInfoLink"
+                        >
+                          바로가기
+                        </a>
+                      </td>
+                    )
                   ) : (
-                    // <td>{placedata.homepage}</td>
-                    <td>
-                      <a
-                        href={"http://" + placedata.homepage}
-                        target="blank"
-                        className="reviewMainInfoLink"
-                      >
-                        {placedata.homepage}
-                      </a>
-                    </td>
+                    <td>{placedata.homepage}</td>
                   )}
                 </tr>
                 <tr>

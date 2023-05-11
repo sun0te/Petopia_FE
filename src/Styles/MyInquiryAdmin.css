@@ -68,30 +68,32 @@
 .inquiryadminStatusWait{
     position: absolute;
     right: 30px;
-    margin-top: -10px;
+    margin-top: -15px;
     padding: 0 5px;
     font-size: 14px;
     text-align: center;
     width: auto;
-    border: 2px solid red;
-    border-radius: 5px;
-    /* background-color: #537FE7; */
-    color: red;
+    padding: 5px;
+    border: 2px solid #feacac;
+    border-radius: 10px;
+    background-color: #feacac;
+    /* color: red; */
     font-size: 12px;
 }
 
 .inquiryadminStatusComplete{
     position: absolute;
     right: 30px;
-    margin-top: -10px;
+    margin-top: -15px;
     padding: 0 5px;
     font-size: 14px;
     text-align: center;
     width: auto;
-    border: 2px solid #537FE7;
-    border-radius: 5px;
-    /* background-color: #537FE7; */
-    color: #537FE7;
+    padding: 5px;
+    border: 2px solid #81BEF7;
+    border-radius: 10px;
+    background-color: #81BEF7;
+    /* color: red; */
     font-size: 12px;
 }
 
