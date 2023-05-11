@@ -97,6 +97,59 @@ const ReviewMain = () => {
               <span className="">{placedata.pet_restriction_info}</span>
             </div>
           </div>
+          <div className="reviewMainInfo">
+            <table border={0}>
+              <thead>
+                <tr>
+                  <th width={"100px"}>영업정보</th>
+                  <td>&nbsp;</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td width={"100px"}>상호명</td>
+                  <td>{placedata.facility_name}</td>
+                </tr>
+                <tr>
+                  <td width={"100px"}>주소</td>
+                  <td>{placedata.lot_address}</td>
+                </tr>
+                <tr>
+                  <td width={"100px"}>전화번호</td>
+                  <td>{placedata.phone_number}</td>
+                </tr>
+                <tr>
+                  <td width={"100px"}>홈페이지</td>
+                  {placedata.homepage === "정보없음" ? (
+                    <td>{placedata.homepage}</td>
+                  ) : (
+                    // <td>{placedata.homepage}</td>
+                    <td>
+                      <a
+                        href={"http://" + placedata.homepage}
+                        target="blank"
+                        className="reviewMainInfoLink"
+                      >
+                        {placedata.homepage}
+                      </a>
+                    </td>
+                  )}
+                </tr>
+                <tr>
+                  <td width={"100px"}>영업시간</td>
+                  <td>{placedata.operation_time}</td>
+                </tr>
+                <tr>
+                  <td width={"100px"}>휴무일</td>
+                  <td>{placedata.holiday}</td>
+                </tr>
+                <tr>
+                  <td width={"100px"}>주차여부</td>
+                  <td>{placedata.parking_info}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </section>
         <Footer />
       </main>
