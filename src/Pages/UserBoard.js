@@ -10,8 +10,9 @@ import "../Styles/RegionModal.css";
 
 import Button from "react-bootstrap/Button";
 import RegionSelect from "../Components/UserBoards/RegionSelect.js";
+import CommnityList from "../Components/CommunityList.js";
 
-const UserBoard = (props) => {
+const UserBoard = () => {
   const toWrite = () => {
     window.location.href = "/Write";
   };
@@ -27,14 +28,25 @@ const UserBoard = (props) => {
   // id에 해당하는 게시판 불러오기
   const [selectedBoard, setSelectedBoard] = useState("");
 
-  // 지역 게시판 선택 시 지역 선택 버튼 나타남(.regionSelectBoxes)
+  // 지역 게시판 선택 시 세부 지역 선택 버튼 나타남(.regionSelectBoxes)
   const [regionSelectBoxesView, setRegionSelectBoxesView] = useState(false);
-
+  // 세부 지역 선택 버튼 모달창
   const [modalOpen, setModalOpen] = useState(false);
 
-  const closeModal = () => {
-    setModalOpen(false);
-  };
+  // 세부 지역 선택 모달창 외부 클릭하면 모달창 닫힘
+  // const outsideModal = useRef();
+  // const clickOutside = (e) => {
+  //   if (modalOpen && !outsideModal.current.contains(e.target))
+  //     setModalOpen(false);
+  //   else setModalOpen(true);
+  // };
+
+  // useEffect(() => {
+  //   window.addEventListener("mousedown", clickOutside);
+  //   return () => {
+  //     window.removeEventListener("mousedown", clickOutside);
+  //   };
+  // });
 
   const handleBoardClick = (e) => {
     const id = e.currentTarget.id;
@@ -58,7 +70,7 @@ const UserBoard = (props) => {
       <main className="UserBoardSection">
         <Header />
         <section>
-          <div className="wrapper">
+          <div>
             {/* -- 자유 게시판 / 지역 게시판 시작 -- */}
             <div className="selectBoxes">
               <button
@@ -110,6 +122,7 @@ const UserBoard = (props) => {
                       </button>
                     </div>
                     <RegionModal
+                      // ref={outsideModal}
                       open={modalOpen}
                       close={() => setModalOpen(false)}
                     ></RegionModal>
@@ -117,7 +130,7 @@ const UserBoard = (props) => {
                 </div>
               )}
               {/* 게시판 목록 */}
-              <BoardList />
+              <CommnityList />
               <div class="div_boardwrite_btn">
                 {/* 글쓰기 버튼 */}
                 <Button
