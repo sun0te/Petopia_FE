@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import "../Styles/Header.css";
-import { FaUser, FaCog, FaArrowLeft } from "react-icons/fa";
+import { FaUser, FaCog, FaAngleLeft } from "react-icons/fa";
 
 const Header = ({ page }) => {
   const [scrollX, setScrollX] = useState(0);
@@ -56,17 +56,22 @@ const Header = ({ page }) => {
   return (
     <header>
       <div className="headerBtns">
-        <NavLink to="/login">
-          <div className="headerBtns">
-            <FaUser className="user-info-icon" />
-          </div>
-        </NavLink>
+        <div className="headerBtns-left">
+          <FaAngleLeft className="user-info-icon" />
+        </div>
+        <div className="headerBtns-R">
+          <NavLink to="/login">
+            <div className="headerBtns-right">
+              <FaUser className="user-info-icon" />
+            </div>
+          </NavLink>
 
-        <NavLink to="/usermypage">
-          <div className="headerBtns">
-            <FaCog className="user-info-icon" />
-          </div>
-        </NavLink>
+          <NavLink to="/usermypage">
+            <div className="headerBtns-right">
+              <FaCog className="user-info-icon" />
+            </div>
+          </NavLink>
+        </div>
       </div>
       <div
         className="headerCategoryConteiner"
