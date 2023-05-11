@@ -86,7 +86,6 @@
 .recommendation-title {
     display: block;
     width : 100%;
-    margin-bottom: 10px;
     background-color: #eaeaea;
     justify-content: center;
 }
@@ -100,6 +99,7 @@
 .image-wrapper {
     width: 220px;
     height: 150px;
+    margin-top: 1em;
 }
 
 /* image-wrapper div 내부 이미지 */

@@ -246,10 +246,6 @@ const Home = () => {
               <p>이번 주 인기 게시글</p>
             </div>
             <Board />
-            <Board />
-            <Board />
-            <Board />
-            <Board />
           </div>
         </section>
         <Footer />
