@@ -6,7 +6,7 @@ import SearchBarcm from "./SearchBarcm";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Pagination } from "react-bootstrap";
+import Paginationcm from "./Paginationcm";
 
 const NoticeContainer = styled.div`
   padding: 0 15px;
@@ -158,7 +158,7 @@ function NoticeBoard() {
             </Button>
           )}
         </Link>
-        <Pagination />
+        <Paginationcm />
       </BoardWrapper>
     </NoticeContainer>
   );
