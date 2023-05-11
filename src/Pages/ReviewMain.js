@@ -120,7 +120,20 @@ const ReviewMain = () => {
                 </tr>
                 <tr>
                   <td width={"100px"}>홈페이지</td>
-                  <td>{placedata.homepage}</td>
+                  {placedata.homepage === "정보없음" ? (
+                    <td>{placedata.homepage}</td>
+                  ) : (
+                    // <td>{placedata.homepage}</td>
+                    <td>
+                      <a
+                        href={"http://" + placedata.homepage}
+                        target="blank"
+                        className="reviewMainInfoLink"
+                      >
+                        {placedata.homepage}
+                      </a>
+                    </td>
+                  )}
                 </tr>
                 <tr>
                   <td width={"100px"}>영업시간</td>

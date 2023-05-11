@@ -52,3 +52,7 @@
 .reviewMainInfoTitle{
     font-size: 14px;
 }
+
+.reviewMainInfoLink{
+    text-decoration: none;
+}
