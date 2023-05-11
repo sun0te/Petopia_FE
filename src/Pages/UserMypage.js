@@ -138,7 +138,13 @@ const UserMypage = () => {
           </div>
           <div className="separationArea" />
           <div className="user-sections">
-            <div className="user-section">
+            <div
+              className="user-section"
+              onClick={() => {
+                navigate("/userupdate");
+              }}
+              style={{ cursor: "pointer" }}
+            >
               <div className="user-section-icon">
                 <FaUser className="user-info-icon" />
               </div>

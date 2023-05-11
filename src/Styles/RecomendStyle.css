@@ -1,3 +1,4 @@
+/* Recommend */
 .RecomendBody {
     margin: auto;
     
@@ -28,6 +29,10 @@
 .recomendWriteBtn {
     float: right;
     margin: -10px 35px 10px auto;
+}
+
+.recommendAllBoardDiv {
+    border: none;
 }
 
 /* Recomend_best-------------------------------- */
@@ -220,7 +225,7 @@
 }
 
 .thumbsHeartSpan {
-    margin: 0 10px 0 10px;
+    margin: 0 10px 0 5px;
     display: inline;
     padding: 0 10px 0 15px;
 }
@@ -231,7 +236,7 @@
 
 
 .thumbsHeartIcon {
-    
+    user-select:none;
     display: inline;
     font-size: 2rem;
 }
@@ -239,6 +244,27 @@
 .thumbsHeartIcon:hover {
     color: #537FE7;
     opacity:0.9;
+}
+
+.thumbsHeartIcon:focus,
+.thumbsHeartIcon:active {
+
+    user-select: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.thumbsHeartIconBtn {
+    border: none;
+    background-color: #fff;
+    margin: 0 0 10px 0;
+}
+
+.thumbsHeartIconBtn:focus,
+.thumbsHeartIconBtn:active {
+    user-select: none;
+    outline: none;
+    box-shadow: none;
 }
 
 .Div_boardListBtn {
@@ -306,6 +332,17 @@
 
 /* BoardDetail ------------------------------------*/
 
+.detailWriterP {
+    margin: 0 0 20ox 0;
+}
+
+.detailProfileImg {
+    width: 35px;
+    height: 35px;
+    border-radius: 100px;
+    margin: 0 10px 0 0;
+}
+
 .boardCommentDiv {
     border: 0px;
     border-radius: 2px;
@@ -315,7 +352,7 @@
 }
 
 .boardListBtnDetailDiv {
-    margin-left: 230px;
+    margin-left: 130px;
     
 }
 
@@ -323,6 +360,10 @@
     display: inline;
     float: right;
     margin: 30px 20px 0 0;
+}
+
+.boardListBtnDetail {
+    margin: 0 0 0 30px;
 }
 
 /* writeCommentDiv  --------------------------------*/
