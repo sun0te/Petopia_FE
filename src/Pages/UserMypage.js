@@ -3,7 +3,7 @@ import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import "../Styles/UserMypage.css";
 import {
@@ -53,6 +53,8 @@ const UserMypage = () => {
       reader.readAsDataURL(file);
     }
   };
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -154,7 +156,14 @@ const UserMypage = () => {
               <div className="user-section-icon">
                 <FaEdit className="user-info-icon" />
               </div>
-              <div className="user-section-title">1:1 문의</div>
+              <div
+                className="user-section-title"
+                onClick={() => {
+                  navigate("/usermypageinquiry");
+                }}
+              >
+                1:1 문의
+              </div>
               <div className="user-section-icon2">
                 <FaAngleRight className="user-info-icon2" />
               </div>
