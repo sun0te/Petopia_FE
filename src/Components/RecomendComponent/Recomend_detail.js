@@ -60,7 +60,6 @@ const Recomend_detail = () => {
               삭제
             </Button>
           ) : null}
-
           <Button
             className="btm-sm reportBtn"
             variant="outline-danger"

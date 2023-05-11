@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import Form from "react-bootstrap/Form";
+import axios from "axios";
 
-const MyInquiryAdminWrite = () => {
+const MyInquiryAdminUpdate = ({ inquiryAdmintest2, setInquiryAdminAction }) => {
   return (
     <>
       <div className="writeForm">
@@ -12,20 +13,16 @@ const MyInquiryAdminWrite = () => {
             <Form.Control
               as="textarea"
               rows={3}
-              placeholder="답변 내용을 입력하세요"
+              placeholder="문의 내용을 입력하세요"
               className="contentForm"
+              defaultValue={inquiryAdmintest2.answerContent}
               style={{ resize: "none" }}
             />
           </Form.Group>
-          {/* {inquiryalert === 2 ? (
-            <div className="inquiryWriteAlert">내용을 입력하세요.</div>
-          ) : (
-            <div className="inquiryWriteAlert">&nbsp;</div>
-          )} */}
         </Form>
       </div>
     </>
   );
 };
 
-export default MyInquiryAdminWrite;
+export default MyInquiryAdminUpdate;
