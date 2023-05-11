@@ -181,7 +181,10 @@ const AdminUserReport = () => {
                       </>
                     ) : (
                       <>
-                        <button onClick={() => console.log("신고 처리")}>
+                        <button
+                          onClick={() => console.log("신고 처리")}
+                            style={{ backgroundColor: "red", color: "white" }}
+                        >
                           신고 처리
                         </button>
                         <button onClick={() => setSelectedReport(null)}>
