@@ -53,12 +53,16 @@ const Header = ({ page }) => {
     setScrollX(getActiveTabPosition());
   }, [page]);
 
+  
+
   return (
     <header>
       <div className="headerBtns">
-        <div className="headerBtns-left">
-          <FaAngleLeft className="user-info-icon" />
-        </div>
+        <NavLink to="/">
+          <div className="headerBtns-left">
+            <FaAngleLeft className="user-info-icon" />
+          </div>
+        </NavLink>
         <div className="headerBtns-R">
           <NavLink to="/login">
             <div className="headerBtns-right">
