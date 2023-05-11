@@ -126,15 +126,17 @@ const AdminMypage = () => {
                 </div>
               </div>
             </NavLink>
-            <div className="user-section">
-              <div className="user-section-icon">
-                <FaFlag className="user-info-icon" />
+            <NavLink to="/adminuserreport" className="active-link">
+              <div className="user-section">
+                <div className="user-section-icon">
+                  <FaFlag className="user-info-icon" />
+                </div>
+                <div className="user-section-title">신고 관리</div>
+                <div className="user-section-icon2">
+                  <FaAngleRight className="user-info-icon2" />
+                </div>
               </div>
-              <div className="user-section-title">신고 관리</div>
-              <div className="user-section-icon2">
-                <FaAngleRight className="user-info-icon2" />
-              </div>
-            </div>
+            </NavLink>
             <div className="user-section">
               <div className="user-section-icon">
                 <FaInfoCircle className="user-info-icon" />
@@ -144,15 +146,17 @@ const AdminMypage = () => {
                 <FaAngleRight className="user-info-icon2" />
               </div>
             </div>
-            <div className="user-section">
-              <div className="user-section-icon">
-                <FaChartBar className="user-info-icon" />
+            <NavLink to="/adminstatistics" className="active-link">
+              <div className="user-section">
+                <div className="user-section-icon">
+                  <FaChartBar className="user-info-icon" />
+                </div>
+                <div className="user-section-title">통계</div>
+                <div className="user-section-icon2">
+                  <FaAngleRight className="user-info-icon2" />
+                </div>
               </div>
-              <div className="user-section-title">통계</div>
-              <div className="user-section-icon2">
-                <FaAngleRight className="user-info-icon2" />
-              </div>
-            </div>
+            </NavLink>
           </div>
           <div className="separationArea" />
           <div class="button-wrapper">
