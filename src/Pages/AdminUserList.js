@@ -60,32 +60,33 @@ const AdminUserList = () => {
             <h3>회원 리스트</h3>
           </div>
           <div className="member-list-container">
-            <table>
-              <thead>
+            <table className="member-table">
+              <thead className="admin-table-title">
                 <tr>
-                  <th></th>
-                  <th>num</th>
-                  <th>이름</th>
-                  <th>이메일</th>
-                  <th>가입일</th>
-                  <th>기타</th>
+                  <th className="member-checkbox"></th>
+                  <th className="member-id">num</th>
+                  <th className="member-name">이름</th>
+                  <th className="member-email">이메일</th>
+                  <th className="member-join-date">가입일</th>
+                  <th className="member-memo">기타</th>
                 </tr>
               </thead>
               <tbody>
                 {members.map((member) => (
-                  <tr key={member.id}>
-                    <td>
+                  <tr key={member.id} className="member-row">
+                    <td className="member-checkbox">
                       <input
                         type="checkbox"
+                        className="member-checkbox"
                         checked={selected.includes(member.id)}
                         onChange={() => handleCheckboxChange(member.id)}
                       />
                     </td>
-                    <td>{member.id}</td>
-                    <td>{member.name}</td>
-                    <td>{member.email}</td>
-                    <td>{member.joinDate}</td>
-                    <td>
+                    <td className="member-id">{member.id}</td>
+                    <td className="member-name">{member.name}</td>
+                    <td className="member-email">{member.email}</td>
+                    <td className="member-join-date">{member.joinDate}</td>
+                    <td className="member-memo">
                       <textarea
                         value={member.memo}
                         onChange={(e) =>
@@ -107,7 +108,12 @@ const AdminUserList = () => {
           <div className="list-button">
             {selected.length > 0 && (
               <div className="member-list-actions">
-                <button onClick={handleDeleteClick}>삭제</button>
+                <button
+                  style={{ backgroundColor: "red" }}
+                  onClick={handleDeleteClick}
+                >
+                  삭제
+                </button>
                 <button onClick={handleCancelClick}>취소</button>
               </div>
             )}

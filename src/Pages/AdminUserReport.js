@@ -107,10 +107,11 @@ const AdminUserReport = () => {
             <p>신고 리스트</p>
           </div>
           <table className="admin-user-report-table">
-            <thead>
+            <thead className="admin-table-title">
               <tr>
                 <th className="admin-user-report-item-title">제목</th>
                 <th className="admin-user-report-item-date">날짜</th>
+                <th className="admin-user-report-item-date">진행</th>
               </tr>
             </thead>
             <tbody>
@@ -121,6 +122,7 @@ const AdminUserReport = () => {
                     onClick={() => {
                       setSelectedReport(report);
                     }}
+                    className="admin-user-report-row"
                   >
                     <td
                       className="admin-user-report-item-title"
@@ -156,7 +158,7 @@ const AdminUserReport = () => {
             </tbody>
             {selectedReport && (
               <div className="modal-wrapper">
-                <div className="modal-content">
+                <div className="modal-content admin-user-report-modal">
                   <div className="modal-header">
                     <h2>신고 내용</h2>
                   </div>
