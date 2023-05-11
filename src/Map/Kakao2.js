@@ -339,7 +339,7 @@ const Kakao2 = ({
               <div
                 className="mapwrapinfo"
                 onClick={() => {
-                  navigate("/usermypageinquiry");
+                  navigate(`/reviewpage/${position.lat}/${position.lng}`);
                   //리뷰 페이지 or 업소 상세페이지 이동 or 모달창 보여주기
                 }}
               >
@@ -380,12 +380,22 @@ const Kakao2 = ({
                             target="_blank"
                             className="maplink"
                             rel="noreferrer"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                            }}
                           >
                             홈페이지
                           </a>
                         )
                       ) : (
-                        <a href="#" className="maplink" rel="noreferrer">
+                        <a
+                          href="#"
+                          className="maplink"
+                          rel="noreferrer"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
+                        >
                           홈페이지 정보없음
                         </a>
                       )}
