@@ -2,12 +2,10 @@ import React, { useState } from "react";
 
 import "../../Styles/RegionModal.css";
 
-
 const RegionModal = ({ open, close }) => {
   const [cityChk1, setCityChk1] = useState("");
   return (
     <div className={open ? "openRegion regionModal" : "regionModal"}>
-
       {open ? (
         <div className="regionModalContainer">
           <div className="regionModalHeader">
@@ -22,6 +20,7 @@ const RegionModal = ({ open, close }) => {
             </button>
           </div>
           <div className="regionModalMain">
+            {/* 지역 리스트 */}
             <ul className="regionModalList">
               <li
                 onClick={() => {
