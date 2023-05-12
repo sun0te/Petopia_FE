@@ -1,14 +1,34 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
 import { Link } from "react-router-dom";
 import "../Styles/Login.css";
 
-const SocialLoginSuccess = ({ user, setUser }) => {
-  useEffect(() => {}, [user]);
-
+const SocialLoginSuccessKakao = () => {
+  const [user_id, setUserId] = useState();
+  const [userEmail, setUserEmail] = useState();
+  const [nickName, setNickName] = useState();
+  const [profileImage, setProfileImage] = useState();
+  const getProfile = async () => {
+    try {
+      // Kakao SDK API를 이용해 사용자 정보 획득
+      let data = await window.Kakao.API.request({
+        url: "/v2/user/me",
+      });
+      // 사용자 정보 변수에 저장
+      setUserId(data.id);
+      setUserEmail(data.kakao_account.email);
+      setNickName(data.properties.nickname);
+      setProfileImage(data.properties.thumbnail_image);
+      sessionStorage.setItem("socialSession", "kakao");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    getProfile();
+  }, []);
   return (
     <>
       <BgLeft />
@@ -21,7 +41,7 @@ const SocialLoginSuccess = ({ user, setUser }) => {
               <div className="input-form-backgroud row">
                 <div className="input-form col-md-12 mx-auto signUpForm">
                   <h4 className="mb-3 signUpText">
-                    <span style={{ color: "#2DB400" }}>네이버</span> 간편
+                    <span style={{ color: "#FEE500" }}>카카오</span> 간편
                     회원가입
                   </h4>
 
@@ -30,9 +50,9 @@ const SocialLoginSuccess = ({ user, setUser }) => {
                       <tr className="socialLoginSuccessTr socialLoginSuccessTrProfile">
                         <td className="socialLoginSuccessTdTitle">프로필</td>
                         <td className="socialLoginSuccessTd socialLoginSuccessTdProfile">
-                          {user && user.profile_image ? (
+                          {profileImage ? (
                             <img
-                              src={user.profile_image}
+                              src={profileImage}
                               alt=""
                               className="socialLoginSuccessTdProfileImg"
                             />
@@ -42,21 +62,19 @@ const SocialLoginSuccess = ({ user, setUser }) => {
                       <tr className="socialLoginSuccessTr">
                         <td className="socialLoginSuccessTdTitle">이메일</td>
                         <td className="socialLoginSuccessTd">
-                          {user && user.email ? <p>{user.email}</p> : null}
+                          {userEmail ? <p>{userEmail}</p> : null}
                         </td>
                       </tr>
-                      <tr className="socialLoginSuccessTr">
+                      {/* <tr className="socialLoginSuccessTr">
                         <td className="socialLoginSuccessTdTitle">이름</td>
                         <td className="socialLoginSuccessTd">
                           {user && user.name ? <p>{user.name}</p> : null}
                         </td>
-                      </tr>
+                      </tr> */}
                       <tr className="socialLoginSuccessTr">
                         <td className="socialLoginSuccessTdTitle">닉네임</td>
                         <td className="socialLoginSuccessTd">
-                          {user && user.nickname ? (
-                            <p>{user.nickname}</p>
-                          ) : null}
+                          {nickName ? <p>{nickName}</p> : null}
                         </td>
                       </tr>
                     </table>
@@ -118,5 +136,4 @@ const SocialLoginSuccess = ({ user, setUser }) => {
     </>
   );
 };
-
-export default SocialLoginSuccess;
+export default SocialLoginSuccessKakao;

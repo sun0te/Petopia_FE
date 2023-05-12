@@ -17,9 +17,10 @@ const LoginComponent = ({ user, setUser }) => {
 
   const [getToken, setGetToken] = useState("");
 
-  const handleNaverLogin = () => {
-    document.getElementById("naverIdLogin").click();
-  };
+  // 카카오 로그인
+  const Rest_api_key = `${process.env.REACT_APP_RESTAPI_KAKAO_APP_KEY}`; //REST API KEY
+  const redirect_uri = "http://localhost:3000/kakaologin"; //Redirect URI
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code&prompt=login`;
 
   return (
     <>
@@ -31,12 +32,14 @@ const LoginComponent = ({ user, setUser }) => {
             <div>
               <NaverLogin setGetToken={setGetToken} setUser={setUser} />
 
-              <img
-                className="socialLoginLogoRight"
-                src="img/kakao.png"
-                alt=""
-                type="button"
-              />
+              <Link to={kakaoURL}>
+                <img
+                  className="socialLoginLogoRight"
+                  src="img/kakao.png"
+                  alt=""
+                  type="button"
+                />
+              </Link>
             </div>
 
             <br />

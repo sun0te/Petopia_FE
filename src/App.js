@@ -4,6 +4,8 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import SocialLoginSuccess from "./Pages/SocialLoginSuccess";
+import SocialLoginSuccessKakao from "./Pages/SocialLoginSuccessKakao";
+import CallBack from "./Components/CallBack";
 import UserUpdate from "./Pages/UserUpdate";
 import FindAccountEmail from "./Pages/FindAccountEmail";
 import FindAccountPassword from "./Pages/FindAccountPassword";
@@ -47,6 +49,12 @@ const App = () => {
         path="/socialloginsuccess"
         element={<SocialLoginSuccess user={user} setUser={setUser} />}
       />
+      <Route path="/kakaologin" element={<CallBack />} />
+      <Route
+        path="/socialloginsuccesskakao"
+        element={<SocialLoginSuccessKakao user={user} setUser={setUser} />}
+      />
+      <Route path="/kakaologout" element={<Home />} />
       <Route path="/userupdate" element={<UserUpdate />} />
       <Route path="/findaccountemail" element={<FindAccountEmail />} />
       <Route path="/findaccountpassword" element={<FindAccountPassword />} />

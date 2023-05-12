@@ -3,8 +3,8 @@ import "../../Styles/Login.css";
 
 const NaverLogin = ({ setGetToken, user, setUser }) => {
   const { naver } = window;
-  const NAVER_CLIENT_ID = "26Z8tpwKNAQgHIx4lViL"; // Client ID
-  const NAVER_CALLBACK_URL = "http://localhost:3000/naver"; // Callback URL
+  const NAVER_CLIENT_ID = `${process.env.REACT_APP_NAVER_CLIENT_ID}`; // Client ID
+  const NAVER_CALLBACK_URL = `${process.env.REACT_APP_NAVER_CALLBACK_URL}`; // Callback URL
 
   const naverRef = useRef();
 
@@ -29,7 +29,7 @@ const NaverLogin = ({ setGetToken, user, setUser }) => {
         const nickname = naverLogin.user.getNickName();
         const profile_image = naverLogin.user.getProfileImage();
 
-        console.log("naverLogin.user: ", naverLogin.user);
+        //console.log("naverLogin.user: ", naverLogin.user);
 
         setUser({
           email: email,
@@ -39,6 +39,7 @@ const NaverLogin = ({ setGetToken, user, setUser }) => {
         });
 
         sessionStorage.setItem("email", email);
+        sessionStorage.setItem("socialSession", "naver");
         const sessionEmail = sessionStorage.getItem("email");
         alert("세션값 임시 설정(email : " + sessionEmail + ")\n");
       }
