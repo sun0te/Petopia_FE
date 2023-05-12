@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 
 const StarRating = ({ ratingtest1 }) => {
-  console.log("별점 값 =>", ratingtest1);
   const AVR_RATE = ratingtest1; // 별점 계산 식 들어가는 자리
   const STAR_IDX_ARR = ["first", "second", "third", "fourth", "last"];
   const [ratesResArr, setRatesResArr] = useState([0, 0, 0, 0, 0]);

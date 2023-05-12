@@ -22,7 +22,7 @@ const ReviewMain = () => {
 
   const [ratingtest, setRatingtest] = useState([
     // 리뷰 , 별점 테스트 useState1
-    5, 4, 3, 4, 5, 4, 2, 5, 4, 5, 4, 4, 5, 5,
+    5, 4, 2, 5, 4, 5, 4, 4, 5, 5, 1, 3, 5, 5, 5, 5, 5, 5,
   ]);
   const [ratingtest1, setRatingtest1] = useState(0); // 리뷰 , 별점 테스트 useState2
 
