@@ -92,7 +92,7 @@ const ReviewMain = () => {
             <span>{placedata.facility_name}</span>
           </div>
           <div className="reviewMainRating">
-            <StarRating />
+            <StarRating ratingtest1={ratingtest1} />
             <b className="reviewMainRatingScore">({ratingtest1})</b>
             <span
               className="reviewMainCounting"
