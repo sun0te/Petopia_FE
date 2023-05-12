@@ -104,6 +104,7 @@ const ReviewMain = () => {
               {ratingtest.length}개 &gt;
             </span>
           </div>
+          <hr style={{ height: "3px", backgroundColor: "lightgray" }} />
           <div className="reviewMainList">
             <div className="reviewMainListBox">
               <span className="reviewMainListTitle">반려동물 체형</span>
@@ -123,6 +124,7 @@ const ReviewMain = () => {
               <span className="">{placedata.pet_restriction_info}</span>
             </div>
           </div>
+          <hr style={{ height: "3px", backgroundColor: "lightgray" }} />
           <div className="reviewMainInfo">
             <table border={0} className="reviewMainInfoTa">
               <thead>
