@@ -93,7 +93,7 @@ const ReviewMain = () => {
           </div>
           <div className="reviewMainRating">
             <StarRating />
-            <b className="test17">{ratingtest1}</b>
+            <b className="reviewMainRatingScore">({ratingtest1})</b>
             <span
               className="reviewMainCounting"
               onClick={() => {

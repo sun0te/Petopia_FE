@@ -15,7 +15,7 @@
 .reviewMainCounting{
     position: absolute;
     top:10px;
-    left: 160px;
+    left: 168px;
     font-size: 14px;
     font-weight: bold;
     font-family: Arial;
@@ -56,7 +56,7 @@
     text-decoration: none;
 }
 
-.test17{
+.reviewMainRatingScore{
     position: absolute;
     top:7px;
 }
