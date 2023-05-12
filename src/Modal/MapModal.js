@@ -23,7 +23,7 @@ const Modal1 = ({
     { region: "강동구", lat: 37.5371, lng: 127.1318 },
     { region: "강북구", lat: 37.6373, lng: 127.0243 },
     { region: "강서구", lat: 37.5612346, lng: 126.8228132 },
-    { region: "관악구", lat: 37.4673709, lng: 126.9453359 },
+    { region: "관악구", lat: 37.4815, lng: 126.9528 },
     { region: "광진구", lat: 37.5467284, lng: 127.0857543 },
     { region: "구로구", lat: 37.4944134, lng: 126.8563336 },
     { region: "금천구", lat: 37.4605655, lng: 126.9008183 },
@@ -136,7 +136,7 @@ const Modal1 = ({
     { region: "계룡시", lat: 36.2745, lng: 127.2509 },
     { region: "공주시", lat: 36.4688, lng: 127.1293 },
     { region: "금산군", lat: 36.1088, lng: 127.4884 },
-    { region: "논산시", lat: 36.193, lng: 127.0906 },
+    { region: "논산시", lat: 36.2033, lng: 127.0877 },
     { region: "당진시", lat: 36.8897, lng: 126.6458 },
     { region: "보령시", lat: 36.3484, lng: 126.6043 },
     { region: "부여군", lat: 36.2759, lng: 126.9095 },
@@ -515,11 +515,15 @@ const Modal1 = ({
                       setView(0);
                       setCity(citycheck1);
                       setCounty(a.region);
+                      if (maplevel === 5) {
+                        setMaplevel(6);
+                      } else {
+                        setMaplevel(5);
+                      }
                       setLocation({
                         latitude: a.lat,
                         longitude: a.lng,
                       });
-                      setMaplevel(5);
                       close();
                     }}
                   >

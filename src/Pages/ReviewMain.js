@@ -6,6 +6,7 @@ import BgLeft from "../Components/BgLeft.js";
 import { useNavigate, useParams } from "react-router-dom";
 import "../Styles/ReviewMain.css";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
+import StarRating from "../Components/StarRating.js";
 
 const ReviewMain = () => {
   const navigate = useNavigate();
@@ -91,10 +92,8 @@ const ReviewMain = () => {
             <span>{placedata.facility_name}</span>
           </div>
           <div className="reviewMainRating">
-            <b>
-              ⭐&nbsp;{/* 별점 */}
-              {ratingtest1}
-            </b>
+            <StarRating />
+            <b className="test17">{ratingtest1}</b>
             <span
               className="reviewMainCounting"
               onClick={() => {
