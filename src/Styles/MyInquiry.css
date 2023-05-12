@@ -167,11 +167,12 @@
 .inquiryBack{
     position: absolute; 
     left: 10px;
-    top:90px;
+    top:105px;
      float: left;
     text-align: center;
     height: auto;
     width: 30px;
+    
     /* border: 1px solid black; */
 }
 

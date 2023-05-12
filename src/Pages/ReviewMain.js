@@ -19,8 +19,23 @@ const ReviewMain = () => {
   const [placehomepage, setPlacehomepage] = useState("");
   const [homepageCheck, setHomepageCheck] = useState("");
 
+  const [ratingtest, setRatingtest] = useState([
+    // 리뷰 , 별점 테스트 useState1
+    5, 4, 3, 4, 5, 4, 2, 1, 4, 5, 4, 4, 5, 5,
+  ]);
+  const [ratingtest1, setRatingtest1] = useState(0); // 리뷰 , 별점 테스트 useState2
+
   useEffect(() => {
     getPlace();
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 별점 계산 코드 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    var j = 0;
+    for (var i = 0; i < ratingtest.length; i++) {
+      j += ratingtest[i];
+    }
+    j = Math.round((j / ratingtest.length) * 10) / 10;
+    setRatingtest1(j);
+    // console.log("별점 계산값", j);
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 별점 계산 코드 끝 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
   }, []);
 
   const getPlace = () => {
@@ -29,7 +44,7 @@ const ReviewMain = () => {
         params: { lat: lat, lng: lng },
       })
       .then((res) => {
-        console.log("데이터 = >", res.data);
+        // console.log("데이터 = >", res.data);
         setPlacedata(res.data);
         setReviewlocation({
           lat: res.data.lat,
@@ -76,14 +91,18 @@ const ReviewMain = () => {
             <span>{placedata.facility_name}</span>
           </div>
           <div className="reviewMainRating">
-            <b>⭐&nbsp;{/* 별점 */}4.5</b>
+            <b>
+              ⭐&nbsp;{/* 별점 */}
+              {ratingtest1}
+            </b>
             <span
               className="reviewMainCounting"
               onClick={() => {
                 navigate(-1); // 리뷰페이지로 이동
               }}
             >
-              리뷰 {/* 리뷰개수 */}13개 &gt;
+              리뷰 {/* 리뷰개수 */}
+              {ratingtest.length}개 &gt;
             </span>
           </div>
           <div className="reviewMainList">
