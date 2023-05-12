@@ -60,12 +60,36 @@ const UserMypage = () => {
   //   window.naver && window.naver.login && window.naver.login.init();
   // }, []);
 
+  // 카카오 rest api key
+  const Rest_api_key = `${process.env.REACT_APP_RESTAPI_KAKAO_APP_KEY}`;
+
   const handleLogoutClick = () => {
-    // 네이버 로그아웃
-    localStorage.removeItem("com.naver.nid.access_token");
-    localStorage.removeItem("access_token");
-    sessionStorage.removeItem("email");
-    window.location.href = `http://localhost:3000/`;
+    // alert("socialSession : " + sessionStorage.getItem("socialSession"));
+    if (sessionStorage.getItem("socialSession") === "naver") {
+      // 네이버 로그아웃
+      localStorage.removeItem("com.naver.nid.access_token");
+      localStorage.removeItem("access_token");
+      sessionStorage.removeItem("email");
+      window.location.href = `http://localhost:3000/`;
+    } else if (sessionStorage.getItem("socialSession") === "kakao") {
+      // 카카오 로그아웃
+      window.Kakao.init(Rest_api_key);
+      window.Kakao.isInitialized();
+      window.Kakao.Auth.logout(function (response) {
+        if (response === true) {
+          window.Kakao.Auth.setAccessToken(undefined); // 토큰 제거
+          sessionStorage.clear(); // 세션 제거
+          localStorage.clear(); // 로컬스토리지 제거
+        }
+      });
+      localStorage.removeItem("access_token");
+      sessionStorage.removeItem("socialSession");
+      window.location.href = `http://localhost:3000/`;
+    } else {
+      alert("logout");
+      sessionStorage.removeItem("email");
+      window.location.href = `http://localhost:3000/`;
+    }
   };
   const navigate = useNavigate();
 
