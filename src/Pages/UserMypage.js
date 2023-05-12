@@ -122,9 +122,9 @@ const UserMypage = () => {
               </>
             )}
           </div>
-
-          <hr className="hr-line" />
-
+          <div className="hr-line-container">
+            <hr className="hr-line" />
+          </div>
           <div className="user-category">
             <div className="category-item">
               내 글 <span className="category-count">3</span>

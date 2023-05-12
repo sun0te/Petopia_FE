@@ -105,7 +105,9 @@ const AdminMypage = () => {
             )}
           </div>
 
-          <hr className="hr-line" />
+          <div className="hr-line-container">
+            <hr className="hr-line" />
+          </div>
 
           <div className="user-category">
             <div className="category-item">
