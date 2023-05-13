@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
@@ -28,8 +29,8 @@ import NotFound from "./Pages/NotFound";
 import FreeBoardDetail from "./Components/UserBoards/FreeBoardDetail";
 import MyInquiry from "./Components/MyPage/MyInquiry";
 import MyInquiryAdmin from "./Components/MyPage/MyInquiryAdmin";
-import { useState, useEffect } from "react";
 import ReviewMain from "./Pages/ReviewMain";
+import UserWatchlist from "./Pages/UserWatchlist";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -64,6 +65,7 @@ const App = () => {
       <Route path="/userregionboard" element={<UserRegionBoard />} />
       <Route path="boarddetail" element={<FreeBoardDetail />} />
       <Route path="/usermypage" element={<UserMypage />} />
+      <Route path="/userwatchlist" element={<UserWatchlist />} />
       <Route path="/usermypageinquiry" element={<MyInquiry />} />
       <Route path="/usermypageinquiryadmin" element={<MyInquiryAdmin />} />
       <Route path="/adminmypage" element={<AdminMypage />} />

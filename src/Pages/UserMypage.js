@@ -147,15 +147,17 @@ const UserMypage = () => {
                 <FaAngleRight className="user-info-icon2" />
               </div>
             </div>
-            <div className="user-section">
-              <div className="user-section-icon">
-                <FaHeart className="user-info-icon" />
+            <NavLink to="/userWatchlist" className="active-link">
+              <div className="user-section">
+                <div className="user-section-icon">
+                  <FaHeart className="user-info-icon" />
+                </div>
+                <div className="user-section-title">관심목록</div>
+                <div className="user-section-icon2">
+                  <FaAngleRight className="user-info-icon2" />
+                </div>
               </div>
-              <div className="user-section-title">관심목록</div>
-              <div className="user-section-icon2">
-                <FaAngleRight className="user-info-icon2" />
-              </div>
-            </div>
+            </NavLink>
             <div className="user-section">
               <div className="user-section-icon">
                 <FaComment className="user-info-icon" />
@@ -165,22 +167,17 @@ const UserMypage = () => {
                 <FaAngleRight className="user-info-icon2" />
               </div>
             </div>
-            <div className="user-section">
-              <div className="user-section-icon">
-                <FaEdit className="user-info-icon" />
+            <NavLink to="/usermypageinquiry" className="active-link">
+              <div className="user-section">
+                <div className="user-section-icon">
+                  <FaEdit className="user-info-icon" />
+                </div>
+                <div className="user-section-title">1:1 문의</div>
+                <div className="user-section-icon2">
+                  <FaAngleRight className="user-info-icon2" />
+                </div>
               </div>
-              <div
-                className="user-section-title"
-                onClick={() => {
-                  navigate("/usermypageinquiry");
-                }}
-              >
-                1:1 문의
-              </div>
-              <div className="user-section-icon2">
-                <FaAngleRight className="user-info-icon2" />
-              </div>
-            </div>
+            </NavLink>
           </div>
           <div className="separationArea" />
           <div class="button-wrapper">

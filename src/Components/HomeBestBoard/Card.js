@@ -1,8 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import styled from "styled-components";
 import { FaUser } from "react-icons/fa";
-import axios from "axios";
-import { Link } from "react-router-dom";
 
 const BoardBox = styled.div`
   display: flex;

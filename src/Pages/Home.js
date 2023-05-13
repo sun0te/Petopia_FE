@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
-import Board from "../Components/Board";
+import Board from "../Components/HomeBestBoard/Board";
 import { NavLink, useNavigate } from "react-router-dom";
 import Kakao2 from "../Map/Kakao2.js";
 import axios from "axios";
