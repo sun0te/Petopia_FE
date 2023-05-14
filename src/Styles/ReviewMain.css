@@ -20,6 +20,11 @@
     font-weight: bold;
     font-family: Arial;
     color: #888;
+    cursor:pointer;
+}
+
+.reviewMainCounting:hover{
+    opacity: 0.8;
 }
 
 .reviewMainList{
