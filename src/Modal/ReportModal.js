@@ -18,11 +18,16 @@ const ReportModal = (props) => {
     console.log(e.target.value);
   };
 
+  useEffect(() => {
+    setReportReason(reportReason);
+  }, [reportReason]);
+
   const [reportReasonText, setReportReasonText] = useState("");
   const reportReasonContent = useRef();
 
   const writeReason = () => {
     setReportReasonText(reportReasonContent.current.value);
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -36,7 +41,13 @@ const ReportModal = (props) => {
         <div className="reportModalSectionDiv">
           <div className="reportModalHeaderDiv">
             <div className="reportModalHeaderText">{header}</div>
-            <button className="reportModalCloseBtn" onClick={close}>
+            <button
+              className="reportModalCloseBtn"
+              onClick={() => {
+                close();
+                window.location.reload();
+              }}
+            >
               &times;
             </button>
           </div>
@@ -71,7 +82,15 @@ const ReportModal = (props) => {
                 name="reportReasonContent"
                 ref={reportReasonContent}
               />
-            ) : null}
+            ) : (
+              <Form.Control
+                className="writeTitle reportReasonWrite"
+                type="hidden"
+                placeholder="신고 사유를 입력해주세요."
+                name="reportReasonContent"
+                ref={reportReasonContent}
+              />
+            )}
           </div>
 
           <div className="reportModalFooterDiv">

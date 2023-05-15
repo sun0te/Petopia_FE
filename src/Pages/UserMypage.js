@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
-import { NavLink } from "react-router-dom";
+
+import { NavLink, useNavigate } from "react-router-dom";
+
 import "../Styles/UserMypage.css";
 import {
   FaUser,
@@ -11,8 +14,9 @@ import {
   FaEdit,
   FaCheck,
   FaTimes,
-  FaAngleRight
+  FaAngleRight,
 } from "react-icons/fa";
+
 import MyInquiry from "../Components/MyPage/MyInquiry.js";
 import MyInquiryAdmin from "../Components/MyPage/MyInquiryAdmin.js";
 
@@ -50,6 +54,20 @@ const UserMypage = () => {
       reader.readAsDataURL(file);
     }
   };
+
+  // useEffect(() => {
+  //   // 네이버 로그인 SDK 초기화
+  //   window.naver && window.naver.login && window.naver.login.init();
+  // }, []);
+
+  const handleLogoutClick = () => {
+    // 네이버 로그아웃
+    localStorage.removeItem("com.naver.nid.access_token");
+    localStorage.removeItem("access_token");
+    sessionStorage.removeItem("email");
+    window.location.href = `http://localhost:3000/`;
+  };
+  const navigate = useNavigate();
 
   return (
     <>
@@ -120,7 +138,13 @@ const UserMypage = () => {
           </div>
           <div className="separationArea" />
           <div className="user-sections">
-            <div className="user-section">
+            <div
+              className="user-section"
+              onClick={() => {
+                navigate("/userupdate");
+              }}
+              style={{ cursor: "pointer" }}
+            >
               <div className="user-section-icon">
                 <FaUser className="user-info-icon" />
               </div>
@@ -142,7 +166,14 @@ const UserMypage = () => {
               <div className="user-section-icon">
                 <FaComment className="user-info-icon" />
               </div>
-              <div className="user-section-title">리뷰 관리</div>
+              <div
+                className="user-section-title"
+                onClick={() => {
+                  navigate("/myreview");
+                }}
+              >
+                리뷰 관리
+              </div>
               <div className="user-section-icon2">
                 <FaAngleRight className="user-info-icon2" />
               </div>
@@ -151,7 +182,14 @@ const UserMypage = () => {
               <div className="user-section-icon">
                 <FaEdit className="user-info-icon" />
               </div>
-              <div className="user-section-title">1:1 문의</div>
+              <div
+                className="user-section-title"
+                onClick={() => {
+                  navigate("/usermypageinquiry");
+                }}
+              >
+                1:1 문의
+              </div>
               <div className="user-section-icon2">
                 <FaAngleRight className="user-info-icon2" />
               </div>
@@ -160,10 +198,14 @@ const UserMypage = () => {
           <div className="separationArea" />
           <div class="button-wrapper">
             <div class="logout-button-wrapper">
-              <button class="logout-button">로그아웃</button>
+              <button class="logout-button" onClick={handleLogoutClick}>
+                로그아웃
+              </button>
             </div>
             <div class="admin-button-wrapper">
-              <button class="admin-button">관리자 페이지</button>
+              <NavLink to="/adminmypage">
+                <button class="admin-button">관리자 페이지</button>
+              </NavLink>
             </div>
           </div>
         </section>

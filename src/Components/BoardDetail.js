@@ -1,34 +1,23 @@
 import "bootstrap/dist/css/bootstrap.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import "../Styles/RecomendStyle.css";
+
 import { BsPerson, BsHandThumbsUp, BsHeart } from "react-icons/bs";
+import "../Styles/RecomendStyle.css";
+import React, { useState, useEffect } from "react";
 import Comment from "./Comment";
 import Reply from "./Reply";
-
-import React, { useState } from "react";
-import ReportModal from "../Modal/ReportModal";
+import { Link } from "react-router-dom";
 
 const Recomend_detail = () => {
   const thumbsClick = () => {
     alert("thumbs up clicked");
   };
-
-  // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const openModal = () => {
-    setModalOpen(true);
-  };
-  const closeModal = () => {
-    setModalOpen(false);
-  };
+  // const [session, setSession] = useState("admin"); //버튼 보이게 하기 위해 작성 추후 admin 삭제하고 id
+  // //const session = sessionStorage.getItem("id"); 로그인 id 받아올 때 쓰면 됨
 
   return (
     <>
-      <ReportModal open={modalOpen} close={closeModal} header="게시글 신고">
-        <p>신고 사유를 선택해 주세요</p>
-      </ReportModal>
       <div className="RecomendBody">
         <h2 className="h2_Recomend">공간 보기</h2>
 
@@ -54,17 +43,17 @@ const Recomend_detail = () => {
               className="btm-sm reportBtn"
               variant="outline-secondary"
               style={{ padding: "4px 0px 3px 0px", marginRight: "10px" }}
-              onClick={openModal}
+              onClick={() => {
+                alert("delete btn clicked");
+              }}
             >
               삭제
             </Button>
           ) : null}
-
           <Button
             className="btm-sm reportBtn"
             variant="outline-danger"
             style={{ padding: "4px 0px 3px 0px" }}
-            onClick={openModal}
           >
             🚨신고
           </Button>
@@ -72,11 +61,18 @@ const Recomend_detail = () => {
 
         <hr className="hr_Recomend" />
 
-        <p className="p_recomend">
-          <BsPerson /> petopia
+        <p className="p_recomend detailWriterP">
+          <img
+            className="detailProfileImg"
+            src="img/detail_profile_img.png"
+            alt=""
+          />
+          petopia
         </p>
-        <p className="p_recommendDate">2023-05-05</p>
 
+        <p className="p_recommendDate">2023-05-05</p>
+        <br />
+        <br />
         <br />
         <br />
 
@@ -131,33 +127,57 @@ const Recomend_detail = () => {
             <br />
             <div className="thumbs">
               {/* <p className="thumbsHeartText">추천해요</p> */}
-              <button type="button" className="btn btn-lg">
+              <button type="button" className="thumbsHeartIconBtn">
                 <BsHandThumbsUp
                   className="thumbsHeartIcon"
                   onClick={thumbsClick}
                 />
               </button>
-              <span className="thumbsHeartSpan">5</span>
+              <span className="thumbsHeartSpan">32</span>
             </div>
 
             <br />
 
             <div className="heart">
               {/* <p className="thumbsHeartText">저장할래요</p> */}
-              <button type="button" className="btn btn-lg">
-                <BsHeart className="thumbsHeartIcon" />
+              <button type="button" className="thumbsHeartIconBtn">
+                <BsHeart
+                  className="thumbsHeartIcon"
+                  style={{ outline: "none" }}
+                />
               </button>
-              <span className="thumbsHeartSpan">2</span>
+              <span className="thumbsHeartSpan">8</span>
             </div>
           </div>
 
           <div className="Div_boardListBtn boardListBtnDetailDiv">
             <button
               type="button"
-              className="btn btn-sm btn-outline-primary boardListBtn boardListBtnDetail"
+              className="btn btn-outline-primary boardListBtn"
             >
               글목록
             </button>
+
+            <div className="boardListBtnDetail">
+              <Link to="/update">
+                <button
+                  type="button"
+                  className="btn btn-primary btn-sm boardListBtn boardListBtnDetail"
+                >
+                  글 수정
+                </button>{" "}
+              </Link>
+            </div>
+            {/* {session === "admin" && (
+              <Link to="/update">
+                <button
+                  type="button"
+                  className="btn btn-primary boardListBtn boardListBtnDetail"
+                >
+                  글 수정
+                </button>{" "}
+              </Link>
+            )} */}
           </div>
 
           <div className="boardCommentDiv">
@@ -219,5 +239,4 @@ const Recomend_detail = () => {
     </>
   );
 };
-
 export default Recomend_detail;
