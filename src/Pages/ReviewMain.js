@@ -93,16 +93,31 @@ const ReviewMain = () => {
           </div>
           <div className="reviewMainRating">
             <StarRating ratingtest1={ratingtest1} />
-            <b className="reviewMainRatingScore">({ratingtest1})</b>
-            <span
-              className="reviewMainCounting"
-              onClick={() => {
-                navigate(-1); // 리뷰페이지로 이동
-              }}
-            >
-              리뷰 {/* 리뷰개수 */}
-              {ratingtest.length}개 &gt;
-            </span>
+            {ratingtest.length !== 0 ? (
+              <b className="reviewMainRatingScore">({ratingtest1})</b>
+            ) : (
+              <b className="reviewMainRatingScore">(0)</b>
+            )}
+            {ratingtest.length !== 0 ? (
+              <span
+                className="reviewMainCounting"
+                onClick={() => {
+                  navigate(-1); // 리뷰페이지로 이동
+                }}
+              >
+                리뷰 {/* 리뷰개수 */}
+                {ratingtest.length}개 &gt;
+              </span>
+            ) : (
+              <span
+                className="reviewMainCounting1"
+                onClick={() => {
+                  navigate(-1); // 리뷰페이지로 이동
+                }}
+              >
+                리뷰 작성하기 &gt;
+              </span>
+            )}
           </div>
           <hr style={{ height: "3px", backgroundColor: "lightgray" }} />
           <div className="reviewMainList">
