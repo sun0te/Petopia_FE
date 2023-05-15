@@ -60,6 +60,6 @@ const StarRateWrap = styled.span`
   width: 100%;
   .star_icon {
     display: inline;
-    margin-right: 5px;
+    margin-right: 3px;
   }
 `;
