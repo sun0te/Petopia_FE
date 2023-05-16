@@ -38,10 +38,10 @@ const NaverLogin = ({ setGetToken, user, setUser }) => {
           profile_image: profile_image,
         });
 
-        sessionStorage.setItem("email", email);
-        sessionStorage.setItem("socialSession", "naver");
-        const sessionEmail = sessionStorage.getItem("email");
-        alert("세션값 임시 설정(email : " + sessionEmail + ")\n");
+        // sessionStorage.setItem("email", email);
+        // sessionStorage.setItem("socialSession", "naver");
+        // const sessionEmail = sessionStorage.getItem("email");
+        // alert("세션값 임시 설정(email : " + sessionEmail + ")\n");
       }
     });
   };
