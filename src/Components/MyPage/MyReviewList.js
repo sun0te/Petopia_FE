@@ -42,6 +42,7 @@ const ReviewTableContent = styled.li`
   padding: 16px;
   border-bottom: 1px solid #ddd;
   font-size: 14px;
+  cursor: pointer;
 `;
 
 const ReviewContent = styled.td`
@@ -140,14 +141,15 @@ const ReviewList = () => {
       </ReviewListWrap>
       <ReviewButtonsWrap>
         <Button
-          className="mt-2"
+          className="mt-2 float-right"
           variant="primary"
           size="sm"
           onClick={() => handleDelete(checkedReviews)}
         >
           삭제
         </Button>
-        <Link to="/">
+        {/* 수정 - 한번에 하나씩만 할 수 있게 해야 하지 않나? 논의 필요 */}
+        {/* <Link to="/">
           <Button
             className="mt-2 border-primary"
             variant="btn-outline-primary"
@@ -158,7 +160,7 @@ const ReviewList = () => {
           >
             수정
           </Button>
-        </Link>
+        </Link> */}
       </ReviewButtonsWrap>
     </ReviewContainer>
   );
