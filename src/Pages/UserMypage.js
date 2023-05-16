@@ -19,6 +19,7 @@ import {
 
 import MyInquiry from "../Components/MyPage/MyInquiry.js";
 import MyInquiryAdmin from "../Components/MyPage/MyInquiryAdmin.js";
+import axios from "axios";
 
 const UserMypage = () => {
   const [nickname, setNickname] = useState("사용자 닉네임");
@@ -69,29 +70,66 @@ const UserMypage = () => {
       // 네이버 로그아웃
       localStorage.removeItem("com.naver.nid.access_token");
       localStorage.removeItem("access_token");
-      sessionStorage.removeItem("email");
-      window.location.href = `http://localhost:3000/`;
     } else if (sessionStorage.getItem("socialSession") === "kakao") {
       // 카카오 로그아웃
-      window.Kakao.init(Rest_api_key);
-      window.Kakao.isInitialized();
-      window.Kakao.Auth.logout(function (response) {
-        if (response === true) {
-          window.Kakao.Auth.setAccessToken(undefined); // 토큰 제거
-          sessionStorage.clear(); // 세션 제거
-          localStorage.clear(); // 로컬스토리지 제거
-        }
-      });
+      // window.Kakao.init(Rest_api_key);
+      // window.Kakao.isInitialized();
+      // window.Kakao.Auth.logout(function (response) {
+      //   if (response === true) {
+      //     window.Kakao.Auth.setAccessToken(undefined); // 토큰 제거
+      //     sessionStorage.clear(); // 세션 제거
+      //     localStorage.clear(); // 로컬스토리지 제거
+      //   }
+      // });
       localStorage.removeItem("access_token");
-      sessionStorage.removeItem("socialSession");
-      window.location.href = `http://localhost:3000/`;
+    } else if (
+      sessionStorage.getItem("socialSession") === "" ||
+      sessionStorage.getItem("socialSession") === null ||
+      sessionStorage.getItem("socialSession") === undefined
+    ) {
+      alert("로그인을 해주세요");
     } else {
       alert("logout");
-      sessionStorage.removeItem("email");
-      window.location.href = `http://localhost:3000/`;
     }
+    sessionStorage.removeItem("email");
+    sessionStorage.removeItem("socialSession");
+    window.location.href = `http://localhost:3000/`;
   };
   const navigate = useNavigate();
+
+  console.log("sessionStorage: ", sessionStorage.getItem("email"));
+  const [userInfo, setUserInfo] = useState({});
+  const signUpCheck = () => {
+    if (
+      sessionStorage.getItem("email") !== undefined &&
+      sessionStorage.getItem("email") !== "" &&
+      sessionStorage.getItem("email") !== null
+    ) {
+      axios
+        .post("http://localhost:8080/user/getUser", {
+          email: sessionStorage.getItem("email"),
+        })
+        .then((res) => {
+          if (res.data === null || res.data === undefined || res.data === "") {
+            alert("회원 정보 불러오기 에러");
+
+            navigate("/");
+          } else {
+            setUserInfo({
+              profile: res.data.profileImage,
+              nickname: res.data.nickname,
+            });
+          }
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    }
+  };
+
+  useEffect(() => {
+    signUpCheck();
+  }, []);
 
   return (
     <>
@@ -104,7 +142,14 @@ const UserMypage = () => {
             <div className="profile-image">
               <label htmlFor="profile-image-upload">
                 <img
-                  src={imageSrc || defaultProfileImage}
+                  src={
+                    userInfo.profile !== null &&
+                    userInfo.profile !== undefined &&
+                    userInfo.profile !== ""
+                      ? userInfo.profile
+                      : defaultProfileImage
+                  }
+                  // src={imageSrc || defaultProfileImage}
                   alt="프로필 이미지"
                   className="profile-image-preview"
                 />
@@ -136,7 +181,13 @@ const UserMypage = () => {
               </>
             ) : (
               <>
-                <div className="user-nickname">{nickname}</div>
+                <div className="user-nickname">
+                  {userInfo.profile !== null &&
+                  userInfo.profile !== undefined &&
+                  userInfo.profile !== ""
+                    ? userInfo.nickname
+                    : "사용자 닉네임"}
+                </div>
                 <button
                   className="edit-nickname-button"
                   onClick={handleEditClick}

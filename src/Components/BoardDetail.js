@@ -8,6 +8,7 @@ import React, { useState, useEffect } from "react";
 import Comment from "./Comment";
 import Reply from "./Reply";
 import { Link } from "react-router-dom";
+import ReportModal from "../Modal/ReportModal";
 
 const Recomend_detail = () => {
   const thumbsClick = () => {
@@ -16,8 +17,20 @@ const Recomend_detail = () => {
   // const [session, setSession] = useState("admin"); //버튼 보이게 하기 위해 작성 추후 admin 삭제하고 id
   // //const session = sessionStorage.getItem("id"); 로그인 id 받아올 때 쓰면 됨
 
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <>
+      <ReportModal open={modalOpen} close={closeModal} header="게시글 신고">
+        <p>신고 사유를 선택해 주세요</p>
+      </ReportModal>
       <div className="RecomendBody">
         <h2 className="h2_Recomend">공간 보기</h2>
 
@@ -54,6 +67,7 @@ const Recomend_detail = () => {
             className="btm-sm reportBtn"
             variant="outline-danger"
             style={{ padding: "4px 0px 3px 0px" }}
+            onClick={openModal}
           >
             🚨신고
           </Button>

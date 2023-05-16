@@ -29,6 +29,18 @@ const CallBack = () => {
         payload
       );
 
+      // window.Kakao.init(Rest_api_key);
+      // window.Kakao.isInitialized();
+      // window.Kakao.Auth.logout(function (response) {
+      //   if (response === true) {
+      //     sessionStorage.clear(); // 세션 제거
+      //     localStorage.clear(); // 로컬스토리지 제거
+      //   }
+      // });
+      // //localStorage.removeItem("access_token");
+      sessionStorage.removeItem("socialSession");
+      sessionStorage.removeItem("email");
+
       // Kakao Javascript SDK 초기화
       window.Kakao.init(Rest_api_key);
       // access token 설정
