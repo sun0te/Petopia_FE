@@ -30,8 +30,10 @@ import NotFound from "./Pages/NotFound";
 import FreeBoardDetail from "./Components/UserBoards/FreeBoardDetail";
 import MyInquiry from "./Components/MyPage/MyInquiry";
 import MyInquiryAdmin from "./Components/MyPage/MyInquiryAdmin";
+import MyReview from "./Components/MyPage/MyReview";
 import { useState, useEffect } from "react";
 import ReviewMain from "./Pages/ReviewMain";
+import MyReviewDetailPage from "./Pages/MyReviewDetailPage";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -79,6 +81,8 @@ const App = () => {
       <Route path="/adminuserreport" element={<AdminUserReport />} />
       <Route path="/adminstatistics" element={<AdminStatistics />} />
       <Route path="/reviewpage/:lat/:lng" element={<ReviewMain />} />
+      <Route path="/myreview" element={<MyReview />} />
+      <Route path="myreviewdetail" element={<MyReviewDetailPage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

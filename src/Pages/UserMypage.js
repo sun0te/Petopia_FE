@@ -241,7 +241,14 @@ const UserMypage = () => {
               <div className="user-section-icon">
                 <FaComment className="user-info-icon" />
               </div>
-              <div className="user-section-title">리뷰 관리</div>
+              <div
+                className="user-section-title"
+                onClick={() => {
+                  navigate("/myreview");
+                }}
+              >
+                리뷰 관리
+              </div>
               <div className="user-section-icon2">
                 <FaAngleRight className="user-info-icon2" />
               </div>
