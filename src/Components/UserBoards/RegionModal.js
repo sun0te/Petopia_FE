@@ -13,7 +13,7 @@ const RegionModal = ({ open, close }) => {
       {open ? (
         <div className="regionModalContainer">
           <div className="regionModalHeader">
-            <b>지역선택</b>
+            <b>&nbsp;&nbsp;&nbsp;지역선택</b>
             <button
               className="regionModalBtn1"
               onClick={() => {

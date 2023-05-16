@@ -105,7 +105,6 @@ const UserBoard = () => {
                 {cityChk1 && `${cityChk1} `}
                 {boards} 게시판 보기
               </div>
-              <br />
               {/* 전체 지역 게시판 글 or 특정 지역 게시판 글 선택 버튼 */}
               {regionSelectBoxesView && (
                 <div className="RegionSelectBoxes">
