@@ -347,8 +347,8 @@ const Kakao2 = ({
                 }}
               >
                 <div className="mapinfo">
-                  <div className="maptitle infoellipsis">
-                    {position.facility_name}
+                  <div className="maptitle">
+                    <div className="infoellipsis">{position.facility_name}</div>
                     <div
                       className="mapclose"
                       onClick={(e) => {
