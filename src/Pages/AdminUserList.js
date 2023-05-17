@@ -88,6 +88,7 @@ const AdminUserList = () => {
                     <td className="member-join-date">{member.joinDate}</td>
                     <td className="member-memo">
                       <textarea
+                        className="member-memo-textarea"
                         value={member.memo}
                         onChange={(e) =>
                           setMembers(

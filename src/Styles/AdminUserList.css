@@ -48,6 +48,14 @@
     font-size: 13px;
 }
 
+.member-memo{
+    width: 50%;
+}
+
+.member-memo > .member-memo-textarea {
+    width: 90%;
+}
+
 .member-checkbox {
     width: 1em;
 }
