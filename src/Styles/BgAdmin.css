@@ -1,9 +1,9 @@
 .wrap {
-  height: calc(100% - 369px);
+    height: calc(100% - 369px);
 }
 
 /* full-bg 클래스를 가진 section 요소를 화면 전체에 꽉 차게 배치 */
-.full-bg {
+.admin-full-bg {
     position: fixed;
     top: 0;
     left: 0;
@@ -29,6 +29,7 @@
     left: 0;
     height: 100%;
     width: 50%;
+    display: none;
 }
 
 /* 로고 컨테이너 */
@@ -39,13 +40,13 @@
 }
 
 .logo img {
-  width: 11em;
-  height: auto;
+    width: 11em;
+    height: auto;
 }
 
 /* 바탕 왼쪽  */
 .main-left {
-    float  : right;
+    float: right;
     align-items: center;
     margin-right: 30%;
 }
@@ -76,14 +77,15 @@
 
 /* =========================================*/
 
-/* main 요소 모바일 크기 고정 */
-main {
+/* 관리자 main */
+.admin-main {
     position: relative;
     top: 50%;
     left: 50%;
-    width: 360px;
-    /* 모바일 평균 크기로 지정 */
-    min-height: 100vh;
+    transform: translate(-50%, 0);
+    width: 1000px;
+    height: 100%;
+    min-height: calc(100vh - 27vh);
     background-color: #ffffff;
 }
 
@@ -97,6 +99,10 @@ section {
     min-height: calc(100vh - 27vh);
 }
 
+.admin-page {
+    min-height: 100%;
+}
+
 /* 미디어쿼리 */
 @media screen and (max-width: 870px) {
 
@@ -107,6 +113,14 @@ section {
 
     /* main 요소 중앙에 배치 */
     main {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: 360px;
+    }
+
+    .admin-main{
         position: relative;
         top: 50%;
         left: 50%;

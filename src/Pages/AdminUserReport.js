@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
-import BgLeft from "../Components/BgLeft.js";
+import BgAdmin from "../Components/BgAdmin.js";
 import "../Styles/AdminUserReport.css";
 
 const AdminUserReport = () => {
@@ -82,11 +82,11 @@ const AdminUserReport = () => {
 
   return (
     <>
-      <BgLeft />
+      <BgAdmin />
 
-      <main>
+      <main className="admin-main">
         <Header />
-        <section className="user-mypagereport">
+        <section className="admin-page">
           <div className="userlist-title">
             <h3>신고 관리</h3>
           </div>
@@ -183,7 +183,7 @@ const AdminUserReport = () => {
                       <>
                         <button
                           onClick={() => console.log("신고 처리")}
-                            style={{ backgroundColor: "red", color: "white" }}
+                          style={{ backgroundColor: "red", color: "white" }}
                         >
                           신고 처리
                         </button>
