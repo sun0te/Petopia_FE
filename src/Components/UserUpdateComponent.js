@@ -45,7 +45,7 @@ const UserUpdateComponent = () => {
 
   const selectUserInfo = () => {
     axios
-      .post("http://localhost:8080/user/getuserinfo", {
+      .post("/user/getuserinfo", {
         email: sessionStorage.getItem("email"),
       })
       .then((res) => {
@@ -65,7 +65,7 @@ const UserUpdateComponent = () => {
 
   const updateUserInfo = () => {
     axios
-      .post("http://localhost:8080/user/updateuserinfo", {
+      .post("/user/updateuserinfo", {
         email: sessionStorage.getItem("email"),
         name: currentName,
         nickname: currentNickname,
