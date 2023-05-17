@@ -1,6 +1,6 @@
 import "../Styles/Login.css";
 import Button from "react-bootstrap/Button";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const FindPassword = () => {
@@ -15,6 +15,17 @@ const FindPassword = () => {
     setInputEmail(email.current.value);
     setMode(1);
   };
+
+  useEffect(() => {
+    let now_utc = Date.now() - 8 * 365 * 24 * 60 * 60000; // 지금 날짜를 밀리초로. 만 9세 이상 가입 가능
+    // getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
+    let timeOff = new Date().getTimezoneOffset() * 60000; // 분단위를 밀리초로 변환
+    // new Date(now_utc-timeOff).toISOString()은 '2022-05-11T18:09:38.134Z'를 반환
+    console.log("now_utc : ", Date.now());
+    console.log("time_off : ", timeOff);
+    let today = new Date(now_utc - timeOff).toISOString().split("T")[0];
+    document.getElementById("birth").setAttribute("max", today);
+  }, []);
 
   const renderView = () => {
     if (mode === 0) {
