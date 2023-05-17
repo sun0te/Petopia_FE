@@ -83,13 +83,13 @@ const UserMypage = () => {
       // });
       localStorage.removeItem("access_token");
     } else if (
-      sessionStorage.getItem("socialSession") === "" ||
-      sessionStorage.getItem("socialSession") === null ||
-      sessionStorage.getItem("socialSession") === undefined
+      sessionStorage.getItem("email") === undefined ||
+      sessionStorage.getItem("email") === "" ||
+      sessionStorage.getItem("email") === null
     ) {
-      alert("로그인을 해주세요");
+      alert("로그인이 필요합니다.");
     } else {
-      alert("logout");
+      alert("로그아웃 되었습니다.");
     }
     sessionStorage.removeItem("email");
     sessionStorage.removeItem("socialSession");
@@ -106,12 +106,12 @@ const UserMypage = () => {
       sessionStorage.getItem("email") !== null
     ) {
       axios
-        .post("http://localhost:8080/user/getUser", {
+        .post("http://localhost:8080/user/getuserinfo", {
           email: sessionStorage.getItem("email"),
         })
         .then((res) => {
           if (res.data === null || res.data === undefined || res.data === "") {
-            alert("회원 정보 불러오기 에러");
+            alert("로그인이 필요합니다.");
 
             navigate("/");
           } else {
@@ -124,6 +124,20 @@ const UserMypage = () => {
         .catch((e) => {
           console.error(e);
         });
+    }
+  };
+
+  const clickUserUpdate = () => {
+    if (
+      sessionStorage.getItem("email") === null ||
+      sessionStorage.getItem("email") === "" ||
+      sessionStorage.getItem("email") === undefined
+    ) {
+      alert("로그인이 필요합니다.");
+    } else if (sessionStorage.getItem("socialSession") !== "petopia") {
+      alert("펫토피아 계정만 가능합니다.");
+    } else {
+      navigate("/userupdate");
     }
   };
 
@@ -182,9 +196,9 @@ const UserMypage = () => {
             ) : (
               <>
                 <div className="user-nickname">
-                  {userInfo.profile !== null &&
-                  userInfo.profile !== undefined &&
-                  userInfo.profile !== ""
+                  {userInfo.nickname !== null &&
+                  userInfo.nickname !== undefined &&
+                  userInfo.nickname !== ""
                     ? userInfo.nickname
                     : "사용자 닉네임"}
                 </div>
@@ -216,7 +230,7 @@ const UserMypage = () => {
             <div
               className="user-section"
               onClick={() => {
-                navigate("/userupdate");
+                clickUserUpdate();
               }}
               style={{ cursor: "pointer" }}
             >

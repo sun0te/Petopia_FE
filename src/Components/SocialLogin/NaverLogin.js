@@ -29,19 +29,12 @@ const NaverLogin = ({ setGetToken, user, setUser }) => {
         const nickname = naverLogin.user.getNickName();
         const profile_image = naverLogin.user.getProfileImage();
 
-        //console.log("naverLogin.user: ", naverLogin.user);
-
         setUser({
           email: email,
           name: username,
           nickname: nickname,
           profile_image: profile_image,
         });
-
-        // sessionStorage.setItem("email", email);
-        // sessionStorage.setItem("socialSession", "naver");
-        // const sessionEmail = sessionStorage.getItem("email");
-        // alert("세션값 임시 설정(email : " + sessionEmail + ")\n");
       }
     });
   };

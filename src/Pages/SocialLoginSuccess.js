@@ -16,16 +16,25 @@ const SocialLoginSuccess = ({ user, setUser }) => {
 
   const signUpCheck = () => {
     axios
-      .post("http://localhost:8080/user/getUser", {
+      .post("http://localhost:8080/user/getuserinfo", {
         email: user.email,
+        //provider: "naver",
       })
       .then((res) => {
-        console.log(res.data);
         if (res.data === null || res.data === undefined || res.data === "") {
-        } else {
+        } else if (res.data.provider === "naver") {
           sessionStorage.setItem("email", user.email);
           sessionStorage.setItem("socialSession", "naver");
           navigate("/");
+        } else {
+          alert(
+            "이미 존재하는 이메일 입니다. \n펫토피아 계정 혹은 다른 소셜 계정과 중복되지 않는지 확인해 주세요. \n다시 로그인 하려면 네이버 로그아웃이 필요합니다."
+          );
+          localStorage.removeItem("com.naver.nid.access_token");
+          localStorage.removeItem("access_token");
+          sessionStorage.removeItem("email");
+          sessionStorage.removeItem("socialSession");
+          window.location.href = `http://localhost:3000/`;
         }
       })
       .catch((e) => {
@@ -44,7 +53,6 @@ const SocialLoginSuccess = ({ user, setUser }) => {
         profileImage: user.profile_image,
       })
       .then((res) => {
-        console.log("signupnaver res : ", res);
         alert("네이버 간편 회원가입을 환영합니다.");
         sessionStorage.setItem("email", user.email);
         sessionStorage.setItem("socialSession", "naver");
@@ -52,10 +60,6 @@ const SocialLoginSuccess = ({ user, setUser }) => {
       })
       .catch((e) => {
         console.error(e);
-        console.log("userEmail : ", user.email);
-        console.log("nickname : ", user.name);
-        console.log("nickname : ", user.nickname);
-        console.log("profileImage : ", user.profile_image);
       });
   };
 
@@ -75,11 +79,7 @@ const SocialLoginSuccess = ({ user, setUser }) => {
       setIsCheckedText("true");
     } else if (!isChecked) {
       setIsCheckedText("false");
-    } else {
-      alert("WTF");
     }
-    //alert("isCheckedText : ", isCheckedText);
-    console.log("isCheckedText : ", isCheckedText);
   };
 
   return (
