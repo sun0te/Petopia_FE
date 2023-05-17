@@ -6,7 +6,7 @@ const BgAdmin = () => {
     <section className="admin-full-bg">
       <section className="main-bg">
         {/*배경 요소 디자인 */}
-        <div className="bg-left">
+        <div className="admin-bg-left">
           <div className="logo">
             <img src="../../img/logo.png" alt="Petoia logo" />
           </div>

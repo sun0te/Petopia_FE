@@ -24,7 +24,7 @@
 }
 
 /* 배경 웹사이트 설명 공간*/
-.bg-left {
+.admin-bg-left {
     position: absolute;
     left: 0;
     height: 100%;
@@ -83,9 +83,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, 0);
-    width: 1000px;
+    width: 80%;
     height: 100%;
-    min-height: calc(100vh - 27vh);
+    min-height: 100vh;
     background-color: #ffffff;
 }
 
