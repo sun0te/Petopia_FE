@@ -164,16 +164,14 @@
     margin-top: 10px;
 }
 
-.inquiryBack{
+.inquiryBack-left {
     position: absolute; 
     left: 10px;
-    top:105px;
-     float: left;
-    text-align: center;
-    height: auto;
-    width: 30px;
-    
-    /* border: 1px solid black; */
+    margin-right: auto;
+    padding: 0 15px;
+}
+.inquiryBack-icon {
+    font-size: 20px;
 }
 
 .inquiryBackArrow{
@@ -186,4 +184,12 @@
     margin-top: -10px;
     margin-left: 13px;
     color: red;
+}
+
+.writeFormInquiry {
+    width: 95%;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: -10px;
 }

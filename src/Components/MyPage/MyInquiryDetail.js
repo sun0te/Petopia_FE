@@ -1,9 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FaAngleLeft } from "react-icons/fa";
 
 const MyInquiryDetail = ({
-  inquirytest2,
+  inquirydata,
   setInquiryAction,
   inquirydb,
   inquirydbtest,
@@ -12,7 +13,7 @@ const MyInquiryDetail = ({
   const inquiryDelete = () => {
     axios
       .post("/inquirydelete", {
-        id: inquirytest2.id,
+        id: inquirydata.id,
       })
       .then((res) => {
         inquirydbtest();
@@ -27,44 +28,46 @@ const MyInquiryDetail = ({
     <>
       <div className="inquiryHeader">
         <div
-          className="inquiryBack"
+          className="inquiryBack-left"
           onClick={() => {
             setInquiryAction(0);
           }}
         >
-          <b className="inquiryBackArrow">&lt;</b>
+          <FaAngleLeft className="inquiryBack-icon" />
         </div>
         <h4>1:1문의</h4>
       </div>
       <hr className="inquiryhr1" />
       <div className="inquiryDetail1">
         <div className="inquiryDetail2">
-          <b className="inquiryMainTitle">{inquirytest2.title}</b>
+          <b className="inquiryMainTitle">{inquirydata.title}</b>
           <br />
-          <b className="inquiryMainDate">{inquirytest2.createDate}</b>
+          <b className="inquiryMainDate">
+            {new Date(inquirydata.uploadDate).toISOString().split("T")[0]}
+          </b>
           <br />
           <br />
           <b className="inquiryMainTitle">문의내용</b>
-          <div className="inquiryDetailContent">{inquirytest2.content}</div>
+          <div className="inquiryDetailContent">{inquirydata.content}</div>
         </div>
       </div>
       <br />
       <hr className="inquiryhr1" />
-      {inquirytest2.answer === 1 ? (
+      {inquirydata.answer_status === "ANSWERED" ? (
         <>
           <div className="inquiryDetail1">
             <div className="detailSpace">
               <b className="inquiryAnswerTitle">펫토피아 답변</b>
             </div>
             <div className="inquiryDetailContent1">
-              {inquirytest2.answerContent}
+              {inquirydata.answerContent}
             </div>
           </div>
         </>
       ) : null}
       <br />
       <div className="inquiryWriteBox">
-        {inquirytest2.answer === 0 ? (
+        {inquirydata.answer_status === "PENDING" ? (
           <>
             <button
               className="inquiryBtn"

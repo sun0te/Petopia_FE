@@ -165,18 +165,16 @@ const UserMypage = () => {
                 <FaAngleRight className="user-info-icon2" />
               </div>
             </div>
-            <div className="user-section">
+            <div
+              className="user-section"
+              onClick={() => {
+                navigate("/usermypageinquiry");
+              }}
+            >
               <div className="user-section-icon">
                 <FaEdit className="user-info-icon" />
               </div>
-              <div
-                className="user-section-title"
-                onClick={() => {
-                  navigate("/usermypageinquiry");
-                }}
-              >
-                1:1 문의
-              </div>
+              <div className="user-section-title">1:1 문의</div>
               <div className="user-section-icon2">
                 <FaAngleRight className="user-info-icon2" />
               </div>
