@@ -129,13 +129,15 @@ const UserMypage = () => {
 
   const clickUserUpdate = () => {
     if (
-      sessionStorage.getItem("email") !== null &&
-      sessionStorage.getItem("email") !== "" &&
-      sessionStorage.getItem("email") !== undefined
+      sessionStorage.getItem("email") === null ||
+      sessionStorage.getItem("email") === "" ||
+      sessionStorage.getItem("email") === undefined
     ) {
-      navigate("/userupdate");
-    } else {
       alert("로그인이 필요합니다.");
+    } else if (sessionStorage.getItem("socialSession") !== "petopia") {
+      alert("펫토피아 계정만 가능합니다.");
+    } else {
+      navigate("/userupdate");
     }
   };
 

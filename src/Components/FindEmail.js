@@ -30,13 +30,8 @@ const FindEmail = () => {
           alert("입력하신 정보로 찾을 수 있는 펫토피아 계정이 없습니다.");
           window.location.href = `http://localhost:3000/findemail`;
         } else {
-          console.log(
-            "res.data : ",
-            res.data.map((user) => user.email)
-          );
           setFinduseremail(res.data.map((user) => user.email));
           setMode(1);
-          console.log("finduseremail : ", finduseremail);
         }
       })
       .catch((e) => {

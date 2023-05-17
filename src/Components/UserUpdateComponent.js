@@ -1,12 +1,24 @@
 import "../Styles/Login.css";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const UserUpdateComponent = () => {
   const name = useRef("");
   const nickname = useRef("");
   const password1 = useRef("");
   const password2 = useRef("");
+
+  const [currentName, setCurrentName] = useState("");
+  const [currentNickname, setCurrentNickname] = useState("");
+
+  const handleNameChange = (event) => {
+    setCurrentName(event.target.value);
+  };
+
+  const handleNickNameChange = (event) => {
+    setCurrentNickname(event.target.value);
+  };
 
   const regCheck = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
 
@@ -19,16 +31,55 @@ const UserUpdateComponent = () => {
       regCheck.test(password1.current.value) ||
       regCheck.test(password2.current.value)
     ) {
-      event.preventDefault();
       alert("특수문자는 포함될 수 없습니다.");
     } else if (password1.current.value !== password2.current.value) {
-      event.preventDefault();
       alert("비밀번호가 일치하지 않습니다.");
-      return;
     } else {
-      alert("회원 정보를 수정하였습니다.");
-      navigate("/login");
+      updateUserInfo();
     }
+  };
+
+  useEffect(() => {
+    selectUserInfo();
+  }, []);
+
+  const selectUserInfo = () => {
+    axios
+      .post("http://localhost:8080/user/getuserinfo", {
+        email: sessionStorage.getItem("email"),
+      })
+      .then((res) => {
+        if (res.data === null || res.data === undefined || res.data === "") {
+          alert("가입되지 않은 회원입니다.");
+        } else if (res.data.provider !== "petopia") {
+          alert("펫토피아 계정이 아닙니다.");
+        } else {
+          setCurrentName(res.data.name);
+          setCurrentNickname(res.data.nickname);
+        }
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
+
+  const updateUserInfo = () => {
+    axios
+      .post("http://localhost:8080/user/updateuserinfo", {
+        email: sessionStorage.getItem("email"),
+        name: currentName,
+        nickname: currentNickname,
+        password: password1.current.value,
+      })
+      .then((res) => {
+        alert("회원 정보를 수정하였습니다. \n다시 로그인 해주세요.");
+        sessionStorage.removeItem("email");
+        sessionStorage.removeItem("socialSession");
+        window.location.href = `http://localhost:3000/login`;
+      })
+      .catch((e) => {
+        console.error(e);
+      });
   };
 
   return (
@@ -41,7 +92,7 @@ const UserUpdateComponent = () => {
             <form
               className="validation-form is-invalid"
               id="submitForm"
-              onSubmit={(event) => clickUserUpdate(event)}
+              onSubmit={(event) => event.preventDefault()}
             >
               <div className="signUpRow">
                 <div className="col-md-5 mb-3 signUpName">
@@ -58,7 +109,10 @@ const UserUpdateComponent = () => {
                     placeholder="이름"
                     maxLength="10"
                     required
+                    value={currentName}
+                    onChange={handleNameChange}
                   />
+
                   <div className="invalid-feedback">이름을 입력해주세요.</div>
                 </div>
                 <div className="col-md-6 mb-3 signUpNickname">
@@ -75,6 +129,8 @@ const UserUpdateComponent = () => {
                     placeholder="닉네임"
                     maxLength="10"
                     required
+                    value={currentNickname}
+                    onChange={handleNickNameChange}
                   />
                   <div className="invalid-feedback">닉네임을 입력해주세요.</div>
                 </div>
@@ -123,6 +179,9 @@ const UserUpdateComponent = () => {
                 <button
                   className="btn btn-primary btn-sm btn-block signUpBtn findBtn"
                   type="submit"
+                  onClick={() => {
+                    clickUserUpdate();
+                  }}
                 >
                   수정
                 </button>

@@ -39,19 +39,6 @@ const SignUpComponent = ({ user, setUser }) => {
     ) {
       clickSignupBtn();
     }
-    console.log(
-      "checkCharacter" +
-        "\n" +
-        name.current.value +
-        "\n" +
-        nickname.current.value +
-        "\n" +
-        email.current.value +
-        "\n" +
-        birthday.current.value +
-        "\n" +
-        password1.current.value
-    );
   };
 
   const clickSignUpPetopia = (event) => {

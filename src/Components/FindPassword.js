@@ -2,18 +2,44 @@ import "../Styles/Login.css";
 import Button from "react-bootstrap/Button";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const FindPassword = () => {
   const name = useRef("");
   const email = useRef("");
-  const birthdate = useRef("");
+  const birthday = useRef("");
   const [mode, setMode] = useState(0);
+
+  const [finduserpassword, setFinduserpassword] = useState("");
+
+  useEffect(() => {}, [finduserpassword, setFinduserpassword]);
   const [inputEmail, setInputEmail] = useState("");
 
   const findPassword = (event) => {
     event.preventDefault();
     setInputEmail(email.current.value);
     setMode(1);
+  };
+
+  const clickFindPassword = () => {
+    axios
+      .post("http://localhost:8080/user/findpassword", {
+        name: name.current.value,
+        email: email.current.value,
+        birthday: birthday.current.value,
+      })
+      .then((res) => {
+        if (res.data === null || res.data === undefined || res.data === "") {
+          alert("입력하신 정보로 찾을 수 있는 펫토피아 계정이 없습니다.");
+          window.location.href = `http://localhost:3000/findpassword`;
+        } else {
+          setFinduserpassword(res.data.password);
+          setMode(1);
+        }
+      })
+      .catch((e) => {
+        console.error(e);
+      });
   };
 
   useEffect(() => {
@@ -79,7 +105,7 @@ const FindPassword = () => {
               name="email"
               placeholder="생년월일"
               data-placeholder="생년월일"
-              ref={birthdate}
+              ref={birthday}
               required
             />
             <div className="invalid-feedback">생년월일을 입력해주세요.</div>
@@ -95,6 +121,7 @@ const FindPassword = () => {
             <button
               className="btn btn-primary btn-sm btn-block signUpBtn findBtn"
               type="submit"
+              onClick={() => clickFindPassword()}
             >
               찾기
             </button>
@@ -107,6 +134,7 @@ const FindPassword = () => {
         <>
           <div className="findPasswordDiv">
             <p className="findPasswordP">{inputEmail}</p>
+            <p className="findPasswordP">{finduserpassword}</p>
 
             <div className="sendVerificationBtn">
               <Button
