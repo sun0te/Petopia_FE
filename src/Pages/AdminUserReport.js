@@ -90,7 +90,9 @@ const AdminUserReport = () => {
           <div className="userlist-title">
             <h3>신고 관리</h3>
           </div>
-          <hr className="hr-line" />
+          <div className="hr-line-container">
+            <hr className="hr-line" />
+          </div>
           <div className="report-category">
             <div className="report-category-item">
               전체 신고 <span className="category-count">10</span>
@@ -106,97 +108,99 @@ const AdminUserReport = () => {
           <div className="userlist-title">
             <p>신고 리스트</p>
           </div>
-          <table className="admin-user-report-table">
-            <thead className="admin-table-title">
-              <tr>
-                <th className="admin-user-report-item-title">제목</th>
-                <th className="admin-user-report-item-date">날짜</th>
-                <th className="admin-user-report-item-date">진행</th>
-              </tr>
-            </thead>
-            <tbody>
-              {reports.length !== 0 ? (
-                reports.map((report) => (
-                  <tr
-                    key={report.id}
-                    onClick={() => {
-                      setSelectedReport(report);
-                    }}
-                    className="admin-user-report-row"
-                  >
-                    <td
-                      className="admin-user-report-item-title"
+          <div className="report-table-container">
+            <table className="admin-user-report-table">
+              <thead className="admin-table-title">
+                <tr>
+                  <th className="admin-user-report-item-title">제목</th>
+                  <th className="admin-user-report-item-date">날짜</th>
+                  <th className="admin-user-report-item-date">진행</th>
+                </tr>
+              </thead>
+              <tbody>
+                {reports.length !== 0 ? (
+                  reports.map((report) => (
+                    <tr
+                      key={report.id}
                       onClick={() => {
-                        console.log(`Report ${report.id} clicked`);
+                        setSelectedReport(report);
                       }}
+                      className="admin-user-report-row"
                     >
-                      {report.title}
-                    </td>
-                    <td className="admin-user-report-item-date">
-                      {report.createDate}
-                    </td>
-                    <td className="admin-user-report-item-date">
-                      <div
-                        className={`admin-user-report-item-status ${
-                          report.status === "대기 중"
-                            ? "admin-user-report-item-status-processing"
-                            : ""
-                        }`}
+                      <td
+                        className="admin-user-report-item-title"
+                        onClick={() => {
+                          console.log(`Report ${report.id} clicked`);
+                        }}
                       >
-                        {report.status}
-                      </div>
+                        {report.title}
+                      </td>
+                      <td className="admin-user-report-item-date">
+                        {report.createDate}
+                      </td>
+                      <td className="admin-user-report-item-date">
+                        <div
+                          className={`admin-user-report-item-status ${
+                            report.status === "대기 중"
+                              ? "admin-user-report-item-status-processing"
+                              : ""
+                          }`}
+                        >
+                          {report.status}
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="3" className="admin-user-report-none">
+                      신고 내역이 없습니다.
                     </td>
                   </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="3" className="admin-user-report-none">
-                    신고 내역이 없습니다.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-            {selectedReport && (
-              <div className="modal-wrapper">
-                <div className="modal-content admin-user-report-modal">
-                  <div className="modal-header">
-                    <h2>신고 내용</h2>
-                  </div>
-                  <div className="modal-body">
-                    {selectedReport.status === "완료" ? (
-                      <>
-                        <b>처리완료</b>
+                )}
+              </tbody>
+              {selectedReport && (
+                <div className="modal-wrapper">
+                  <div className="modal-content admin-user-report-modal">
+                    <div className="modal-header">
+                      <h2>신고 내용</h2>
+                    </div>
+                    <div className="modal-body">
+                      {selectedReport.status === "완료" ? (
+                        <>
+                          <b>처리완료</b>
+                          <p>{selectedReport.reason}</p>
+                        </>
+                      ) : (
                         <p>{selectedReport.reason}</p>
-                      </>
-                    ) : (
-                      <p>{selectedReport.reason}</p>
-                    )}
-                  </div>
-                  <div className="modal-footer">
-                    {selectedReport.status === "완료" ? (
-                      <>
-                        <button onClick={() => setSelectedReport(null)}>
-                          취소
-                        </button>
-                      </>
-                    ) : (
-                      <>
-                        <button
-                          onClick={() => console.log("신고 처리")}
-                          style={{ backgroundColor: "red", color: "white" }}
-                        >
-                          신고 처리
-                        </button>
-                        <button onClick={() => setSelectedReport(null)}>
-                          취소
-                        </button>
-                      </>
-                    )}
+                      )}
+                    </div>
+                    <div className="modal-footer">
+                      {selectedReport.status === "완료" ? (
+                        <>
+                          <button onClick={() => setSelectedReport(null)}>
+                            취소
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            onClick={() => console.log("신고 처리")}
+                            style={{ backgroundColor: "red", color: "white" }}
+                          >
+                            신고 처리
+                          </button>
+                          <button onClick={() => setSelectedReport(null)}>
+                            취소
+                          </button>
+                        </>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
-          </table>
+              )}
+            </table>
+          </div>
         </section>
         <Footer />
       </main>
