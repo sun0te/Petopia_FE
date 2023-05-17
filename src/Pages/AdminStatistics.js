@@ -1,19 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
+import {
+  BarChart,
+  Bar,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+} from "recharts";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgAdmin from "../Components/BgAdmin.js";
 import "../Styles/AdminStatistics.css";
 
 const AdminStatistics = () => {
-  const [visitors, setVisitors] = useState({
-    monthly: 1000,
-    weekly: 250,
-    daily: 50,
-  });
-  const [posts, setPosts] = useState(20);
-  const [comments, setComments] = useState(100);
-  const [reviews, setReviews] = useState(50);
-  const [subscribers, setSubscribers] = useState(200);
+  const data = [
+    { name: "A", pv: 12, uv: 10 },
+    { name: "B", pv: 19, uv: 8 },
+    { name: "C", pv: 3, uv: 15 },
+    { name: "D", pv: 5, uv: 5 },
+    { name: "E", pv: 2, uv: 12 },
+  ];
+
+  const options = {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
 
   return (
     <>
@@ -29,25 +44,20 @@ const AdminStatistics = () => {
           <div className="statistics-container">
             <div className="statistics-item">
               <h2>방문자 수</h2>
-              <p>월간 방문자 수: {visitors.monthly}</p>
-              <p>주간 방문자 수: {visitors.weekly}</p>
-              <p>일간 방문자 수: {visitors.daily}</p>
-            </div>
-            <div className="statistics-item">
-              <h2>글 수</h2>
-              <p>등록된 글 수: {posts}</p>
-            </div>
-            <div className="statistics-item">
-              <h2>댓글 수</h2>
-              <p>등록된 댓글 수: {comments}</p>
-            </div>
-            <div className="statistics-item">
-              <h2>리뷰 수</h2>
-              <p>등록된 리뷰 수: {reviews}</p>
-            </div>
-            <div className="statistics-item">
-              <h2>가입자 수</h2>
-              <p>현재 가입자 수: {subscribers}</p>
+              <BarChart
+                width={730}
+                height={250}
+                data={data}
+                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="pv" fill="#8884d8" />
+                <Bar dataKey="uv" fill="#82ca9d" />
+              </BarChart>
             </div>
           </div>
         </section>
