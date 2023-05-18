@@ -19,6 +19,7 @@ import {
 
 import MyInquiry from "../Components/MyPage/MyInquiry.js";
 import MyInquiryAdmin from "../Components/MyPage/MyInquiryAdmin.js";
+import axios from "axios";
 
 const UserMypage = () => {
   const [nickname, setNickname] = useState("사용자 닉네임");
@@ -60,14 +61,89 @@ const UserMypage = () => {
   //   window.naver && window.naver.login && window.naver.login.init();
   // }, []);
 
+  // 카카오 rest api key
+  const Rest_api_key = `${process.env.REACT_APP_RESTAPI_KAKAO_APP_KEY}`;
+
   const handleLogoutClick = () => {
-    // 네이버 로그아웃
-    localStorage.removeItem("com.naver.nid.access_token");
-    localStorage.removeItem("access_token");
+    // alert("socialSession : " + sessionStorage.getItem("socialSession"));
+    if (sessionStorage.getItem("socialSession") === "naver") {
+      // 네이버 로그아웃
+      localStorage.removeItem("com.naver.nid.access_token");
+      localStorage.removeItem("access_token");
+    } else if (sessionStorage.getItem("socialSession") === "kakao") {
+      // 카카오 로그아웃
+      // window.Kakao.init(Rest_api_key);
+      // window.Kakao.isInitialized();
+      // window.Kakao.Auth.logout(function (response) {
+      //   if (response === true) {
+      //     window.Kakao.Auth.setAccessToken(undefined); // 토큰 제거
+      //     sessionStorage.clear(); // 세션 제거
+      //     localStorage.clear(); // 로컬스토리지 제거
+      //   }
+      // });
+      localStorage.removeItem("access_token");
+    } else if (
+      sessionStorage.getItem("email") === undefined ||
+      sessionStorage.getItem("email") === "" ||
+      sessionStorage.getItem("email") === null
+    ) {
+      alert("로그인이 필요합니다.");
+    } else {
+      alert("로그아웃 되었습니다.");
+    }
     sessionStorage.removeItem("email");
+    sessionStorage.removeItem("socialSession");
     window.location.href = `http://localhost:3000/`;
   };
   const navigate = useNavigate();
+
+  console.log("sessionStorage: ", sessionStorage.getItem("email"));
+  const [userInfo, setUserInfo] = useState({});
+  const signUpCheck = () => {
+    if (
+      sessionStorage.getItem("email") !== undefined &&
+      sessionStorage.getItem("email") !== "" &&
+      sessionStorage.getItem("email") !== null
+    ) {
+      axios
+        .post("http://localhost:8080/user/getuserinfo", {
+          email: sessionStorage.getItem("email"),
+        })
+        .then((res) => {
+          if (res.data === null || res.data === undefined || res.data === "") {
+            alert("로그인이 필요합니다.");
+
+            navigate("/");
+          } else {
+            setUserInfo({
+              profile: res.data.profileImage,
+              nickname: res.data.nickname,
+            });
+          }
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    }
+  };
+
+  const clickUserUpdate = () => {
+    if (
+      sessionStorage.getItem("email") === null ||
+      sessionStorage.getItem("email") === "" ||
+      sessionStorage.getItem("email") === undefined
+    ) {
+      alert("로그인이 필요합니다.");
+    } else if (sessionStorage.getItem("socialSession") !== "petopia") {
+      alert("펫토피아 계정만 가능합니다.");
+    } else {
+      navigate("/userupdate");
+    }
+  };
+
+  useEffect(() => {
+    signUpCheck();
+  }, []);
 
   return (
     <>
@@ -80,7 +156,14 @@ const UserMypage = () => {
             <div className="profile-image">
               <label htmlFor="profile-image-upload">
                 <img
-                  src={imageSrc || defaultProfileImage}
+                  src={
+                    userInfo.profile !== null &&
+                    userInfo.profile !== undefined &&
+                    userInfo.profile !== ""
+                      ? userInfo.profile
+                      : defaultProfileImage
+                  }
+                  // src={imageSrc || defaultProfileImage}
                   alt="프로필 이미지"
                   className="profile-image-preview"
                 />
@@ -112,7 +195,13 @@ const UserMypage = () => {
               </>
             ) : (
               <>
-                <div className="user-nickname">{nickname}</div>
+                <div className="user-nickname">
+                  {userInfo.nickname !== null &&
+                  userInfo.nickname !== undefined &&
+                  userInfo.nickname !== ""
+                    ? userInfo.nickname
+                    : "사용자 닉네임"}
+                </div>
                 <button
                   className="edit-nickname-button"
                   onClick={handleEditClick}
@@ -138,7 +227,13 @@ const UserMypage = () => {
           </div>
           <div className="separationArea" />
           <div className="user-sections">
-            <div className="user-section">
+            <div
+              className="user-section"
+              onClick={() => {
+                clickUserUpdate();
+              }}
+              style={{ cursor: "pointer" }}
+            >
               <div className="user-section-icon">
                 <FaUser className="user-info-icon" />
               </div>
@@ -162,7 +257,14 @@ const UserMypage = () => {
               <div className="user-section-icon">
                 <FaComment className="user-info-icon" />
               </div>
-              <div className="user-section-title">리뷰 관리</div>
+              <div
+                className="user-section-title"
+                onClick={() => {
+                  navigate("/myreview");
+                }}
+              >
+                리뷰 관리
+              </div>
               <div className="user-section-icon2">
                 <FaAngleRight className="user-info-icon2" />
               </div>

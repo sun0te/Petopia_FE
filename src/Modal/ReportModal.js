@@ -62,19 +62,22 @@ const ReportModal = (props) => {
                 신고 사유
               </option>
               <option value="1" onClick={(e) => clickReason(e)}>
-                선정성, 정치관련, 혐오감, 저작권 위반
+                선정성, 정치관련, 혐오감
               </option>
               <option value="2" onClick={(e) => clickReason(e)}>
-                광고성, 도배, 허위정보
+                저작권 위반
               </option>
               <option value="3" onClick={(e) => clickReason(e)}>
-                부적절한 작성자 닉네임
+                광고성, 도배, 허위정보
               </option>
               <option value="4" onClick={(e) => clickReason(e)}>
+                부적절한 작성자 닉네임
+              </option>
+              <option value="5" onClick={(e) => clickReason(e)}>
                 직접 입력
               </option>
             </Form.Select>
-            {reportReason === "4" ? (
+            {reportReason === "5" ? (
               <Form.Control
                 className="writeTitle reportReasonWrite"
                 type="text"
