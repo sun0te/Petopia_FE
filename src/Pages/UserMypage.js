@@ -253,15 +253,17 @@ const UserMypage = () => {
                 </div>
               </div>
             </NavLink>
-            <div className="user-section">
-              <div className="user-section-icon">
-                <FaComment className="user-info-icon" />
+            <NavLink to="/myreview" className="active-link">
+              <div className="user-section">
+                <div className="user-section-icon">
+                  <FaComment className="user-info-icon" />
+                </div>
+                <div className="user-section-title">리뷰 관리</div>
+                <div className="user-section-icon2">
+                  <FaAngleRight className="user-info-icon2" />
+                </div>
               </div>
-              <div className="user-section-title">리뷰 관리</div>
-              <div className="user-section-icon2">
-                <FaAngleRight className="user-info-icon2" />
-              </div>
-            </div>
+            </NavLink>
             <NavLink to="/usermypageinquiry" className="active-link">
               <div className="user-section">
                 <div className="user-section-icon">
