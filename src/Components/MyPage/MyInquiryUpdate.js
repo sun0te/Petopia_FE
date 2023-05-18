@@ -35,7 +35,8 @@ const MyInquiryUpdate = ({
         title: titleRef.current.value,
         content: contentRef.current.value,
         answer_status: inquirydata.answer_status,
-        username: inquirydata.username,
+        // username: inquirydata.username,
+        username: sessionStorage.getItem("email"),
       })
       .then((res) => {
         inquirydbtest();
