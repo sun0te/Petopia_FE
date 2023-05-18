@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Header from "../Components/Header.js";
+import HeaderAdmin from "../Components/HeaderAdmin.js";
 import Footer from "../Components/Footer.js";
-import BgLeft from "../Components/BgLeft.js";
+import BgAdmin from "../Components/BgAdmin.js";
 import { NavLink, useNavigate } from "react-router-dom";
-import "../Styles/UserMypage.css";
+import "../Styles/Adminpage.css";
 import {
   FaUser,
   FaFlag,
@@ -53,12 +53,12 @@ const AdminMypage = () => {
 
   return (
     <>
-      <BgLeft />
+      <BgAdmin />
 
-      <main>
-        <Header />
-        <section className="user-mypage">
-          <div className="user-profile">
+      <main className="admin-main">
+        <HeaderAdmin />
+        <section className="admin-page">
+          <div className="admin-profile">
             <div className="profile-image">
               <label htmlFor="profile-image-upload">
                 <img
@@ -105,7 +105,9 @@ const AdminMypage = () => {
             )}
           </div>
 
-          <hr className="hr-line" />
+          <div className="hr-line-container">
+            <hr className="hr-line" />
+          </div>
 
           <div className="user-category">
             <div className="category-item">

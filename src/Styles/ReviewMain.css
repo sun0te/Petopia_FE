@@ -1,58 +1,80 @@
 .reviewMainTitle{
-    padding: 5px;
+    margin-top: 10px;
+    padding: 0 5px;
     font-weight: bold;
     font-size: 20px;
     /* border: 1px solid black; */
 }
 
 .reviewMainRating{
+    position: relative;
+    margin-top: -3px;
     padding: 5px;
     /* border: 1px solid black; */
     font-size: 16px;
 }
 
 .reviewMainCounting{
-    margin-left: 10px;
+    position: absolute;
+    top:10px;
+    left: 160px;
     font-size: 14px;
     font-weight: bold;
     font-family: Arial;
     color: #888;
+    cursor:pointer;
 }
 
-.reviewMainList{
-    display: flex;
-    justify-content: center;
-    align-items: top;
-    /* border: 1px solid black; */
-    border-radius: 10px;
-}
-
-.reviewMainListBox{
-    /* float: left; */
-    /* border: 1px solid black; */
-    width: 110px;
-    text-align: center;
-    padding: 10px;
+.reviewMainCounting1{
+    position: absolute;
+    top:10px;
+    left: 146px;
     font-size: 14px;
     font-weight: bold;
+    font-family: Arial;
     color: #888;
+    cursor:pointer;
 }
 
-.reviewMainListTitle{
-    color: black;
+.reviewMainCounting:hover{
+    opacity: 0.8;
+}
+
+.reviewMainList {
+  display: flex;
+  justify-content: center;
+  align-items: top;
+  /* border: 1px solid black; */
+  border-radius: 10px;
+}
+
+.reviewMainListBox {
+  /* float: left; */
+  /* border: 1px solid black; */
+  width: 110px;
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #888;
+}
+
+.reviewMainListTitle {
+  color: black;
 }
 
 .reviewMainInfo{
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 5px;
     /* border: 1px solid black; */
     font-size: 14px;
 }
 
-.reviewMainInfoTitle{
-    font-size: 14px;
-}
-
 .reviewMainInfoLink{
     text-decoration: none;
+}
+
+.reviewMainRatingScore{
+    position: absolute;
+    top:7px;
 }

@@ -1,53 +1,64 @@
-import React, { useState } from "react";
-import Header from "../Components/Header.js";
+import React from "react";
+import {
+  BarChart,
+  Bar,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+} from "recharts";
+import HeaderAdmin from "../Components/HeaderAdmin.js";
 import Footer from "../Components/Footer.js";
-import BgLeft from "../Components/BgLeft.js";
+import BgAdmin from "../Components/BgAdmin.js";
 import "../Styles/AdminStatistics.css";
 
 const AdminStatistics = () => {
-  const [visitors, setVisitors] = useState({
-    monthly: 1000,
-    weekly: 250,
-    daily: 50,
-  });
-  const [posts, setPosts] = useState(20);
-  const [comments, setComments] = useState(100);
-  const [reviews, setReviews] = useState(50);
-  const [subscribers, setSubscribers] = useState(200);
+  const data = [
+    { name: "1월", view: 12, register: 10 },
+    { name: "2월", view: 19, register: 8 },
+    { name: "3월", view: 13, register: 15 },
+    { name: "4월", view: 15, register: 5 },
+    { name: "5월", view: 20, register: 12 },
+  ];
+
+  const options = {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
 
   return (
     <>
-      <BgLeft />
+      <BgAdmin />
 
-      <main>
-        <Header />
-        <section className="admin-statistics-container">
-          <div className="statistics-title">
-            <h3>통계 정보</h3>
-          </div>
-          <hr className="hr-line" />
-          <div className="statistics-container">
-            <div className="statistics-item">
-              <h2>방문자 수</h2>
-              <p>월간 방문자 수: {visitors.monthly}</p>
-              <p>주간 방문자 수: {visitors.weekly}</p>
-              <p>일간 방문자 수: {visitors.daily}</p>
+      <main className="admin-main">
+        <HeaderAdmin />
+        <section className="admin-page">
+          <div className="admin-statistics-container">
+            <div className="statistics-title">
+              <h3>Petopia 월간 통계</h3>
             </div>
-            <div className="statistics-item">
-              <h2>글 수</h2>
-              <p>등록된 글 수: {posts}</p>
-            </div>
-            <div className="statistics-item">
-              <h2>댓글 수</h2>
-              <p>등록된 댓글 수: {comments}</p>
-            </div>
-            <div className="statistics-item">
-              <h2>리뷰 수</h2>
-              <p>등록된 리뷰 수: {reviews}</p>
-            </div>
-            <div className="statistics-item">
-              <h2>가입자 수</h2>
-              <p>현재 가입자 수: {subscribers}</p>
+            <hr className="hr-line" />
+            <div className="statistics-container">
+              <div className="statistics-item">
+                <BarChart
+                  width={730}
+                  height={250}
+                  data={data}
+                  margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="view" fill="#8884d8" />
+                  <Bar dataKey="register" fill="#82ca9d" />
+                </BarChart>
+              </div>
             </div>
           </div>
         </section>

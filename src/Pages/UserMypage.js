@@ -104,7 +104,7 @@ const UserMypage = () => {
       sessionStorage.getItem("email") !== null
     ) {
       axios
-        .post("http://localhost:8080/user/getuserinfo", {
+        .post("/user/getuserinfo", {
           email: sessionStorage.getItem("email"),
         })
         .then((res) => {
@@ -207,9 +207,9 @@ const UserMypage = () => {
               </>
             )}
           </div>
-
-          <hr className="hr-line" />
-
+          <div className="hr-line-container">
+            <hr className="hr-line" />
+          </div>
           <div className="user-category">
             <div className="category-item">
               내 글 <span className="category-count">3</span>
@@ -238,40 +238,39 @@ const UserMypage = () => {
                 <FaAngleRight className="user-info-icon2" />
               </div>
             </div>
-            <div className="user-section">
-              <div className="user-section-icon">
-                <FaHeart className="user-info-icon" />
+            <NavLink to="/userWatchlist" className="active-link">
+              <div className="user-section">
+                <div className="user-section-icon">
+                  <FaHeart className="user-info-icon" />
+                </div>
+                <div className="user-section-title">관심목록</div>
+                <div className="user-section-icon2">
+                  <FaAngleRight className="user-info-icon2" />
+                </div>
               </div>
-              <div className="user-section-title">관심목록</div>
-              <div className="user-section-icon2">
-                <FaAngleRight className="user-info-icon2" />
+            </NavLink>
+            <NavLink to="/myreview" className="active-link">
+              <div className="user-section">
+                <div className="user-section-icon">
+                  <FaComment className="user-info-icon" />
+                </div>
+                <div className="user-section-title">리뷰 관리</div>
+                <div className="user-section-icon2">
+                  <FaAngleRight className="user-info-icon2" />
+                </div>
               </div>
-            </div>
-            <div className="user-section">
-              <div className="user-section-icon">
-                <FaComment className="user-info-icon" />
+            </NavLink>
+            <NavLink to="/usermypageinquiry" className="active-link">
+              <div className="user-section">
+                <div className="user-section-icon">
+                  <FaEdit className="user-info-icon" />
+                </div>
+                <div className="user-section-title">1:1 문의</div>
+                <div className="user-section-icon2">
+                  <FaAngleRight className="user-info-icon2" />
+                </div>
               </div>
-              <div className="user-section-title">리뷰 관리</div>
-              <div className="user-section-icon2">
-                <FaAngleRight className="user-info-icon2" />
-              </div>
-            </div>
-            <div className="user-section">
-              <div className="user-section-icon">
-                <FaEdit className="user-info-icon" />
-              </div>
-              <div
-                className="user-section-title"
-                onClick={() => {
-                  navigate("/usermypageinquiry");
-                }}
-              >
-                1:1 문의
-              </div>
-              <div className="user-section-icon2">
-                <FaAngleRight className="user-info-icon2" />
-              </div>
-            </div>
+            </NavLink>
           </div>
           <div className="separationArea" />
           <div class="button-wrapper">

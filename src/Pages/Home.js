@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
-import Board from "../Components/Board";
+import Board from "../Components/HomeBestBoard/Board";
 import { NavLink, useNavigate } from "react-router-dom";
 import Kakao2 from "../Map/Kakao2.js";
 import axios from "axios";
@@ -59,8 +59,8 @@ const Home = () => {
   const [maplist12, setMaplist12] = useState([]);
 
   // DB로부터 특정지역의 카테고리(업소)를 불러오기 위한 useState
-  const [city, setCity] = useState("경기도"); // 지역1 DB 컬럼 city_name에 해당
-  const [county, setCounty] = useState("안양시 만안구"); // 지역2 DB 컬럼 county_name에 해당
+  const [city, setCity] = useState("서울특별시"); // 지역1 DB 컬럼 city_name에 해당
+  const [county, setCounty] = useState("강남구"); // 지역2 DB 컬럼 county_name에 해당
 
   useEffect(() => {
     getList(); // 메인페이지 랜더링시 DB데이터 받아오는 함수 호출 ( 지역 선택시 )
@@ -69,7 +69,7 @@ const Home = () => {
   // DB로부터 장소 받아오기
   const getList = () => {
     axios
-      .get("http://localhost:8080/list", {})
+      .get("/maplist", {})
       .then((res) => {
         const { data } = res;
         const category1 = []; // 동물병원

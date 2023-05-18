@@ -66,7 +66,7 @@ const SignUpComponent = ({ user, setUser }) => {
 
   const clickSignupBtn = () => {
     axios
-      .post("http://localhost:8080/user/getuserinfo", {
+      .post("/user/getuserinfo", {
         email: email.current.value,
       })
       .then((res) => {
@@ -85,7 +85,7 @@ const SignUpComponent = ({ user, setUser }) => {
 
   const signUpPetopia = () => {
     axios
-      .post("http://localhost:8080/user/signuppetopia", {
+      .post("/user/signuppetopia", {
         email: email.current.value,
         name: name.current.value,
         nickname: nickname.current.value,

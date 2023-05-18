@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Recomend_Viewall from "./RecomendComponent/Recomend_viewall";
 import "../Styles/RecomendStyle.css";
 import { Link } from "react-router-dom";
-import Board from "./Board";
+import Board from "./HomeBestBoard/Board";
 import Paginationcm from "./Paginationcm";
 
 const Recomend = () => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Header from "../Components/Header.js";
+import HeaderAdmin from "../Components/HeaderAdmin.js";
 import Footer from "../Components/Footer.js";
-import BgLeft from "../Components/BgLeft.js";
+import BgAdmin from "../Components/BgAdmin.js";
 import "../Styles/AdminUserList.css";
 
 const AdminUserList = () => {
@@ -51,11 +51,11 @@ const AdminUserList = () => {
 
   return (
     <>
-      <BgLeft />
+      <BgAdmin />
 
-      <main>
-        <Header />
-        <section className="user-mypagelist">
+      <main className="admin-main">
+        <HeaderAdmin />
+        <section className="admin-page">
           <div className="userlist-title">
             <h3>회원 리스트</h3>
           </div>
@@ -88,6 +88,7 @@ const AdminUserList = () => {
                     <td className="member-join-date">{member.joinDate}</td>
                     <td className="member-memo">
                       <textarea
+                        className="member-memo-textarea"
                         value={member.memo}
                         onChange={(e) =>
                           setMembers(

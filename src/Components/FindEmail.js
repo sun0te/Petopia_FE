@@ -20,7 +20,7 @@ const FindEmail = () => {
 
   const clickFindEmail = () => {
     axios
-      .post("http://localhost:8080/user/findemail", {
+      .post("/user/findemail", {
         name: name.current.value,
         password: password1.current.value,
         birthday: birthday.current.value,

@@ -6,6 +6,7 @@ import BgLeft from "../Components/BgLeft.js";
 import { useNavigate, useParams } from "react-router-dom";
 import "../Styles/ReviewMain.css";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
+import StarRating from "../Components/StarRating.js";
 
 const ReviewMain = () => {
   const navigate = useNavigate();
@@ -16,9 +17,26 @@ const ReviewMain = () => {
     lat: 37.498004414546934,
     lng: 127.02770621963765,
   });
+  const [placehomepage, setPlacehomepage] = useState("");
+  const [homepageCheck, setHomepageCheck] = useState("");
+
+  const [ratingtest, setRatingtest] = useState([
+    // 리뷰 , 별점 테스트 useState1
+    5, 4, 2, 5, 4, 5, 4, 4, 5, 5, 1, 3, 5, 5, 5, 5, 5, 5,
+  ]);
+  const [ratingtest1, setRatingtest1] = useState(0); // 리뷰 , 별점 테스트 useState2
 
   useEffect(() => {
     getPlace();
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 별점 계산 코드 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    var j = 0;
+    for (var i = 0; i < ratingtest.length; i++) {
+      j += ratingtest[i];
+    }
+    j = Math.round((j / ratingtest.length) * 10) / 10;
+    setRatingtest1(j);
+    // console.log("별점 계산값", j);
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 별점 계산 코드 끝 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
   }, []);
 
   const getPlace = () => {
@@ -27,12 +45,18 @@ const ReviewMain = () => {
         params: { lat: lat, lng: lng },
       })
       .then((res) => {
-        console.log("데이터 = >", res.data);
+        // console.log("데이터 = >", res.data);
         setPlacedata(res.data);
         setReviewlocation({
           lat: res.data.lat,
           lng: res.data.lng,
         });
+        setPlacehomepage(res.data.homepage);
+        if (res.data.homepage.includes(",")) {
+          // db에서 데이터 불러올 때 홈페이지가 여러개인 경우 첫번째 링크만 자르는 작업
+          const arraytest = res.data.homepage.split(",");
+          setHomepageCheck(arraytest[0]);
+        }
       });
   };
 
@@ -68,16 +92,34 @@ const ReviewMain = () => {
             <span>{placedata.facility_name}</span>
           </div>
           <div className="reviewMainRating">
-            <b>⭐&nbsp;{/* 별점 */}4.5</b>
-            <span
-              className="reviewMainCounting"
-              onClick={() => {
-                navigate(-1); // 리뷰페이지로 이동
-              }}
-            >
-              리뷰 {/* 리뷰개수 */}13개 &gt;
-            </span>
+            <StarRating ratingtest1={ratingtest1} />
+            {ratingtest.length !== 0 ? (
+              <b className="reviewMainRatingScore">({ratingtest1})</b>
+            ) : (
+              <b className="reviewMainRatingScore">(0)</b>
+            )}
+            {ratingtest.length !== 0 ? (
+              <span
+                className="reviewMainCounting"
+                onClick={() => {
+                  navigate(-1); // 리뷰페이지로 이동
+                }}
+              >
+                리뷰 {/* 리뷰개수 */}
+                {ratingtest.length}개 &gt;
+              </span>
+            ) : (
+              <span
+                className="reviewMainCounting1"
+                onClick={() => {
+                  navigate(-1); // 리뷰페이지로 이동
+                }}
+              >
+                리뷰 작성하기 &gt;
+              </span>
+            )}
           </div>
+          <hr style={{ height: "3px", backgroundColor: "lightgray" }} />
           <div className="reviewMainList">
             <div className="reviewMainListBox">
               <span className="reviewMainListTitle">반려동물 체형</span>
@@ -97,8 +139,9 @@ const ReviewMain = () => {
               <span className="">{placedata.pet_restriction_info}</span>
             </div>
           </div>
+          <hr style={{ height: "3px", backgroundColor: "lightgray" }} />
           <div className="reviewMainInfo">
-            <table border={0}>
+            <table border={0} className="reviewMainInfoTa">
               <thead>
                 <tr>
                   <th width={"100px"}>영업정보</th>
@@ -120,19 +163,53 @@ const ReviewMain = () => {
                 </tr>
                 <tr>
                   <td width={"100px"}>홈페이지</td>
-                  {placedata.homepage === "정보없음" ? (
-                    <td>{placedata.homepage}</td>
+                  {placehomepage.includes(",") === true ? ( // 홈페이지가 여러개일 경우 첫번째 링크만 가져옴
+                    homepageCheck.includes("http") === true ? (
+                      <td>
+                        <a
+                          href={homepageCheck}
+                          target="blank"
+                          className="reviewMainInfoLink"
+                        >
+                          바로가기
+                        </a>
+                      </td>
+                    ) : (
+                      <td>
+                        <a
+                          href={"http://" + homepageCheck}
+                          target="blank"
+                          className="reviewMainInfoLink"
+                        >
+                          바로가기
+                        </a>
+                      </td>
+                    )
+                  ) : placedata.homepage !== "정보없음" ? ( // 홈페이지가 하나일 경우
+                    placehomepage.includes("http") === true ? ( // http가 붙어 있는지 확인
+                      <td>
+                        <a
+                          href={placedata.homepage}
+                          target="blank"
+                          className="reviewMainInfoLink"
+                        >
+                          바로가기
+                        </a>
+                      </td>
+                    ) : (
+                      // http가 붙어있지 않으면 붙임
+                      <td>
+                        <a
+                          href={"http://" + placedata.homepage}
+                          target="blank"
+                          className="reviewMainInfoLink"
+                        >
+                          바로가기
+                        </a>
+                      </td>
+                    )
                   ) : (
-                    // <td>{placedata.homepage}</td>
-                    <td>
-                      <a
-                        href={"http://" + placedata.homepage}
-                        target="blank"
-                        className="reviewMainInfoLink"
-                      >
-                        {placedata.homepage}
-                      </a>
-                    </td>
+                    <td>{placedata.homepage}</td>
                   )}
                 </tr>
                 <tr>

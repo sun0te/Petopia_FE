@@ -23,7 +23,7 @@ const FindPassword = () => {
 
   const clickFindPassword = () => {
     axios
-      .post("http://localhost:8080/user/findpassword", {
+      .post("/user/findpassword", {
         name: name.current.value,
         email: email.current.value,
         birthday: birthday.current.value,
