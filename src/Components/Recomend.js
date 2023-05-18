@@ -11,7 +11,7 @@ import Paginationcm from "./Paginationcm";
 const Recomend = () => {
   return (
     <div className="RecomendBody">
-      <h2 className="h2_Recomend">공간 보기</h2>
+      <h2 className="h2_Recomend">여행 추천</h2>
 
       <div>
         <Form className="d-flex">
