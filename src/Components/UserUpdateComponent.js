@@ -27,9 +27,7 @@ const UserUpdateComponent = () => {
   const clickUserUpdate = (event) => {
     if (
       regCheck.test(name.current.value) ||
-      regCheck.test(nickname.current.value) ||
-      regCheck.test(password1.current.value) ||
-      regCheck.test(password2.current.value)
+      regCheck.test(nickname.current.value)
     ) {
       alert("특수문자는 포함될 수 없습니다.");
     } else if (password1.current.value !== password2.current.value) {

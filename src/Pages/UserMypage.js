@@ -65,7 +65,6 @@ const UserMypage = () => {
   const Rest_api_key = `${process.env.REACT_APP_RESTAPI_KAKAO_APP_KEY}`;
 
   const handleLogoutClick = () => {
-    // alert("socialSession : " + sessionStorage.getItem("socialSession"));
     if (sessionStorage.getItem("socialSession") === "naver") {
       // 네이버 로그아웃
       localStorage.removeItem("com.naver.nid.access_token");
@@ -97,7 +96,6 @@ const UserMypage = () => {
   };
   const navigate = useNavigate();
 
-  console.log("sessionStorage: ", sessionStorage.getItem("email"));
   const [userInfo, setUserInfo] = useState({});
   const signUpCheck = () => {
     if (
@@ -134,8 +132,6 @@ const UserMypage = () => {
       sessionStorage.getItem("email") === undefined
     ) {
       alert("로그인이 필요합니다.");
-    } else if (sessionStorage.getItem("socialSession") !== "petopia") {
-      alert("펫토피아 계정만 가능합니다.");
     } else {
       navigate("/userupdate");
     }
