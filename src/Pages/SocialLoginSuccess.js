@@ -1,13 +1,86 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../Styles/Login.css";
+import axios from "axios";
 
 const SocialLoginSuccess = ({ user, setUser }) => {
-  useEffect(() => {}, [user]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    signUpCheck();
+  }, [user]);
+
+  const signUpCheck = () => {
+    axios
+      .post("/user/getuserinfo", {
+        email: user.email,
+        //provider: "naver",
+      })
+      .then((res) => {
+        if (res.data === null || res.data === undefined || res.data === "") {
+        } else if (res.data.provider === "naver") {
+          sessionStorage.setItem("email", user.email);
+          sessionStorage.setItem("socialSession", "naver");
+          navigate("/");
+        } else {
+          alert(
+            "이미 존재하는 이메일 입니다. \n펫토피아 계정 혹은 다른 소셜 계정과 중복되지 않는지 확인해 주세요. \n다시 로그인 하려면 네이버 로그아웃이 필요합니다."
+          );
+          localStorage.removeItem("com.naver.nid.access_token");
+          localStorage.removeItem("access_token");
+          sessionStorage.removeItem("email");
+          sessionStorage.removeItem("socialSession");
+          window.location.href = `http://localhost:3000/`;
+        }
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
+
+  const signUpNaver = () => {
+    axios
+      .post("/user/signupnaver", {
+        email: user.email,
+        provider: "naver",
+        password: "",
+        name: user.name,
+        nickname: user.nickname,
+        profileImage: user.profile_image,
+      })
+      .then((res) => {
+        alert("네이버 간편 회원가입을 환영합니다.");
+        sessionStorage.setItem("email", user.email);
+        sessionStorage.setItem("socialSession", "naver");
+        navigate("/");
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
+
+  const clickSignUpNaver = () => {
+    if (isChecked) {
+      signUpNaver();
+    } else if (!isChecked) {
+      alert("개인정보 수집및 이용에 동의해 주세요.");
+    }
+  };
+
+  const [isChecked, setIsChecked] = useState(false);
+  const [isCheckedText, setIsCheckedText] = useState("false");
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+    if (isChecked) {
+      setIsCheckedText("true");
+    } else if (!isChecked) {
+      setIsCheckedText("false");
+    }
+  };
 
   return (
     <>
@@ -68,6 +141,8 @@ const SocialLoginSuccess = ({ user, setUser }) => {
                       className="custom-control-input signupCheckAgreeBox"
                       id="aggrement"
                       required
+                      checked={isChecked}
+                      onChange={handleCheckboxChange}
                     />
                     <label className="custom-control-label" htmlFor="aggrement">
                       &nbsp;&nbsp;개인정보 수집 및 이용에 동의합니다.
@@ -102,7 +177,8 @@ const SocialLoginSuccess = ({ user, setUser }) => {
                     <div className="mb-4 signUpBtnDiv">
                       <button
                         className="btn btn-outline-primary btn-sm btn-block signUpBtn"
-                        type="submit"
+                        type="button"
+                        onClick={() => clickSignUpNaver()}
                       >
                         회원가입
                       </button>

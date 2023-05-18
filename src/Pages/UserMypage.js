@@ -83,13 +83,13 @@ const UserMypage = () => {
       // });
       localStorage.removeItem("access_token");
     } else if (
-      sessionStorage.getItem("socialSession") === "" ||
-      sessionStorage.getItem("socialSession") === null ||
-      sessionStorage.getItem("socialSession") === undefined
+      sessionStorage.getItem("email") === undefined ||
+      sessionStorage.getItem("email") === "" ||
+      sessionStorage.getItem("email") === null
     ) {
-      alert("로그인을 해주세요");
+      alert("로그인이 필요합니다.");
     } else {
-      alert("logout");
+      alert("로그아웃 되었습니다.");
     }
     sessionStorage.removeItem("email");
     sessionStorage.removeItem("socialSession");
@@ -106,12 +106,12 @@ const UserMypage = () => {
       sessionStorage.getItem("email") !== null
     ) {
       axios
-        .post("http://localhost:8080/user/getUser", {
+        .post("http://localhost:8080/user/getuserinfo", {
           email: sessionStorage.getItem("email"),
         })
         .then((res) => {
           if (res.data === null || res.data === undefined || res.data === "") {
-            alert("회원 정보 불러오기 에러");
+            alert("로그인이 필요합니다.");
 
             navigate("/");
           } else {
@@ -124,6 +124,20 @@ const UserMypage = () => {
         .catch((e) => {
           console.error(e);
         });
+    }
+  };
+
+  const clickUserUpdate = () => {
+    if (
+      sessionStorage.getItem("email") === null ||
+      sessionStorage.getItem("email") === "" ||
+      sessionStorage.getItem("email") === undefined
+    ) {
+      alert("로그인이 필요합니다.");
+    } else if (sessionStorage.getItem("socialSession") !== "petopia") {
+      alert("펫토피아 계정만 가능합니다.");
+    } else {
+      navigate("/userupdate");
     }
   };
 
@@ -182,9 +196,9 @@ const UserMypage = () => {
             ) : (
               <>
                 <div className="user-nickname">
-                  {userInfo.profile !== null &&
-                  userInfo.profile !== undefined &&
-                  userInfo.profile !== ""
+                  {userInfo.nickname !== null &&
+                  userInfo.nickname !== undefined &&
+                  userInfo.nickname !== ""
                     ? userInfo.nickname
                     : "사용자 닉네임"}
                 </div>
@@ -197,9 +211,9 @@ const UserMypage = () => {
               </>
             )}
           </div>
-
-          <hr className="hr-line" />
-
+          <div className="hr-line-container">
+            <hr className="hr-line" />
+          </div>
           <div className="user-category">
             <div className="category-item">
               내 글 <span className="category-count">3</span>
@@ -216,7 +230,7 @@ const UserMypage = () => {
             <div
               className="user-section"
               onClick={() => {
-                navigate("/userupdate");
+                clickUserUpdate();
               }}
               style={{ cursor: "pointer" }}
             >
@@ -228,47 +242,51 @@ const UserMypage = () => {
                 <FaAngleRight className="user-info-icon2" />
               </div>
             </div>
-            <div className="user-section">
-              <div className="user-section-icon">
-                <FaHeart className="user-info-icon" />
+            <NavLink to="/userWatchlist" className="active-link">
+              <div className="user-section">
+                <div className="user-section-icon">
+                  <FaHeart className="user-info-icon" />
+                </div>
+                <div className="user-section-title">관심목록</div>
+                <div className="user-section-icon2">
+                  <FaAngleRight className="user-info-icon2" />
+                </div>
               </div>
-              <div className="user-section-title">관심목록</div>
-              <div className="user-section-icon2">
-                <FaAngleRight className="user-info-icon2" />
-              </div>
-            </div>
+            </NavLink>
             <div className="user-section">
               <div className="user-section-icon">
                 <FaComment className="user-info-icon" />
               </div>
-              <div
-                className="user-section-title"
-                onClick={() => {
-                  navigate("/myreview");
-                }}
-              >
-                리뷰 관리
-              </div>
+              <div className="user-section-title">리뷰 관리</div>
               <div className="user-section-icon2">
                 <FaAngleRight className="user-info-icon2" />
               </div>
             </div>
-            <div className="user-section">
+            <div
+              className="user-section"
+              onClick={() => {
+                navigate("/usermypageinquiry");
+              }}
+            >
               <div className="user-section-icon">
                 <FaEdit className="user-info-icon" />
               </div>
-              <div
-                className="user-section-title"
-                onClick={() => {
-                  navigate("/usermypageinquiry");
-                }}
-              >
-                1:1 문의
-              </div>
+              <div className="user-section-title">1:1 문의</div>
               <div className="user-section-icon2">
                 <FaAngleRight className="user-info-icon2" />
               </div>
             </div>
+            <NavLink to="/usermypageinquiry" className="active-link">
+              <div className="user-section">
+                <div className="user-section-icon">
+                  <FaEdit className="user-info-icon" />
+                </div>
+                <div className="user-section-title">1:1 문의</div>
+                <div className="user-section-icon2">
+                  <FaAngleRight className="user-info-icon2" />
+                </div>
+              </div>
+            </NavLink>
           </div>
           <div className="separationArea" />
           <div class="button-wrapper">

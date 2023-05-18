@@ -1,39 +1,10 @@
 import React, { useState, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import { BsTrash3 } from "react-icons/bs";
-import ListGroup from "react-bootstrap/ListGroup";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import axios from "axios";
+import { FaAngleLeft } from "react-icons/fa";
 
-const MyInquiryWrite = ({
-  inquirytest,
-  setInquirytest,
-  setInquiryAction,
-  inquirydbtest,
-}) => {
-  const [selectedFiles, setSelectedFiles] = useState([]);
-
-  const inputRef = useRef(null);
-
-  const handleFileInputChange = (event) => {
-    setSelectedFiles([...selectedFiles, ...event.target.files]);
-  };
-
-  const handleRemoveImage = (index) => {
-    const newFiles = [...selectedFiles];
-    newFiles.splice(index, 1);
-    setSelectedFiles(newFiles);
-  };
-
-  const handleUploadClick = () => {
-    console.log(selectedFiles);
-  };
-
-  const handleClick = () => {
-    inputRef.current.click();
-  };
-
+const MyInquiryWrite = ({ setInquiryAction, inquirydbtest }) => {
   // ㅡㅡㅡㅡㅡㅡㅡㅡㅡdb 연동 테스트ㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
   const titleRef = useRef();
@@ -58,14 +29,10 @@ const MyInquiryWrite = ({
       .post("/inquirywrite", {
         title: titleRef.current.value,
         content: contentRef.current.value,
-        answer: 0,
-        username:
-          window.sessionStorage.getItem("id") !== null
-            ? window.sessionStorage.getItem("id")
-            : "",
+        answer_status: "PENDING",
+        username: "test1", // 로그인 구현시 수정
       })
       .then((res) => {
-        console.log("inquirywrite=>", res);
         inquirydbtest();
         setInquiryAction(0);
       })
@@ -75,32 +42,60 @@ const MyInquiryWrite = ({
   };
   // ㅡㅡㅡㅡㅡㅡㅡㅡㅡdb 연동 테스트ㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
+  const inquiryEnter = () => {
+    if (titleRef.current.value !== "") {
+      contentRef.current.focus();
+    } else {
+      setInquiryalert(1);
+    }
+  };
+
+  const inquiryTitleChange = () => {
+    if (titleRef.current.value !== "" || titleRef.current.value !== undefined) {
+      setInquiryalert(0);
+    }
+  };
+
+  const inquiryContentChange = () => {
+    if (
+      contentRef.current.value !== "" ||
+      contentRef.current.value !== undefined
+    ) {
+      setInquiryalert(0);
+    }
+  };
+
   return (
     <>
       <div className="inquiryHeader">
         <div
-          className="inquiryBack"
+          className="inquiryBack-left"
           onClick={() => {
-            if (window.confirm("뒤로가시겠습니까?")) {
-              setInquiryAction(0);
-            } else {
-              return;
-            }
+            setInquiryAction(0);
           }}
         >
-          <b className="inquiryBackArrow">&lt;</b>
+          <FaAngleLeft className="inquiryBack-icon" />
         </div>
         <h4>1:1문의</h4>
       </div>
-      <div className="writeForm">
+      <div className="writeFormInquiry">
         <Form>
           <Form.Group className="mb-3">
             <Form.Label></Form.Label>
             <Form.Control
               className="writeTitle"
-              type="email"
+              type="text"
               placeholder="제목"
               ref={titleRef}
+              onChange={() => {
+                inquiryTitleChange();
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  inquiryEnter();
+                }
+              }}
             />
           </Form.Group>
           {inquiryalert === 1 ? (
@@ -117,6 +112,9 @@ const MyInquiryWrite = ({
               className="contentForm"
               ref={contentRef}
               style={{ resize: "none" }}
+              onChange={() => {
+                inquiryContentChange();
+              }}
             />
           </Form.Group>
           {inquiryalert === 2 ? (

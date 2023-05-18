@@ -80,5 +80,5 @@
 .maplink:hover{
     text-decoration: underline;
 }
-.infoellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.infoellipsis {width: 200px; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 

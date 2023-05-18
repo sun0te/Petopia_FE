@@ -69,6 +69,7 @@
 /* 카테고리 목록 전체 div */
 .nav-tabs {
     display: flex;
+    width: 100%;
     padding: 3px;
     padding-bottom: 0;
     margin: 0;

@@ -105,6 +105,12 @@
 
 /*====================================*/
 
+.hr-line-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .hr-line {
   border-top: 1px solid rgb(121, 121, 121);
   width: 80%;

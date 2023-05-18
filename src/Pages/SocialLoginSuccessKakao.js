@@ -27,9 +27,6 @@ const SocialLoginSuccessKakao = () => {
       setNickName(data.properties.nickname);
       setProfileImage(data.properties.thumbnail_image);
 
-      console.log(data);
-      console.log("setUserEmail : ", data.kakao_account.email);
-      console.log("setNickName : ", data.properties.nickname);
       sessionStorage.setItem("socialSession", "kakao");
       sessionStorage.setItem("email", data.kakao_account.email);
     } catch (err) {
@@ -51,40 +48,38 @@ const SocialLoginSuccessKakao = () => {
       setIsCheckedText("true");
     } else if (!isChecked) {
       setIsCheckedText("false");
-    } else {
-      alert("WTF");
     }
-    //alert("isCheckedText : ", isCheckedText);
-    console.log("isCheckedText : ", isCheckedText);
   };
 
   const signUpCheck = () => {
     axios
-      .post("http://localhost:8080/user/getUser", {
+      .post("/user/getuserinfo", {
         email: userEmail,
-        // provider: "kakao",
+        //provider: "kakao",
       })
       .then((res) => {
-        console.log(res.data);
+        console.log("res.data.provider : ", res.data.provider);
         if (res.data === null || res.data === undefined || res.data === "") {
           // signUpKakao();
-        } else {
+        } else if (res.data.provider === "kakao") {
           sessionStorage.setItem("email", userEmail);
+          sessionStorage.setItem("socialSession", "kakao");
           navigate("/");
-          // alert(
-          //   "이미 존재하는 이메일 입니다. \n같은 이메일로 펫토피아 혹은 네이버 계정으로 가입했는지 확인해 주세요."
-          // );
+        } else {
+          alert(
+            "이미 존재하는 이메일 입니다. \n펫토피아 계정 혹은 다른 소셜 계정과 중복되지 않는지 확인해 주세요."
+          );
+          navigate("/login");
         }
       })
       .catch((e) => {
         console.error(e);
-        console.log("userEmail : ", userEmail);
       });
   };
 
   const signUpKakao = () => {
     axios
-      .post("http://localhost:8080/user/signupkakao", {
+      .post("/user/signupkakao", {
         email: userEmail,
         provider: provider,
         password: "",
@@ -92,17 +87,13 @@ const SocialLoginSuccessKakao = () => {
         profileImage: profileImage,
       })
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         alert("카카오 간편 회원가입을 환영합니다.");
         navigate("/");
       })
       .catch((e) => {
         sessionStorage.setItem("email", userEmail);
         console.error(e);
-        console.log("userEmail : ", userEmail);
-        console.log("nickname : ", nickName);
-        console.log("profileImage : ", profileImage);
-        console.log("provider : ", provider);
       });
   };
 
