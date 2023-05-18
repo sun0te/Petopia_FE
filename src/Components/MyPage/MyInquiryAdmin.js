@@ -55,30 +55,32 @@ const MyInquiryAdmin = () => {
     <>
       <BgLeft />
 
-      <main>
+      <main className="admin-main">
         <Header />
-        <section>
-          {inquiryAdminAction === 0 && ( // 문의 리스트
-            <MyInquiryAdminList
-              inquiryAdmintest={inquiryAdmintest}
-              setInquiryAdmintest2={setInquiryAdmintest2}
-              setInquiryAdminAction={setInquiryAdminAction}
-            />
-          )}
-          {inquiryAdminAction === 1 && ( // 문의 작성
-            <MyInquiryAdminWrite
-              inquiryAdmintest={inquiryAdmintest}
-              setInquiryAdminAction={setInquiryAdminAction}
-            />
-          )}
-          {inquiryAdminAction === 2 && ( // 문의 상세내용
-            <MyInquiryAdminDetail
-              inquiryAdmintest={inquiryAdmintest}
-              inquiryAdmintest2={inquiryAdmintest2}
-              setInquiryAdmintest2={setInquiryAdmintest2}
-              setInquiryAdminAction={setInquiryAdminAction}
-            />
-          )}
+        <section className="admin-page">
+          <div className="admin-Inquiry-container">
+            {inquiryAdminAction === 0 && ( // 문의 리스트
+              <MyInquiryAdminList
+                inquiryAdmintest={inquiryAdmintest}
+                setInquiryAdmintest2={setInquiryAdmintest2}
+                setInquiryAdminAction={setInquiryAdminAction}
+              />
+            )}
+            {inquiryAdminAction === 1 && ( // 문의 작성
+              <MyInquiryAdminWrite
+                inquiryAdmintest={inquiryAdmintest}
+                setInquiryAdminAction={setInquiryAdminAction}
+              />
+            )}
+            {inquiryAdminAction === 2 && ( // 문의 상세내용
+              <MyInquiryAdminDetail
+                inquiryAdmintest={inquiryAdmintest}
+                inquiryAdmintest2={inquiryAdmintest2}
+                setInquiryAdmintest2={setInquiryAdmintest2}
+                setInquiryAdminAction={setInquiryAdminAction}
+              />
+            )}
+          </div>
         </section>
         <Footer />
       </main>
