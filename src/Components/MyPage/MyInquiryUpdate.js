@@ -1,83 +1,116 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import { BsTrash3 } from "react-icons/bs";
-import ListGroup from "react-bootstrap/ListGroup";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import axios from "axios";
+import { FaAngleLeft } from "react-icons/fa";
 
-const MyInquiryUpdate = ({ inquirytest2, setInquiryAction, inquirydbtest }) => {
-  const [selectedFiles, setSelectedFiles] = useState([]);
-
-  const inputRef = useRef(null);
-
-  const handleFileInputChange = (event) => {
-    setSelectedFiles([...selectedFiles, ...event.target.files]);
-  };
-
-  const handleRemoveImage = (index) => {
-    const newFiles = [...selectedFiles];
-    newFiles.splice(index, 1);
-    setSelectedFiles(newFiles);
-  };
-
-  const handleUploadClick = () => {
-    console.log(selectedFiles);
-  };
-
-  const handleClick = () => {
-    inputRef.current.click();
-  };
-
+const MyInquiryUpdate = ({
+  inquirydata,
+  setInquiryAction,
+  inquirydbtest,
+  setInquirydata,
+}) => {
   // 문의 업데이트 , DB 연동 테스트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
   const titleRef = useRef();
   const contentRef = useRef();
 
   const inquiryUpdate = () => {
+    if (titleRef.current.value === "" || titleRef.current.value === undefined) {
+      setInquiryalert1(1);
+      titleRef.current.focus();
+      return false;
+    } else if (
+      contentRef.current.value === "" ||
+      contentRef.current.value === undefined
+    ) {
+      setInquiryalert1(2);
+      contentRef.current.focus();
+      return false;
+    }
+
     axios
       .post("/inquiryupdate", {
-        id: inquirytest2.id,
+        id: inquirydata.id,
         title: titleRef.current.value,
         content: contentRef.current.value,
+        answer_status: inquirydata.answer_status,
+        username: inquirydata.username,
       })
       .then((res) => {
         inquirydbtest();
+        setInquirydata(res.data);
+        setInquiryAction(2);
       })
       .catch((e) => {
         console.error(e);
       });
   };
 
+  const [inquiryalert1, setInquiryalert1] = useState(0);
+
+  const inquiryEnter = () => {
+    if (titleRef.current.value !== "") {
+      contentRef.current.focus();
+    } else {
+      setInquiryalert1(1);
+    }
+  };
+
+  const inquiryTitleChange = () => {
+    if (titleRef.current.value !== "" || titleRef.current.value !== undefined) {
+      setInquiryalert1(0);
+    }
+  };
+
+  const inquiryContentChange = () => {
+    if (
+      contentRef.current.value !== "" ||
+      contentRef.current.value !== undefined
+    ) {
+      setInquiryalert1(0);
+    }
+  };
+
   return (
     <>
       <div className="inquiryHeader">
         <div
-          className="inquiryBack"
+          className="inquiryBack-left"
           onClick={() => {
-            if (window.confirm("뒤로가시겠습니까?")) {
-              setInquiryAction(2);
-            } else {
-              return;
-            }
+            setInquiryAction(0);
           }}
         >
-          <b className="inquiryBackArrow">&lt;</b>
+          <FaAngleLeft className="inquiryBack-icon" />
         </div>
         <h4>1:1문의</h4>
       </div>
-      <div className="writeForm">
+      <div className="writeFormInquiry">
         <Form>
           <Form.Group className="mb-3">
             <Form.Label></Form.Label>
             <Form.Control
               className="writeTitle"
-              type="email"
+              type="text"
               placeholder="제목"
               ref={titleRef}
-              defaultValue={inquirytest2.title}
+              defaultValue={inquirydata.title}
+              onChange={() => {
+                inquiryTitleChange();
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  inquiryEnter();
+                }
+              }}
             />
           </Form.Group>
+          {inquiryalert1 === 1 ? (
+            <div className="inquiryWriteAlert">제목을 입력하세요.</div>
+          ) : (
+            <div className="inquiryWriteAlert">&nbsp;</div>
+          )}
           <Form.Group className="mb-3 writeFormContent">
             <Form.Label></Form.Label>
             <Form.Control
@@ -86,66 +119,26 @@ const MyInquiryUpdate = ({ inquirytest2, setInquiryAction, inquirydbtest }) => {
               placeholder="문의 내용을 입력하세요"
               className="contentForm"
               ref={contentRef}
-              defaultValue={inquirytest2.content}
+              defaultValue={inquirydata.content}
               style={{ resize: "none" }}
+              onChange={() => {
+                inquiryContentChange();
+              }}
             />
           </Form.Group>
+          {inquiryalert1 === 2 ? (
+            <div className="inquiryWriteAlert">내용을 입력하세요.</div>
+          ) : (
+            <div className="inquiryWriteAlert">&nbsp;</div>
+          )}
         </Form>
       </div>
-      {/* <div>
-          <div>
-            <div className="uploadBtn">
-              <Button
-                variant="outline-secondary"
-                className=""
-                onClick={handleClick}
-              >
-                <img className="uploadBtnImg" src="img/uploading.png" alt="" />
-              </Button>
-            </div>
-  
-            <input
-              className="uploadInput"
-              type="file"
-              multiple
-              onChange={handleFileInputChange}
-              ref={inputRef}
-            />
-          </div>
-          <div className="uploadImgDiv">
-            <ListGroup>
-              {selectedFiles.map((file, index) => (
-                <ListGroup.Item className="listGroupItem">
-                  <div key={index}>
-                    <img
-                      className="uploadImg"
-                      src={URL.createObjectURL(file)}
-                      alt={`${file.name}`}
-                    />
-                    <p className="imgTitle">{file.name}</p>
-                    <div className="imgDeleteBtnDiv">
-                      <button
-                        className="imgDeleteBtn"
-                        onClick={() => handleRemoveImage(index)}
-                      >
-                        <BsTrash3 />
-                      </button>
-                    </div>
-                  </div>
-                </ListGroup.Item>
-              ))}
-            </ListGroup>
-          </div>
-        </div> */}
-      {/* <br /> <br /> <br /> */}
       <div className="inquiryWriteBox">
         <button
           className="inquiryBtn"
           onClick={() => {
             if (window.confirm("수정하시겠습니까?")) {
-              // 저장 코드 들어감
               inquiryUpdate();
-              setInquiryAction(0);
             } else {
               return;
             }
@@ -153,18 +146,6 @@ const MyInquiryUpdate = ({ inquirytest2, setInquiryAction, inquirydbtest }) => {
         >
           수정
         </button>
-        {/* <button
-          className="inquiryBtn2"
-          onClick={() => {
-            if (window.confirm("취소하시겠습니까?")) {
-              setInquiryAction(0);
-            } else {
-              return;
-            }
-          }}
-        >
-          취소
-        </button> */}
       </div>
     </>
   );

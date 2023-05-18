@@ -42,7 +42,10 @@ const Kakao2 = ({
   // -----모달창 구현 끝
 
   // -----현재 위치 받아오기 시작-----
-  const [location, setLoacation] = useState({
+
+  const [maplevel, setMaplevel] = useState(5); // 지역 클릭시 지도레벨 초기화를 위한 useState
+
+  const [location, setLocation] = useState({
     latitude: 37.498004414546934,
     longitude: 127.02770621963765,
   }); // 현재 위치를 저장할 useState , default 위치는 37, 127
@@ -54,7 +57,7 @@ const Kakao2 = ({
   // const successHandler = (response) => {
   //   console.log(response); // coords: GeolocationCoordinates {latitude: 위도, longitude: 경도, …} timestamp: 1673446873903
   //   const { latitude, longitude } = response.coords;
-  //   setLoacation({ latitude, longitude });
+  //   setLocation({ latitude, longitude });
   // };
 
   // const errorHandler = (error) => {
@@ -344,8 +347,8 @@ const Kakao2 = ({
                 }}
               >
                 <div className="mapinfo">
-                  <div className="maptitle infoellipsis">
-                    {position.facility_name}
+                  <div className="maptitle">
+                    <div className="infoellipsis">{position.facility_name}</div>
                     <div
                       className="mapclose"
                       onClick={(e) => {
@@ -421,7 +424,7 @@ const Kakao2 = ({
             width: "100%",
             height: "450px",
           }}
-          level={5} // 지도의 확대 레벨
+          level={maplevel} // 지도의 확대 레벨
         >
           {/* -----병원----- */}
           {/* -----마커 클러스터화 시작----- */}
@@ -708,7 +711,9 @@ const Kakao2 = ({
         county={county}
         setCounty={setCounty}
         location={location}
-        setLoacation={setLoacation}
+        setLocation={setLocation}
+        maplevel={maplevel}
+        setMaplevel={setMaplevel}
       />
     </>
   );
