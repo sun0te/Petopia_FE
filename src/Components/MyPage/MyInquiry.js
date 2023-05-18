@@ -36,7 +36,8 @@ const MyInquiry = () => {
     axios
       .get("/inquirylist", {
         params: {
-          username: "test1", // 로그인 구현시 수정
+          // username: "test1", // 로그인 구현시 수정
+          username: sessionStorage.getItem("email"),
         },
       })
       .then((res) => {

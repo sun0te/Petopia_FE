@@ -69,8 +69,9 @@
 .mapwrapinfo .mapinfo:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
 .mapinfo .maptitle {padding: 3px 0 0 10px;width: 230px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
 .mapinfo .mapclose {position: absolute;top: 7px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-.mapinfo .mapclose:hover {cursor: pointer;}
-.mapinfo .mapbody {position: relative; top:5px; left: 5px; overflow: hidden;}
+/* .mapinfo .mapclose:hover {cursor: pointer;} */
+.mapwrapinfo :hover {cursor: pointer;}
+.mapinfo .mapbody {position: relative; padding: 3px; top:5px; left: 5px; overflow: hidden;}
 /* .mapinfo .desc {position: relative;margin: 13px 0 0 90px;height: 75px;} */
 .desc .infoellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
