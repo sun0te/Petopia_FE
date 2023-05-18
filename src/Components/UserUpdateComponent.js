@@ -51,6 +51,8 @@ const UserUpdateComponent = () => {
           alert("가입되지 않은 회원입니다.");
         } else if (res.data.provider !== "petopia") {
           alert("펫토피아 계정이 아닙니다.");
+          setCurrentName(res.data.name);
+          setCurrentNickname(res.data.nickname);
         } else {
           setCurrentName(res.data.name);
           setCurrentNickname(res.data.nickname);
@@ -71,13 +73,20 @@ const UserUpdateComponent = () => {
       })
       .then((res) => {
         alert("회원 정보를 수정하였습니다. \n다시 로그인 해주세요.");
-        sessionStorage.removeItem("email");
-        sessionStorage.removeItem("socialSession");
-        window.location.href = `http://localhost:3000/login`;
+        removeSessionStorage().then(() => {
+          window.location.href = `http://localhost:3000/login`;
+        });
       })
       .catch((e) => {
         console.error(e);
       });
+  };
+
+  const removeSessionStorage = async () => {
+    sessionStorage.removeItem("email");
+    sessionStorage.removeItem("socialSession");
+    localStorage.removeItem("com.naver.nid.access_token");
+    localStorage.removeItem("access_token");
   };
 
   return (

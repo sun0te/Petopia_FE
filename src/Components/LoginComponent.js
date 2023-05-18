@@ -12,12 +12,6 @@ const LoginComponent = ({ user, setUser }) => {
 
   useEffect(() => {}, [user]);
 
-  const clickLogin = () => {
-    sessionStorage.setItem("email", email.current.value);
-    const sessionEmail = sessionStorage.getItem("email");
-    alert("세션값 임시 설정(email : " + sessionEmail + ")\n");
-  };
-
   const [getToken, setGetToken] = useState("");
 
   // 카카오 로그인
