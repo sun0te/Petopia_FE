@@ -8,6 +8,7 @@ import axios from "axios";
 import Paginationcm from "./Paginationcm";
 import { Link } from "react-router-dom";
 
+
 const NoticeContainer = styled.div`
   padding: 0 15px;
   max-height: 100%;
@@ -26,9 +27,8 @@ const BoardWrapper = styled.div`
 `;
 
 const TitleSearchWrap = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
   margin-bottom: 5px;
   align-items: center;
@@ -139,10 +139,11 @@ function NoticeBoard() {
   return (
     <NoticeContainer>
       <BoardWrapper>
+        <h2 className="h2_Recomend">공지사항</h2>
         <TitleSearchWrap>
-          <Title>공지사항</Title>
           <SearchBarcm />
         </TitleSearchWrap>
+
         <CardList lists={filteredLists.length > 0 ? filteredLists : lists} />
         <Link to="/write">
           {session === "admin" && (

@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import React, { useState, useEffect, Fragment } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import LoginComponent from "../LoginComponent";
 
 const ReviewContainer = styled.div`
   max-width: 800px;
@@ -12,6 +14,7 @@ const ReviewContainer = styled.div`
 const ReviewListHeader = styled.h2`
   font-size: 25px;
   font-weight: bold;
+  margin-left: 25%;
   margin-bottom: 20px;
 `;
 
@@ -39,6 +42,7 @@ const ReviewTableContent = styled.li`
   padding: 16px;
   border-bottom: 1px solid #ddd;
   font-size: 14px;
+  cursor: pointer;
 `;
 
 const ReviewContent = styled.td`
@@ -57,20 +61,9 @@ const ReviewButtonsWrap = styled.div`
   margin-top: 20px;
 `;
 
-const RatingContainer = styled.div`
-  display: flex;
-  text-align: center;
-  margin: 13px 0px;
-  .inactive {
-    color: #c1c1c1;
-  }
-  .active {
-    color: #ffb950;
-  }
-`;
-
 const ReviewList = () => {
   const [checkedReviews, setCheckedReviews] = useState([]);
+  const navigate = useNavigate();
 
   const handleCheckAll = (e) => {
     if (e.target.checked) {
@@ -101,12 +94,12 @@ const ReviewList = () => {
     {
       id: 1,
       date: "2022.05.01",
-      content: "이 제품 정말 좋네요",
+      content: "이 가게 추천합니다",
     },
     {
       id: 2,
       date: "2022.04.28",
-      content: "배송도 빠르고 좋습니다",
+      content: "이 가게 추천합니다",
     },
     {
       id: 3,
@@ -117,7 +110,7 @@ const ReviewList = () => {
 
   return (
     <ReviewContainer>
-      <ReviewListHeader>리뷰 관리</ReviewListHeader>
+      <ReviewListHeader>내 리뷰 관리</ReviewListHeader>
       <ReviewListWrap>
         <ReviewTableHeader>
           <ReviewCheckbox
@@ -135,29 +128,39 @@ const ReviewList = () => {
               checked={checkedReviews.includes(review.id)}
               onChange={() => handleCheck(review)}
             />
-            <ReviewContent>{review.content}</ReviewContent>
+            <ReviewContent
+              onClick={() => {
+                navigate("/myreviewdetail");
+              }}
+            >
+              {review.content}
+            </ReviewContent>
             <ReviewDate>{review.date}</ReviewDate>
           </ReviewTableContent>
         ))}
       </ReviewListWrap>
       <ReviewButtonsWrap>
         <Button
-          className="mt-2"
+          className="mt-2 float-right"
           variant="primary"
           size="sm"
           onClick={() => handleDelete(checkedReviews)}
         >
           삭제
         </Button>
-        <Link to="/">
+        {/* 수정 - 한번에 하나씩만 할 수 있게 해야 하지 않나? 논의 필요 */}
+        {/* <Link to="/">
           <Button
             className="mt-2 border-primary"
             variant="btn-outline-primary"
             size="sm"
+            onClick={() => {
+              navigate("/reviewwrite");
+            }}
           >
             수정
           </Button>
-        </Link>
+        </Link> */}
       </ReviewButtonsWrap>
     </ReviewContainer>
   );
