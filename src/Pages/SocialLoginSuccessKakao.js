@@ -26,9 +26,6 @@ const SocialLoginSuccessKakao = () => {
       setUserEmail(data.kakao_account.email);
       setNickName(data.properties.nickname);
       setProfileImage(data.properties.thumbnail_image);
-
-      sessionStorage.setItem("socialSession", "kakao");
-      sessionStorage.setItem("email", data.kakao_account.email);
     } catch (err) {
       console.log(err);
     }
@@ -58,7 +55,6 @@ const SocialLoginSuccessKakao = () => {
         //provider: "kakao",
       })
       .then((res) => {
-        console.log("res.data.provider : ", res.data.provider);
         if (res.data === null || res.data === undefined || res.data === "") {
           // signUpKakao();
         } else if (res.data.provider === "kakao") {
@@ -87,7 +83,6 @@ const SocialLoginSuccessKakao = () => {
         profileImage: profileImage,
       })
       .then((res) => {
-        //console.log(res.data);
         alert("카카오 간편 회원가입을 환영합니다.");
         navigate("/");
       })

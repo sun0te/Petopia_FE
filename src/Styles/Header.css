@@ -56,9 +56,10 @@
 /* 두 번째 줄 header 카테고리를 포함하는 부모 div */
 .headerCategoryConteiner {
     display: flex;
+    justify-content: center;
     overflow-x: auto;
     scroll-behavior: smooth;
-    width: auto;
+    width: 100%;
 }
 
 .headerCategoryConteiner::-webkit-scrollbar {
@@ -79,6 +80,37 @@
     /* 숨겨진 카테고리 요소들을 표시하기 위해 이동 거리를 조정 */
     transform: translateX(-100%);
 }
+
+/*===================== 어드민 header ======================*/
+.admin-headerCategoryConteiner {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    width: 100%;
+}
+
+.admin-headerCategoryConteiner::-webkit-scrollbar {
+    /* Chrome, Safari용 스크롤바 제거 */
+    display: none;
+}
+
+.admin-nav-tabs {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 3px;
+    padding-bottom: 0;
+    margin: 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.admin-nav-tabs.hidden {
+    /* 숨겨진 카테고리 요소들을 표시하기 위해 이동 거리를 조정 */
+    transform: translateX(-100%);
+}
+
+/*===========================================*/
+
 
 /* 카테고리 목록 요소 div*/
 .nav-item {
@@ -116,6 +148,15 @@
     }
 
     .nav-tabs {
+        flex-wrap: nowrap;
+    }
+
+    .admin-headerCategoryConteiner {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .admin-nav-tabs {
         flex-wrap: nowrap;
     }
 }

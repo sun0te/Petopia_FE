@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Header from "../Components/Header.js";
+import HeaderAdmin from "../Components/HeaderAdmin.js";
 import Footer from "../Components/Footer.js";
 import BgAdmin from "../Components/BgAdmin.js";
 import "../Styles/AdminUserList.css";
@@ -54,7 +54,7 @@ const AdminUserList = () => {
       <BgAdmin />
 
       <main className="admin-main">
-        <Header />
+        <HeaderAdmin />
         <section className="admin-page">
           <div className="userlist-title">
             <h3>회원 리스트</h3>
