@@ -2,8 +2,9 @@ import "../Styles/Login.css";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FaAngleLeft } from "react-icons/fa";
 
-const UserUpdateComponent = () => {
+const UserUpdateComponent = ({ setMyPageAction }) => {
   const name = useRef("");
   const nickname = useRef("");
   const password1 = useRef("");
@@ -91,6 +92,17 @@ const UserUpdateComponent = () => {
 
   return (
     <>
+      <div className="inquiryHeader">
+        <div
+          className="inquiryBack-left"
+          onClick={() => {
+            setMyPageAction(0);
+          }}
+        >
+          <FaAngleLeft className="inquiryBack-icon" />
+        </div>
+        <h4>회원정보 수정</h4>
+      </div>
       <div className="container loginComponent">
         <div className="input-form-backgroud row">
           <div className="input-form col-md-12 mx-auto signUpForm">

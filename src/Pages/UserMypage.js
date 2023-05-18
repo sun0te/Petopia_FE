@@ -20,6 +20,10 @@ import {
 import MyInquiry from "../Components/MyPage/MyInquiry.js";
 import MyInquiryAdmin from "../Components/MyPage/MyInquiryAdmin.js";
 import axios from "axios";
+import UserUpdate from "./UserUpdate.js";
+import UserUpdateComponent from "../Components/UserUpdateComponent.js";
+import LikeList from "../Components/UserBoardsLike/LikeList.js";
+import MyReviewList from "../Components/MyPage/MyReviewList.js";
 
 const UserMypage = () => {
   const [nickname, setNickname] = useState("사용자 닉네임");
@@ -133,12 +137,16 @@ const UserMypage = () => {
     ) {
       alert("로그인이 필요합니다.");
     } else {
-      navigate("/userupdate");
+      // navigate("/userupdate");
+      setMyPageAction(1);
     }
   };
 
+  const [myPageAction, setMyPageAction] = useState(0); // 마이페이지 액션
+
   useEffect(() => {
     signUpCheck();
+    setMyPageAction(0);
   }, []);
 
   return (
@@ -221,25 +229,32 @@ const UserMypage = () => {
               내 리뷰 <span className="category-count">7</span>
             </div>
           </div>
+
           <div className="separationArea" />
-          <div className="user-sections">
-            <div
-              className="user-section"
-              onClick={() => {
-                clickUserUpdate();
-              }}
-              style={{ cursor: "pointer" }}
-            >
-              <div className="user-section-icon">
-                <FaUser className="user-info-icon" />
+          {myPageAction === 0 ? (
+            <div className="user-sections">
+              <div
+                className="user-section"
+                onClick={() => {
+                  clickUserUpdate();
+                }}
+                style={{ cursor: "pointer" }}
+              >
+                <div className="user-section-icon">
+                  <FaUser className="user-info-icon" />
+                </div>
+                <div className="user-section-title">회원정보 수정</div>
+                <div className="user-section-icon2">
+                  <FaAngleRight className="user-info-icon2" />
+                </div>
               </div>
-              <div className="user-section-title">회원정보 수정</div>
-              <div className="user-section-icon2">
-                <FaAngleRight className="user-info-icon2" />
-              </div>
-            </div>
-            <NavLink to="/userWatchlist" className="active-link">
-              <div className="user-section">
+              {/* <NavLink to="/userWatchlist" className="active-link"> */}
+              <div
+                className="user-section"
+                onClick={() => {
+                  setMyPageAction(2); // 액션 2
+                }}
+              >
                 <div className="user-section-icon">
                   <FaHeart className="user-info-icon" />
                 </div>
@@ -248,9 +263,14 @@ const UserMypage = () => {
                   <FaAngleRight className="user-info-icon2" />
                 </div>
               </div>
-            </NavLink>
-            <NavLink to="/myreview" className="active-link">
-              <div className="user-section">
+              {/* </NavLink> */}
+              {/* <NavLink to="/myreview" className="active-link"> */}
+              <div
+                className="user-section"
+                onClick={() => {
+                  setMyPageAction(3); // 액션 3
+                }}
+              >
                 <div className="user-section-icon">
                   <FaComment className="user-info-icon" />
                 </div>
@@ -259,9 +279,14 @@ const UserMypage = () => {
                   <FaAngleRight className="user-info-icon2" />
                 </div>
               </div>
-            </NavLink>
-            <NavLink to="/usermypageinquiry" className="active-link">
-              <div className="user-section">
+              {/* </NavLink> */}
+              {/* <NavLink to="/usermypageinquiry" className="active-link"> */}
+              <div
+                className="user-section"
+                onClick={() => {
+                  setMyPageAction(4); // 액션 4
+                }}
+              >
                 <div className="user-section-icon">
                   <FaEdit className="user-info-icon" />
                 </div>
@@ -270,21 +295,48 @@ const UserMypage = () => {
                   <FaAngleRight className="user-info-icon2" />
                 </div>
               </div>
-            </NavLink>
-          </div>
+              {/* </NavLink> */}
+            </div>
+          ) : myPageAction === 1 ? (
+            <>
+              <UserUpdateComponent setMyPageAction={setMyPageAction} />
+            </>
+          ) : myPageAction === 2 ? (
+            <>
+              <LikeList setMyPageAction={setMyPageAction} />
+            </>
+          ) : myPageAction === 3 ? (
+            <>
+              <MyReviewList setMyPageAction={setMyPageAction} />
+            </>
+          ) : myPageAction === 4 ? (
+            <>
+              <MyInquiry setMyPageAction={setMyPageAction} />
+            </>
+          ) : null}
           <div className="separationArea" />
-          <div class="button-wrapper">
-            <div class="logout-button-wrapper">
-              <button class="logout-button" onClick={handleLogoutClick}>
-                로그아웃
-              </button>
+          {myPageAction === 0 ? (
+            <div class="button-wrapper">
+              <div class="logout-button-wrapper">
+                <button class="logout-button" onClick={handleLogoutClick}>
+                  로그아웃
+                </button>
+              </div>
+              <div class="admin-button-wrapper">
+                <NavLink to="/adminmypage">
+                  <button class="admin-button">관리자 페이지</button>
+                </NavLink>
+              </div>
             </div>
-            <div class="admin-button-wrapper">
-              <NavLink to="/adminmypage">
-                <button class="admin-button">관리자 페이지</button>
-              </NavLink>
+          ) : (
+            <div class="button-wrapper">
+              <div class="admin-button-wrapper">
+                <NavLink to="/adminmypage">
+                  <button class="admin-button">관리자 페이지</button>
+                </NavLink>
+              </div>
             </div>
-          </div>
+          )}
         </section>
         <Footer />
       </main>
