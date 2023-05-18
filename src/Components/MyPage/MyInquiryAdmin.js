@@ -3,7 +3,7 @@ import MyInquiryAdminList from "./MyInquiryAdminList";
 import MyInquiryAdminWrite from "./MyInquiryAdminWrite";
 import MyInquiryAdminDetail from "./MyInquiryAdminDetail";
 import "../../Styles/MyInquiryAdmin.css";
-import Header from "../Header.js";
+import HeaderAdmin from "../HeaderAdmin.js";
 import Footer from "../Footer.js";
 import BgLeft from "../BgLeft.js";
 
@@ -56,7 +56,7 @@ const MyInquiryAdmin = () => {
       <BgLeft />
 
       <main className="admin-main">
-        <Header />
+        <HeaderAdmin />
         <section className="admin-page">
           <div className="admin-Inquiry-container">
             {inquiryAdminAction === 0 && ( // 문의 리스트
