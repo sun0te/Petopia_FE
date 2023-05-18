@@ -122,7 +122,7 @@ const ReviewMain = () => {
           <hr style={{ height: "3px", backgroundColor: "lightgray" }} />
           <div className="reviewMainList">
             <div className="reviewMainListBox">
-              <span className="reviewMainListTitle">반려동물 체형</span>
+              <span className="reviewMainListTitle">반려동물</span>
               <br />
               <span className="">{placedata.animal_size_info}</span>
             </div>

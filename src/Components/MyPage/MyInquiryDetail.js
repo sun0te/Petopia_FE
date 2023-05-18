@@ -66,7 +66,7 @@ const MyInquiryDetail = ({
         </>
       ) : null}
       <br />
-      <div className="inquiryWriteBox">
+      <div className="inquiryDetailBox">
         {inquirydata.answer_status === "PENDING" ? (
           <>
             <button

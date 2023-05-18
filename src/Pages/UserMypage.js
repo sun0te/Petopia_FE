@@ -143,6 +143,7 @@ const UserMypage = () => {
   };
 
   const [myPageAction, setMyPageAction] = useState(0); // 마이페이지 액션
+  // [액션 1 : 회원정보 수정] , [액션 2 : 관심목록] , [액션 3 : 리뷰 관리] , [액션 4 : 1:1 문의]
 
   useEffect(() => {
     signUpCheck();
@@ -236,7 +237,7 @@ const UserMypage = () => {
               <div
                 className="user-section"
                 onClick={() => {
-                  clickUserUpdate();
+                  clickUserUpdate(); // [액션 1 : 회원정보 수정]
                 }}
                 style={{ cursor: "pointer" }}
               >
@@ -252,7 +253,7 @@ const UserMypage = () => {
               <div
                 className="user-section"
                 onClick={() => {
-                  setMyPageAction(2); // 액션 2
+                  setMyPageAction(2); // [액션 2 : 관심목록]
                 }}
               >
                 <div className="user-section-icon">
@@ -268,7 +269,7 @@ const UserMypage = () => {
               <div
                 className="user-section"
                 onClick={() => {
-                  setMyPageAction(3); // 액션 3
+                  setMyPageAction(3); // [액션 3 : 리뷰 관리]
                 }}
               >
                 <div className="user-section-icon">
@@ -284,7 +285,7 @@ const UserMypage = () => {
               <div
                 className="user-section"
                 onClick={() => {
-                  setMyPageAction(4); // 액션 4
+                  setMyPageAction(4); // [액션 4 : 1:1 문의]
                 }}
               >
                 <div className="user-section-icon">
@@ -296,25 +297,26 @@ const UserMypage = () => {
                 </div>
               </div>
               {/* </NavLink> */}
+              <div className="separationArea" />
             </div>
-          ) : myPageAction === 1 ? (
+          ) : myPageAction === 1 ? ( // [액션 1 : 회원정보 수정]
             <>
               <UserUpdateComponent setMyPageAction={setMyPageAction} />
             </>
-          ) : myPageAction === 2 ? (
+          ) : myPageAction === 2 ? ( // [액션 2 : 관심목록]
             <>
               <LikeList setMyPageAction={setMyPageAction} />
             </>
-          ) : myPageAction === 3 ? (
+          ) : myPageAction === 3 ? ( // [액션 3 : 리뷰 관리]
             <>
               <MyReviewList setMyPageAction={setMyPageAction} />
             </>
-          ) : myPageAction === 4 ? (
+          ) : myPageAction === 4 ? ( // [액션 4 : 1:1 문의]
             <>
               <MyInquiry setMyPageAction={setMyPageAction} />
             </>
           ) : null}
-          <div className="separationArea" />
+
           {myPageAction === 0 ? (
             <div class="button-wrapper">
               <div class="logout-button-wrapper">
@@ -328,15 +330,7 @@ const UserMypage = () => {
                 </NavLink>
               </div>
             </div>
-          ) : (
-            <div class="button-wrapper">
-              <div class="admin-button-wrapper">
-                <NavLink to="/adminmypage">
-                  <button class="admin-button">관리자 페이지</button>
-                </NavLink>
-              </div>
-            </div>
-          )}
+          ) : null}
         </section>
         <Footer />
       </main>
