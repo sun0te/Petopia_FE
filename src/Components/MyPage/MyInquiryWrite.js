@@ -125,52 +125,6 @@ const MyInquiryWrite = ({ setInquiryAction, inquirydbtest }) => {
           )}
         </Form>
       </div>
-      {/* <div>
-        <div>
-          <div className="uploadBtn">
-            <Button
-              variant="outline-secondary"
-              className=""
-              onClick={handleClick}
-            >
-              <img className="uploadBtnImg" src="img/uploading.png" alt="" />
-            </Button>
-          </div>
-
-          <input
-            className="uploadInput"
-            type="file"
-            multiple
-            onChange={handleFileInputChange}
-            ref={inputRef}
-          />
-        </div>
-        <div className="uploadImgDiv">
-          <ListGroup>
-            {selectedFiles.map((file, index) => (
-              <ListGroup.Item className="listGroupItem">
-                <div key={index}>
-                  <img
-                    className="uploadImg"
-                    src={URL.createObjectURL(file)}
-                    alt={`${file.name}`}
-                  />
-                  <p className="imgTitle">{file.name}</p>
-                  <div className="imgDeleteBtnDiv">
-                    <button
-                      className="imgDeleteBtn"
-                      onClick={() => handleRemoveImage(index)}
-                    >
-                      <BsTrash3 />
-                    </button>
-                  </div>
-                </div>
-              </ListGroup.Item>
-            ))}
-          </ListGroup>
-        </div>
-      </div> */}
-      {/* <br /> <br /> <br /> */}
       <div className="inquiryWriteBox">
         <button
           className="inquiryBtn"
@@ -181,18 +135,6 @@ const MyInquiryWrite = ({ setInquiryAction, inquirydbtest }) => {
         >
           작성완료
         </button>
-        {/* <button
-          className="inquiryBtn2"
-          onClick={() => {
-            if (window.confirm("취소하시겠습니까?")) {
-              setInquiryAction(0);
-            } else {
-              return;
-            }
-          }}
-        >
-          취소
-        </button> */}
       </div>
     </>
   );

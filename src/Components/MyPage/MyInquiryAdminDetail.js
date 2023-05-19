@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MyInquiryAdminWrite from "./MyInquiryAdminWrite";
 import MyInquiryAdminUpdate from "./MyInquiryAdminUpdate";
+import { FaAngleLeft } from "react-icons/fa";
 
 const MyInquiryAdminDetail = ({
   inquiryAdmintest,
@@ -14,12 +15,12 @@ const MyInquiryAdminDetail = ({
     <>
       <div className="inquiryHeader">
         <div
-          className="inquiryBack"
+          className="inquiryAdminBack-left"
           onClick={() => {
             setInquiryAdminAction(0);
           }}
         >
-          <b className="inquiryBackArrow">&lt;</b>
+          <FaAngleLeft className="inquiryBack-icon" />
         </div>
         <h4>1:1문의 관리</h4>
       </div>

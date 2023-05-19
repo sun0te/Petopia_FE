@@ -1,10 +1,24 @@
 import React, { useEffect, useState } from "react";
+import { FaAngleLeft } from "react-icons/fa";
 import "../../Styles/MyInquiry.css";
 
-const MyInquiryMain = ({ setInquiryAction, setInquirydata, inquirydb }) => {
+const MyInquiryMain = ({
+  setInquiryAction,
+  setInquirydata,
+  inquirydb,
+  setMyPageAction,
+}) => {
   return (
     <>
       <div className="inquiryHeader">
+        <div
+          className="inquiryBack-left"
+          onClick={() => {
+            setMyPageAction(0);
+          }}
+        >
+          <FaAngleLeft className="inquiryBack-icon" />
+        </div>
         <h4>1:1문의</h4>
       </div>
       <hr className="inquiryhr1" />

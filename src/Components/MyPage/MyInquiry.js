@@ -10,7 +10,7 @@ import Footer from "../Footer.js";
 import BgLeft from "../BgLeft.js";
 import "../../Styles/MyInquiry.css";
 
-const MyInquiry = () => {
+const MyInquiry = ({ setMyPageAction }) => {
   const [inquiryAction, setInquiryAction] = useState(0);
 
   const [inquirydata, setInquirydata] = useState({});
@@ -53,43 +53,44 @@ const MyInquiry = () => {
 
   return (
     <>
-      <BgLeft />
+      {/* <BgLeft />
 
       <main>
         <Header />
-        <section>
-          {inquiryAction === 0 && ( // 문의 리스트
-            <MyInquiryMain
-              setInquiryAction={setInquiryAction}
-              setInquirydata={setInquirydata}
-              inquirydb={inquirydb}
-            />
-          )}
-          {inquiryAction === 1 && ( // 문의 작성
-            <MyInquiryWrite
-              inquirydbtest={inquirydbtest}
-              setInquiryAction={setInquiryAction}
-            />
-          )}
-          {inquiryAction === 2 && ( // 문의 상세내용
-            <MyInquiryDetail
-              inquirydata={inquirydata}
-              setInquiryAction={setInquiryAction}
-              inquirydb={inquirydb}
-              inquirydbtest={inquirydbtest}
-            />
-          )}
-          {inquiryAction === 3 && ( // 문의내용 수정
-            <MyInquiryUpdate
-              inquirydata={inquirydata}
-              setInquiryAction={setInquiryAction}
-              inquirydbtest={inquirydbtest}
-              setInquirydata={setInquirydata}
-            />
-          )}
-        </section>
+        <section> */}
+      {inquiryAction === 0 && ( // 문의 리스트
+        <MyInquiryMain
+          setInquiryAction={setInquiryAction}
+          setInquirydata={setInquirydata}
+          inquirydb={inquirydb}
+          setMyPageAction={setMyPageAction}
+        />
+      )}
+      {inquiryAction === 1 && ( // 문의 작성
+        <MyInquiryWrite
+          inquirydbtest={inquirydbtest}
+          setInquiryAction={setInquiryAction}
+        />
+      )}
+      {inquiryAction === 2 && ( // 문의 상세내용
+        <MyInquiryDetail
+          inquirydata={inquirydata}
+          setInquiryAction={setInquiryAction}
+          inquirydb={inquirydb}
+          inquirydbtest={inquirydbtest}
+        />
+      )}
+      {inquiryAction === 3 && ( // 문의내용 수정
+        <MyInquiryUpdate
+          inquirydata={inquirydata}
+          setInquiryAction={setInquiryAction}
+          inquirydbtest={inquirydbtest}
+          setInquirydata={setInquirydata}
+        />
+      )}
+      {/* </section>
         <Footer />
-      </main>
+      </main> */}
     </>
   );
 };

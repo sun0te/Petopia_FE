@@ -134,7 +134,7 @@ const MyInquiryUpdate = ({
           )}
         </Form>
       </div>
-      <div className="inquiryWriteBox">
+      <div className="inquiryUpdateBox">
         <button
           className="inquiryBtn"
           onClick={() => {

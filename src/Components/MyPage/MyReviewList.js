@@ -4,10 +4,14 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import LoginComponent from "../LoginComponent";
+import { FaAngleLeft } from "react-icons/fa";
+import MyReviewDetailPage from "../../Pages/MyReviewDetailPage";
+import ReviewWriteComponent from "../ReviewWriteComponent";
 
 const ReviewContainer = styled.div`
-  max-width: 800px;
+  width: 100%;
   margin: 0 auto;
+  margin-top: -30px;
   padding: 32px;
 `;
 
@@ -61,7 +65,7 @@ const ReviewButtonsWrap = styled.div`
   margin-top: 20px;
 `;
 
-const ReviewList = () => {
+const ReviewList = ({ setMyPageAction }) => {
   const [checkedReviews, setCheckedReviews] = useState([]);
   const navigate = useNavigate();
 
@@ -108,48 +112,66 @@ const ReviewList = () => {
     },
   ]);
 
+  const [myPageReviewAction, setMyPageReviewAction] = useState(0); // 마이 리뷰 액션
+  // [액션 0 : 리뷰 리스트] [액션 1 : 리뷰 상세] , [액션 2 : 리뷰 수정]
+
   return (
-    <ReviewContainer>
-      <ReviewListHeader>내 리뷰 관리</ReviewListHeader>
-      <ReviewListWrap>
-        <ReviewTableHeader>
-          <ReviewCheckbox
-            type="checkbox"
-            onChange={handleCheckAll}
-            checked={checkedReviews.length === reviews.length}
-          />
-          <div>내용</div>
-          <div>날짜</div>
-        </ReviewTableHeader>
-        {reviews.map((review) => (
-          <ReviewTableContent key={review.id}>
-            <ReviewCheckbox
-              type="checkbox"
-              checked={checkedReviews.includes(review.id)}
-              onChange={() => handleCheck(review)}
-            />
-            <ReviewContent
+    <>
+      {myPageReviewAction === 0 ? (
+        <>
+          <div className="inquiryHeader">
+            <div
+              className="inquiryBack-left"
               onClick={() => {
-                navigate("/myreviewdetail");
+                setMyPageAction(0);
               }}
             >
-              {review.content}
-            </ReviewContent>
-            <ReviewDate>{review.date}</ReviewDate>
-          </ReviewTableContent>
-        ))}
-      </ReviewListWrap>
-      <ReviewButtonsWrap>
-        <Button
-          className="mt-2 float-right"
-          variant="primary"
-          size="sm"
-          onClick={() => handleDelete(checkedReviews)}
-        >
-          삭제
-        </Button>
-        {/* 수정 - 한번에 하나씩만 할 수 있게 해야 하지 않나? 논의 필요 */}
-        {/* <Link to="/">
+              <FaAngleLeft className="inquiryBack-icon" />
+            </div>
+            <h4>내 리뷰 관리</h4>
+          </div>
+          <ReviewContainer>
+            {/* <ReviewListHeader>내 리뷰 관리</ReviewListHeader> */}
+            <ReviewListWrap>
+              <ReviewTableHeader>
+                <ReviewCheckbox
+                  type="checkbox"
+                  onChange={handleCheckAll}
+                  checked={checkedReviews.length === reviews.length}
+                />
+                <div>내용</div>
+                <div>날짜</div>
+              </ReviewTableHeader>
+              {reviews.map((review) => (
+                <ReviewTableContent key={review.id}>
+                  <ReviewCheckbox
+                    type="checkbox"
+                    checked={checkedReviews.includes(review.id)}
+                    onChange={() => handleCheck(review)}
+                  />
+                  <ReviewContent
+                    onClick={() => {
+                      // navigate("/myreviewdetail");
+                      setMyPageReviewAction(1); // [액션 1 : 리뷰 상세]
+                    }}
+                  >
+                    {review.content}
+                  </ReviewContent>
+                  <ReviewDate>{review.date}</ReviewDate>
+                </ReviewTableContent>
+              ))}
+            </ReviewListWrap>
+            <ReviewButtonsWrap>
+              <Button
+                className="mt-2 float-right"
+                variant="primary"
+                size="sm"
+                onClick={() => handleDelete(checkedReviews)}
+              >
+                삭제
+              </Button>
+              {/* 수정 - 한번에 하나씩만 할 수 있게 해야 하지 않나? 논의 필요 */}
+              {/* <Link to="/">
           <Button
             className="mt-2 border-primary"
             variant="btn-outline-primary"
@@ -161,8 +183,41 @@ const ReviewList = () => {
             수정
           </Button>
         </Link> */}
-      </ReviewButtonsWrap>
-    </ReviewContainer>
+            </ReviewButtonsWrap>
+          </ReviewContainer>
+        </>
+      ) : myPageReviewAction === 1 ? (
+        <>
+          <div className="inquiryHeader">
+            <div
+              className="inquiryBack-left"
+              onClick={() => {
+                setMyPageReviewAction(0);
+              }}
+            >
+              <FaAngleLeft className="inquiryBack-icon" />
+            </div>
+            <h4>내 리뷰 관리</h4>
+          </div>
+          <MyReviewDetailPage setMyPageReviewAction={setMyPageReviewAction} />
+        </>
+      ) : (
+        <>
+          <div className="inquiryHeader">
+            <div
+              className="inquiryBack-left"
+              onClick={() => {
+                setMyPageReviewAction(0); // 리뷰 리스트로 이동 or 리뷰 상세로 이동
+              }}
+            >
+              <FaAngleLeft className="inquiryBack-icon" />
+            </div>
+            <h4>리뷰 수정</h4>
+          </div>
+          <ReviewWriteComponent setMyPageReviewAction={setMyPageReviewAction} />
+        </>
+      )}
+    </>
   );
 };
 
