@@ -186,7 +186,7 @@ const ReviewList = ({ setMyPageAction }) => {
             </ReviewButtonsWrap>
           </ReviewContainer>
         </>
-      ) : myPageReviewAction === 1 ? (
+      ) : myPageReviewAction === 1 ? ( // [액션 1 : 리뷰 상세]
         <>
           <div className="inquiryHeader">
             <div
@@ -202,12 +202,13 @@ const ReviewList = ({ setMyPageAction }) => {
           <MyReviewDetailPage setMyPageReviewAction={setMyPageReviewAction} />
         </>
       ) : (
+        // [액션 2 : 리뷰 수정]
         <>
           <div className="inquiryHeader">
             <div
               className="inquiryBack-left"
               onClick={() => {
-                setMyPageReviewAction(0); // 리뷰 리스트로 이동 or 리뷰 상세로 이동
+                setMyPageReviewAction(0);
               }}
             >
               <FaAngleLeft className="inquiryBack-icon" />

@@ -30,7 +30,6 @@ const MyInquiryWrite = ({ setInquiryAction, inquirydbtest }) => {
         title: titleRef.current.value,
         content: contentRef.current.value,
         answer_status: "PENDING",
-        // username: "test1", // 로그인 구현시 수정
         username: sessionStorage.getItem("email"),
       })
       .then((res) => {

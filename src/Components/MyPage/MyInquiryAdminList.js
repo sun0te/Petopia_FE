@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 const MyInquiryAdminList = ({
-  inquiryAdmintest,
-  setInquiryAdmintest2,
+  inquiryAdminList,
+  setInquiryAdminData,
   setInquiryAdminAction,
 }) => {
   // 문의 카테고리 선택
@@ -44,7 +44,7 @@ const MyInquiryAdminList = ({
         >
           <b>전체 문의</b>
           <br />
-          <b>{inquiryAdmintest.length}</b>
+          <b>{inquiryAdminList.length}</b>
         </div>
         <div
           className="inquiryadminbox1"
@@ -56,7 +56,13 @@ const MyInquiryAdminList = ({
         >
           <b>답변 대기</b>
           <br />
-          <b>{inquiryAdmintest.filter((data) => data.answer === 0).length}</b>
+          <b>
+            {
+              inquiryAdminList.filter(
+                (data) => data.answer_status === "PENDING"
+              ).length
+            }
+          </b>
         </div>
         <div
           className="inquiryadminbox1"
@@ -68,79 +74,91 @@ const MyInquiryAdminList = ({
         >
           <b>답변 완료</b>
           <br />
-          <b>{inquiryAdmintest.filter((data) => data.answer === 1).length}</b>
+          <b>
+            {
+              inquiryAdminList.filter(
+                (data) => data.answer_status === "ANSWERED"
+              ).length
+            }
+          </b>
         </div>
       </div>
       <hr className="inquiryhr1" />
-      {inquiryAdmintest.length !== 0 && inquiryadminstate === 0 ? (
-        inquiryAdmintest.map((a, i) => (
+      {inquiryAdminList.length !== 0 && inquiryadminstate === 0 ? (
+        inquiryAdminList.map((a, i) => (
           <div
             className="inquiryMain"
             onClick={() => {
-              setInquiryAdmintest2(a);
-              setInquiryAdminAction(2);
+              setInquiryAdminData(a);
+              setInquiryAdminAction(1);
               // MyInquiryDetail 이동 or 해당 리스트를 제목,내용으로 변경
             }}
           >
             <div className="inquiryMain1">
               <b className="inquiryMainTitle">{a.title}</b>
               <br />
-              {a.answer === 0 ? (
+              {a.answer_status === "PENDING" ? (
                 <div className="inquiryadminStatusWait">답변 대기</div>
               ) : (
                 <div className="inquiryadminStatusComplete">답변 완료</div>
               )}
-              <b className="inquiryMainDate">{a.createDate}</b>
+              <b className="inquiryMainDate">
+                {new Date(a.uploadDate).toISOString().split("T")[0]}
+              </b>
             </div>
             <hr className="inquiryhr2" />
           </div>
         ))
-      ) : inquiryAdmintest.length !== 0 && inquiryadminstate === 1 ? (
-        inquiryAdmintest
-          .filter((data) => data.answer === 0)
+      ) : inquiryAdminList.length !== 0 && inquiryadminstate === 1 ? (
+        inquiryAdminList
+          .filter((data) => data.answer_status === "PENDING")
           .map((a, i) => (
             <div
               className="inquiryMain"
               onClick={() => {
-                setInquiryAdmintest2(a);
-                setInquiryAdminAction(2);
+                setInquiryAdminData(a);
+                setInquiryAdminAction(1);
                 // MyInquiryDetail 이동 or 해당 리스트를 제목,내용으로 변경
               }}
             >
               <div className="inquiryMain1">
                 <b className="inquiryMainTitle">{a.title}</b>
                 <br />
-                {a.answer === 0 ? (
+                {a.answer_status === "PENDING" ? (
                   <div className="inquiryadminStatusWait">답변 대기</div>
                 ) : (
                   <div className="inquiryadminStatusComplete">답변 완료</div>
                 )}
-                <b className="inquiryMainDate">{a.createDate}</b>
+                <b className="inquiryMainDate">
+                  {new Date(a.uploadDate).toISOString().split("T")[0]}
+                </b>
               </div>
               <hr className="inquiryhr2" />
             </div>
           ))
-      ) : inquiryAdmintest.length !== 0 && inquiryadminstate === 2 ? (
-        inquiryAdmintest
-          .filter((data) => data.answer === 1)
+      ) : inquiryAdminList.length !== 0 && inquiryadminstate === 2 ? (
+        inquiryAdminList
+          .filter((data) => data.answer_status === "ANSWERED")
           .map((a, i) => (
             <div
               className="inquiryMain"
               onClick={() => {
-                setInquiryAdmintest2(a);
-                setInquiryAdminAction(2);
+                setInquiryAdminData(a);
+                setInquiryAdminAction(1);
                 // MyInquiryDetail 이동 or 해당 리스트를 제목,내용으로 변경
               }}
             >
               <div className="inquiryMain1">
                 <b className="inquiryMainTitle">{a.title}</b>
                 <br />
-                {a.answer === 0 ? (
+                {a.answer_status === "PENDING" ? (
                   <div className="inquiryadminStatusWait">답변 대기</div>
                 ) : (
                   <div className="inquiryadminStatusComplete">답변 완료</div>
                 )}
-                <b className="inquiryMainDate">{a.createDate}</b>
+                <b className="inquiryMainDate">
+                  {new Date(a.uploadDate).toISOString().split("T")[0]}
+                </b>
               </div>
               <hr className="inquiryhr2" />
             </div>

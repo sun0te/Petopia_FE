@@ -4,10 +4,11 @@ import MyInquiryAdminUpdate from "./MyInquiryAdminUpdate";
 import { FaAngleLeft } from "react-icons/fa";
 
 const MyInquiryAdminDetail = ({
-  inquiryAdmintest,
-  inquiryAdmintest2,
-  setInquiryAdmintest2,
+  inquiryAdminList,
+  inquiryAdminData,
+  setInquiryAdminData,
   setInquiryAdminAction,
+  getInquiryListAll,
 }) => {
   const [inquiryadmincheck, setInquiryadmincheck] = useState(0);
 
@@ -27,33 +28,34 @@ const MyInquiryAdminDetail = ({
       <hr className="inquiryhr1" />
       <div className="inquiryDetail1">
         <div className="inquiryDetail2">
-          <b className="inquiryMainTitle">{inquiryAdmintest2.title}</b>
+          <b className="inquiryMainTitle">{inquiryAdminData.title}</b>
           <br />
-          <b className="inquiryMainDate">{inquiryAdmintest2.createDate}</b>
-
+          <b className="inquiryMainDate">
+            {new Date(inquiryAdminData.uploadDate).toISOString().split("T")[0]}
+          </b>
           <div className="inquiryadminusername">
-            <b>작성자 : {inquiryAdmintest2.username}</b>
+            <b>작성자 : {inquiryAdminData.username}</b>
           </div>
           <div className="inquiryadminDetailContent">
-            {inquiryAdmintest2.content}
+            {inquiryAdminData.content}
           </div>
         </div>
       </div>
       <br />
       <hr className="inquiryhr1" />
-      {/* 답변 */}
-      {inquiryAdmintest2.answer === 1 && inquiryadmincheck === 0 ? (
+      {/* 답변내용 */}
+      {inquiryAdminData.answer_status === "ANSWERED" &&
+      inquiryadmincheck === 0 ? (
         <>
           <div className="inquiryDetail1">
             <div className="detailSpace">
               <b className="inquiryAdminAnswerTitle">답변</b>
             </div>
             <div className="inquiryAdminDetailContent1">
-              {inquiryAdmintest2.answerContent}
+              {inquiryAdminData.answerContent}
             </div>
           </div>
           <div className="inquiryWriteBox">
-            {" "}
             <button
               className="inquiryBtn"
               onClick={() => {
@@ -66,26 +68,21 @@ const MyInquiryAdminDetail = ({
         </>
       ) : null}
       <br />
-      {inquiryAdmintest2.answer === 0 && inquiryadmincheck === 0 ? (
+      {inquiryAdminData.answer_status === "PENDING" &&
+      inquiryadmincheck === 0 ? (
         <>
-          <MyInquiryAdminWrite />
-          <div className="inquiryWriteBox">
-            <button
-              className="inquiryBtn"
-              onClick={() => {
-                setInquiryAdminAction(0);
-              }}
-            >
-              저장
-            </button>
-          </div>
+          <MyInquiryAdminWrite
+            inquiryAdminData={inquiryAdminData}
+            setInquiryAdminAction={setInquiryAdminAction}
+            getInquiryListAll={getInquiryListAll}
+          />
         </>
       ) : null}
 
       {inquiryadmincheck === 1 ? (
         <>
           <MyInquiryAdminUpdate
-            inquiryAdmintest2={inquiryAdmintest2}
+            inquiryAdminData={inquiryAdminData}
             setInquiryAdminAction={setInquiryAdminAction}
           />
           <div className="inquiryWriteBox">
@@ -105,4 +102,3 @@ const MyInquiryAdminDetail = ({
 };
 
 export default MyInquiryAdminDetail;
-<h4>디테일</h4>;

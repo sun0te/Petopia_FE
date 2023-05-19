@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 
-const MyInquiryAdminUpdate = ({ inquiryAdmintest2, setInquiryAdminAction }) => {
+const MyInquiryAdminUpdate = ({ inquiryAdminData, setInquiryAdminAction }) => {
   return (
     <>
       <div className="writeForm">
@@ -15,7 +15,7 @@ const MyInquiryAdminUpdate = ({ inquiryAdmintest2, setInquiryAdminAction }) => {
               rows={3}
               placeholder="문의 내용을 입력하세요"
               className="contentForm"
-              defaultValue={inquiryAdmintest2.answerContent}
+              defaultValue={inquiryAdminData.answerContent}
               style={{ resize: "none" }}
             />
           </Form.Group>
