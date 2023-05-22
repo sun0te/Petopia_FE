@@ -42,6 +42,12 @@
     color:#888;
 }
 
+.inquiryMainAnswerDate{
+    margin-left: 232px;
+    font-size: 14px;
+    color:#888;
+}
+
 .inquiryStatus{
     position: absolute;
     right: 30px;

@@ -58,6 +58,10 @@ const MyInquiryDetail = ({
           <div className="inquiryDetail1">
             <div className="detailSpace">
               <b className="inquiryAnswerTitle">펫토피아 답변</b>
+              <br />
+              <b className="inquiryMainAnswerDate">
+                {new Date(inquirydata.reportDate).toISOString().split("T")[0]}
+              </b>
             </div>
             <div className="inquiryDetailContent1">
               {inquirydata.answerContent}
@@ -90,7 +94,20 @@ const MyInquiryDetail = ({
               삭제
             </button>
           </>
-        ) : null}
+        ) : (
+          <button
+            className="inquiryBtn"
+            onClick={() => {
+              if (window.confirm("삭제하시겠습니까?")) {
+                // 삭제 코드
+                inquiryDelete();
+                setInquiryAction(0);
+              }
+            }}
+          >
+            삭제
+          </button>
+        )}
       </div>
     </>
   );

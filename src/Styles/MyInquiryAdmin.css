@@ -49,7 +49,7 @@
     margin-bottom: -10px;
 }
 
-.inquiryadminDetailContent{
+.inquiryAdminDetailContent{
     margin-top: 20px;
 }
 
@@ -105,8 +105,8 @@
 }
 
 .inquiryAdminDetailContent1{
-    margin-top: 10px;
-    padding: 5px;
+    margin-top: 20px;
+    /* padding: 5px; */
 }
 
 .inquiryAdminBack-left {
@@ -114,4 +114,9 @@
     left: 30px;
     margin-right: auto;
     padding: 0 15px;
+}
+
+.inquiryWriteBox{
+    width: 95%;
+    margin: 0 auto;
 }

@@ -7,6 +7,7 @@ const MyInquiryAdminWrite = ({
   inquiryAdminData,
   setInquiryAdminAction,
   getInquiryListAll,
+  setInquiryAdminData,
 }) => {
   const contentRef = useRef();
 
@@ -28,8 +29,9 @@ const MyInquiryAdminWrite = ({
         answerContent: contentRef.current.value,
       })
       .then((res) => {
-        setInquiryAdminAction(0);
         getInquiryListAll();
+        setInquiryAdminData(res.data);
+        setInquiryAdminAction(1);
       })
       .catch((e) => {
         console.log(e);
