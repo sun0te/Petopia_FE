@@ -12,15 +12,17 @@ const MyInquiryAdminUpdate = ({
 }) => {
   const contentRef = useRef();
 
+  const [inquiryAdminAlert, setInquiryAdminAlert] = useState(0);
+
   const inquiryAdminUpdate = () => {
-    // if (
-    //   contentRef.current.value === "" ||
-    //   contentRef.current.value === undefined
-    // ) {
-    //   contentRef.current.focus();
-    //   setInquiryAdminAlert(1);
-    //   return false;
-    // }
+    if (
+      contentRef.current.value === "" ||
+      contentRef.current.value === undefined
+    ) {
+      contentRef.current.focus();
+      setInquiryAdminAlert(1);
+      return false;
+    }
     axios
       .post("/inquiryUpdateAnswer", {
         id: inquiryAdminData.id,
@@ -37,6 +39,15 @@ const MyInquiryAdminUpdate = ({
       });
   };
 
+  const inquiryAdminContentChange = () => {
+    if (
+      contentRef.current.value !== "" ||
+      contentRef.current.value !== undefined
+    ) {
+      setInquiryAdminAlert(0);
+    }
+  };
+
   return (
     <>
       <div className="writeForm">
@@ -51,8 +62,16 @@ const MyInquiryAdminUpdate = ({
               defaultValue={inquiryAdminData.answerContent}
               style={{ resize: "none" }}
               ref={contentRef}
+              onChange={() => {
+                inquiryAdminContentChange();
+              }}
             />
           </Form.Group>
+          {inquiryAdminAlert === 1 ? (
+            <div className="inquiryWriteAlert">내용을 입력하세요.</div>
+          ) : (
+            <div className="inquiryWriteAlert">&nbsp;</div>
+          )}
         </Form>
         <div className="inquiryWriteBox">
           <button

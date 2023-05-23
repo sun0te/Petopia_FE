@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FaAngleLeft } from "react-icons/fa";
 import "../../Styles/MyInquiry.css";
 
@@ -11,6 +11,7 @@ const MyInquiryMain = ({
   return (
     <>
       <div className="inquiryHeader">
+        {/* 뒤로가기 */}
         <div
           className="inquiryBack-left"
           onClick={() => {
@@ -22,6 +23,7 @@ const MyInquiryMain = ({
         <h4>1:1문의</h4>
       </div>
       <hr className="inquiryhr1" />
+      {/* 문의 리스트 */}
       {inquirydb.length !== 0 ? (
         inquirydb.map((a, i) => (
           <div

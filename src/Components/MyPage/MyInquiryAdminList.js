@@ -92,7 +92,6 @@ const MyInquiryAdminList = ({
             onClick={() => {
               setInquiryAdminData(a);
               setInquiryAdminAction(1);
-              // MyInquiryDetail 이동 or 해당 리스트를 제목,내용으로 변경
             }}
           >
             <div className="inquiryMain1">
@@ -120,7 +119,6 @@ const MyInquiryAdminList = ({
               onClick={() => {
                 setInquiryAdminData(a);
                 setInquiryAdminAction(1);
-                // MyInquiryDetail 이동 or 해당 리스트를 제목,내용으로 변경
               }}
             >
               <div className="inquiryMain1">
@@ -148,7 +146,6 @@ const MyInquiryAdminList = ({
               onClick={() => {
                 setInquiryAdminData(a);
                 setInquiryAdminAction(1);
-                // MyInquiryDetail 이동 or 해당 리스트를 제목,내용으로 변경
               }}
             >
               <div className="inquiryMain1">

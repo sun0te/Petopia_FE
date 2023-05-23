@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
@@ -7,14 +7,13 @@ import { FaAngleLeft } from "react-icons/fa";
 const MyInquiryUpdate = ({
   inquirydata,
   setInquiryAction,
-  inquirydbtest,
+  inquirydblist,
   setInquirydata,
 }) => {
-  // 문의 업데이트 , DB 연동 테스트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
   const titleRef = useRef();
   const contentRef = useRef();
 
+  // 문의 수정
   const inquiryUpdate = () => {
     if (titleRef.current.value === "" || titleRef.current.value === undefined) {
       setInquiryalert1(1);
@@ -39,7 +38,7 @@ const MyInquiryUpdate = ({
         username: sessionStorage.getItem("email"),
       })
       .then((res) => {
-        inquirydbtest();
+        inquirydblist();
         setInquirydata(res.data);
         setInquiryAction(2);
       })
@@ -76,6 +75,7 @@ const MyInquiryUpdate = ({
   return (
     <>
       <div className="inquiryHeader">
+        {/* 뒤로가기 */}
         <div
           className="inquiryBack-left"
           onClick={() => {
@@ -86,6 +86,7 @@ const MyInquiryUpdate = ({
         </div>
         <h4>1:1문의</h4>
       </div>
+      {/* 문의 수정 */}
       <div className="writeFormInquiry">
         <Form>
           <Form.Group className="mb-3">

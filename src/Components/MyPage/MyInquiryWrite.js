@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { FaAngleLeft } from "react-icons/fa";
 
-const MyInquiryWrite = ({ setInquiryAction, inquirydbtest }) => {
+const MyInquiryWrite = ({ setInquiryAction, inquirydblist }) => {
   // ㅡㅡㅡㅡㅡㅡㅡㅡㅡdb 연동 테스트ㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
   const titleRef = useRef();
@@ -33,7 +33,7 @@ const MyInquiryWrite = ({ setInquiryAction, inquirydbtest }) => {
         username: sessionStorage.getItem("email"),
       })
       .then((res) => {
-        inquirydbtest();
+        inquirydblist();
         setInquiryAction(0);
       })
       .catch((e) => {

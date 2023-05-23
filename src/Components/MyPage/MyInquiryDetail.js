@@ -1,14 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaAngleLeft } from "react-icons/fa";
 
-const MyInquiryDetail = ({
-  inquirydata,
-  setInquiryAction,
-  inquirydb,
-  inquirydbtest,
-}) => {
+const MyInquiryDetail = ({ inquirydata, setInquiryAction, inquirydblist }) => {
   //문의 삭제
   const inquiryDelete = () => {
     axios
@@ -16,7 +10,7 @@ const MyInquiryDetail = ({
         id: inquirydata.id,
       })
       .then((res) => {
-        inquirydbtest();
+        inquirydblist();
         setInquiryAction(0);
       })
       .catch((e) => {
@@ -27,6 +21,7 @@ const MyInquiryDetail = ({
   return (
     <>
       <div className="inquiryHeader">
+        {/* 뒤로가기 */}
         <div
           className="inquiryBack-left"
           onClick={() => {
@@ -38,6 +33,7 @@ const MyInquiryDetail = ({
         <h4>1:1문의</h4>
       </div>
       <hr className="inquiryhr1" />
+      {/* 문의 상세내용 */}
       <div className="inquiryDetail1">
         <div className="inquiryDetail2">
           <div className="inquiryMainTitleBox">
@@ -86,7 +82,6 @@ const MyInquiryDetail = ({
               className="inquiryBtn2"
               onClick={() => {
                 if (window.confirm("삭제하시겠습니까?")) {
-                  // 삭제 코드
                   inquiryDelete();
                   setInquiryAction(0);
                 }
@@ -100,7 +95,6 @@ const MyInquiryDetail = ({
             className="inquiryBtn"
             onClick={() => {
               if (window.confirm("삭제하시겠습니까?")) {
-                // 삭제 코드
                 inquiryDelete();
                 setInquiryAction(0);
               }

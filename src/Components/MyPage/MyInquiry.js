@@ -20,10 +20,10 @@ const MyInquiry = ({ setMyPageAction }) => {
 
   useEffect(() => {
     // 페이지 렌더링시 1회만 문의 리스트 불러오기
-    inquirydbtest();
+    inquirydblist();
   }, []);
 
-  const inquirydbtest = () => {
+  const inquirydblist = () => {
     axios
       .get("/inquirylist", {
         params: {
@@ -52,7 +52,7 @@ const MyInquiry = ({ setMyPageAction }) => {
       )}
       {inquiryAction === 1 && ( // 문의 작성
         <MyInquiryWrite
-          inquirydbtest={inquirydbtest}
+          inquirydblist={inquirydblist}
           setInquiryAction={setInquiryAction}
         />
       )}
@@ -60,15 +60,14 @@ const MyInquiry = ({ setMyPageAction }) => {
         <MyInquiryDetail
           inquirydata={inquirydata}
           setInquiryAction={setInquiryAction}
-          inquirydb={inquirydb}
-          inquirydbtest={inquirydbtest}
+          inquirydblist={inquirydblist}
         />
       )}
       {inquiryAction === 3 && ( // 문의내용 수정
         <MyInquiryUpdate
           inquirydata={inquirydata}
           setInquiryAction={setInquiryAction}
-          inquirydbtest={inquirydbtest}
+          inquirydblist={inquirydblist}
           setInquirydata={setInquirydata}
         />
       )}
