@@ -65,6 +65,9 @@ const MyInquiryWrite = ({ setInquiryAction, inquirydblist }) => {
     }
   };
 
+  const [inquiryWriteLength, setInquiryWriteLength] = useState(0); // 문의 제목 길이
+  const [inquiryWriteLength2, setInquiryWriteLength2] = useState(0); // 문의 내용 길이
+
   return (
     <>
       <div className="inquiryHeader">
@@ -87,8 +90,10 @@ const MyInquiryWrite = ({ setInquiryAction, inquirydblist }) => {
               type="text"
               placeholder="제목"
               ref={titleRef}
+              maxLength={30}
               onChange={() => {
                 inquiryTitleChange();
+                setInquiryWriteLength(titleRef.current.value.length);
               }}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
@@ -99,9 +104,24 @@ const MyInquiryWrite = ({ setInquiryAction, inquirydblist }) => {
             />
           </Form.Group>
           {inquiryalert === 1 ? (
-            <div className="inquiryWriteAlert">제목을 입력하세요.</div>
+            <div className="inquiryWriteAlert">
+              <p>제목을 입력하세요.</p>
+            </div>
+          ) : inquiryWriteLength < 30 ? (
+            <div className="inquiryWriteTitleLength">
+              <div className="inquiryWriteTitleBox">
+                <p>{inquiryWriteLength} / 30</p>
+              </div>
+            </div>
           ) : (
-            <div className="inquiryWriteAlert">&nbsp;</div>
+            <div className="inquiryWriteTitleLength">
+              <div className="inquiryWriteTitleBox">
+                <p>
+                  <span className="inquiryWriteRed">{inquiryWriteLength}</span>/
+                  30
+                </p>
+              </div>
+            </div>
           )}
           <Form.Group className="mb-3 writeFormContent">
             <Form.Label></Form.Label>
@@ -111,16 +131,33 @@ const MyInquiryWrite = ({ setInquiryAction, inquirydblist }) => {
               placeholder="문의 내용을 입력하세요"
               className="contentForm"
               ref={contentRef}
+              maxLength={500}
               style={{ resize: "none" }}
               onChange={() => {
                 inquiryContentChange();
+                setInquiryWriteLength2(contentRef.current.value.length);
               }}
             />
           </Form.Group>
           {inquiryalert === 2 ? (
-            <div className="inquiryWriteAlert">내용을 입력하세요.</div>
+            <div className="inquiryWriteAlert">
+              <p>내용을 입력하세요.</p>
+            </div>
+          ) : inquiryWriteLength2 < 500 ? (
+            <div className="inquiryWriteTitleLength">
+              <div className="inquiryWriteTitleBox">
+                <p>{inquiryWriteLength2} / 500</p>
+              </div>
+            </div>
           ) : (
-            <div className="inquiryWriteAlert">&nbsp;</div>
+            <div className="inquiryWriteTitleLength">
+              <div className="inquiryWriteTitleBox">
+                <p>
+                  <span className="inquiryWriteRed">{inquiryWriteLength2}</span>
+                  / 500
+                </p>
+              </div>
+            </div>
           )}
         </Form>
       </div>

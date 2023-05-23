@@ -47,6 +47,8 @@ const MyInquiryAdminWrite = ({
     }
   };
 
+  const [inquiryWriteLength, setInquiryWriteLength] = useState(0); // 문의 답변 길이
+
   return (
     <>
       <div className="writeForm">
@@ -60,15 +62,32 @@ const MyInquiryAdminWrite = ({
               className="contentForm"
               style={{ resize: "none" }}
               ref={contentRef}
+              maxLength={1000}
               onChange={() => {
                 inquiryAdminContentChange();
+                setInquiryWriteLength(contentRef.current.value.length);
               }}
             />
           </Form.Group>
           {inquiryAdminAlert === 1 ? (
-            <div className="inquiryWriteAlert">내용을 입력하세요.</div>
+            <div className="inquiryWriteAlert">
+              <p>내용을 입력하세요.</p>
+            </div>
+          ) : inquiryWriteLength < 1000 ? (
+            <div className="inquiryWriteTitleLength">
+              <div className="inquiryWriteTitleBox">
+                <p>{inquiryWriteLength} / 1000</p>
+              </div>
+            </div>
           ) : (
-            <div className="inquiryWriteAlert">&nbsp;</div>
+            <div className="inquiryWriteTitleLength">
+              <div className="inquiryWriteTitleBox">
+                <p>
+                  <span className="inquiryWriteRed">{inquiryWriteLength}</span>/
+                  30
+                </p>
+              </div>
+            </div>
           )}
         </Form>
         <div className="inquiryWriteBox">

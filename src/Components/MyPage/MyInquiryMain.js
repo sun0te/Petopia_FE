@@ -1,5 +1,6 @@
 import React from "react";
 import { FaAngleLeft } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 import "../../Styles/MyInquiry.css";
 
 const MyInquiryMain = ({
@@ -49,20 +50,37 @@ const MyInquiryMain = ({
             <hr className="inquiryhr2" />
           </div>
         ))
-      ) : (
+      ) : sessionStorage.getItem("email") != null ? (
         <div className="inquiryNone">문의내역이 없습니다.</div>
+      ) : (
+        <div className="inquiryNone">로그인을 해주세요.</div>
       )}
 
-      <div className="inquiryBox">
-        <button
-          className="inquiryBtn"
-          onClick={() => {
-            setInquiryAction(1);
-          }}
-        >
-          문의하기
-        </button>
-      </div>
+      {sessionStorage.getItem("email") != null ? (
+        <div className="inquiryBox">
+          <button
+            className="inquiryBtn"
+            onClick={() => {
+              setInquiryAction(1);
+            }}
+          >
+            문의하기
+          </button>
+        </div>
+      ) : (
+        <NavLink to="/login" style={{ textDecoration: "none" }}>
+          <div className="inquiryBox">
+            <button
+              className="inquiryBtn"
+              onClick={() => {
+                setInquiryAction(1);
+              }}
+            >
+              로그인
+            </button>
+          </div>
+        </NavLink>
+      )}
     </>
   );
 };

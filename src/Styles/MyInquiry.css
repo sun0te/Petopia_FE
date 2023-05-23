@@ -227,6 +227,21 @@
     color: red;
 }
 
+.inquiryWriteTitleLength{
+    font-size: 12px;
+    margin-top: -10px;
+    margin-left: 13px;
+}
+
+.inquiryWriteTitleBox{
+    text-align: right;
+    margin-right: 5px;
+}
+
+.inquiryWriteRed{
+    color: red;
+}
+
 .writeFormInquiry {
     width: 95%;
     align-items: center;
