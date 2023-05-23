@@ -51,6 +51,8 @@
 
 .inquiryAdminDetailContent{
     margin-top: 20px;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .inquiryadminStatus{
@@ -106,6 +108,8 @@
 
 .inquiryAdminDetailContent1{
     margin-top: 20px;
+    word-wrap: break-word;
+    word-break: break-all;
     /* padding: 5px; */
 }
 
@@ -119,4 +123,11 @@
 .inquiryWriteBox{
     width: 95%;
     margin: 0 auto;
+}
+
+.inquiryAdminTitleEllipsis{
+    max-width: 450px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }

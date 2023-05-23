@@ -28,6 +28,7 @@ const MyInquiryAdminList = ({
   }, [selectedInquiry]);
 
   const [inquiryadminstate, setInquiryadminstate] = useState(0);
+  // inquiryadminstate = 0 => 전체 문의 , inquiryadminstate = 1 => 답변 대기 , inquiryadminstate = 2 = > 답변 완료
   return (
     <>
       <div className="inquiryHeader">
@@ -95,8 +96,9 @@ const MyInquiryAdminList = ({
             }}
           >
             <div className="inquiryMain1">
-              <b className="inquiryMainTitle">{a.title}</b>
-              <br />
+              <div className="inquiryAdminTitleEllipsis">
+                <b className="inquiryMainTitle">{a.title}</b>
+              </div>
               {a.answer_status === "PENDING" ? (
                 <div className="inquiryadminStatusWait">답변 대기</div>
               ) : (
@@ -122,8 +124,9 @@ const MyInquiryAdminList = ({
               }}
             >
               <div className="inquiryMain1">
-                <b className="inquiryMainTitle">{a.title}</b>
-                <br />
+                <div className="inquiryAdminTitleEllipsis">
+                  <b className="inquiryMainTitle">{a.title}</b>
+                </div>
                 {a.answer_status === "PENDING" ? (
                   <div className="inquiryadminStatusWait">답변 대기</div>
                 ) : (
@@ -149,8 +152,9 @@ const MyInquiryAdminList = ({
               }}
             >
               <div className="inquiryMain1">
-                <b className="inquiryMainTitle">{a.title}</b>
-                <br />
+                <div className="inquiryAdminTitleEllipsis">
+                  <b className="inquiryMainTitle">{a.title}</b>
+                </div>
                 {a.answer_status === "PENDING" ? (
                   <div className="inquiryadminStatusWait">답변 대기</div>
                 ) : (

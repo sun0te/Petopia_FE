@@ -40,8 +40,9 @@ const MyInquiryDetail = ({
       <hr className="inquiryhr1" />
       <div className="inquiryDetail1">
         <div className="inquiryDetail2">
-          <b className="inquiryMainTitle">{inquirydata.title}</b>
-          <br />
+          <div className="inquiryMainTitleBox">
+            <b className="inquiryMainTitle">{inquirydata.title}</b>
+          </div>
           <b className="inquiryMainDate">
             {new Date(inquirydata.uploadDate).toISOString().split("T")[0]}
           </b>

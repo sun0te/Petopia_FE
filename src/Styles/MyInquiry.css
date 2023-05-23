@@ -33,8 +33,21 @@
     opacity: 0.9;
 }
 
+.inquiryTitleEllipsis{
+    max-width: 230px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.inquiryMainTitleBox{
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
 .inquiryMainTitle{
     font-size: 14px;
+    
 }
 
 .inquiryMainDate{
@@ -162,6 +175,8 @@
     border: 2px solid lightgray;
     border-radius: 7px;
     background-color: lightgray;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .inquiryDetailAnswer{
@@ -182,6 +197,8 @@
     border: 2px solid lightgray;
     border-radius: 7px;
     background-color: lightgray;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .detailSpace{

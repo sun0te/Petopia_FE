@@ -29,12 +29,12 @@ const MyInquiryMain = ({
             onClick={() => {
               setInquirydata(a);
               setInquiryAction(2);
-              // MyInquiryDetail 이동 or 해당 리스트를 제목,내용으로 변경
             }}
           >
             <div className="inquiryMain1">
-              <b className="inquiryMainTitle">{a.title}</b>
-              <br />
+              <div className="inquiryTitleEllipsis">
+                <b className="inquiryMainTitle">{a.title}</b>
+              </div>
               {a.answer_status === "PENDING" ? (
                 <div className="inquiryStatus">처리중</div>
               ) : (

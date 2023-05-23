@@ -5,30 +5,21 @@ import MyInquiryDetail from "./MyInquiryDetail";
 import { useState } from "react";
 import MyInquiryUpdate from "./MyInquiryUpdate";
 import axios from "axios";
-import Header from "../Header.js";
-import Footer from "../Footer.js";
-import BgLeft from "../BgLeft.js";
 import "../../Styles/MyInquiry.css";
 
 const MyInquiry = ({ setMyPageAction }) => {
+  // 1:1 문의 페이지 액션 useState
+  // 0 : 문의 리스트 , 1 : 문의 작성 , 2 : 문의 상세 내용 , 3 : 문의 수정
   const [inquiryAction, setInquiryAction] = useState(0);
 
+  // 리스트로 받아온 문의 데이터의 분리를 위한 useState
   const [inquirydata, setInquirydata] = useState({});
 
-  // DB ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 연동 테스트 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
-  const inquirylogin = () => {
-    window.sessionStorage.setItem("id", "test");
-  };
-
-  const inquirylogout = () => {
-    window.sessionStorage.clear();
-  };
-
-  // 문의 리스트 불러오기
+  // DB로부터 받아온 데이터 저장 useState
   const [inquirydb, setInquirydb] = useState([]);
 
   useEffect(() => {
+    // 페이지 렌더링시 1회만 문의 리스트 불러오기
     inquirydbtest();
   }, []);
 
@@ -36,28 +27,21 @@ const MyInquiry = ({ setMyPageAction }) => {
     axios
       .get("/inquirylist", {
         params: {
-          // username: "test1", // 로그인 구현시 수정
+          // session의 key(email)값의 value를 가져옴
           username: sessionStorage.getItem("email"),
         },
       })
       .then((res) => {
         const { data } = res;
-        setInquirydb(data);
+        setInquirydb(data); // 문의 리스트들을 inquirydb 에 저장
       })
       .catch((e) => {
         console.error(e);
       });
   };
 
-  // DB ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 연동 테스트 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
   return (
     <>
-      {/* <BgLeft />
-
-      <main>
-        <Header />
-        <section> */}
       {inquiryAction === 0 && ( // 문의 리스트
         <MyInquiryMain
           setInquiryAction={setInquiryAction}
@@ -88,9 +72,6 @@ const MyInquiry = ({ setMyPageAction }) => {
           setInquirydata={setInquirydata}
         />
       )}
-      {/* </section>
-        <Footer />
-      </main> */}
     </>
   );
 };
