@@ -1,18 +1,66 @@
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
-
-import { BsPerson, BsHandThumbsUp, BsHeart } from "react-icons/bs";
-import "../../Styles/RecomendStyle.css";
-import { Link } from "react-router-dom";
-
-import React, { useState } from "react";
+import Form from "react-bootstrap/Form";
+import { BsHandThumbsUp, BsHeart, BsPerson } from "react-icons/bs";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import ReportModal from "../../Modal/ReportModal";
+import "../../Styles/RecomendStyle.css";
 
 const Recomend_detail = () => {
+  const location = useLocation();
+  const boardid = location.state.boardid;
+
+  const thumbIsClicked = document.getElementById("thumb");
+  const heartIsClicked = document.getElementById("heart");
   const thumbsClick = () => {
-    alert("thumbs up clicked");
+    if (
+      sessionStorage.getItem("email") !== null &&
+      sessionStorage.getItem("email") !== "" &&
+      sessionStorage.getItem("email") !== undefined
+    ) {
+      axios
+        .post("http://localhost:8080/recommend/confirm", {
+          post: { id: boardid },
+          user: { email: sessionStorage.getItem("email") },
+        })
+        .then((res) => {
+          if (res.data === false) {
+            axios
+              .post("http://localhost:8080/recommend/upper", {
+                post: { id: boardid },
+                user: { email: sessionStorage.getItem("email") },
+              })
+              .then((res) => {
+                setBoardData((tempData) => ({
+                  ...tempData,
+                  recommends: tempData.recommends + 1,
+                }));
+                thumbIsClicked.classList.add("clickedIconColor");
+              });
+          } else if (res.data === true) {
+            axios
+              .post("http://localhost:8080/recommend/lower", {
+                post: { id: boardid },
+                user: { email: sessionStorage.getItem("email") },
+              })
+              .then((res) => {
+                setBoardData((tempData) => ({
+                  ...tempData,
+                  recommends: tempData.recommends - 1,
+                }));
+                thumbIsClicked.classList.remove("clickedIconColor");
+              });
+          } else {
+            alert("error");
+          }
+        })
+        .catch((err) => {});
+    } else {
+      alert("로그인이 필요합니다.");
+    }
   };
 
   // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
@@ -25,13 +73,114 @@ const Recomend_detail = () => {
     setModalOpen(false);
   };
 
+  const [boardData, setBoardData] = useState(null);
+  const [boardImgs, setBoardImgs] = useState([]);
+  const [travelData, setTravelData] = useState(null);
+
+  const [placeCategory, setPlaceCategory] = useState("");
+  const [petProvisionsData, setPetProvisionsData] = useState([]);
+
+  const getImgInfo = () => {
+    axios
+      .post("http://localhost:8080/board/detailimg", {
+        post: { id: boardid },
+      })
+      .then((res) => {
+        setBoardImgs(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const getBoardInfo = () => {
+    axios
+      .post("http://localhost:8080/board/detail", {
+        id: boardid,
+        category: "TRAVEL",
+      })
+      .then((res) => {
+        getTravelInfo(res.data.id);
+        setBoardData({
+          title: res.data.title,
+          email: res.data.author.email,
+          aurthorprofile: res.data.author.profileImage,
+          authornickname: res.data.author.nickname,
+          createdat: res.data.createdAt,
+          content: res.data.content,
+          recommends: res.data.recommends,
+          likes: res.data.likes,
+        });
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .then(getImgInfo());
+  };
+
+  const getTravelInfo = (boardid) => {
+    axios
+      .post("http://localhost:8080/travel/getinfo", { post: { id: boardid } })
+      .then((res) => {
+        setPlaceCategory(res.data.category);
+        setPetProvisionsData(res.data.petProvisions);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    const thumbIsClicked = document.getElementById("thumb");
+    const heartIsClicked = document.getElementById("heart");
+    const checkBoardRecommend = () => {
+      if (
+        sessionStorage.getItem("email") !== null ||
+        sessionStorage.getItem("email") !== "" ||
+        sessionStorage.getItem("email") !== undefined
+      ) {
+        axios
+          .post("http://localhost:8080/recommend/confirm", {
+            post: { id: boardid },
+            user: { email: sessionStorage.getItem("email") },
+          })
+          .then((res) => {
+            if (res.data === true) {
+              if (thumbIsClicked !== null) {
+                thumbIsClicked.classList.add("clickedIconColor");
+              }
+            }
+          });
+      }
+    };
+
+    getBoardInfo();
+    checkBoardRecommend();
+  }, []);
+
+  const imagePath = "/uploadimgs/";
+
+  const navigate = useNavigate();
+  // 게시글 삭제
+  const deleteBoard = () => {
+    const deleteConfirm = window.confirm("게시글을 삭제하시겠습니까?");
+    if (deleteConfirm) {
+      axios
+        .post("http://localhost:8080/board/delete", { id: boardid })
+        .then((res) => {
+          navigate("/routetrip");
+        });
+    }
+  };
+
   return (
     <>
       <ReportModal open={modalOpen} close={closeModal} header="게시글 신고">
         <p>신고 사유를 선택해 주세요</p>
       </ReportModal>
       <div className="RecomendBody">
-        <h2 className="h2_Recomend">공간 보기</h2>
+        <h2 className="h2_Recomend">여행 추천</h2>
 
         <div>
           <Form className="d-flex">
@@ -47,15 +196,18 @@ const Recomend_detail = () => {
           </Form>
         </div>
 
-        <h4 className="h4_Recomend">게시글 제목</h4>
+        <h4 className="h4_Recomend recommendDetailTitle">
+          {boardData && boardData.title !== undefined ? boardData.title : null}
+        </h4>
         <div className="detailReportBtnDiv">
-          {sessionStorage.getItem("email") === "admin@admin.com" ? (
+          {sessionStorage.getItem("email") === "admin@admin.com" ||
+          boardData?.email === sessionStorage.getItem("email") ? (
             <Button
               className="btm-sm reportBtn"
               variant="outline-secondary"
               style={{ padding: "4px 0px 3px 0px", marginRight: "10px" }}
               onClick={() => {
-                alert("delete btn clicked");
+                deleteBoard();
               }}
             >
               삭제
@@ -73,14 +225,34 @@ const Recomend_detail = () => {
         <hr className="hr_Recomend" />
 
         <p className="p_recomend detailWriterP">
-          <img
-            className="detailProfileImg"
-            src="img/detail_profile_img.png"
-            alt=""
-          />
-          petopia
+          {boardData !== null &&
+          boardData.aurthorprofile !== null &&
+          boardData.aurthorprofile !== undefined &&
+          boardData.aurthorprofile !== "" ? (
+            <img
+              className="detailProfileImg"
+              src={boardData.aurthorprofile}
+              alt=""
+            />
+          ) : (
+            <>
+              <BsPerson className="recommendIcon detailauthoricon" />
+              &nbsp;
+            </>
+          )}
+
+          {boardData !== null ? (
+            <span className="recommendDetailNickname">
+              <>{boardData.authornickname}</>
+            </span>
+          ) : null}
         </p>
-        <p className="p_recommendDate">2023-05-05</p>
+
+        <p className="p_recommendDate">
+          {boardData !== null ? (
+            <>{boardData.createdat.substring(0, 16).replace("T", " ")}</>
+          ) : null}
+        </p>
 
         <br />
         <br />
@@ -88,66 +260,78 @@ const Recomend_detail = () => {
         <br />
 
         <div className="RecomendDetailBody">
-          <div>
+          {/* <div>
             <img
               className="RecomendDetailImg"
               src="img/recommend_detail1.png"
               alt=""
             />
+          </div> */}
+
+          <div>
+            {boardImgs !== null ? (
+              <>
+                {boardImgs.map((img) => {
+                  return (
+                    <>
+                      <img
+                        className="RecomendDetailImg"
+                        src={imagePath + img.imageUrl}
+                        alt="fasd"
+                      />
+                    </>
+                  );
+                })}
+              </>
+            ) : null}
           </div>
 
           <div>
             <p className="RecomendDetailP">
-              [송도IBD 매거진 블로그]에서는, 송도IBD '블로그피플'이라는 코너를
-              연재하고 있습니다. <br />
-              일상생활과 문화, 예술 등 송도IBD의 생생한 모습들이 담겨있는
-              블로그를 하나하나 찾아 소개해드리는 코너지요! <br />
-              이번에는 '로니&베베 개판 Story'라는 독특한 이름을 가진 블로그를
-              만나봤습니다. <br />
-              <br />
-              블로그를 운영하고 계신 로니PaPa님은 비글 로니와 닥스훈트 베베라는
-              반려견을 키우고 있습니다.
-              <br /> 이 활발한 강아지들을 산책시킬 때는 송도국제도시에 있는
-              센트럴파크가 딱이라고 하는데요.
-              <br />
-              <br /> 이유가 뭘까요? 그 현장에서 확인해보시죠!
+              {boardData !== null ? <>{boardData.content}</> : null}
             </p>
           </div>
           <br />
-
-          <div>
-            <img
-              className="RecomendDetailImg"
-              src="img/recommend_detail2.png"
-              //   src="https://placeholder.com/300x200"
-              alt=""
-            />
-          </div>
-
-          <div>
-            <p className="RecomendDetailP">
-              센트럴파크에서의 행복한 한 때를 보낸 로니, 베베 그리고 파파.{" "}
-              <br />
-              마치 화보 같은 센트럴파크의 사진들을 보니 정말 푸른 풀밭이 있는
-              공원에서 여유로운 한 때를 보내고 싶은 기분이 들지 않으세요? <br />
-              오늘은 공원 산책, 어떠세요?
-            </p>
-          </div>
 
           <Card className="cardRecomendDetail">
             <Card.Body className="cardRecomendDetailBody jangso">
               ✅ 장소 정보
             </Card.Body>
             <Card.Body className="cardRecomendDetailBody">
-              📌 어떤 종류의 장소인가요? <br /> <br />- 공원
+              📌 어떤 종류의 장소인가요? <br /> <br />
+              {placeCategory === "RESTAURANT" ? (
+                <span>- 음식점</span>
+              ) : placeCategory === "PARK" ? (
+                <span>- 공원</span>
+              ) : placeCategory === "CAFE" ? (
+                <span>- 카페</span>
+              ) : placeCategory === "ACCOMMODATION" ? (
+                <span>- 숙소</span>
+              ) : null}
             </Card.Body>
             <Card.Body className="cardRecomendDetailBody">
               📌 반려견 동반 시 유의사항 <br /> <br />
-              - 펫방석 혹은 담요 제공하지 않음 <br />
-              - 마킹이 심한 반려견은 매너벨트 착용
-              <br />
-              - 15 kg이 넘는 대형견은 업체 문의
-              <br /> - 심한 짖음, 공격성 있는 반려견 동반 불가
+              {petProvisionsData.includes("PET_SNACK") && (
+                <span>
+                  - 펫 간식 제공 <br />
+                </span>
+              )}
+              {petProvisionsData.includes("PET_SUPPLIES_PROVIDED") && (
+                <span>
+                  - 펫방석 혹은 담요 제공 <br />
+                </span>
+              )}
+              {petProvisionsData.includes("PET_MANNER_BELT") && (
+                <span>
+                  - 마킹이 심한 반려견은 매너벨트 착용 <br />
+                </span>
+              )}
+              {petProvisionsData.includes("NO_LARGE_DOG_ALLOWED") && (
+                <span>
+                  - 15 kg 이상 대형견은 업체 문의 <br />
+                </span>
+              )}
+              - 심한 짖음, 공격성 있는 반려견 동반 불가
             </Card.Body>
 
             <Card.Body className="cardRecomendDetailBodyAlert">
@@ -161,11 +345,14 @@ const Recomend_detail = () => {
               {/* <p className="thumbsHeartText">추천해요</p> */}
               <button type="button" className="thumbsHeartIconBtn">
                 <BsHandThumbsUp
+                  id="thumb"
                   className="thumbsHeartIcon"
                   onClick={thumbsClick}
                 />
               </button>
-              <span className="thumbsHeartSpan">32</span>
+              <span className="thumbsHeartSpan">
+                {boardData !== null ? boardData.recommends : null}
+              </span>
             </div>
 
             <br />
@@ -173,9 +360,11 @@ const Recomend_detail = () => {
             <div className="heart">
               {/* <p className="thumbsHeartText">저장할래요</p> */}
               <button type="button" className="thumbsHeartIconBtn">
-                <BsHeart className="thumbsHeartIcon" />
+                <BsHeart id="heart" className="thumbsHeartIcon" />
               </button>
-              <span className="thumbsHeartSpan">8</span>
+              <span className="thumbsHeartSpan">
+                {boardData !== null ? boardData.likes : null}
+              </span>
             </div>
           </div>
 
@@ -183,22 +372,26 @@ const Recomend_detail = () => {
             <Link to="/routetrip">
               <button
                 type="button"
-                className="btn btn-outline-primary boardListBtn"
+                className="btn btn-sm btn-outline-primary boardListBtn"
               >
                 글목록
               </button>
             </Link>
-
-            {/* <div className="reportBtnDiv">
-              <Button
-                className="btm-sm reportBtn"
-                variant="outline-danger"
-                style={{ padding: "4px 0px 3px 0px" }}
-              >
-                🚨신고
-              </Button>
-            </div> */}
           </div>
+
+          {boardData?.email === sessionStorage.getItem("email") ? (
+            <div className="recommendUpdateBtnDiv">
+              <Link to="/update">
+                <button
+                  type="button"
+                  visibility="hidden"
+                  className="btn btn-primary btn-sm recommendUpdateBtn"
+                >
+                  글 수정
+                </button>
+              </Link>
+            </div>
+          ) : null}
         </div>
       </div>
     </>

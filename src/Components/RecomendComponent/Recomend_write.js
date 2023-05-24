@@ -1,19 +1,30 @@
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
+import { useRef, useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import ListGroup from "react-bootstrap/ListGroup";
+import { BsTrash3 } from "react-icons/bs";
+import RadioButton from "../../Components/RecomendComponent/RadioButton";
 import "../../Styles/BoardWrite.css";
 import "../../Styles/RecomendStyle.css";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import { useState, useRef } from "react";
-import { BsTrash3 } from "react-icons/bs";
-import ListGroup from "react-bootstrap/ListGroup";
-import RadioButton from "../../Components/RecomendComponent/RadioButton";
+import { useNavigate } from "react-router-dom";
 
 const Recomend_write = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
 
-  const inputRef = useRef(null);
+  let fileList = []; // 업로드 할 파일 리스트 저장
 
   const handleFileInputChange = (event) => {
+    const uploadFiles = Array.prototype.slice.call(event.target.files); // 파일 이름을 배열 형태로 저장
+    console.log("uploadFiles => " + uploadFiles);
+
+    // 파일 이름을 하나씩 저장
+    uploadFiles.forEach((uploadFile) => {
+      console.log(uploadFile);
+      fileList.push(uploadFile);
+    });
+
     setSelectedFiles([...selectedFiles, ...event.target.files]);
   };
 
@@ -24,7 +35,7 @@ const Recomend_write = () => {
   };
 
   const handleUploadClick = () => {
-    console.log(selectedFiles);
+    checkBoard();
   };
 
   const handleClick = () => {
@@ -34,18 +45,102 @@ const Recomend_write = () => {
   const [placeOption, setPlaceOption] = useState("");
 
   const options = [
-    { value: "option1", label: "#식당" },
-    { value: "option2", label: "#카페" },
-    { value: "option3", label: "#공원" },
+    { value: "RESTAURANT", label: "#식당" },
+    { value: "CAFE", label: "#카페" },
+    { value: "PARK", label: "#공원" },
+    { value: "ACCOMMODATION", label: "#숙소" },
   ];
 
   const handleOptionChange = (newValue) => {
-    console.log(newValue);
     setPlaceOption(newValue);
   };
 
+  const inputRef = useRef(null);
+  const writeTitleText = useRef(null);
   const writeContentTextArea = useRef();
   const [writeContentText, setWriteContentText] = useState(0); //글자수
+  const [checkboxes, setCheckboxes] = useState([]);
+
+  const handleCheckboxChange = (event) => {
+    const { id, checked } = event.target;
+
+    if (checked) {
+      setCheckboxes((prevCheckboxes) => [...prevCheckboxes, id]);
+    } else {
+      setCheckboxes((prevCheckboxes) =>
+        prevCheckboxes.filter((checkbox) => checkbox !== id)
+      );
+    }
+  };
+
+  const checkBoard = () => {
+    if (
+      writeTitleText.current.value.length <= 0 ||
+      writeContentTextArea.current.value.length <= 0 ||
+      placeOption === "" ||
+      checkboxes.length <= 0 ||
+      selectedFiles.length <= 0
+    ) {
+      alert("모든 항목을 작성해 주세요.");
+    } else {
+      submitTravelRecommend();
+    }
+  };
+
+  const navigate = useNavigate();
+
+  const [boardid, setBoardid] = useState();
+
+  const submitTravelRecommend = () => {
+    const formData = new FormData();
+    selectedFiles.forEach((file) => {
+      formData.append("uploadfiles", file);
+    });
+
+    axios
+      .post("http://localhost:8080/board/write", {
+        author: { email: sessionStorage.getItem("email") },
+        title: writeTitleText.current.value,
+        content: writeContentTextArea.current.value,
+        thumbnailImage: selectedFiles[0].name,
+        category: "TRAVEL",
+      })
+      .then((res) => {
+        console.log(res.data);
+        setBoardid(res.data);
+        submitTravelInfo(res.data);
+      })
+      .catch((e) => {
+        console.error(e);
+      })
+      .then(() => {
+        axios
+          .post("http://localhost:8080/board/uploadfiles", formData)
+          .then((res) => {
+            navigate("/routetrip");
+          })
+          .catch((e) => {
+            console.error(e);
+          });
+      })
+      .then(() => {
+        navigate("/routetrip");
+      });
+  };
+
+  const submitTravelInfo = (boardid) => {
+    axios
+      .post("http://localhost:8080/travel/writeinfo", {
+        post: { id: boardid },
+        placeName: "장소이름 지정 기능 아직 없음",
+        category: placeOption,
+        petProvisions: JSON.stringify(checkboxes),
+      })
+      .then((res) => {})
+      .catch((e) => {
+        console.error(e);
+      });
+  };
 
   return (
     <>
@@ -57,6 +152,8 @@ const Recomend_write = () => {
               className="writeTitle"
               type="email"
               placeholder="글 제목을 입력하세요"
+              ref={writeTitleText}
+              maxLength={255}
             />
           </Form.Group>
           <Form.Group className="mb-3 writeFormContent">
@@ -101,7 +198,10 @@ const Recomend_write = () => {
                 className="form-check-input"
                 type="checkbox"
                 value=""
-                id="flexCheckDefault"
+                id="PET_SUPPLIES_PROVIDED"
+                // id="flexCheckDefault"
+                checked={checkboxes.includes("PET_SUPPLIES_PROVIDED")}
+                onChange={handleCheckboxChange}
               />
               <label className="form-check-label" htmlFor="flexCheckDefault">
                 펫 방석 혹은 담요를 제공해요
@@ -113,7 +213,9 @@ const Recomend_write = () => {
                 className="form-check-input"
                 type="checkbox"
                 value=""
-                id="flexCheckDefault"
+                id="PET_SNACK"
+                checked={checkboxes.includes("PET_SNACK")}
+                onChange={handleCheckboxChange}
               />
               <label className="form-check-label" htmlFor="flexCheckDefault">
                 펫 간식을 제공해요
@@ -125,7 +227,9 @@ const Recomend_write = () => {
                 className="form-check-input"
                 type="checkbox"
                 value=""
-                id="flexCheckDefault"
+                id="PET_MANNER_BELT"
+                checked={checkboxes.includes("PET_MANNER_BELT")}
+                onChange={handleCheckboxChange}
               />
               <label className="form-check-label" htmlFor="flexCheckDefault">
                 매너벨트 착용 필수에요
@@ -137,7 +241,9 @@ const Recomend_write = () => {
                 className="form-check-input"
                 type="checkbox"
                 value=""
-                id="flexCheckDefault"
+                id="NO_LARGE_DOG_ALLOWED"
+                checked={checkboxes.includes("NO_LARGE_DOG_ALLOWED")}
+                onChange={handleCheckboxChange}
               />
               <label className="form-check-label" htmlFor="flexCheckDefault">
                 15 kg 이상 대형견은 입장할 수 없어요

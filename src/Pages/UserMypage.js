@@ -104,7 +104,7 @@ const UserMypage = () => {
       sessionStorage.getItem("email") !== null
     ) {
       axios
-        .post("/user/getuserinfo", {
+        .post("http://localhost:8080/user/getuserinfo", {
           email: sessionStorage.getItem("email"),
         })
         .then((res) => {
