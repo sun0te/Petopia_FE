@@ -11,8 +11,8 @@ import ReviewWriteComponent from "../ReviewWriteComponent";
 const ReviewContainer = styled.div`
   width: 100%;
   margin: 0 auto;
-  margin-top: -30px;
-  padding: 32px;
+  margin-top: -15px;
+  padding: 14px;
 `;
 
 const ReviewListHeader = styled.h2`
@@ -53,7 +53,9 @@ const ReviewContent = styled.td`
   word-break: break-all;
 `;
 
-const ReviewDate = styled.td``;
+const ReviewDate = styled.td`
+  margin-right: -10px;
+`;
 
 const ReviewCheckbox = styled.input`
   margin-right: 16px;
@@ -139,8 +141,8 @@ const ReviewList = ({ setMyPageAction }) => {
                   onChange={handleCheckAll}
                   checked={checkedReviews.length === reviews.length}
                 />
-                <div>내용</div>
-                <div>날짜</div>
+                <div className="myreviewcontentbox">내용</div>
+                <div className="myreviewdatebox">날짜</div>
               </ReviewTableHeader>
               {reviews.map((review) => (
                 <ReviewTableContent key={review.id}>
