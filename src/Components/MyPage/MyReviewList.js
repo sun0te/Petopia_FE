@@ -7,6 +7,7 @@ import LoginComponent from "../LoginComponent";
 import { FaAngleLeft } from "react-icons/fa";
 import MyReviewDetailPage from "../../Pages/MyReviewDetailPage";
 import ReviewWriteComponent from "../ReviewWriteComponent";
+import axios from "axios";
 
 const ReviewContainer = styled.div`
   width: 100%;
@@ -51,6 +52,12 @@ const ReviewTableContent = styled.li`
 
 const ReviewContent = styled.td`
   word-break: break-all;
+  min-width: 150px;
+  max-width: 155px;
+  margin-left: 50px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 
 const ReviewDate = styled.td`
@@ -73,7 +80,7 @@ const ReviewList = ({ setMyPageAction }) => {
 
   const handleCheckAll = (e) => {
     if (e.target.checked) {
-      const allReviewsIds = reviews.map((review) => review.id);
+      const allReviewsIds = reviewdatalist.map((review) => review.id);
       setCheckedReviews(allReviewsIds);
     } else {
       setCheckedReviews([]);
@@ -89,11 +96,14 @@ const ReviewList = ({ setMyPageAction }) => {
   };
 
   const handleDelete = (reviewIds) => {
-    const remainingReviews = reviews.filter(
-      (review) => !reviewIds.includes(review.id)
-    );
-    setCheckedReviews([]);
-    setReviews(remainingReviews);
+    axios
+      .post("/myreviewdelete", reviewIds)
+      .then((res) => {
+        myReviewList();
+      })
+      .catch((e) => {
+        console.error(e);
+      });
   };
 
   const [reviews, setReviews] = useState([
@@ -116,6 +126,29 @@ const ReviewList = ({ setMyPageAction }) => {
 
   const [myPageReviewAction, setMyPageReviewAction] = useState(0); // 마이 리뷰 액션
   // [액션 0 : 리뷰 리스트] [액션 1 : 리뷰 상세] , [액션 2 : 리뷰 수정]
+  const [reviewdatalist, setReviewdatalist] = useState([]);
+  const [reviewdata, setReviewdata] = useState([]);
+
+  useEffect(() => {
+    myReviewList();
+  }, []);
+
+  const myReviewList = () => {
+    axios
+      .get("/myreviewlist", {
+        params: {
+          // session의 key(email)값의 value를 가져옴
+          writer: sessionStorage.getItem("email"),
+        },
+      })
+      .then((res) => {
+        const { data } = res;
+        setReviewdatalist(data); // 문의 리스트들을 inquirydb 에 저장
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
 
   return (
     <>
@@ -132,61 +165,67 @@ const ReviewList = ({ setMyPageAction }) => {
             </div>
             <h4>내 리뷰 관리</h4>
           </div>
-          <ReviewContainer>
-            {/* <ReviewListHeader>내 리뷰 관리</ReviewListHeader> */}
-            <ReviewListWrap>
-              <ReviewTableHeader>
-                <ReviewCheckbox
-                  type="checkbox"
-                  onChange={handleCheckAll}
-                  checked={checkedReviews.length === reviews.length}
-                />
-                <div className="myreviewcontentbox">내용</div>
-                <div className="myreviewdatebox">날짜</div>
-              </ReviewTableHeader>
-              {reviews.map((review) => (
-                <ReviewTableContent key={review.id}>
-                  <ReviewCheckbox
-                    type="checkbox"
-                    checked={checkedReviews.includes(review.id)}
-                    onChange={() => handleCheck(review)}
-                  />
-                  <ReviewContent
-                    onClick={() => {
-                      // navigate("/myreviewdetail");
-                      setMyPageReviewAction(1); // [액션 1 : 리뷰 상세]
-                    }}
+          {sessionStorage.getItem("email") != null ? (
+            reviewdatalist.length !== 0 ? (
+              <ReviewContainer>
+                {/* <ReviewListHeader>내 리뷰 관리</ReviewListHeader> */}
+                <ReviewListWrap>
+                  <ReviewTableHeader>
+                    <ReviewCheckbox
+                      type="checkbox"
+                      onChange={handleCheckAll}
+                      checked={checkedReviews.length === reviewdatalist.length}
+                    />
+                    <div className="myreviewcontentbox">업체명</div>
+                    <div className="myreviewdatebox">날짜</div>
+                  </ReviewTableHeader>
+
+                  {reviewdatalist.map((review) => (
+                    <ReviewTableContent key={review.id}>
+                      <ReviewCheckbox
+                        type="checkbox"
+                        checked={checkedReviews.includes(review.id)}
+                        onChange={() => handleCheck(review)}
+                      />
+                      <ReviewContent
+                        style={{}}
+                        onClick={() => {
+                          setReviewdata(review);
+                          setMyPageReviewAction(1); // [액션 1 : 리뷰 상세]
+                        }}
+                      >
+                        {review.location.facility_name}
+                      </ReviewContent>
+                      <ReviewDate>
+                        {new Date(review.updatedAt).toISOString().split("T")[0]}
+                      </ReviewDate>
+                    </ReviewTableContent>
+                  ))}
+                </ReviewListWrap>
+                <ReviewButtonsWrap>
+                  <Button
+                    className="mt-2 float-right"
+                    variant="primary"
+                    size="sm"
+                    onClick={() => handleDelete(checkedReviews)}
                   >
-                    {review.content}
-                  </ReviewContent>
-                  <ReviewDate>{review.date}</ReviewDate>
-                </ReviewTableContent>
-              ))}
-            </ReviewListWrap>
-            <ReviewButtonsWrap>
-              <Button
-                className="mt-2 float-right"
-                variant="primary"
-                size="sm"
-                onClick={() => handleDelete(checkedReviews)}
-              >
-                삭제
-              </Button>
-              {/* 수정 - 한번에 하나씩만 할 수 있게 해야 하지 않나? 논의 필요 */}
-              {/* <Link to="/">
-          <Button
-            className="mt-2 border-primary"
-            variant="btn-outline-primary"
-            size="sm"
-            onClick={() => {
-              navigate("/reviewwrite");
-            }}
-          >
-            수정
-          </Button>
-        </Link> */}
-            </ReviewButtonsWrap>
-          </ReviewContainer>
+                    삭제
+                  </Button>
+                </ReviewButtonsWrap>
+              </ReviewContainer>
+            ) : (
+              <div className="inquiryNone">작성된 리뷰가 없습니다.</div>
+            )
+          ) : (
+            <>
+              <div className="inquiryNone">로그인을 해주세요.</div>
+              <NavLink to="/login" style={{ textDecoration: "none" }}>
+                <div className="inquiryBox">
+                  <button className="inquiryBtn">로그인</button>
+                </div>
+              </NavLink>
+            </>
+          )}
         </>
       ) : myPageReviewAction === 1 ? ( // [액션 1 : 리뷰 상세]
         <>
@@ -201,7 +240,10 @@ const ReviewList = ({ setMyPageAction }) => {
             </div>
             <h4>내 리뷰 관리</h4>
           </div>
-          <MyReviewDetailPage setMyPageReviewAction={setMyPageReviewAction} />
+          <MyReviewDetailPage
+            setMyPageReviewAction={setMyPageReviewAction}
+            reviewdata={reviewdata}
+          />
         </>
       ) : (
         // [액션 2 : 리뷰 수정]
