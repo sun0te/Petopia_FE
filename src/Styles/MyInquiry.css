@@ -33,11 +33,30 @@
     opacity: 0.9;
 }
 
+.inquiryTitleEllipsis{
+    max-width: 230px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.inquiryMainTitleBox{
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
 .inquiryMainTitle{
     font-size: 14px;
+    
 }
 
 .inquiryMainDate{
+    font-size: 14px;
+    color:#888;
+}
+
+.inquiryMainAnswerDate{
+    margin-left: 232px;
     font-size: 14px;
     color:#888;
 }
@@ -156,6 +175,8 @@
     border: 2px solid lightgray;
     border-radius: 7px;
     background-color: lightgray;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .inquiryDetailAnswer{
@@ -176,6 +197,8 @@
     border: 2px solid lightgray;
     border-radius: 7px;
     background-color: lightgray;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .detailSpace{
@@ -201,6 +224,21 @@
     font-size: 12px;
     margin-top: -10px;
     margin-left: 13px;
+    color: red;
+}
+
+.inquiryWriteTitleLength{
+    font-size: 12px;
+    margin-top: -10px;
+    margin-left: 13px;
+}
+
+.inquiryWriteTitleBox{
+    text-align: right;
+    margin-right: 5px;
+}
+
+.inquiryWriteRed{
     color: red;
 }
 

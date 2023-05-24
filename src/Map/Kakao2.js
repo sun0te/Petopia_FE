@@ -706,11 +706,8 @@ const Kakao2 = ({
       <MapModal
         open={modalOpen}
         close={closeModal}
-        city={city}
         setCity={setCity}
-        county={county}
         setCounty={setCounty}
-        location={location}
         setLocation={setLocation}
         maplevel={maplevel}
         setMaplevel={setMaplevel}

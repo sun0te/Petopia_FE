@@ -1,14 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaAngleLeft } from "react-icons/fa";
 
-const MyInquiryDetail = ({
-  inquirydata,
-  setInquiryAction,
-  inquirydb,
-  inquirydbtest,
-}) => {
+const MyInquiryDetail = ({ inquirydata, setInquiryAction, inquirydblist }) => {
   //문의 삭제
   const inquiryDelete = () => {
     axios
@@ -16,7 +10,7 @@ const MyInquiryDetail = ({
         id: inquirydata.id,
       })
       .then((res) => {
-        inquirydbtest();
+        inquirydblist();
         setInquiryAction(0);
       })
       .catch((e) => {
@@ -27,6 +21,7 @@ const MyInquiryDetail = ({
   return (
     <>
       <div className="inquiryHeader">
+        {/* 뒤로가기 */}
         <div
           className="inquiryBack-left"
           onClick={() => {
@@ -38,10 +33,12 @@ const MyInquiryDetail = ({
         <h4>1:1문의</h4>
       </div>
       <hr className="inquiryhr1" />
+      {/* 문의 상세내용 */}
       <div className="inquiryDetail1">
         <div className="inquiryDetail2">
-          <b className="inquiryMainTitle">{inquirydata.title}</b>
-          <br />
+          <div className="inquiryMainTitleBox">
+            <b className="inquiryMainTitle">{inquirydata.title}</b>
+          </div>
           <b className="inquiryMainDate">
             {new Date(inquirydata.uploadDate).toISOString().split("T")[0]}
           </b>
@@ -58,6 +55,10 @@ const MyInquiryDetail = ({
           <div className="inquiryDetail1">
             <div className="detailSpace">
               <b className="inquiryAnswerTitle">펫토피아 답변</b>
+              <br />
+              <b className="inquiryMainAnswerDate">
+                {new Date(inquirydata.reportDate).toISOString().split("T")[0]}
+              </b>
             </div>
             <div className="inquiryDetailContent1">
               {inquirydata.answerContent}
@@ -81,7 +82,6 @@ const MyInquiryDetail = ({
               className="inquiryBtn2"
               onClick={() => {
                 if (window.confirm("삭제하시겠습니까?")) {
-                  // 삭제 코드
                   inquiryDelete();
                   setInquiryAction(0);
                 }
@@ -90,7 +90,19 @@ const MyInquiryDetail = ({
               삭제
             </button>
           </>
-        ) : null}
+        ) : (
+          <button
+            className="inquiryBtn"
+            onClick={() => {
+              if (window.confirm("삭제하시겠습니까?")) {
+                inquiryDelete();
+                setInquiryAction(0);
+              }
+            }}
+          >
+            삭제
+          </button>
+        )}
       </div>
     </>
   );

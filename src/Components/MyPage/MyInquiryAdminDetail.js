@@ -2,14 +2,32 @@ import React, { useState } from "react";
 import MyInquiryAdminWrite from "./MyInquiryAdminWrite";
 import MyInquiryAdminUpdate from "./MyInquiryAdminUpdate";
 import { FaAngleLeft } from "react-icons/fa";
+import axios from "axios";
 
 const MyInquiryAdminDetail = ({
-  inquiryAdmintest,
-  inquiryAdmintest2,
-  setInquiryAdmintest2,
+  inquiryAdminList,
+  inquiryAdminData,
+  setInquiryAdminData,
   setInquiryAdminAction,
+  getInquiryListAll,
 }) => {
   const [inquiryadmincheck, setInquiryadmincheck] = useState(0);
+
+  const inquiryAnswerDelete = () => {
+    axios
+      .post("/inquiryAnswerDelete", {
+        id: inquiryAdminData.id,
+        answer_status: "PENDING",
+      })
+      .then((res) => {
+        getInquiryListAll();
+        setInquiryAdminData(res.data);
+        setInquiryAdminAction(1);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
 
   return (
     <>
@@ -27,33 +45,43 @@ const MyInquiryAdminDetail = ({
       <hr className="inquiryhr1" />
       <div className="inquiryDetail1">
         <div className="inquiryDetail2">
-          <b className="inquiryMainTitle">{inquiryAdmintest2.title}</b>
-          <br />
-          <b className="inquiryMainDate">{inquiryAdmintest2.createDate}</b>
-
-          <div className="inquiryadminusername">
-            <b>작성자 : {inquiryAdmintest2.username}</b>
+          <div className="inquiryMainTitleBox">
+            <b className="inquiryMainTitle">{inquiryAdminData.title}</b>
           </div>
-          <div className="inquiryadminDetailContent">
-            {inquiryAdmintest2.content}
+          <b className="inquiryMainDate">
+            {new Date(inquiryAdminData.uploadDate).toISOString().split("T")[0]}
+          </b>
+          <div className="inquiryadminusername">
+            <b>작성자 : {inquiryAdminData.username}</b>
+          </div>
+          <div className="inquiryAdminDetailContent">
+            {inquiryAdminData.content}
           </div>
         </div>
       </div>
       <br />
       <hr className="inquiryhr1" />
-      {/* 답변 */}
-      {inquiryAdmintest2.answer === 1 && inquiryadmincheck === 0 ? (
+      {/* 답변내용 */}
+      {inquiryAdminData.answer_status === "ANSWERED" &&
+      inquiryadmincheck === 0 ? (
         <>
           <div className="inquiryDetail1">
             <div className="detailSpace">
               <b className="inquiryAdminAnswerTitle">답변</b>
+              <br />
+              <b className="inquiryMainDate">
+                {
+                  new Date(inquiryAdminData.reportDate)
+                    .toISOString()
+                    .split("T")[0]
+                }
+              </b>
             </div>
             <div className="inquiryAdminDetailContent1">
-              {inquiryAdmintest2.answerContent}
+              {inquiryAdminData.answerContent}
             </div>
           </div>
           <div className="inquiryWriteBox">
-            {" "}
             <button
               className="inquiryBtn"
               onClick={() => {
@@ -62,47 +90,43 @@ const MyInquiryAdminDetail = ({
             >
               수정
             </button>
+            <button
+              className="inquiryBtn2"
+              onClick={() => {
+                inquiryAnswerDelete();
+              }}
+            >
+              답변삭제
+            </button>
           </div>
         </>
       ) : null}
       <br />
-      {inquiryAdmintest2.answer === 0 && inquiryadmincheck === 0 ? (
-        <>
-          <MyInquiryAdminWrite />
-          <div className="inquiryWriteBox">
-            <button
-              className="inquiryBtn"
-              onClick={() => {
-                setInquiryAdminAction(0);
-              }}
-            >
-              저장
-            </button>
-          </div>
-        </>
+      {inquiryAdminData.answer_status === "PENDING" &&
+      inquiryadmincheck === 0 ? (
+        <div className="inquiryWriteBox">
+          <MyInquiryAdminWrite
+            inquiryAdminData={inquiryAdminData}
+            setInquiryAdminAction={setInquiryAdminAction}
+            getInquiryListAll={getInquiryListAll}
+            setInquiryAdminData={setInquiryAdminData}
+          />
+        </div>
       ) : null}
 
       {inquiryadmincheck === 1 ? (
-        <>
+        <div className="inquiryWriteBox">
           <MyInquiryAdminUpdate
-            inquiryAdmintest2={inquiryAdmintest2}
+            inquiryAdminData={inquiryAdminData}
             setInquiryAdminAction={setInquiryAdminAction}
+            getInquiryListAll={getInquiryListAll}
+            setInquiryAdminData={setInquiryAdminData}
+            setInquiryadmincheck={setInquiryadmincheck}
           />
-          <div className="inquiryWriteBox">
-            <button
-              className="inquiryBtn"
-              onClick={() => {
-                setInquiryAdminAction(0);
-              }}
-            >
-              저장
-            </button>
-          </div>
-        </>
+        </div>
       ) : null}
     </>
   );
 };
 
 export default MyInquiryAdminDetail;
-<h4>디테일</h4>;

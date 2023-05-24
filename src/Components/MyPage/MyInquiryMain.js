@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FaAngleLeft } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 import "../../Styles/MyInquiry.css";
 
 const MyInquiryMain = ({
@@ -11,6 +12,7 @@ const MyInquiryMain = ({
   return (
     <>
       <div className="inquiryHeader">
+        {/* 뒤로가기 */}
         <div
           className="inquiryBack-left"
           onClick={() => {
@@ -22,6 +24,7 @@ const MyInquiryMain = ({
         <h4>1:1문의</h4>
       </div>
       <hr className="inquiryhr1" />
+      {/* 문의 리스트 */}
       {inquirydb.length !== 0 ? (
         inquirydb.map((a, i) => (
           <div
@@ -29,12 +32,12 @@ const MyInquiryMain = ({
             onClick={() => {
               setInquirydata(a);
               setInquiryAction(2);
-              // MyInquiryDetail 이동 or 해당 리스트를 제목,내용으로 변경
             }}
           >
             <div className="inquiryMain1">
-              <b className="inquiryMainTitle">{a.title}</b>
-              <br />
+              <div className="inquiryTitleEllipsis">
+                <b className="inquiryMainTitle">{a.title}</b>
+              </div>
               {a.answer_status === "PENDING" ? (
                 <div className="inquiryStatus">처리중</div>
               ) : (
@@ -47,20 +50,37 @@ const MyInquiryMain = ({
             <hr className="inquiryhr2" />
           </div>
         ))
-      ) : (
+      ) : sessionStorage.getItem("email") != null ? (
         <div className="inquiryNone">문의내역이 없습니다.</div>
+      ) : (
+        <div className="inquiryNone">로그인을 해주세요.</div>
       )}
 
-      <div className="inquiryBox">
-        <button
-          className="inquiryBtn"
-          onClick={() => {
-            setInquiryAction(1);
-          }}
-        >
-          문의하기
-        </button>
-      </div>
+      {sessionStorage.getItem("email") != null ? (
+        <div className="inquiryBox">
+          <button
+            className="inquiryBtn"
+            onClick={() => {
+              setInquiryAction(1);
+            }}
+          >
+            문의하기
+          </button>
+        </div>
+      ) : (
+        <NavLink to="/login" style={{ textDecoration: "none" }}>
+          <div className="inquiryBox">
+            <button
+              className="inquiryBtn"
+              onClick={() => {
+                setInquiryAction(1);
+              }}
+            >
+              로그인
+            </button>
+          </div>
+        </NavLink>
+      )}
     </>
   );
 };
