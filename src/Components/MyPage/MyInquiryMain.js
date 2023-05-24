@@ -68,6 +68,7 @@ const MyInquiryMain = ({
           </button>
         </div>
       ) : (
+        // sessionStorage.getItem("email") == null 일 경우 로그인 이동 버튼 활성화
         <NavLink to="/login" style={{ textDecoration: "none" }}>
           <div className="inquiryBox">
             <button

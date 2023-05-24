@@ -5,8 +5,6 @@ import axios from "axios";
 import { FaAngleLeft } from "react-icons/fa";
 
 const MyInquiryWrite = ({ setInquiryAction, inquirydblist }) => {
-  // ㅡㅡㅡㅡㅡㅡㅡㅡㅡdb 연동 테스트ㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
   const titleRef = useRef();
   const contentRef = useRef();
 
@@ -40,7 +38,6 @@ const MyInquiryWrite = ({ setInquiryAction, inquirydblist }) => {
         console.log(e);
       });
   };
-  // ㅡㅡㅡㅡㅡㅡㅡㅡㅡdb 연동 테스트ㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
   const inquiryEnter = () => {
     if (titleRef.current.value !== "") {
