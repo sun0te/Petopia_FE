@@ -8,7 +8,6 @@ import axios from "axios";
 import Paginationcm from "./Paginationcm";
 import { Link } from "react-router-dom";
 
-
 const NoticeContainer = styled.div`
   padding: 0 15px;
   max-height: 100%;
@@ -42,8 +41,9 @@ const Title = styled.h2`
 `;
 
 function NoticeBoard() {
-  const [session, setSession] = useState("admin"); //버튼 보이게 하기 위해 작성 추후 삭제
-  //const session = sessionStorage.getItem("id"); 로그인 id 받아올 때 쓰면 됨
+  const [session, setSession] = useState("admin@admin.com"); //버튼 보이게 하기 위해 작성 추후 삭제
+  //const session = sessionStorage.getItem("email"); //로그인 email
+
   const [lists, setLists] = useState([
     {
       id: 1,
@@ -145,8 +145,8 @@ function NoticeBoard() {
         </TitleSearchWrap>
 
         <CardList lists={filteredLists.length > 0 ? filteredLists : lists} />
-        <Link to="/write">
-          {session === "admin" && (
+        <Link to="/NoticeWrite">
+          {session === "admin@admin.com" && (
             <Button className="mt-2" variant="primary" size="sm">
               글쓰기
             </Button>
