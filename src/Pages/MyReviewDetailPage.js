@@ -14,7 +14,7 @@ const RatingStar = styled(AiFillStar)`
   color: #ffb950;
 `;
 
-const ReviewPage = ({ setMyPageReviewAction }) => {
+const ReviewPage = ({ setMyPageReviewAction, reviewdata }) => {
   const [reviews] = useState([
     {
       ratingIndex: 4,
@@ -33,6 +33,7 @@ const ReviewPage = ({ setMyPageReviewAction }) => {
       {/* <BgLeft />
       <main>
         <Header /> */}
+
       <section className="myReviewDetailPage_wrapper">
         <div className="myReviewDetail">
           {/* <h2 className="myReviewTitle">내 리뷰 보기</h2>
@@ -50,6 +51,7 @@ const ReviewPage = ({ setMyPageReviewAction }) => {
                 shopType={review.shopType}
                 totalCost={review.totalCost}
                 reviewContent={review.reviewContent}
+                reviewdata={reviewdata}
               />
             </div>
           ))}

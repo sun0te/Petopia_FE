@@ -28,7 +28,7 @@ const MyInquiry = ({ setMyPageAction }) => {
       .get("/inquirylist", {
         params: {
           // session의 key(email)값의 value를 가져옴
-          username: sessionStorage.getItem("email"),
+          user: sessionStorage.getItem("email"),
         },
       })
       .then((res) => {
