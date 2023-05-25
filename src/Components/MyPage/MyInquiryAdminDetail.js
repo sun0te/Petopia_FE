@@ -52,7 +52,7 @@ const MyInquiryAdminDetail = ({
             {new Date(inquiryAdminData.uploadDate).toISOString().split("T")[0]}
           </b>
           <div className="inquiryadminusername">
-            <b>작성자 : {inquiryAdminData.username}</b>
+            <b>작성자 : {inquiryAdminData.user.email}</b>
           </div>
           <div className="inquiryAdminDetailContent">
             {inquiryAdminData.content}
