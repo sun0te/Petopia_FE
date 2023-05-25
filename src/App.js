@@ -13,6 +13,7 @@ import FindAccountPassword from "./Pages/FindAccountPassword";
 import Notice from "./Pages/Notice";
 import RouteTrip from "./Pages/RouteTrip";
 import RouteTripDetail from "./Pages/RouteTripDetail";
+import RouteTripUpdate from "./Pages/RouteTripUpdate";
 import RouteTripWrite from "./Pages/RouteTripWrite";
 import Write from "./Pages/Write";
 import Update from "./Pages/Update";
@@ -65,6 +66,7 @@ const App = () => {
       <Route path="/routetrip" element={<RouteTrip />} />
       <Route path="/routetripwrite" element={<RouteTripWrite />} />
       <Route path="/recomend_best" element={<RouteTripDetail />} />
+      <Route path="/recommendupdate" element={<RouteTripUpdate />} />
       <Route path="/write" element={<Write />} />
       <Route path="/update" element={<Update />} />
       <Route path="/detail" element={<Detail />} />

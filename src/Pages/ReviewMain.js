@@ -41,7 +41,7 @@ const ReviewMain = () => {
 
   const getPlace = () => {
     axios
-      .get("/getplace", {
+      .get("http://localhost:8080/getplace", {
         params: { lat: lat, lng: lng },
       })
       .then((res) => {

@@ -63,6 +63,54 @@ const Recomend_detail = () => {
     }
   };
 
+  const heartClick = () => {
+    if (
+      sessionStorage.getItem("email") !== null &&
+      sessionStorage.getItem("email") !== "" &&
+      sessionStorage.getItem("email") !== undefined
+    ) {
+      axios
+        .post("http://localhost:8080/interest/confirmlike", {
+          post: { id: boardid },
+          user: { email: sessionStorage.getItem("email") },
+        })
+        .then((res) => {
+          if (res.data === false) {
+            axios
+              .post("http://localhost:8080/interest/upperlike", {
+                post: { id: boardid },
+                user: { email: sessionStorage.getItem("email") },
+              })
+              .then((res) => {
+                setBoardData((tempData) => ({
+                  ...tempData,
+                  likes: tempData.likes + 1,
+                }));
+                heartIsClicked.classList.add("clickedIconColorRed");
+              });
+          } else if (res.data === true) {
+            axios
+              .post("http://localhost:8080/interest/lowerlike", {
+                post: { id: boardid },
+                user: { email: sessionStorage.getItem("email") },
+              })
+              .then((res) => {
+                setBoardData((tempData) => ({
+                  ...tempData,
+                  likes: tempData.likes - 1,
+                }));
+                heartIsClicked.classList.remove("clickedIconColorRed");
+              });
+          } else {
+            alert("error");
+          }
+        })
+        .catch((err) => {});
+    } else {
+      alert("로그인이 필요합니다.");
+    }
+  };
+
   // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -155,8 +203,30 @@ const Recomend_detail = () => {
       }
     };
 
+    const checkBoardLike = () => {
+      if (
+        sessionStorage.getItem("email") !== null ||
+        sessionStorage.getItem("email") !== "" ||
+        sessionStorage.getItem("email") !== undefined
+      ) {
+        axios
+          .post("http://localhost:8080/interest/confirmlike", {
+            post: { id: boardid },
+            user: { email: sessionStorage.getItem("email") },
+          })
+          .then((res) => {
+            if (res.data === true) {
+              if (heartIsClicked !== null) {
+                heartIsClicked.classList.add("clickedIconColorRed");
+              }
+            }
+          });
+      }
+    };
+
     getBoardInfo();
     checkBoardRecommend();
+    checkBoardLike();
   }, []);
 
   const imagePath = "/uploadimgs/";
@@ -346,7 +416,7 @@ const Recomend_detail = () => {
               <button type="button" className="thumbsHeartIconBtn">
                 <BsHandThumbsUp
                   id="thumb"
-                  className="thumbsHeartIcon"
+                  className="thumbsHeartIcon thumbsIconHover"
                   onClick={thumbsClick}
                 />
               </button>
@@ -360,7 +430,11 @@ const Recomend_detail = () => {
             <div className="heart">
               {/* <p className="thumbsHeartText">저장할래요</p> */}
               <button type="button" className="thumbsHeartIconBtn">
-                <BsHeart id="heart" className="thumbsHeartIcon" />
+                <BsHeart
+                  id="heart"
+                  className="thumbsHeartIcon heartIconHover"
+                  onClick={heartClick}
+                />
               </button>
               <span className="thumbsHeartSpan">
                 {boardData !== null ? boardData.likes : null}
@@ -381,7 +455,10 @@ const Recomend_detail = () => {
 
           {boardData?.email === sessionStorage.getItem("email") ? (
             <div className="recommendUpdateBtnDiv">
-              <Link to="/update">
+              <Link
+                to={`/recommendupdate?id=${boardid}`}
+                state={{ boardid: boardid }}
+              >
                 <button
                   type="button"
                   visibility="hidden"
