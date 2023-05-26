@@ -85,7 +85,7 @@ const MyInquiryUpdate = ({
         <div
           className="inquiryBack-left"
           onClick={() => {
-            setInquiryAction(0);
+            setInquiryAction(2);
           }}
         >
           <FaAngleLeft className="inquiryBack-icon" />

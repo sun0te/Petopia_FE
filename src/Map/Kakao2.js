@@ -373,6 +373,9 @@ const Kakao2 = ({
                               target="_blank"
                               className="maplink"
                               rel="noreferrer"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                              }}
                             >
                               홈페이지
                             </a>
@@ -392,11 +395,12 @@ const Kakao2 = ({
                         )
                       ) : (
                         <a
-                          href="#"
+                          href="a"
                           className="maplink"
                           rel="noreferrer"
                           onClick={(e) => {
                             e.stopPropagation();
+                            e.preventDefault();
                           }}
                         >
                           홈페이지 정보없음

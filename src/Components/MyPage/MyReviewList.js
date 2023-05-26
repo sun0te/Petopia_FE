@@ -143,7 +143,7 @@ const ReviewList = ({ setMyPageAction }) => {
       })
       .then((res) => {
         const { data } = res;
-        setReviewdatalist(data); // 문의 리스트들을 inquirydb 에 저장
+        setReviewdatalist(data);
       })
       .catch((e) => {
         console.error(e);
