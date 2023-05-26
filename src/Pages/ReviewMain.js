@@ -12,7 +12,7 @@ import MapReviewWrite from "../Components/MapReviewWrite.js";
 import { FaAngleRight } from "react-icons/fa";
 
 const ReviewMain = () => {
-  const { lat, lng } = useParams();
+  const { id } = useParams();
   const [placedata, setPlacedata] = useState({});
   const [reviewlocation, setReviewlocation] = useState({
     // 랜더링시 좌표보다 지도가 먼저 랜더링되어 지도 깨짐현상 방지
@@ -30,14 +30,15 @@ const ReviewMain = () => {
   const getPlace = () => {
     axios
       .get("/getplace", {
-        params: { lat: lat, lng: lng },
+        params: { id: id },
       })
       .then((res) => {
         // console.log("데이터 = >", res.data);
-        setPlacedata(res.data);
+        const { data } = res;
+        setPlacedata(data);
         setReviewlocation({
-          lat: res.data.lat,
-          lng: res.data.lng,
+          lat: data.lat,
+          lng: data.lng,
         });
         setPlacehomepage(res.data.homepage);
         if (res.data.homepage.includes(",")) {
@@ -54,7 +55,7 @@ const ReviewMain = () => {
   const getPlaceReview = () => {
     axios
       .get("/mapReviewList", {
-        params: { lat: lat, lng: lng },
+        params: { id: id },
       })
       .then((res) => {
         const { data } = res;
@@ -63,15 +64,18 @@ const ReviewMain = () => {
         for (var i = 0; i < data.length; i++) {
           reviewRatingList.push(data[i].rating);
         }
-
-        // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 별점 계산 코드 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-        var j = 0;
-        for (var i = 0; i < reviewRatingList.length; i++) {
-          j += reviewRatingList[i];
+        if (reviewRatingList.length !== 0) {
+          // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 별점 계산 코드 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+          var j = 0;
+          for (var i = 0; i < reviewRatingList.length; i++) {
+            j += reviewRatingList[i];
+          }
+          j = Math.round((j / reviewRatingList.length) * 10) / 10;
+          setRatingScore(j);
+          // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 별점 계산 코드 끝 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+        } else {
+          setRatingScore(0);
         }
-        j = Math.round((j / reviewRatingList.length) * 10) / 10;
-        setRatingScore(j);
-        // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 별점 계산 코드 끝 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
       })
       .catch((e) => {
         console.error(e);
@@ -290,8 +294,7 @@ const ReviewMain = () => {
             <MapReviewWrite
               setReviewAction={setReviewAction}
               placedata={placedata}
-              lat={lat}
-              lng={lng}
+              getPlaceReview={getPlaceReview}
             />
           ) : null}
         </section>

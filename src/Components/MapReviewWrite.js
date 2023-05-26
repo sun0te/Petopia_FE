@@ -7,7 +7,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 
-const MapReviewWrite = ({ setReviewAction, placedata, lat, lng }) => {
+const MapReviewWrite = ({ setReviewAction, placedata, getPlaceReview }) => {
   // ratingIndex = 받을 평점
   const [ratingIndex, setRatingIndex] = useState(0); // 1. 리뷰 점수
 
@@ -78,8 +78,7 @@ const MapReviewWrite = ({ setReviewAction, placedata, lat, lng }) => {
           surgeryCost: surgeryCost.current.value,
           cost: totalCost.current.value,
           priceLevel: priceOption,
-          lat: lat,
-          lng: lng,
+          mapid: placedata.id,
         })
         .then((res) => {
           if (selectedFiles.length !== 0) {
@@ -95,6 +94,7 @@ const MapReviewWrite = ({ setReviewAction, placedata, lat, lng }) => {
                 console.error(e);
               });
           }
+          getPlaceReview();
           setReviewAction(0);
         })
         .catch((e) => {

@@ -82,7 +82,7 @@ const App = () => {
       <Route path="/adminuserlist" element={<AdminUserList />} />
       <Route path="/adminuserreport" element={<AdminUserReport />} />
       <Route path="/adminstatistics" element={<AdminStatistics />} />
-      <Route path="/reviewpage/:lat/:lng" element={<ReviewMain />} />
+      <Route path="/reviewpage/:id" element={<ReviewMain />} />
       <Route path="/myreview" element={<MyReview />} />
       <Route path="myreviewdetail" element={<MyReviewDetailPage />} />
       <Route path="*" element={<NotFound />} />
