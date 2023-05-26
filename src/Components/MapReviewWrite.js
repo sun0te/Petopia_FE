@@ -32,7 +32,7 @@ const MapReviewWrite = ({ setReviewAction, placedata, getPlaceReview }) => {
       consoleUpWrite();
     }
 
-    console.log(selectedFiles);
+    // console.log(selectedFiles);
   };
 
   // 글 쓰기 컴포넌트 -----------------------------------------------------------------
