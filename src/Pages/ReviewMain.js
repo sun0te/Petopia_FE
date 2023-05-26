@@ -7,8 +7,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import "../Styles/ReviewMain.css";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import StarRating from "../Components/StarRating.js";
-import MapReviewList from "./MapReviewList.js";
-import MapReviewWrite from "../Components/MapReviewWrite.js";
+import MapReviewList from "../Components/MapReview/MapReviewList.js";
+import MapReviewWrite from "../Components/MapReview/MapReviewWrite.js";
 import { FaAngleRight } from "react-icons/fa";
 
 const ReviewMain = () => {

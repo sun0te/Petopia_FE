@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import RatingSection from "./RatingSection";
+import RatingSection from "../RatingSection";
 import Form from "react-bootstrap/Form";
-import "../Styles/Review.css";
+import "../../Styles/Review.css";
 import { BsTrash3 } from "react-icons/bs";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";

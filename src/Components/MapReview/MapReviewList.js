@@ -1,7 +1,7 @@
 import React from "react";
-import StarRating from "../Components/StarRating.js";
+import StarRating from "../StarRating.js";
 import { FaAngleLeft } from "react-icons/fa";
-import "../Styles/ReviewList.css";
+import "../../Styles/ReviewList.css";
 
 const MapReviewList = ({
   setReviewAction,
