@@ -1,5 +1,6 @@
 import React from "react";
 import StarRating from "../StarRating.js";
+import StarRating1 from "../StarRating1.js";
 import { FaAngleLeft } from "react-icons/fa";
 import "../../Styles/ReviewList.css";
 
@@ -33,7 +34,7 @@ const MapReviewList = ({
       <hr style={{ height: "3px", backgroundColor: "lightgray" }} />
       <div className="test99">
         리스트
-        <StarRating className="test8" ratingScore={ratingScore} />
+        <StarRating1 className="test8" ratingScore={ratingScore} />
       </div>
       {/* {reviewList.map((review) => (
         <div>{review.content}</div>
