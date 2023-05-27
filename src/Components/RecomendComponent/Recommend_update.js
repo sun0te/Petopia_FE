@@ -27,11 +27,12 @@ const Recommend_update = () => {
 
   const [boardImgs, setBoardImgs] = useState([]);
   const [travelData, setTravelData] = useState(null);
-
+  const [beforeCheckbox, setBeforeCheckbox] = useState([]);
   const [placeCategory, setPlaceCategory] = useState("");
   const [petProvisionsData, setPetProvisionsData] = useState([]);
 
-  const [placeOption, setPlaceOption] = useState(placeCategory);
+  const [beforePlaceOption, setBeforePlaceOption] = useState("");
+  const [placeOption, setPlaceOption] = useState("");
 
   const options = [
     { value: "RESTAURANT", label: "#식당" },
@@ -77,7 +78,7 @@ const Recommend_update = () => {
             likes: res.data.likes,
           });
           setWriteContentText(res.data.content.length);
-          console.log(res.data);
+          //console.log(res.data);
         })
         .catch((err) => {
           console.log(err);
@@ -94,20 +95,18 @@ const Recommend_update = () => {
 
           if (res.data.category === "RESTAURANT") {
             const defaultOption = options[0];
-            setPlaceOption(defaultOption);
+            setBeforePlaceOption(defaultOption);
           } else if (res.data.category === "CAFE") {
             const defaultOption = options[1];
-            setPlaceOption(defaultOption);
+            setBeforePlaceOption(defaultOption);
           } else if (res.data.category === "PARK") {
             const defaultOption = options[2];
-            setPlaceOption(defaultOption);
+            setBeforePlaceOption(defaultOption);
           } else if (res.data.category === "ACCOMMODATION") {
             const defaultOption = options[3];
-            setPlaceOption(defaultOption);
+            setBeforePlaceOption(defaultOption);
           }
-
-          handleOptionChange(res.data.category);
-          setCheckboxes(res.data.petProvisions);
+          setBeforeCheckbox(res.data.petProvisions);
         })
         .catch((err) => {
           console.log(err);
@@ -116,7 +115,7 @@ const Recommend_update = () => {
 
     getBoardInfo();
     getTravelInfo(boardid);
-  }, [setBoardData]);
+  }, []);
 
   const [selectedFiles, setSelectedFiles] = useState([]);
 
@@ -128,7 +127,6 @@ const Recommend_update = () => {
 
     // 파일 이름을 하나씩 저장
     uploadFiles.forEach((uploadFile) => {
-      console.log(uploadFile);
       fileList.push(uploadFile);
     });
 
@@ -208,8 +206,7 @@ const Recommend_update = () => {
       writeTitleText.current.value.length <= 0 ||
       writeContentTextArea.current.value.length <= 0 ||
       placeOption === "" ||
-      checkboxes.length <= 0 ||
-      selectedFiles.length <= 0
+      checkboxes.length <= 0
     ) {
       alert("모든 항목을 작성해 주세요.");
     } else {
@@ -219,8 +216,6 @@ const Recommend_update = () => {
 
   const navigate = useNavigate();
 
-  //const [boardid, setBoardid] = useState();
-
   const submitTravelRecommend = () => {
     const formData = new FormData();
     selectedFiles.forEach((file) => {
@@ -229,27 +224,30 @@ const Recommend_update = () => {
 
     axios
       .post("http://localhost:8080/board/update", {
-        author: { email: sessionStorage.getItem("email") },
+        id: boardid,
+        // author: { email: sessionStorage.getItem("email") },
         title: writeTitleText.current.value,
         content: writeContentTextArea.current.value,
         // thumbnailImage: selectedFiles[0].name,
-        category: "TRAVEL",
+        // category: "TRAVEL",
       })
       .then((res) => {
-        submitTravelInfo(res.data);
+        submitTravelInfo(boardid);
       })
       .catch((e) => {
         console.error(e);
       })
       .then(() => {
-        axios
-          .post("http://localhost:8080/board/uploadfiles", formData)
-          .then((res) => {
-            navigate("/routetrip");
-          })
-          .catch((e) => {
-            console.error(e);
-          });
+        if (selectedFiles.length > 0) {
+          axios
+            .post("http://localhost:8080/board/uploadfilesupdate", formData)
+            .then((res) => {
+              navigate("/routetrip");
+            })
+            .catch((e) => {
+              console.error(e);
+            });
+        }
       })
       .then(() => {
         navigate("/routetrip");
@@ -258,7 +256,7 @@ const Recommend_update = () => {
 
   const submitTravelInfo = (boardid) => {
     axios
-      .post("http://localhost:8080/travel/writeinfo", {
+      .post("http://localhost:8080/travel/updateinfo", {
         post: { id: boardid },
         placeName: "장소이름 지정 기능 아직 없음",
         category: placeOption,
@@ -313,14 +311,14 @@ const Recommend_update = () => {
             <p className="recomendP" style={{ marginTop: "15px" }}>
               1. 장소를 변경하시려면 선택해 주세요 <br />
               <span className="recommendUpdatePlaceSpan">
-                &nbsp;&nbsp;&nbsp;&nbsp;기존 선택 장소 -{" "}
-                {placeCategory === "CAFE"
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;기존 선택 장소 -{" "}
+                {beforePlaceOption.value === "CAFE"
                   ? "카페"
-                  : placeCategory === "RESTAURANT"
+                  : beforePlaceOption.value === "RESTAURANT"
                   ? "식당"
-                  : placeCategory === "PARK"
+                  : beforePlaceOption.value === "PARK"
                   ? "공원"
-                  : placeCategory === "ACCOMMODATION"
+                  : beforePlaceOption.value === "ACCOMMODATION"
                   ? "숙소"
                   : null}
               </span>
@@ -331,7 +329,44 @@ const Recommend_update = () => {
             </div>
           </div>
 
-          <p className="recomendP">2. 반려견 동반시 유의사항 </p>
+          <p className="recomendP">
+            2. 반려견 동반시 유의사항 <br />
+            <span className="recommendUpdatePlaceSpan">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;기존 유의사항 <br />
+            </span>
+            <span className="recommendUpdatePlaceSpan">
+              {beforeCheckbox.includes("PET_SUPPLIES_PROVIDED") ? (
+                <>
+                  &nbsp;&nbsp;&nbsp;🗸 &nbsp;펫 방석 혹은 담요를 제공해요
+                  <br />
+                </>
+              ) : null}
+            </span>
+            <span className="recommendUpdatePlaceSpan">
+              {beforeCheckbox.includes("PET_SNACK") ? (
+                <>
+                  &nbsp;&nbsp;&nbsp;🗸 &nbsp;펫 간식을 제공해요
+                  <br />
+                </>
+              ) : null}
+            </span>
+            <span className="recommendUpdatePlaceSpan">
+              {beforeCheckbox.includes("PET_MANNER_BELT") ? (
+                <>
+                  &nbsp;&nbsp;&nbsp;🗸 &nbsp;매너벨트 착용 필수에요
+                  <br />
+                </>
+              ) : null}
+            </span>
+            <span className="recommendUpdatePlaceSpan">
+              {beforeCheckbox.includes("NO_LARGE_DOG_ALLOWED") ? (
+                <>
+                  &nbsp;&nbsp;&nbsp;🗸 &nbsp;15 kg 이상 대형견은 입장할 수 없어요
+                </>
+              ) : null}
+            </span>
+          </p>
+
           <div className="recomendCheckDiv">
             <div className="form-check">
               <input
