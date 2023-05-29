@@ -5,6 +5,7 @@ import "../Styles/Review.css";
 import { BsTrash3 } from "react-icons/bs";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
+import axios from "axios";
 
 const ReviewWriteComponent = () => {
   const [selectedOption, setSelectedOption] = useState("0"); // 3. 리뷰 종류(1 : 병원, 2 : 음식점/카페, 3 : 숙박, 4 : 기타)
@@ -17,10 +18,6 @@ const ReviewWriteComponent = () => {
   // ratingIndex = 받을 평점
   const [ratingIndex, setRatingIndex] = useState(0); // 1. 리뷰 점수
 
-  useEffect(() => {
-    // ratingIndex 값이 변경될 때마다 실행
-  }, [ratingIndex]);
-
   // 4. 비용
   const medicalCost = useRef(); // 진료비
   const surgeryCost = useRef(); // 수술비
@@ -28,15 +25,23 @@ const ReviewWriteComponent = () => {
 
   const [compareOption, setCompareOption] = useState("0"); // 2. 가격 대비(1 : 저렴한 편, 2 : 보통, 3 : 비싼 편)
 
+  useEffect(() => {
+    // ratingIndex 값이 변경될 때마다 실행
+    console.log(sessionStorage.getItem("email"));
+  }, [ratingIndex, compareOption]);
+
   const handleConpareOptionChange = (e) => {
     setCompareOption(e.target.value); // 선택된 값을 상태에 저장
+    console.log(compareOption);
   };
 
   const handleUploadClick = () => {
-    if (selectedOption === "0") {
-      alert("리뷰 종류를 선택해 주세요.");
-    } else if (ratingIndex === 0) {
+    if (ratingIndex === 0) {
       alert("리뷰 점수를 선택해 주세요.");
+    } else if (compareOption === "0") {
+      alert("가격 대비를 선택해 주세요.");
+    } else if (selectedOption === "0") {
+      alert("리뷰 종류를 선택해 주세요.");
     } else if (
       totalCost.current.value === "" ||
       totalCost.current.value === undefined
@@ -48,33 +53,9 @@ const ReviewWriteComponent = () => {
       alert("진료비는 0 원 이상으로 입력해 주세요.");
     } else if (selectedOption === "1" && surgeryCost.current.value < 0) {
       alert("수술비는 0 원 이상으로 입력해 주세요.");
-    } else if (compareOption === "0") {
-      alert("가격 대비를 선택해 주세요.");
     } else {
       consoleUpWrite();
     }
-
-    // alert(
-    //   "selectedOption, 리뷰 종류 : " +
-    //     selectedOption +
-    //     "\n" +
-    //     "ratingIndex, 리뷰 점수 : " +
-    //     ratingIndex +
-    //     "\n" +
-    //     "medicalCost, 진료비 : " +
-    //     medicalCost.current.value +
-    //     "\n" +
-    //     "surgeryCost, 수술비 : " +
-    //     surgeryCost.current.value +
-    //     "\n" +
-    //     "totalCost, 총 비용 : " +
-    //     totalCost.current.value +
-    //     "\n" +
-    //     "compareOption, 가격 대비 : " +
-    //     compareOption
-    // );
-
-    console.log(selectedFiles);
   };
 
   // 글 쓰기 컴포넌트 -----------------------------------------------------------------
@@ -109,16 +90,72 @@ const ReviewWriteComponent = () => {
       alert("리뷰 내용을 입력해 주세요.");
     } else if (selectedFiles.length === 0) {
       alert("리뷰 사진을 한 장 이상 업로드 해주세요.");
-      // alert(
-      //   "reviewWriteContentTextArea, 리뷰 내용 : " +
-      //     reviewWriteContentTextArea.current.value +
-      //     "\n" +
-      //     "selectedFiles : " +
-      //     selectedFiles.map((file) => file.name + "\n")
-      // );
     } else {
-      alert("리뷰 업로드");
+      console.log(
+        "writer : " +
+          sessionStorage.getItem("email") +
+          "\n" +
+          "rating : " +
+          ratingIndex +
+          "\n" +
+          "content : " +
+          reviewWriteContentTextArea.current.value +
+          "\n" +
+          "cost : " +
+          totalCost.current.value +
+          "\n" +
+          "location : " +
+          "{ id: 1 }" +
+          "\n" +
+          "priceType : " +
+          selectedOption +
+          "\n" +
+          "priceLevel : " +
+          compareOption
+      );
+      uploadReview();
     }
+  };
+
+  const [boardid, setBoardid] = useState("");
+
+  const uploadReview = () => {
+    axios
+      .post("http://localhost:8080/review/write", {
+        writer: { email: sessionStorage.getItem("email") },
+        rating: ratingIndex,
+        content: reviewWriteContentTextArea.current.value,
+        cost: totalCost.current.value,
+        location: { id: 1 },
+        priceType: selectedOption,
+        priceLevel: compareOption,
+      })
+      .then((res) => {
+        setBoardid(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .then(() => {
+        uploadimgs();
+      });
+  };
+
+  const uploadimgs = () => {
+    const formData = new FormData();
+    selectedFiles.forEach((file) => {
+      formData.append("uploadfiles", file);
+    });
+
+    axios
+      .post("http://localhost:8080/review/uploadfiles", formData)
+      .then((res) => {
+        console.log(boardid);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
   };
 
   // ---------------------------------------------------------------------------------
@@ -145,8 +182,8 @@ const ReviewWriteComponent = () => {
                 type="radio"
                 name="radiogroup1"
                 id="radioBox1"
-                value="1"
-                checked={compareOption === "1"} // 첫 번째 옵션이 선택되었을 때 checked 값은 true
+                value="CHEAP"
+                checked={compareOption === "CHEAP"} // 첫 번째 옵션이 선택되었을 때 checked 값은 true
                 onChange={handleConpareOptionChange}
                 className="reviewWriteCompareOptionForm"
               />
@@ -156,8 +193,8 @@ const ReviewWriteComponent = () => {
                 type="radio"
                 name="radiogroup2"
                 id="radioBox2"
-                value="2"
-                checked={compareOption === "2"} //
+                value="MODERATE"
+                checked={compareOption === "MODERATE"} //
                 onChange={handleConpareOptionChange}
                 className="reviewWriteCompareOptionForm"
               />
@@ -167,8 +204,8 @@ const ReviewWriteComponent = () => {
                 type="radio"
                 name="radiogroup3"
                 id="radioBox3"
-                value="3"
-                checked={compareOption === "3"} //
+                value="EXPENSIVE"
+                checked={compareOption === "EXPENSIVE"} //
                 onChange={handleConpareOptionChange}
                 className="reviewWriteCompareOptionForm"
               />
@@ -186,8 +223,8 @@ const ReviewWriteComponent = () => {
                 type="checkbox"
                 name="checkgroup1"
                 id="checkBox1"
-                value="1"
-                checked={selectedOption === "1"} // 첫 번째 옵션이 선택되었을 때 checked 값은 true
+                value="HOSPITAL"
+                checked={selectedOption === "HOSPITAL"} // 첫 번째 옵션이 선택되었을 때 checked 값은 true
                 onChange={handleOptionChange}
               />
               <Form.Check
@@ -196,8 +233,8 @@ const ReviewWriteComponent = () => {
                 type="checkbox"
                 name="checkgroup2"
                 id="checkBox2"
-                value="2"
-                checked={selectedOption === "2"} //
+                value="FOOD_CAFE"
+                checked={selectedOption === "FOOD_CAFE"} //
                 onChange={handleOptionChange}
               />
               <Form.Check
@@ -206,8 +243,8 @@ const ReviewWriteComponent = () => {
                 type="checkbox"
                 name="checkgroup3"
                 id="checkBox3"
-                value="3"
-                checked={selectedOption === "3"} //
+                value="ACCOMMODATION"
+                checked={selectedOption === "ACCOMMODATION"} //
                 onChange={handleOptionChange}
               />
               <Form.Check
@@ -216,8 +253,8 @@ const ReviewWriteComponent = () => {
                 type="checkbox"
                 name="checkgroup4"
                 id="checkBox4"
-                value="4"
-                checked={selectedOption === "4"} //
+                value="ETC"
+                checked={selectedOption === "ETC"} //
                 onChange={handleOptionChange}
               />
             </Form>
@@ -225,18 +262,7 @@ const ReviewWriteComponent = () => {
         </div>
 
         <div>
-          {/* <Form.Select aria-label="신고 사유" size="sm" onChange={clickCostType}>
-            <option value="0" disabled>
-              진료 항목
-            </option>
-            <option value="1" onClick={(e) => clickCostType(e)}>
-              수술비
-            </option>
-            <option value="2" onClick={(e) => clickCostType(e)}>
-              기타
-            </option>
-          </Form.Select> */}
-          {selectedOption === "1" ? (
+          {selectedOption === "HOSPITAL" ? (
             <div>
               <table className="reviewWriteTable">
                 <tr>

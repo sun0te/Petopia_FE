@@ -130,7 +130,7 @@ const RecommendCard = (props) => {
               ) : (
                 <>
                   <BsPerson className="recommendIcon recommendMainWriterIcon" />
-                  &nbsp;
+                  {/* &nbsp; */}
                 </>
               )}
               {props.writer !== null &&
