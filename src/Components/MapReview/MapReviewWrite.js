@@ -46,15 +46,15 @@ const MapReviewWrite = ({ setReviewAction, placedata, getPlaceReview }) => {
 
   const handleFileInputChange = (event) => {
     const files = event.target.files;
-    const remainingSlots = 2 - selectedFiles.length;
+    const remainingSlots = 4 - selectedFiles.length;
     if (files.length <= remainingSlots) {
       setSelectedFiles((prevFiles) => [...prevFiles, ...Array.from(files)]);
-    } else if (selectedFiles.length < 2) {
+    } else if (selectedFiles.length < 4) {
       const newFiles = Array.from(files).slice(0, remainingSlots);
       setSelectedFiles((prevFiles) => [...prevFiles, ...newFiles]);
-      alert("최대 2개의 파일만 선택할 수 있습니다.");
+      alert("최대 4개의 파일만 선택할 수 있습니다.");
     } else {
-      alert("이미 두 장의 사진이 선택되어 있습니다.");
+      alert("이미 네 장의 사진이 선택되어 있습니다.");
     }
     console.log(files.length);
   };
