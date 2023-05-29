@@ -45,7 +45,18 @@ const MapReviewWrite = ({ setReviewAction, placedata, getPlaceReview }) => {
   const [reviewWriteContentText, setReviewWriteContentText] = useState(0); // 리뷰 글자수
 
   const handleFileInputChange = (event) => {
-    setSelectedFiles([...selectedFiles, ...event.target.files]);
+    const files = event.target.files;
+    const remainingSlots = 2 - selectedFiles.length;
+    if (files.length <= remainingSlots) {
+      setSelectedFiles((prevFiles) => [...prevFiles, ...Array.from(files)]);
+    } else if (selectedFiles.length < 2) {
+      const newFiles = Array.from(files).slice(0, remainingSlots);
+      setSelectedFiles((prevFiles) => [...prevFiles, ...newFiles]);
+      alert("최대 2개의 파일만 선택할 수 있습니다.");
+    } else {
+      alert("이미 두 장의 사진이 선택되어 있습니다.");
+    }
+    console.log(files.length);
   };
 
   const handleRemoveImage = (index) => {

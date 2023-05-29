@@ -12,6 +12,7 @@ import MapReviewWrite from "../Components/MapReview/MapReviewWrite.js";
 import { FaAngleRight } from "react-icons/fa";
 
 const ReviewMain = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [placedata, setPlacedata] = useState({});
   const [reviewlocation, setReviewlocation] = useState({
@@ -24,6 +25,7 @@ const ReviewMain = () => {
 
   // DB로부터 받아온 리뷰 데이터 저장 useState
   const [reviewList, setReviewList] = useState([]);
+  const [reviewImgList, setReviewImgList] = useState([]);
 
   const [ratingScore, setRatingScore] = useState(0); // 리뷰 별점 계산값
 
@@ -67,8 +69,8 @@ const ReviewMain = () => {
         if (reviewRatingList.length !== 0) {
           // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 별점 계산 코드 시작 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
           var j = 0;
-          for (var i = 0; i < reviewRatingList.length; i++) {
-            j += reviewRatingList[i];
+          for (var k = 0; k < reviewRatingList.length; k++) {
+            j += reviewRatingList[k];
           }
           j = Math.round((j / reviewRatingList.length) * 10) / 10;
           setRatingScore(j);
@@ -76,6 +78,17 @@ const ReviewMain = () => {
         } else {
           setRatingScore(0);
         }
+        axios
+          .get("/mapImgList", {
+            params: { id: id },
+          })
+          .then((res) => {
+            const { data } = res;
+            setReviewImgList(data);
+          })
+          .catch((e) => {
+            console.error(e);
+          });
       })
       .catch((e) => {
         console.error(e);
@@ -151,19 +164,29 @@ const ReviewMain = () => {
           {reviewAction === 0 ? (
             <>
               <div className="reviewButtonBox">
-                <button
-                  className="reviewButtonBox1"
-                  onClick={() => {
-                    setReviewAction(1);
-                  }}
-                >
-                  리뷰 {reviewList.length}
-                </button>
+                {reviewList.length !== 0 ? (
+                  <button
+                    className="reviewButtonBox1"
+                    onClick={() => {
+                      setReviewAction(1);
+                    }}
+                  >
+                    리뷰 {reviewList.length}
+                  </button>
+                ) : (
+                  <button className="reviewButtonBox1" onClick={() => {}}>
+                    리뷰 {reviewList.length}
+                  </button>
+                )}
                 &nbsp;
                 <button
                   className="reviewButtonBox1"
                   onClick={() => {
-                    setReviewAction(2);
+                    if (sessionStorage.getItem("email") == null) {
+                      navigate("/login");
+                    } else {
+                      setReviewAction(2);
+                    }
                   }}
                 >
                   리뷰 작성
@@ -289,6 +312,7 @@ const ReviewMain = () => {
               placedata={placedata}
               reviewList={reviewList}
               ratingScore={ratingScore}
+              reviewImgList={reviewImgList}
             />
           ) : reviewAction === 2 ? (
             <MapReviewWrite
