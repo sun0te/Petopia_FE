@@ -109,7 +109,7 @@ const UserMypage = () => {
       sessionStorage.getItem("email") !== null
     ) {
       axios
-        .post("http://localhost:8080/user/getuserinfo", {
+        .post("/user/getuserinfo", {
           email: sessionStorage.getItem("email"),
         })
         .then((res) => {
@@ -217,7 +217,7 @@ const UserMypage = () => {
               </>
             )}
           </div>
-          
+
           <div className="hr-line-container">
             <hr className="hr-line" />
           </div>

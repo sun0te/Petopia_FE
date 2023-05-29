@@ -59,7 +59,7 @@ const Recomend = () => {
 
   const callTravelBest = () => {
     axios
-      .post("http://localhost:8080/travelboard/travelbest", {
+      .post("/travelboard/travelbest", {
         category: "TRAVEL",
       })
       .then((res) => {
@@ -70,7 +70,7 @@ const Recomend = () => {
 
   const callTravelAll = () => {
     axios
-      .post("http://localhost:8080/travelboard/travelall", {
+      .post("/travelboard/travelall", {
         category: "TRAVEL",
       })
       .then((res) => {

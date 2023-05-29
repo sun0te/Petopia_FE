@@ -121,7 +121,7 @@ const ReviewWriteComponent = () => {
 
   const uploadReview = () => {
     axios
-      .post("http://localhost:8080/review/write", {
+      .post("/review/write", {
         writer: { email: sessionStorage.getItem("email") },
         rating: ratingIndex,
         content: reviewWriteContentTextArea.current.value,
@@ -149,7 +149,7 @@ const ReviewWriteComponent = () => {
     });
 
     axios
-      .post("http://localhost:8080/review/uploadfiles", formData)
+      .post("/review/uploadfiles", formData)
       .then((res) => {
         console.log(boardid);
       })

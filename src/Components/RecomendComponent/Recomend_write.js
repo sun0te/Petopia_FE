@@ -98,7 +98,7 @@ const Recomend_write = () => {
     });
 
     axios
-      .post("http://localhost:8080/board/write", {
+      .post("/board/write", {
         author: { email: sessionStorage.getItem("email") },
         title: writeTitleText.current.value,
         content: writeContentTextArea.current.value,
@@ -115,7 +115,7 @@ const Recomend_write = () => {
       })
       .then(() => {
         axios
-          .post("http://localhost:8080/board/uploadfiles", formData)
+          .post("/board/uploadfiles", formData)
           .then((res) => {
             console.log(boardid);
             navigate("/routetrip");
@@ -131,7 +131,7 @@ const Recomend_write = () => {
 
   const submitTravelInfo = (boardid) => {
     axios
-      .post("http://localhost:8080/travel/writeinfo", {
+      .post("/travel/writeinfo", {
         post: { id: boardid },
         placeName: "장소이름 지정 기능 아직 없음",
         category: placeOption,
