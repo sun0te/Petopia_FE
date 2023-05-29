@@ -27,6 +27,7 @@ import UserMypage from "./Pages/UserMypage";
 import AdminMypage from "./Pages/AdminMypage";
 import AdminUserList from "./Pages/AdminUserList";
 import AdminUserReport from "./Pages/AdminUserReport";
+import AdminUserReportBE from "./Pages/AdminUserReportBE";
 import AdminStatistics from "./Pages/AdminStatistics";
 import NotFound from "./Pages/NotFound";
 import FreeBoardDetail from "./Components/UserBoards/FreeBoardDetail";
@@ -82,7 +83,8 @@ const App = () => {
       <Route path="/usermypageinquiryadmin" element={<MyInquiryAdmin />} />
       <Route path="/adminmypage" element={<AdminMypage />} />
       <Route path="/adminuserlist" element={<AdminUserList />} />
-      <Route path="/adminuserreport" element={<AdminUserReport />} />
+      <Route path="/adminuserreport1" element={<AdminUserReport />} />
+      <Route path="/adminuserreport" element={<AdminUserReportBE />} />
       <Route path="/adminstatistics" element={<AdminStatistics />} />
       <Route path="/reviewpage/:lat/:lng" element={<ReviewMain />} />
       <Route path="/myreview" element={<MyReview />} />

@@ -126,7 +126,7 @@ const ReviewWriteComponent = () => {
         rating: ratingIndex,
         content: reviewWriteContentTextArea.current.value,
         cost: totalCost.current.value,
-        location: { id: 1 },
+        location: { id: 2 },
         priceType: selectedOption,
         priceLevel: compareOption,
       })
@@ -151,7 +151,7 @@ const ReviewWriteComponent = () => {
     axios
       .post("http://localhost:8080/review/uploadfiles", formData)
       .then((res) => {
-        console.log(boardid);
+        //console.log(boardid);
       })
       .catch((e) => {
         console.error(e);

@@ -246,7 +246,12 @@ const Recomend_detail = () => {
 
   return (
     <>
-      <ReportModal open={modalOpen} close={closeModal} header="게시글 신고">
+      <ReportModal
+        open={modalOpen}
+        close={closeModal}
+        header="게시글 신고"
+        id={boardid}
+      >
         <p>신고 사유를 선택해 주세요</p>
       </ReportModal>
       <div className="RecomendBody">
