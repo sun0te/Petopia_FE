@@ -29,6 +29,9 @@ const ReviewMain = () => {
 
   const [ratingScore, setRatingScore] = useState(0); // 리뷰 별점 계산값
 
+  // 0 : 최신순  1 : 오래된순  2 : 별점높은순  3 : 별점낮은순  4 : 사진리뷰만
+  const [reviewListState, setReviewListState] = useState(0);
+
   const getPlace = () => {
     axios
       .get("/getplace", {
@@ -57,7 +60,7 @@ const ReviewMain = () => {
   const getPlaceReview = () => {
     axios
       .get("/mapReviewList", {
-        params: { id: id },
+        params: { id: id, num: reviewListState },
       })
       .then((res) => {
         const { data } = res;
@@ -100,7 +103,7 @@ const ReviewMain = () => {
   useEffect(() => {
     getPlace();
     getPlaceReview();
-  }, []);
+  }, [reviewListState]);
 
   return (
     <>
@@ -313,6 +316,8 @@ const ReviewMain = () => {
               reviewList={reviewList}
               ratingScore={ratingScore}
               reviewImgList={reviewImgList}
+              setReviewListState={setReviewListState}
+              getPlaceReview={getPlaceReview}
             />
           ) : reviewAction === 2 ? (
             <MapReviewWrite

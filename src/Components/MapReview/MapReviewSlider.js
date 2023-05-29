@@ -22,9 +22,9 @@ const MapReviewSlider = ({ test, setTest, review, reviewImgList }) => {
         <Slider arrows={false} beforeChange={handleSlideChange}>
           {reviewImgUrl.map((fd, i) => (
             <>
-              <div className="test14" key={i}>
+              <div className="reviewListImg1" key={i}>
                 <img
-                  className="test15"
+                  className="reviewListImg2"
                   src={process.env.PUBLIC_URL + "/uploadimgs/" + fd.imageUrl}
                   alt="이미지"
                   style={{ objectFit: "contain" }}

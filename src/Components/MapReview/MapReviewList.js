@@ -4,6 +4,9 @@ import StarRating1 from "../StarRating1.js";
 import { FaAngleLeft } from "react-icons/fa";
 import "../../Styles/ReviewList.css";
 import MapReviewSlider from "./MapReviewSlider.js";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import axios from "axios";
 
 const MapReviewList = ({
   setReviewAction,
@@ -11,8 +14,23 @@ const MapReviewList = ({
   reviewList,
   ratingScore,
   reviewImgList,
+  setReviewListState,
+  getPlaceReview,
 }) => {
   const [test, setTest] = useState([]);
+
+  const reviewDelete = (reviewIds) => {
+    const delete1 = [reviewIds];
+
+    axios
+      .post("/myreviewdelete", delete1)
+      .then((res) => {
+        getPlaceReview();
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
 
   useEffect(() => {
     setTest(
@@ -38,12 +56,47 @@ const MapReviewList = ({
         </div>
       </div>
       <hr style={{ height: "3px", backgroundColor: "lightgray" }} />
-
+      <Form.Select
+        className="reviewListSelectBox"
+        aria-label="Default select example"
+        size="sm"
+        onChange={(e) => {
+          setReviewListState(e.target.value);
+        }}
+      >
+        <option value="0">최신순</option>
+        <option value="1">오래된순</option>
+        <option value="2">별점 높은 순</option>
+        <option value="3">별점 낮은 순</option>
+      </Form.Select>
       {/* 반복문 */}
       {reviewList.map((review, index) => (
         <>
-          <div className="test99">
-            <div className="test100">
+          <div className="reviewListMain">
+            <div className="reviewListReport">
+              <Button
+                className="btm-sm reportBtn reviewListFont1"
+                variant="outline-danger"
+                style={{ padding: "4px 0px 3px 0px" }}
+              >
+                🚨신고
+              </Button>
+            </div>
+            {sessionStorage.getItem("email") === review.writer.email ? (
+              <div className="reviewListDelete">
+                <Button
+                  className="btm-sm reportBtn reviewListFont2"
+                  variant="outline-secondary"
+                  style={{ padding: "4px 0px 3px 0px" }}
+                  onClick={() => {
+                    reviewDelete(review.id);
+                  }}
+                >
+                  삭제
+                </Button>
+              </div>
+            ) : null}
+            <div className="reviewListMainHeader">
               <span className="reviewListName">
                 {review.writer.nickname.length <= 2 ? (
                   <>
@@ -66,7 +119,7 @@ const MapReviewList = ({
             </div>
             <div className="reviewListStar">
               <StarRating1
-                className="test8"
+                className="test13"
                 score={review.rating}
                 index={index}
               />
@@ -121,9 +174,9 @@ const MapReviewList = ({
                   reviewImgList.filter((item) => item.review.id === review.id)
                     .length === 1 ? (
                     <>
-                      <div className="test14">
+                      <div className="reviewListImg1">
                         <img
-                          className="test15"
+                          className="reviewListImg2"
                           src={
                             process.env.PUBLIC_URL +
                             "/uploadimgs/" +
