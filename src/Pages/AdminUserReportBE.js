@@ -35,6 +35,7 @@ const AdminUserReportBE = () => {
     axios.get("/report/boardreportlist", {}).then((res) => {
       setReports(res.data);
       setTotalReports(res.data.length);
+
       res.data.map((data) => {
         if (data.processingStatus === "PROCEEDING") progressReportsData++;
         else if (data.processingStatus === "PROGRESS_COMPLETE")
