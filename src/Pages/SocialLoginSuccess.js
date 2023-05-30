@@ -10,6 +10,8 @@ import axios from "axios";
 const SocialLoginSuccess = ({ user, setUser }) => {
   const navigate = useNavigate();
 
+  const [viewMode, setViewMode] = useState(0);
+
   useEffect(() => {
     signUpCheck();
   }, [user]);
@@ -22,6 +24,7 @@ const SocialLoginSuccess = ({ user, setUser }) => {
       })
       .then((res) => {
         if (res.data === null || res.data === undefined || res.data === "") {
+          setViewMode(1);
         } else if (res.data.provider === "naver") {
           sessionStorage.setItem("email", user.email);
           sessionStorage.setItem("socialSession", "naver");
@@ -89,105 +92,110 @@ const SocialLoginSuccess = ({ user, setUser }) => {
       <main className="RouteTripSection">
         <Header />
         <section>
-          <>
-            <div className="container loginComponent">
-              <div className="input-form-backgroud row">
-                <div className="input-form col-md-12 mx-auto signUpForm">
-                  <h4 className="mb-3 signUpText">
-                    <span style={{ color: "#2DB400" }}>네이버</span> 간편
-                    회원가입
-                  </h4>
+          {viewMode === 1 ? (
+            <>
+              <div className="container loginComponent">
+                <div className="input-form-backgroud row">
+                  <div className="input-form col-md-12 mx-auto signUpForm">
+                    <h4 className="mb-3 signUpText">
+                      <span style={{ color: "#2DB400" }}>네이버</span> 간편
+                      회원가입
+                    </h4>
 
-                  <div className="socialLoginSuccessDiv">
-                    <table className="socialLoginSuccessTable">
-                      <tr className="socialLoginSuccessTr socialLoginSuccessTrProfile">
-                        <td className="socialLoginSuccessTdTitle">프로필</td>
-                        <td className="socialLoginSuccessTd socialLoginSuccessTdProfile">
-                          {user && user.profile_image ? (
-                            <img
-                              src={user.profile_image}
-                              alt=""
-                              className="socialLoginSuccessTdProfileImg"
-                            />
-                          ) : null}
-                        </td>
-                      </tr>
-                      <tr className="socialLoginSuccessTr">
-                        <td className="socialLoginSuccessTdTitle">이메일</td>
-                        <td className="socialLoginSuccessTd">
-                          {user && user.email ? <p>{user.email}</p> : null}
-                        </td>
-                      </tr>
-                      <tr className="socialLoginSuccessTr">
-                        <td className="socialLoginSuccessTdTitle">이름</td>
-                        <td className="socialLoginSuccessTd">
-                          {user && user.name ? <p>{user.name}</p> : null}
-                        </td>
-                      </tr>
-                      <tr className="socialLoginSuccessTr">
-                        <td className="socialLoginSuccessTdTitle">닉네임</td>
-                        <td className="socialLoginSuccessTd">
-                          {user && user.nickname ? (
-                            <p>{user.nickname}</p>
-                          ) : null}
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
+                    <div className="socialLoginSuccessDiv">
+                      <table className="socialLoginSuccessTable">
+                        <tr className="socialLoginSuccessTr socialLoginSuccessTrProfile">
+                          <td className="socialLoginSuccessTdTitle">프로필</td>
+                          <td className="socialLoginSuccessTd socialLoginSuccessTdProfile">
+                            {user && user.profile_image ? (
+                              <img
+                                src={user.profile_image}
+                                alt=""
+                                className="socialLoginSuccessTdProfileImg"
+                              />
+                            ) : null}
+                          </td>
+                        </tr>
+                        <tr className="socialLoginSuccessTr">
+                          <td className="socialLoginSuccessTdTitle">이메일</td>
+                          <td className="socialLoginSuccessTd">
+                            {user && user.email ? <p>{user.email}</p> : null}
+                          </td>
+                        </tr>
+                        <tr className="socialLoginSuccessTr">
+                          <td className="socialLoginSuccessTdTitle">이름</td>
+                          <td className="socialLoginSuccessTd">
+                            {user && user.name ? <p>{user.name}</p> : null}
+                          </td>
+                        </tr>
+                        <tr className="socialLoginSuccessTr">
+                          <td className="socialLoginSuccessTdTitle">닉네임</td>
+                          <td className="socialLoginSuccessTd">
+                            {user && user.nickname ? (
+                              <p>{user.nickname}</p>
+                            ) : null}
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
 
-                  <div className="custom-control custom-checkbox signupCheckAgreeDiv socialLoginSuccessAgreeDiv">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input signupCheckAgreeBox"
-                      id="aggrement"
-                      required
-                      checked={isChecked}
-                      onChange={handleCheckboxChange}
-                    />
-                    <label className="custom-control-label" htmlFor="aggrement">
-                      &nbsp;&nbsp;개인정보 수집 및 이용에 동의합니다.
-                    </label>
-                  </div>
-
-                  <br />
-
-                  <form className="validation-form" onSubmit={() => {}}>
-                    <div className="findidpwsignupDiv">
-                      <Link
-                        to="/findaccountemail"
-                        style={{ textDecoration: "none" }}
+                    <div className="custom-control custom-checkbox signupCheckAgreeDiv socialLoginSuccessAgreeDiv">
+                      <input
+                        type="checkbox"
+                        className="custom-control-input signupCheckAgreeBox"
+                        id="aggrement"
+                        required
+                        checked={isChecked}
+                        onChange={handleCheckboxChange}
+                      />
+                      <label
+                        className="custom-control-label"
+                        htmlFor="aggrement"
                       >
-                        <p className="p_idpw">이메일 찾기 </p>
-                      </Link>
-                      |
-                      <Link
-                        to="/findaccountpassword"
-                        style={{ textDecoration: "none" }}
-                      >
-                        <p className="p_idpw"> 비밀번호 찾기 </p>
-                      </Link>
-                      |
-                      <Link to="/login" style={{ textDecoration: "none" }}>
-                        <p className="p_idpw"> 로그인</p>
-                      </Link>
+                        &nbsp;&nbsp;개인정보 수집 및 이용에 동의합니다.
+                      </label>
                     </div>
 
                     <br />
 
-                    <div className="mb-4 signUpBtnDiv">
-                      <button
-                        className="btn btn-outline-primary btn-sm btn-block signUpBtn"
-                        type="button"
-                        onClick={() => clickSignUpNaver()}
-                      >
-                        회원가입
-                      </button>
-                    </div>
-                  </form>
+                    <form className="validation-form" onSubmit={() => {}}>
+                      <div className="findidpwsignupDiv">
+                        <Link
+                          to="/findaccountemail"
+                          style={{ textDecoration: "none" }}
+                        >
+                          <p className="p_idpw">이메일 찾기 </p>
+                        </Link>
+                        |
+                        <Link
+                          to="/findaccountpassword"
+                          style={{ textDecoration: "none" }}
+                        >
+                          <p className="p_idpw"> 비밀번호 찾기 </p>
+                        </Link>
+                        |
+                        <Link to="/login" style={{ textDecoration: "none" }}>
+                          <p className="p_idpw"> 로그인</p>
+                        </Link>
+                      </div>
+
+                      <br />
+
+                      <div className="mb-4 signUpBtnDiv">
+                        <button
+                          className="btn btn-outline-primary btn-sm btn-block signUpBtn"
+                          type="button"
+                          onClick={() => clickSignUpNaver()}
+                        >
+                          회원가입
+                        </button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
-            </div>
-          </>
+            </>
+          ) : null}
         </section>
         <Footer />
       </main>

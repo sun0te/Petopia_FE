@@ -2,16 +2,17 @@ import React from "react";
 import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
-import NoticeBoard from "../Components/NoticeBoard.js";
+import RecommendUpdate from "../Components/RecomendComponent/Recommend_update.js";
 
-const Notice = () => {
+const RouteTripUpdate = () => {
   return (
     <>
       <BgLeft />
-      <main>
+
+      <main className="RouteTripSection">
         <Header />
-        <section className="wrap">
-          <NoticeBoard />
+        <section>
+          <RecommendUpdate />
         </section>
         <Footer />
       </main>
@@ -19,4 +20,4 @@ const Notice = () => {
   );
 };
 
-export default Notice;
+export default RouteTripUpdate;

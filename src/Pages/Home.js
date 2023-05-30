@@ -67,7 +67,7 @@ const Home = () => {
   // DB로부터 장소 받아오기
   const getMapList = () => {
     axios
-      .get("/maplist", {})
+      .get("http://localhost:8080/maplist", {})
       .then((res) => {
         const { data } = res;
         const category1 = []; // 동물병원

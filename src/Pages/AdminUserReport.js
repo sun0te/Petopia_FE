@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeaderAdmin from "../Components/HeaderAdmin.js";
 import Footer from "../Components/Footer.js";
 import BgAdmin from "../Components/BgAdmin.js";
 import "../Styles/AdminUserReport.css";
+import axios from "axios";
 
 const AdminUserReport = () => {
   const [reports, setReports] = useState([

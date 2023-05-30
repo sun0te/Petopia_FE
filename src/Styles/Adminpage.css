@@ -6,7 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 1.5em;
+    margin-top: 1em;
 }
 
 .profile-image {
@@ -120,7 +120,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 }
 
 .category-item {

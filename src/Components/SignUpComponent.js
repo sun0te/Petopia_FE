@@ -31,7 +31,8 @@ const SignUpComponent = ({ user, setUser }) => {
       nickname.current.value !== "" &&
       birthday.current.value !== "" &&
       password1.current.value !== "" &&
-      password2.current.value !== ""
+      password2.current.value !== "" &&
+      emailRegTest === true
     ) {
       clickSignupBtn();
     }
@@ -66,7 +67,7 @@ const SignUpComponent = ({ user, setUser }) => {
 
   const clickSignupBtn = () => {
     axios
-      .post("/user/getuserinfo", {
+      .post("http://localhost:8080/user/getuserinfo", {
         email: email.current.value,
       })
       .then((res) => {
@@ -85,7 +86,7 @@ const SignUpComponent = ({ user, setUser }) => {
 
   const signUpPetopia = () => {
     axios
-      .post("/user/signuppetopia", {
+      .post("http://localhost:8080/user/signuppetopia", {
         email: email.current.value,
         name: name.current.value,
         nickname: nickname.current.value,
@@ -114,6 +115,21 @@ const SignUpComponent = ({ user, setUser }) => {
     let today = new Date(now_utc - timeOff).toISOString().split("T")[0];
     document.getElementById("birth").setAttribute("max", today);
   }, []);
+
+  // 이메일 형식 추가 검사
+  const [emailRegTest, setEmailRegTest] = useState(false);
+
+  const checkEmail = (e) => {
+    var regExp =
+      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+    // 형식에 맞는 경우 true 리턴
+    if (regExp.test(e.target.value) === true) {
+      setEmailRegTest(true);
+    } else if (regExp.test(e.target.value) === false) {
+      setEmailRegTest(false);
+      alert("올바른 이메일 형식을 사용해 주세요. \n(example@petopia.com)");
+    }
+  };
 
   return (
     <>
@@ -194,6 +210,7 @@ const SignUpComponent = ({ user, setUser }) => {
                   ref={email}
                   maxLength="40"
                   required
+                  onBlur={checkEmail}
                 />
                 <div className="invalid-feedback">이메일을 입력해주세요.</div>
               </div>

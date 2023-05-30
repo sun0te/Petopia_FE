@@ -15,6 +15,7 @@ import {
   FaCheck,
   FaTimes,
   FaAngleRight,
+  FaQuestionCircle,
 } from "react-icons/fa";
 
 import MyInquiry from "../Components/MyPage/MyInquiry.js";
@@ -211,14 +212,16 @@ const UserMypage = () => {
                   className="edit-nickname-button"
                   onClick={handleEditClick}
                 >
-                  <FaAngleRight className="edit-icon" />
+                  <FaEdit className="edit-icon" />
                 </button>
               </>
             )}
           </div>
+
           <div className="hr-line-container">
             <hr className="hr-line" />
           </div>
+
           <div className="user-category">
             <div className="category-item">
               내 글 <span className="category-count">3</span>
@@ -289,7 +292,7 @@ const UserMypage = () => {
                 }}
               >
                 <div className="user-section-icon">
-                  <FaEdit className="user-info-icon" />
+                  <FaQuestionCircle className="user-info-icon" />
                 </div>
                 <div className="user-section-title">1:1 문의</div>
                 <div className="user-section-icon2">

@@ -14,6 +14,53 @@
   font-size: 1.2rem;
   font-weight: bold;
   margin: 50px auto 0px 40px;
+  color: #222222ef;
+}
+
+.bestFoldBtn {
+  font-size: 13px;
+  color: #708090;
+  cursor: pointer;
+  margin: 15px 0 0 0;
+}
+.bestUnfoldBtn {
+  display: inline-block;
+  font-size: 13px;
+  color: #708090;
+  cursor: pointer;
+  margin: 53px 0 -20px 20px;
+  vertical-align: top;
+}
+.bestFoldBtn:hover {
+  color: #537fe7;
+}
+.bestUnfoldBtn:hover {
+  color: #537fe7;
+}
+.recommendBestWhiteSpaceDiv{
+  height: 50px;
+}
+.recommendBestWhiteSpace {
+  display: inline-block;
+  /* background-color: black; */
+  width: 230px;
+  height: 50px;
+}
+.bestFoldHr {
+  width: 90%;
+  text-align: center;
+  float: center;
+}
+
+.viweAllBtnDiv {
+  float: right;
+  margin: -35px 37px 25px auto;
+}
+.viweAllBtn {
+  text-align: center;
+  font-size: 13px;
+  width: 75px;
+  margin: 0 0px 0 0;
 }
 
 .searchBar {
@@ -27,10 +74,11 @@
 
 .recomendWriteBtn {
   float: right;
-  margin: -10px 35px 10px auto;
+  margin: -10px 15px 10px auto;
 }
 
 .recommendAllBoardDiv {
+  width: 98%;
   border: none;
 }
 
@@ -40,14 +88,27 @@
 }
 
 .recommendCard {
+  height: auto;
   margin: 30px auto 10px auto;
   cursor: pointer;
+}
+
+.recommendCardBody {
+  margin-bottom: -10px;
+}
+
+.recommendCardImg {
+  height: 200px;
+  width: auto;
+  object-fit: cover;
+  /* border-bottom: 1px solid rgba(128, 128, 128, 0.185); */
 }
 
 .recommendCardTitle {
   font-weight: bold;
   font-size: 1rem;
   margin: -5px 0 10px 0;
+  text-align: center;
 }
 
 .recommendBestCardText {
@@ -58,6 +119,10 @@
 
 .recommendIcon {
   color: #537fe7;
+}
+
+.recommendMainWriterIcon {
+  margin: 0 0 3px 0;
 }
 
 .p_recommendWriter {
@@ -118,15 +183,30 @@
 /* Recomend_detail-------------------------------- */
 
 .h4_Recomend {
-  display: inline-block;
+  display: block;
   font-size: 1rem;
   font-weight: bold;
-  margin: 30px auto 10px 40px;
+  margin: 30px 30px 10px 30px;
+  text-align: center;
+  clear: both;
 }
 
+.recommendDetailTitle {
+  margin: 15px 20px -10px 20px;
+}
+
+.recommendDetailNickname {
+  font-size: 12px;
+}
 .hr_Recomend {
+  display: block;
   width: 90%;
   margin-left: 20px;
+  margin-top: 20px;
+}
+
+.detailauthoricon {
+  margin: 0 0 5px 0;
 }
 
 .p_recomend {
@@ -159,15 +239,17 @@
 
 .RecomendDetailImg {
   display: block;
-  margin: 0 auto 10px auto;
+  margin: 0 auto 20px auto;
+  border: 1px solid #eee;
+  border-radius: 2px;
   width: 300px;
-  height: 200px;
+  height: auto;
 }
 
 .RecomendDetailP {
   display: block;
   margin: 0 auto 10px auto;
-  width: 70%;
+  width: 80%;
 }
 
 .cardRecomendDetail {
@@ -198,7 +280,8 @@
   justify-content: center;
   align-items: center;
   width: 80%;
-  margin: 0 auto 10px 40px;
+  margin: 0 auto 10px auto;
+  text-align: center;
 }
 
 .thumbs {
@@ -219,8 +302,9 @@
 
 .thumbsHeartSpan {
   margin: 0 10px 0 5px;
-  display: inline;
+  display: block;
   padding: 0 10px 0 15px;
+  clear: both;
 }
 
 .btn-lg {
@@ -233,8 +317,16 @@
   font-size: 2rem;
 }
 
-.thumbsHeartIcon:hover {
+/* .thumbsHeartIcon:hover {
   color: #537fe7;
+  opacity: 0.9;
+} */
+.thumbsIconHover:hover {
+  color: #537fe7 ;
+  opacity: 0.9;
+}
+.heartIconHover:hover {
+  color: #cc0000    ;
   opacity: 0.9;
 }
 
@@ -256,6 +348,13 @@
   user-select: none;
   outline: none;
   box-shadow: none;
+}
+
+.clickedIconColor {
+  color: #537fe7;
+}
+.clickedIconColorRed {
+  color: #cc0000  ;
 }
 
 .Div_boardListBtn {
@@ -284,6 +383,17 @@
   padding: -10px;
 }
 
+.recommendUpdateBtnDiv {
+  text-align: right;
+  margin: -60px 30px 0 0;
+}
+
+.recommendUpdateBtn {
+  
+  margin: 0px 0px 20px 0px;
+  
+}
+
 /* Recomend_write --------------------------------------*/
 
 .recomendP {
@@ -295,7 +405,7 @@
 }
 
 .radioBtnDiv {
-  margin: 0 auto 40px 60px;
+  margin: 0 auto 40px 25px;
 }
 
 .btnGroup {
@@ -328,10 +438,10 @@
 }
 
 .detailProfileImg {
-  width: 35px;
-  height: 35px;
+  width: 25px;
+  height: 25px;
   border-radius: 100px;
-  margin: 0 10px 0 0;
+  margin: 0 5px 0 0;
 }
 
 .boardCommentDiv {
@@ -349,7 +459,7 @@
 .detailReportBtnDiv {
   display: inline;
   float: right;
-  margin: 30px 20px 0 0;
+  margin: 30px 20px 20px 0;
 }
 
 .boardListBtnDetail {
@@ -377,4 +487,12 @@
   text-align: center;
   margin: 10px 0 0 213px;
   font-size: 0.7rem;
+}
+
+/* Recommend_update ---------------------------------------------------------------------------- */
+
+.recommendUpdatePlaceSpan {
+  color: rgba(128, 128, 128, 0.562);
+  font-size: 14px;
+  
 }

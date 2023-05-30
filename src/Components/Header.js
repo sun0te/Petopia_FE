@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import "../Styles/Header.css";
 import { FaUser, FaCog, FaAngleLeft } from "react-icons/fa";
 
@@ -8,6 +8,8 @@ const Header = ({ page }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const navRef = useRef(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (navRef.current) {
@@ -53,16 +55,26 @@ const Header = ({ page }) => {
     setScrollX(getActiveTabPosition());
   }, [page]);
 
-  
+  // 이전 페이지로 이동하는 함수
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
+  // 현재 경로의 카테고리가 여행추천인지 확인하는 함수
+  const isRouteTripCategory = () => {
+    return (
+      location.pathname.startsWith("/routetrip") ||
+      location.pathname.startsWith("/routetripwrite") ||
+      location.pathname.startsWith("/recomend_best")
+    );
+  };
 
   return (
     <header>
       <div className="headerBtns">
-        <NavLink to="/">
-          <div className="headerBtns-left">
-            <FaAngleLeft className="user-info-icon" />
-          </div>
-        </NavLink>
+        <div className="headerBtns-left" onClick={handleGoBack}>
+          <FaAngleLeft className="user-info-icon" />
+        </div>
         <div className="headerBtns-R">
           <NavLink to="/login">
             <div className="headerBtns-right">
@@ -94,7 +106,9 @@ const Header = ({ page }) => {
             data-href="/"
             onClick={handleCategoryClick}
           >
-            <div className="nav-link">HOME</div>
+            <div className="nav-link">
+              <b>HOME</b>
+            </div>
           </NavLink>
           <NavLink
             to="/userboard"
@@ -103,16 +117,20 @@ const Header = ({ page }) => {
             data-href="/userboard"
             onClick={handleCategoryClick}
           >
-            <div className="nav-link">커뮤니티</div>
+            <div className="nav-link">
+              <b>커뮤니티</b>
+            </div>
           </NavLink>
           <NavLink
+            exact
             to="/routetrip"
-            className="nav-item"
-            activeClassName="active"
+            className={`nav-item ${isRouteTripCategory() ? "active" : ""}`}
             data-href="/routetrip"
             onClick={handleCategoryClick}
           >
-            <div className="nav-link">여행추천</div>
+            <div className="nav-link">
+              <b>여행추천</b>
+            </div>
           </NavLink>
           <NavLink
             to="/notice"
@@ -121,7 +139,9 @@ const Header = ({ page }) => {
             data-href="/notice"
             onClick={handleCategoryClick}
           >
-            <div className="nav-link">공지사항</div>
+            <div className="nav-link">
+              <b>공지사항</b>
+            </div>
           </NavLink>
         </div>
       </div>

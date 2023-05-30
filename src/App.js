@@ -13,6 +13,7 @@ import FindAccountPassword from "./Pages/FindAccountPassword";
 import Notice from "./Pages/Notice";
 import RouteTrip from "./Pages/RouteTrip";
 import RouteTripDetail from "./Pages/RouteTripDetail";
+import RouteTripUpdate from "./Pages/RouteTripUpdate";
 import RouteTripWrite from "./Pages/RouteTripWrite";
 import Write from "./Pages/Write";
 import Update from "./Pages/Update";
@@ -26,6 +27,7 @@ import UserMypage from "./Pages/UserMypage";
 import AdminMypage from "./Pages/AdminMypage";
 import AdminUserList from "./Pages/AdminUserList";
 import AdminUserReport from "./Pages/AdminUserReport";
+import AdminUserReportBE from "./Pages/AdminUserReportBE";
 import AdminStatistics from "./Pages/AdminStatistics";
 import NotFound from "./Pages/NotFound";
 import FreeBoardDetail from "./Components/UserBoards/FreeBoardDetail";
@@ -35,6 +37,7 @@ import ReviewMain from "./Pages/ReviewMain";
 import UserWatchlist from "./Pages/UserWatchlist";
 import MyReview from "./Components/MyPage/MyReview";
 import MyReviewDetailPage from "./Pages/MyReviewDetailPage";
+import NoticeWrite from "./Components/NoticeBoard/NoticeWrite";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -65,6 +68,7 @@ const App = () => {
       <Route path="/routetrip" element={<RouteTrip />} />
       <Route path="/routetripwrite" element={<RouteTripWrite />} />
       <Route path="/recomend_best" element={<RouteTripDetail />} />
+      <Route path="/recommendupdate" element={<RouteTripUpdate />} />
       <Route path="/write" element={<Write />} />
       <Route path="/update" element={<Update />} />
       <Route path="/detail" element={<Detail />} />
@@ -80,11 +84,13 @@ const App = () => {
       <Route path="/usermypageinquiryadmin" element={<MyInquiryAdmin />} />
       <Route path="/adminmypage" element={<AdminMypage />} />
       <Route path="/adminuserlist" element={<AdminUserList />} />
-      <Route path="/adminuserreport" element={<AdminUserReport />} />
+      <Route path="/adminuserreport1" element={<AdminUserReport />} />
+      <Route path="/adminuserreport" element={<AdminUserReportBE />} />
       <Route path="/adminstatistics" element={<AdminStatistics />} />
       <Route path="/reviewpage/:id" element={<ReviewMain />} />
       <Route path="/myreview" element={<MyReview />} />
       <Route path="myreviewdetail" element={<MyReviewDetailPage />} />
+      <Route path="noticewrite" element={<NoticeWrite />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
