@@ -45,7 +45,7 @@ const AdminUserReportBE = () => {
         setProgressReports(progressReportsData);
         setCompleteReports(completeReportsData);
       });
-  }, [setSelectedReport]);
+  }, [completeReportsData, progressReportsData, setSelectedReport]);
 
   return (
     <>
