@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 
-const StarRating = ({ ratingScore }) => {
-  const AVR_RATE = ratingScore; // 별점 계산 식 들어가는 자리
+const StarRating1 = ({ score, index }) => {
+  const AVR_RATE = score; // 별점 계산 식 들어가는 자리
   const STAR_IDX_ARR = ["first", "second", "third", "fourth", "last"];
   const [ratesResArr, setRatesResArr] = useState([0, 0, 0, 0, 0]);
   const calcStarRates = () => {
@@ -19,20 +19,20 @@ const StarRating = ({ ratingScore }) => {
   };
   useEffect(() => {
     setRatesResArr(calcStarRates);
-  }, [ratingScore]);
+  }, [score]);
   return (
-    <StarRateWrap>
+    <StarRateWrap1>
       {STAR_IDX_ARR.map((item, idx) => {
         return (
           <span className="star_icon" key={`${item}_${idx}`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="20"
+              width="15"
               height="19"
               viewBox="0 0 14 13"
               fill="#cacaca"
             >
-              <clipPath id={`${item}StarClip`}>
+              <clipPath id={`${item}StarClip${index}`}>
                 <rect width={`${ratesResArr[idx]}`} height="19" />
               </clipPath>
               <path
@@ -41,7 +41,7 @@ const StarRating = ({ ratingScore }) => {
                 transform="translate(-2 -2)"
               />
               <use
-                clipPath={`url(#${item}StarClip)`}
+                clipPath={`url(#${item}StarClip${index})`}
                 href={`#${item}Star`}
                 fill="#537fe7"
               />
@@ -49,13 +49,13 @@ const StarRating = ({ ratingScore }) => {
           </span>
         );
       })}
-    </StarRateWrap>
+    </StarRateWrap1>
   );
 };
 
-export default StarRating;
+export default StarRating1;
 
-const StarRateWrap = styled.span`
+const StarRateWrap1 = styled.span`
   align-items: center;
   width: 100%;
   .star_icon {

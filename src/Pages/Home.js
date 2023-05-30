@@ -183,7 +183,7 @@ const Home = () => {
             <Slider {...settings}>
               {slides.map((slide) => (
                 <div key={slide.id}>
-                  <img src={slide.image} />
+                  <img className="homeSlideImg" src={slide.image} />
                 </div>
               ))}
             </Slider>

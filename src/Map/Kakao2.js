@@ -318,7 +318,9 @@ const Kakao2 = ({
         {/* ----- 마커 표시 시작 ----- */}
         <MapMarker
           position={position} // 마커를 표시할 위치
-          onClick={() => setInfo(position)} // 마커 클릭시 infowindow 출력
+          onClick={() => {
+            setInfo(position);
+          }} // 마커 클릭시 infowindow 출력
           image={{
             // 마커 이미지 옵션
             src: makerimg,
@@ -342,7 +344,7 @@ const Kakao2 = ({
               <div
                 className="mapwrapinfo"
                 onClick={() => {
-                  navigate(`/reviewpage/${position.lat}/${position.lng}`);
+                  navigate(`/reviewpage/${position.id}`);
                   //리뷰 페이지 or 업소 상세페이지 이동 or 모달창 보여주기
                 }}
               >
@@ -373,6 +375,9 @@ const Kakao2 = ({
                               target="_blank"
                               className="maplink"
                               rel="noreferrer"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                              }}
                             >
                               홈페이지
                             </a>
@@ -392,11 +397,12 @@ const Kakao2 = ({
                         )
                       ) : (
                         <a
-                          href="#"
+                          href="a"
                           className="maplink"
                           rel="noreferrer"
                           onClick={(e) => {
                             e.stopPropagation();
+                            e.preventDefault();
                           }}
                         >
                           홈페이지 정보없음
