@@ -308,9 +308,7 @@ const UserMypage = () => {
               <LikeList setMyPageAction={setMyPageAction} />
             </>
           ) : myPageAction === 3 ? ( // [액션 3 : 리뷰 관리]
-            <>
-              <MyReviewList setMyPageAction={setMyPageAction} />
-            </>
+            <MyReviewList setMyPageAction={setMyPageAction} />
           ) : myPageAction === 4 ? ( // [액션 4 : 1:1 문의]
             <>
               <MyInquiry setMyPageAction={setMyPageAction} />
