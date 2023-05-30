@@ -143,14 +143,6 @@ const MyReviewDetail = ({
           삭제
         </Button>
       </ReviewButtonsWrap>
-      <button
-        onClick={() => {
-          console.log("버튼", reviewId);
-        }}
-      >
-        버튼
-      </button>
-      <hr style={{ height: "3px", backgroundColor: "lightgray" }} />
     </>
   );
 };
