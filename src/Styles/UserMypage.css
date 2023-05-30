@@ -1,8 +1,14 @@
 .user-mypage {
-  display: flex;
   flex-direction: column;
   align-items: center;
   min-height: calc(100vh - 25vh);
+}
+
+.user-mypage-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 7em;
 }
 
 .user-profile {
