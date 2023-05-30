@@ -37,7 +37,6 @@ const AdminUserReportBE = () => {
       .then((res) => {
         setReports(res.data);
         setTotalReports(res.data.length);
-
         res.data.map((data) => {
           if (data.processingStatus === "PROCEEDING") progressReportsData++;
           else if (data.processingStatus === "PROGRESS_COMPLETE")
@@ -46,7 +45,7 @@ const AdminUserReportBE = () => {
         setProgressReports(progressReportsData);
         setCompleteReports(completeReportsData);
       });
-  }, [completeReportsData, progressReportsData, setSelectedReport]);
+  }, [setSelectedReport]);
 
   return (
     <>
@@ -104,18 +103,18 @@ const AdminUserReportBE = () => {
                           //console.log(`Report ${report.id} clicked`);
                         }}
                       >
-                        {report.board.category === "TRAVEL" ? (
+                        {report.post.category === "TRAVEL" ? (
                           <div>
                             <Link
                               to={`/recomend_best?id=${report.id}`}
                               key={report.id}
-                              state={{ boardid: report.board.id }}
+                              state={{ boardid: report.post.id }}
                             >
-                              {report.board.title}
+                              {report.post.title}
                             </Link>
                           </div>
                         ) : (
-                          <>{report.board.title}</>
+                          <>{report.post.title}</>
                         )}
                       </td>
                       <td className="admin-user-report-item-date">
@@ -141,7 +140,7 @@ const AdminUserReportBE = () => {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="3" className="admin-user-report-none">
+                    <td colSpan="4" className="admin-user-report-none">
                       신고 내역이 없습니다.
                     </td>
                   </tr>
@@ -182,13 +181,13 @@ const AdminUserReportBE = () => {
                             <div className="report-tilte">
                               <b>게시글 제목</b>
                             </div>
-                            {selectedReport.board.title}
+                            {selectedReport.post.title}
 
                             <div className="report-tilte">
                               <br />
                               <b>게시글 내용</b>
                             </div>
-                            {selectedReport.board.content}
+                            {selectedReport.post.content}
                           </div>
                         </>
                       ) : (
@@ -218,13 +217,13 @@ const AdminUserReportBE = () => {
                             <div className="report-tilte">
                               <b>게시글 제목</b>
                             </div>
-                            {selectedReport.board.title}
+                            {selectedReport.post.title}
 
                             <div className="report-tilte">
                               <br />
                               <b>게시글 내용</b>
                             </div>
-                            {selectedReport.board.content}
+                            {selectedReport.post.content}
                           </div>
                         </>
                       )}
