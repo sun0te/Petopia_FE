@@ -105,11 +105,7 @@ const AdminUserReportBE = () => {
                         }}
                       >
                         {report.board.category === "TRAVEL" ? (
-                          <div
-                            onClick={(e) => {
-                              console.log(e.target.id);
-                            }}
-                          >
+                          <div>
                             <Link
                               to={`/recomend_best?id=${report.id}`}
                               key={report.id}

@@ -41,7 +41,13 @@ const ReportModal = (props) => {
         })
         .catch((err) => {});
     };
-    reportBoard();
+    if (
+      sessionStorage.getItem("email") === null ||
+      sessionStorage.getItem("email") === undefined ||
+      sessionStorage.getItem("email") === ""
+    ) {
+      alert("로그인이 필요합니다.");
+    } else reportBoard();
   };
 
   useEffect(() => {}, [reportReasonText]);
