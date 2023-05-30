@@ -1,129 +1,52 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import HeaderAdmin from "../Components/HeaderAdmin.js";
 import Footer from "../Components/Footer.js";
 import BgAdmin from "../Components/BgAdmin.js";
 import "../Styles/AdminUserReport.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-const AdminUserReport = () => {
-  const [reports, setReports] = useState([
-    {
-      id: 1,
-      title: "@쿠팡 할인 이벤트@",
-      content: "쿠팡 파트너스 할인 이벤트입니다",
-      writer: "작성자1",
-      status: "대기 중",
-      createDate: "2022-05-09",
-      reason: "광고성, 도배, 허위정보",
-    },
-    {
-      id: 2,
-      title: "허위 리뷰 작성",
-      content: "타인의 리뷰 사진 도용한 게시글",
-      writer: "작성자2",
-      status: "완료",
-      createDate: "2022-05-08",
-      reason: "광고성, 도배, 허위정보",
-    },
-    {
-      id: 3,
-      title: "욕설 게시글",
-      status: "대기 중",
-      writer: "작성자3",
-      content: "부적절한 욕설 포함 글 작성",
-      createDate: "2022-05-07",
-      reason: "선정성, 정치관련, 혐오감",
-    },
-    {
-      id: 4,
-      title: "혐오 게시글",
-      status: "대기 중",
-      writer: "작성자4",
-      content: "혐오스런 사진을 포함한 글",
-      createDate: "2022-05-07",
-      reason: "선정성, 정치관련, 혐오감",
-    },
-    {
-      id: 5,
-      title: "저작권 침해글",
-      status: "완료",
-      writer: "작성자5",
-      content: "타인 게시글 도용",
-      createDate: "2022-05-08",
-      reason: "저작권 침해",
-    },
-    {
-      id: 6,
-      title: "허위 리뷰 작성",
-      status: "완료",
-      writer: "작성자6",
-      content: "허위 과장 리뷰 작성",
-      createDate: "2022-05-08",
-      reason: "광고성, 도배, 허위정보",
-    },
-    {
-      id: 7,
-      title: "허위 리뷰 작성",
-      status: "완료",
-      writer: "작성자7",
-      content: "허위 과장 리뷰 작성",
-      createDate: "2022-05-08",
-      reason: "광고성, 도배, 허위정보",
-    },
-    {
-      id: 8,
-      title: "허위 리뷰 작성",
-      status: "완료",
-      writer: "작성자8",
-      content: "허위 과장 리뷰 작성",
-      createDate: "2022-05-08",
-      reason: "광고성, 도배, 허위정보",
-    },
-    {
-      id: 9,
-      title: "허위 리뷰 작성",
-      status: "완료",
-      writer: "작성자9",
-      content: "허위 과장 리뷰 작성",
-      createDate: "2022-05-08",
-      reason: "광고성, 도배, 허위정보",
-    },
-    {
-      id: 10,
-      title: "허위 리뷰 작성",
-      status: "완료",
-      writer: "작성자10",
-      content: "허위 과장 리뷰 작성",
-      createDate: "2022-05-08",
-      reason: "광고성, 도배, 허위정보",
-    },
-  ]);
-
+const AdminUserReportBE = () => {
+  let progressReportsData = 0;
+  let completeReportsData = 0;
+  const [reports, setReports] = useState([]);
+  const [what, setWhat] = useState(0);
+  const [, updateState] = useState();
+  const forceUpdate = useCallback(() => updateState({}), []);
   const [selectedReport, setSelectedReport] = useState(null);
 
-  const handleReportProcessing = () => {
-    if (selectedReport) {
-      // 신고가 선택 시 reports 배열에서 해당 신고의 인덱스 찾기
-      const reportIndex = reports.findIndex(
-        (report) => report.id === selectedReport.id
-      );
-
-      if (reportIndex !== -1) {
-        // 신고 내용 변경
-        const updatedReports = [...reports];
-        updatedReports[reportIndex] = {
-          ...selectedReport,
-          status: "완료",
-          content: "신고 처리된 게시글입니다",
-          title: `신고처리된 게시글 [${selectedReport.title}]`,
-        };
-
-        setReports(updatedReports);
-      }
-
-      setSelectedReport(null);
-    }
+  const handleReportProcessing = (reportid) => {
+    axios
+      .post("http://localhost:8080/report/reportprogress", {
+        id: reportid,
+        processingStatus: "PROGRESS_COMPLETE",
+      })
+      .then((res) => {
+        setSelectedReport(null);
+        forceUpdate();
+        window.location.reload();
+      });
   };
+
+  const [totalReports, setTotalReports] = useState(null);
+  const [progressReports, setProgressReports] = useState(null);
+  const [completeReports, setCompleteReports] = useState(null);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/report/boardreportlist", {})
+      .then((res) => {
+        setReports(res.data);
+        setTotalReports(res.data.length);
+
+        res.data.map((data) => {
+          if (data.processingStatus === "PROCEEDING") progressReportsData++;
+          else if (data.processingStatus === "PROGRESS_COMPLETE")
+            completeReportsData++;
+        });
+        setProgressReports(progressReportsData);
+        setCompleteReports(completeReportsData);
+      });
+  }, [completeReportsData, progressReportsData, setSelectedReport]);
 
   return (
     <>
@@ -140,13 +63,15 @@ const AdminUserReport = () => {
           </div>
           <div className="report-category">
             <div className="report-category-item">
-              전체 신고 <span className="category-count">10</span>
+              전체 신고 <span className="category-count">{totalReports}</span>
             </div>
             <div className="report-category-item">
-              신고 대기 <span className="category-count">3</span>
+              신고 대기{" "}
+              <span className="category-count">{progressReports}</span>
             </div>
             <div className="report-category-item">
-              처리 완료 <span className="category-count">7</span>
+              처리 완료{" "}
+              <span className="category-count">{completeReports}</span>
             </div>
           </div>
           <div className="separationArea" />
@@ -158,7 +83,7 @@ const AdminUserReport = () => {
               <thead className="admin-table-title">
                 <tr>
                   <th className="admin-user-report-item-title">제목</th>
-                  <th className="admin-user-report-item-date">작성자</th>
+                  <th className="admin-user-report-item-date">신고자</th>
                   <th className="admin-user-report-item-date">날짜</th>
                   <th className="admin-user-report-item-date">진행</th>
                 </tr>
@@ -179,23 +104,40 @@ const AdminUserReport = () => {
                           console.log(`Report ${report.id} clicked`);
                         }}
                       >
-                        {report.title}
+                        {report.board.category === "TRAVEL" ? (
+                          <>
+                            <Link
+                              to={`/recomend_best?id=${report.id}`}
+                              key={report.id}
+                              state={{ boardid: report.id }}
+                            >
+                              {report.board.title}
+                            </Link>
+                          </>
+                        ) : (
+                          <>{report.board.title}</>
+                        )}
+                        <Link to={`/recomend_best?id=${report.id}`}>
+                          {report.board.title}
+                        </Link>
                       </td>
                       <td className="admin-user-report-item-date">
-                        {report.writer}
+                        {report.reporter.nickname}
                       </td>
                       <td className="admin-user-report-item-date">
-                        {report.createDate}
+                        {report.reportDate.replace("T", " ")}
                       </td>
                       <td className="admin-user-report-item-date">
                         <div
                           className={`admin-user-report-item-status ${
-                            report.status === "대기 중"
+                            report.processingStatus === "PROCEEDING"
                               ? "admin-user-report-item-status-processing"
                               : ""
                           }`}
                         >
-                          {report.status}
+                          {report.processingStatus === "PROCEEDING"
+                            ? "대기 중"
+                            : "완료"}
                         </div>
                       </td>
                     </tr>
@@ -215,7 +157,7 @@ const AdminUserReport = () => {
                       <h2>신고 정보</h2>
                     </div>
                     <div className="modal-body">
-                      {selectedReport.status === "완료" ? (
+                      {selectedReport.status === "PROGRESS_COMPLETE" ? (
                         <>
                           <b>처리완료</b>
                           <p>{selectedReport.reason}</p>
@@ -236,25 +178,43 @@ const AdminUserReport = () => {
                       ) : (
                         <>
                           <b>대기 중</b>
-                          <p>{selectedReport.reason}</p>
+                          <p>
+                            {selectedReport.reason === "DISGUST" ? (
+                              <>선정성, 정치관련, 혐오감</>
+                            ) : selectedReport.reason === "ADVERTISEMENT" ? (
+                              <>광고성, 도배, 허위정보</>
+                            ) : selectedReport.reason ===
+                              "INAPPROPRIATE_NICKNAME" ? (
+                              <>부적절한 작성자 닉네임</>
+                            ) : selectedReport.reason === "COPYRIGHT" ? (
+                              <>저작권 위반</>
+                            ) : selectedReport.reason === "OTHER" ? (
+                              <>
+                                기타 사유 :{" "}
+                                {selectedReport.reason === "OTHER"
+                                  ? selectedReport.otherReason
+                                  : null}
+                              </>
+                            ) : null}
+                          </p>
 
                           <div className="report-modal-board">
                             <div className="report-tilte">
                               <b>게시글 제목</b>
                             </div>
-                            {selectedReport.title}
+                            {selectedReport.board.title}
 
                             <div className="report-tilte">
                               <br />
                               <b>게시글 내용</b>
                             </div>
-                            {selectedReport.content}
+                            {selectedReport.board.content}
                           </div>
                         </>
                       )}
                     </div>
                     <div className="modal-footer">
-                      {selectedReport.status === "완료" ? (
+                      {selectedReport.status === "PROGRESS_COMPLETE" ? (
                         <>
                           <button onClick={() => setSelectedReport(null)}>
                             취소
@@ -263,7 +223,9 @@ const AdminUserReport = () => {
                       ) : (
                         <>
                           <button
-                            onClick={handleReportProcessing}
+                            onClick={() => {
+                              handleReportProcessing(selectedReport.id);
+                            }}
                             style={{ backgroundColor: "red", color: "white" }}
                           >
                             신고 처리
@@ -286,4 +248,4 @@ const AdminUserReport = () => {
   );
 };
 
-export default AdminUserReport;
+export default AdminUserReportBE;

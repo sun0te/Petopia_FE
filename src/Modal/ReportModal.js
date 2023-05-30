@@ -6,16 +6,16 @@ import "../Styles/RecomendStyle.css";
 import Form from "react-bootstrap/Form";
 import { useEffect, useState, useRef } from "react";
 import { async } from "q";
+import axios from "axios";
 
 const ReportModal = (props) => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
-  const { open, close, header } = props;
+  const { open, close, header, id } = props;
 
-  const [reportReason, setReportReason] = useState("0");
+  const [reportReason, setReportReason] = useState("DISGUST");
 
   const clickReason = (e) => {
     setReportReason(e.target.value);
-    console.log(e.target.value);
   };
 
   useEffect(() => {
@@ -23,16 +23,28 @@ const ReportModal = (props) => {
   }, [reportReason]);
 
   const [reportReasonText, setReportReasonText] = useState("");
-  const reportReasonContent = useRef();
+  const reportReasonContent = useRef(null);
 
   const writeReason = () => {
-    setReportReasonText(reportReasonContent.current.value);
-    window.location.reload();
+    const reportBoard = () => {
+      axios
+        .post("http://localhost:8080/report/boardreport", {
+          board: { id: id },
+          reporter: { email: sessionStorage.getItem("email") },
+          reason: reportReason,
+          otherReason: reportReasonContent.current.value,
+          processingStatus: "PROCEEDING",
+        })
+        .then((res) => {
+          alert("게시글 신고가 접수되었습니다.");
+          window.location.reload();
+        })
+        .catch((err) => {});
+    };
+    reportBoard();
   };
 
-  useEffect(() => {
-    console.log(reportReasonText);
-  }, [reportReasonText]);
+  useEffect(() => {}, [reportReasonText]);
 
   return (
     // 모달이 열릴때 openModal 클래스가 생성된다.
@@ -61,23 +73,26 @@ const ReportModal = (props) => {
               <option value="0" disabled>
                 신고 사유
               </option>
-              <option value="1" onClick={(e) => clickReason(e)}>
+              <option value="DISGUST" onClick={(e) => clickReason(e)}>
                 선정성, 정치관련, 혐오감
               </option>
-              <option value="2" onClick={(e) => clickReason(e)}>
+              <option value="COPYRIGHT" onClick={(e) => clickReason(e)}>
                 저작권 위반
               </option>
-              <option value="3" onClick={(e) => clickReason(e)}>
+              <option value="ADVERTISEMENT" onClick={(e) => clickReason(e)}>
                 광고성, 도배, 허위정보
               </option>
-              <option value="4" onClick={(e) => clickReason(e)}>
+              <option
+                value="INAPPROPRIATE_NICKNAME"
+                onClick={(e) => clickReason(e)}
+              >
                 부적절한 작성자 닉네임
               </option>
-              <option value="5" onClick={(e) => clickReason(e)}>
+              <option value="OTHER" onClick={(e) => clickReason(e)}>
                 직접 입력
               </option>
             </Form.Select>
-            {reportReason === "5" ? (
+            {reportReason === "OTHER" ? (
               <Form.Control
                 className="writeTitle reportReasonWrite"
                 type="text"
@@ -105,7 +120,7 @@ const ReportModal = (props) => {
               variant="outline-danger"
               style={{ padding: "4px 0px 3px 0px" }}
               onClick={() => {
-                close();
+                // close();
                 writeReason();
               }}
             >
