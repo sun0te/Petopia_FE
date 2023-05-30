@@ -159,7 +159,6 @@ const Recomend_detail = () => {
           recommends: res.data.recommends,
           likes: res.data.likes,
         });
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);

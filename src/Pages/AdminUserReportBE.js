@@ -101,25 +101,26 @@ const AdminUserReportBE = () => {
                       <td
                         className="admin-user-report-item-title"
                         onClick={() => {
-                          console.log(`Report ${report.id} clicked`);
+                          //console.log(`Report ${report.id} clicked`);
                         }}
                       >
                         {report.board.category === "TRAVEL" ? (
-                          <>
+                          <div
+                            onClick={(e) => {
+                              console.log(e.target.id);
+                            }}
+                          >
                             <Link
                               to={`/recomend_best?id=${report.id}`}
                               key={report.id}
-                              state={{ boardid: report.id }}
+                              state={{ boardid: report.board.id }}
                             >
                               {report.board.title}
                             </Link>
-                          </>
+                          </div>
                         ) : (
                           <>{report.board.title}</>
                         )}
-                        <Link to={`/recomend_best?id=${report.id}`}>
-                          {report.board.title}
-                        </Link>
                       </td>
                       <td className="admin-user-report-item-date">
                         {report.reporter.nickname}
@@ -157,22 +158,41 @@ const AdminUserReportBE = () => {
                       <h2>신고 정보</h2>
                     </div>
                     <div className="modal-body">
-                      {selectedReport.status === "PROGRESS_COMPLETE" ? (
+                      {selectedReport.processingStatus ===
+                      "PROGRESS_COMPLETE" ? (
                         <>
                           <b>처리완료</b>
-                          <p>{selectedReport.reason}</p>
+                          <p>
+                            {selectedReport.reason === "DISGUST" ? (
+                              <>선정성, 정치관련, 혐오감</>
+                            ) : selectedReport.reason === "ADVERTISEMENT" ? (
+                              <>광고성, 도배, 허위정보</>
+                            ) : selectedReport.reason ===
+                              "INAPPROPRIATE_NICKNAME" ? (
+                              <>부적절한 작성자 닉네임</>
+                            ) : selectedReport.reason === "COPYRIGHT" ? (
+                              <>저작권 위반</>
+                            ) : selectedReport.reason === "OTHER" ? (
+                              <>
+                                기타 사유 :{" "}
+                                {selectedReport.reason === "OTHER"
+                                  ? selectedReport.otherReason
+                                  : null}
+                              </>
+                            ) : null}
+                          </p>
                           <br />
                           <div className="report-modal-board">
                             <div className="report-tilte">
                               <b>게시글 제목</b>
                             </div>
-                            {selectedReport.title}
+                            {selectedReport.board.title}
 
                             <div className="report-tilte">
                               <br />
                               <b>게시글 내용</b>
                             </div>
-                            {selectedReport.content}
+                            {selectedReport.board.content}
                           </div>
                         </>
                       ) : (
@@ -214,7 +234,8 @@ const AdminUserReportBE = () => {
                       )}
                     </div>
                     <div className="modal-footer">
-                      {selectedReport.status === "PROGRESS_COMPLETE" ? (
+                      {selectedReport.processingStatus ===
+                      "PROGRESS_COMPLETE" ? (
                         <>
                           <button onClick={() => setSelectedReport(null)}>
                             취소
