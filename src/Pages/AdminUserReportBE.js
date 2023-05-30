@@ -83,7 +83,7 @@ const AdminUserReportBE = () => {
               <thead className="admin-table-title">
                 <tr>
                   <th className="admin-user-report-item-title">제목</th>
-                  <th className="admin-user-report-item-date">작성자</th>
+                  <th className="admin-user-report-item-date">신고자</th>
                   <th className="admin-user-report-item-date">날짜</th>
                   <th className="admin-user-report-item-date">진행</th>
                 </tr>
