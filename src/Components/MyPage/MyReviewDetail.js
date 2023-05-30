@@ -2,9 +2,22 @@ import React, { useEffect, useState } from "react";
 import StarRating1 from "../StarRating1.js";
 import axios from "axios";
 import MyReviewSlider from "./MyReviewSlider.js";
+import styled from "styled-components";
+import Button from "react-bootstrap/Button";
 
-const MyReviewDetail = ({ setMyPageReviewAction, reviewdata }) => {
+const ReviewButtonsWrap = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
+`;
+
+const MyReviewDetail = ({
+  setMyPageReviewAction,
+  reviewdata,
+  handleDelete,
+}) => {
   const [reviewImgList, setReviewImgList] = useState([]);
+  const [reviewId, setReviewId] = useState([]);
 
   const reviewImg = () => {
     axios
@@ -21,6 +34,7 @@ const MyReviewDetail = ({ setMyPageReviewAction, reviewdata }) => {
   };
 
   useEffect(() => {
+    setReviewId([reviewdata.id]);
     reviewImg();
   }, []);
 
@@ -116,12 +130,22 @@ const MyReviewDetail = ({ setMyPageReviewAction, reviewdata }) => {
           </div>
         </div>
       </div>
+      <ReviewButtonsWrap>
+        <Button
+          className="mt-2 float-right"
+          variant="primary"
+          size="sm"
+          onClick={() => {
+            handleDelete(reviewId);
+            setMyPageReviewAction(0);
+          }}
+        >
+          삭제
+        </Button>
+      </ReviewButtonsWrap>
       <button
         onClick={() => {
-          console.log(
-            "데이터",
-            reviewImgList.filter((item) => item.review.id === reviewdata.id)
-          );
+          console.log("버튼", reviewId);
         }}
       >
         버튼

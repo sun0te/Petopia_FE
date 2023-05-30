@@ -223,6 +223,7 @@ const ReviewList = ({ setMyPageAction }) => {
           <MyReviewDetail
             setMyPageReviewAction={setMyPageReviewAction}
             reviewdata={reviewdata}
+            handleDelete={handleDelete}
           />
         </>
       ) : (
