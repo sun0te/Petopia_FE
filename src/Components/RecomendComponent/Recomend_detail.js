@@ -383,7 +383,7 @@ const Recomend_detail = () => {
             </Card.Body>
             <Card.Body className="cardRecomendDetailBody">
               📌 반려견 동반 시 유의사항 <br /> <br />
-              {petProvisionsData.includes("PET_SNACK") && (
+              {/* {petProvisionsData.includes("PET_SNACK") && (
                 <span>
                   - 펫 간식 제공 <br />
                 </span>
@@ -402,7 +402,7 @@ const Recomend_detail = () => {
                 <span>
                   - 15 kg 이상 대형견은 업체 문의 <br />
                 </span>
-              )}
+              )} */}
               - 심한 짖음, 공격성 있는 반려견 동반 불가
             </Card.Body>
 

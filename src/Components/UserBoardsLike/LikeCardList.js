@@ -88,7 +88,7 @@ const CardDate = styled.p`
   margin: 0 10px;
 `;
 
-const LikeCardList = () => {
+const LikeCardList = ({ interestList }) => {
   const toBoardDetail = () => {
     window.location.href = "/boarddetail";
   };
@@ -155,39 +155,62 @@ const LikeCardList = () => {
     },
   ]);
 
-  useEffect(() => {
-    axios
-      .get("/lists")
-      .then((response) => {
-        setlists(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("/lists")
+  //     .then((response) => {
+  //       setlists(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
+
+  useEffect(() => {}, []);
 
   return (
-    <CardList>
-      {lists.map((community) => (
-        <Link className="linkstyle" to="/" key={community.id}>
-          <LikeCard onClick={toBoardDetail}>
-            <Thumbnail src={community.thumbnailUrl} alt={community.title} />
-            <ContentContainer>
-              <div className="cardti">
-                <CardTitle>{community.title}</CardTitle>
-                <CardComments>({community.comments})</CardComments>
-              </div>
-              <CardInfoContainer>
-                <CardInfo>작성자 {community.author}</CardInfo>
-                <CardInfo>조회수 {community.views}</CardInfo>
-                <CardInfo>추천 수 {community.recommends}</CardInfo>
-              </CardInfoContainer>
-              <CardDate>{community.date}</CardDate>
-            </ContentContainer>
-          </LikeCard>
-        </Link>
-      ))}
-    </CardList>
+    <>
+      {interestList.length !== 0 ? (
+        <CardList>
+          {interestList.map((community) => (
+            <Link
+              className="linkstyle"
+              to={`/recomend_best?id=${community.id}`}
+              state={{ boardid: community.id }}
+              key={community.id}
+            >
+              <LikeCard
+              // onClick={toBoardDetail}
+              >
+                <Thumbnail
+                  src={
+                    process.env.PUBLIC_URL +
+                    "/uploadimgs/" +
+                    community.thumbnailImage
+                  }
+                  alt={community.title}
+                />
+                <ContentContainer>
+                  <div className="cardti">
+                    <CardTitle>{community.title}</CardTitle>
+                    {/* 답글 수 */}
+                    {/* <CardComments>({community.recommends})</CardComments> */}
+                  </div>
+                  <CardInfoContainer>
+                    <CardInfo>작성자 {community.author.nickname}</CardInfo>
+                    <CardInfo>조회수 {community.views}</CardInfo>
+                    <CardInfo>추천 수 {community.recommends}</CardInfo>
+                  </CardInfoContainer>
+                  <CardDate>
+                    {new Date(community.updatedAt).toISOString().split("T")[0]}
+                  </CardDate>
+                </ContentContainer>
+              </LikeCard>
+            </Link>
+          ))}
+        </CardList>
+      ) : null}
+    </>
   );
 };
 

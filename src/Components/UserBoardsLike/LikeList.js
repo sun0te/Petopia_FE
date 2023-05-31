@@ -33,6 +33,29 @@ const TitleSearchWrap = styled.div`
 `;
 
 const LikeList = ({ setMyPageAction }) => {
+  const [interestList, setInterestList] = useState([]);
+
+  const getInterestList = () => {
+    axios
+      .get("/interest/list", {
+        params: {
+          email: sessionStorage.getItem("email"),
+        },
+      })
+      .then((res) => {
+        const { data } = res;
+        console.log("데이터 값", data);
+        setInterestList(data);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
+
+  useEffect(() => {
+    getInterestList();
+  }, []);
+
   return (
     <>
       <div className="inquiryHeader">
@@ -67,7 +90,7 @@ const LikeList = ({ setMyPageAction }) => {
               </Form>
             </div>
           </TitleSearchWrap>
-          <LikeCardList />
+          <LikeCardList interestList={interestList} />
         </UserBoardWrapper>
       </LikeContainer>
     </>
