@@ -70,7 +70,7 @@ const Recomend_detail = () => {
       sessionStorage.getItem("email") !== undefined
     ) {
       axios
-        .post("/interest/confirmlike", {
+        .post("http://localhost:8080/interest/confirmlike", {
           post: { id: boardid },
           user: { email: sessionStorage.getItem("email") },
         })
@@ -235,9 +235,11 @@ const Recomend_detail = () => {
   const deleteBoard = () => {
     const deleteConfirm = window.confirm("게시글을 삭제하시겠습니까?");
     if (deleteConfirm) {
-      axios.post("/board/delete", { id: boardid }).then((res) => {
-        navigate("/routetrip");
-      });
+      axios
+        .post("http://localhost:8080/board/delete", { id: boardid })
+        .then((res) => {
+          navigate("/routetrip");
+        });
     }
   };
 

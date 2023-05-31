@@ -115,7 +115,7 @@ const Recomend_write = () => {
       })
       .then(() => {
         axios
-          .post("/board/uploadfiles", formData)
+          .post("http://localhost:8080/board/uploadfiles", formData)
           .then((res) => {
             console.log(boardid);
             navigate("/routetrip");
