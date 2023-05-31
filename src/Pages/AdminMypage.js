@@ -12,6 +12,7 @@ import {
   FaCheck,
   FaTimes,
   FaAngleRight,
+  FaEdit,
 } from "react-icons/fa";
 
 const AdminMypage = () => {
@@ -99,7 +100,7 @@ const AdminMypage = () => {
                   className="edit-nickname-button"
                   onClick={handleEditClick}
                 >
-                  <FaAngleRight className="edit-icon" />
+                  <FaEdit className="edit-icon" />
                 </button>
               </>
             )}

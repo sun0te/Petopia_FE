@@ -3,11 +3,8 @@ import React, { useState } from "react";
 const Modal1 = ({
   open,
   close,
-  city,
   setCity,
-  county,
   setCounty,
-  location,
   setLocation,
   maplevel,
   setMaplevel,

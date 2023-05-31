@@ -31,7 +31,7 @@ const Recommend_detail_before = () => {
   const [petProvisionsData, setPetProvisionsData] = useState([]);
 
   axios
-    .post("http://localhost:8080/board/detail", {
+    .post("/board/detail", {
       id: boardid,
       category: "TRAVEL",
     })
@@ -45,7 +45,7 @@ const Recommend_detail_before = () => {
 
   const getTravelInfo = (boardid) => {
     axios
-      .post("http://localhost:8080/travel/getinfo", { post: { id: boardid } })
+      .post("/travel/getinfo", { post: { id: boardid } })
       .then((res) => {
         setPlaceCategory(res.data.category);
         setPetProvisionsData(res.data.petProvisions);

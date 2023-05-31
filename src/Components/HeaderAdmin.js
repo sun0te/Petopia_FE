@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../Styles/Header.css";
 import { FaUser, FaCog, FaAngleLeft } from "react-icons/fa";
 
@@ -8,6 +8,7 @@ const HeaderAdmin = ({ page }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const navRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (navRef.current) {
@@ -53,14 +54,17 @@ const HeaderAdmin = ({ page }) => {
     setScrollX(getActiveTabPosition());
   }, [page]);
 
+  // 이전 페이지로 이동하는 함수
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   return (
     <header>
       <div className="headerBtns">
-        <NavLink to="/">
-          <div className="headerBtns-left">
-            <FaAngleLeft className="user-info-icon" />
-          </div>
-        </NavLink>
+        <div className="headerBtns-left" onClick={handleGoBack}>
+          <FaAngleLeft className="user-info-icon" />
+        </div>
         <div className="headerBtns-R">
           <NavLink to="/login">
             <div className="headerBtns-right">

@@ -1,20 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
-import RatingSection from "./RatingSection";
+import RatingSection from "../RatingSection";
 import Form from "react-bootstrap/Form";
-import "../Styles/Review.css";
+import "../../Styles/Review.css";
 import { BsTrash3 } from "react-icons/bs";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 
-const ReviewWriteComponent = () => {
-  const [selectedOption, setSelectedOption] = useState("0"); // 3. 리뷰 종류(1 : 병원, 2 : 음식점/카페, 3 : 숙박, 4 : 기타)
-
-  const handleOptionChange = (e) => {
-    const selectedValue = e.target.value;
-    setSelectedOption(selectedOption === selectedValue ? "" : selectedValue); // 선택된 값을 상태에 저장
-  };
-
+const MapReviewWrite = ({ setReviewAction, placedata, getPlaceReview }) => {
   // ratingIndex = 받을 평점
   const [ratingIndex, setRatingIndex] = useState(0); // 1. 리뷰 점수
 
@@ -24,15 +17,10 @@ const ReviewWriteComponent = () => {
   const totalCost = useRef(); // 총 비용
 
   const [compareOption, setCompareOption] = useState("0"); // 2. 가격 대비(1 : 저렴한 편, 2 : 보통, 3 : 비싼 편)
-
-  useEffect(() => {
-    // ratingIndex 값이 변경될 때마다 실행
-    console.log(sessionStorage.getItem("email"));
-  }, [ratingIndex, compareOption]);
+  const [priceOption, setPriceOption] = useState("0"); // 체크박스 렌더링 문제 해결을 위한 useState
 
   const handleConpareOptionChange = (e) => {
     setCompareOption(e.target.value); // 선택된 값을 상태에 저장
-    console.log(compareOption);
   };
 
   const handleUploadClick = () => {
@@ -40,22 +28,11 @@ const ReviewWriteComponent = () => {
       alert("리뷰 점수를 선택해 주세요.");
     } else if (compareOption === "0") {
       alert("가격 대비를 선택해 주세요.");
-    } else if (selectedOption === "0") {
-      alert("리뷰 종류를 선택해 주세요.");
-    } else if (
-      totalCost.current.value === "" ||
-      totalCost.current.value === undefined
-    ) {
-      alert("총 비용을 입력해 주세요.");
-    } else if (totalCost.current.value < 0) {
-      alert("총 비용은 0 원 이상으로 입력해 주세요.");
-    } else if (selectedOption === "1" && medicalCost.current.value < 0) {
-      alert("진료비는 0 원 이상으로 입력해 주세요.");
-    } else if (selectedOption === "1" && surgeryCost.current.value < 0) {
-      alert("수술비는 0 원 이상으로 입력해 주세요.");
     } else {
       consoleUpWrite();
     }
+
+    // console.log(selectedFiles);
   };
 
   // 글 쓰기 컴포넌트 -----------------------------------------------------------------
@@ -68,7 +45,18 @@ const ReviewWriteComponent = () => {
   const [reviewWriteContentText, setReviewWriteContentText] = useState(0); // 리뷰 글자수
 
   const handleFileInputChange = (event) => {
-    setSelectedFiles([...selectedFiles, ...event.target.files]);
+    const files = event.target.files;
+    const remainingSlots = 4 - selectedFiles.length;
+    if (files.length <= remainingSlots) {
+      setSelectedFiles((prevFiles) => [...prevFiles, ...Array.from(files)]);
+    } else if (selectedFiles.length < 4) {
+      const newFiles = Array.from(files).slice(0, remainingSlots);
+      setSelectedFiles((prevFiles) => [...prevFiles, ...newFiles]);
+      alert("최대 4개의 파일만 선택할 수 있습니다.");
+    } else {
+      alert("이미 네 장의 사진이 선택되어 있습니다.");
+    }
+    console.log(files.length);
   };
 
   const handleRemoveImage = (index) => {
@@ -88,83 +76,55 @@ const ReviewWriteComponent = () => {
       reviewWriteContentTextArea.current.value === undefined
     ) {
       alert("리뷰 내용을 입력해 주세요.");
-    } else if (selectedFiles.length === 0) {
-      alert("리뷰 사진을 한 장 이상 업로드 해주세요.");
+      reviewWriteContentTextArea.current.focus();
     } else {
-      console.log(
-        "writer : " +
-          sessionStorage.getItem("email") +
-          "\n" +
-          "rating : " +
-          ratingIndex +
-          "\n" +
-          "content : " +
-          reviewWriteContentTextArea.current.value +
-          "\n" +
-          "cost : " +
-          totalCost.current.value +
-          "\n" +
-          "location : " +
-          "{ id: 1 }" +
-          "\n" +
-          "priceType : " +
-          selectedOption +
-          "\n" +
-          "priceLevel : " +
-          compareOption
-      );
-      uploadReview();
+      alert("리뷰 업로드");
+
+      axios
+        .post("/mapReviewWrite", {
+          username: sessionStorage.getItem("email"),
+          rating: ratingIndex,
+          content: reviewWriteContentTextArea.current.value,
+          medicalCost: medicalCost.current.value,
+          surgeryCost: surgeryCost.current.value,
+          cost: totalCost.current.value,
+          priceLevel: priceOption,
+          mapid: placedata.id,
+        })
+        .then((res) => {
+          if (selectedFiles.length !== 0) {
+            const formData = new FormData(); // <form></form> 형식의 데이터를 전송하기 위해 주로 사용
+            selectedFiles.forEach((file) => {
+              formData.append("uploadfiles", file);
+            });
+
+            axios
+              .post("/mapReviewImgUpload", formData)
+              .then((res) => {})
+              .catch((e) => {
+                console.error(e);
+              });
+          }
+          getPlaceReview();
+          setReviewAction(0);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     }
   };
 
-  const [boardid, setBoardid] = useState("");
-
-  const uploadReview = () => {
-    axios
-      .post("/review/write", {
-        writer: { email: sessionStorage.getItem("email") },
-        rating: ratingIndex,
-        content: reviewWriteContentTextArea.current.value,
-        cost: totalCost.current.value,
-        location: { id: 2 },
-        priceType: selectedOption,
-        priceLevel: compareOption,
-      })
-      .then((res) => {
-        setBoardid(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .then(() => {
-        uploadimgs();
-      });
-  };
-
-  const uploadimgs = () => {
-    const formData = new FormData();
-    selectedFiles.forEach((file) => {
-      formData.append("uploadfiles", file);
-    });
-
-    axios
-      .post("/review/uploadfiles", formData)
-      .then((res) => {
-        //console.log(boardid);
-      })
-      .catch((e) => {
-        console.error(e);
-      });
-  };
+  useEffect(() => {
+    // ratingIndex 값이 변경될 때마다 실행
+  }, [ratingIndex]);
 
   // ---------------------------------------------------------------------------------
 
   return (
     <>
-      <p className="reviewRatingP">리뷰 작성</p>
+      {/* <p className="reviewRatingP">리뷰 작성</p> */}
       <div className="signUpForm reviewWriteForm">
-        <p className="reviewTd">리뷰 점수</p>
+        <p className="reviewTd">* 리뷰 점수</p>
         <div className="reviewRatingComponent">
           <RatingSection
             ratingIndex={ratingIndex}
@@ -174,7 +134,7 @@ const ReviewWriteComponent = () => {
 
         <Form className="mb-3 reviewWriteRadioBoxDiv">
           <div className="">
-            <p className="reviewWriteRadioBoxP reviewTd">가격 대비</p>
+            <p className="reviewWriteRadioBoxP reviewTd">* 가격 대비</p>
             <div>
               <Form.Check
                 inline
@@ -185,6 +145,9 @@ const ReviewWriteComponent = () => {
                 value="CHEAP"
                 checked={compareOption === "CHEAP"} // 첫 번째 옵션이 선택되었을 때 checked 값은 true
                 onChange={handleConpareOptionChange}
+                onClick={() => {
+                  setPriceOption("CHEAP");
+                }}
                 className="reviewWriteCompareOptionForm"
               />
               <Form.Check
@@ -196,6 +159,9 @@ const ReviewWriteComponent = () => {
                 value="MODERATE"
                 checked={compareOption === "MODERATE"} //
                 onChange={handleConpareOptionChange}
+                onClick={() => {
+                  setPriceOption("MODERATE");
+                }}
                 className="reviewWriteCompareOptionForm"
               />
               <Form.Check
@@ -207,96 +173,54 @@ const ReviewWriteComponent = () => {
                 value="EXPENSIVE"
                 checked={compareOption === "EXPENSIVE"} //
                 onChange={handleConpareOptionChange}
+                onClick={() => {
+                  setPriceOption("EXPENSIVE");
+                }}
                 className="reviewWriteCompareOptionForm"
               />
             </div>
           </div>
         </Form>
 
-        <p className="reviewTd">리뷰 종류</p>
-        <div className=" reviewWriteCheckBoxDiv">
-          <div className="mb-3">
-            <Form>
-              <Form.Check
-                inline
-                label="병원"
-                type="checkbox"
-                name="checkgroup1"
-                id="checkBox1"
-                value="HOSPITAL"
-                checked={selectedOption === "HOSPITAL"} // 첫 번째 옵션이 선택되었을 때 checked 값은 true
-                onChange={handleOptionChange}
-              />
-              <Form.Check
-                inline
-                label="음식점/카페"
-                type="checkbox"
-                name="checkgroup2"
-                id="checkBox2"
-                value="FOOD_CAFE"
-                checked={selectedOption === "FOOD_CAFE"} //
-                onChange={handleOptionChange}
-              />
-              <Form.Check
-                inline
-                label="숙박"
-                type="checkbox"
-                name="checkgroup3"
-                id="checkBox3"
-                value="ACCOMMODATION"
-                checked={selectedOption === "ACCOMMODATION"} //
-                onChange={handleOptionChange}
-              />
-              <Form.Check
-                inline
-                label="기타"
-                type="checkbox"
-                name="checkgroup4"
-                id="checkBox4"
-                value="ETC"
-                checked={selectedOption === "ETC"} //
-                onChange={handleOptionChange}
-              />
-            </Form>
-          </div>
-        </div>
-
         <div>
-          {selectedOption === "HOSPITAL" ? (
+          {placedata.category3 === "동물병원" ? (
             <div>
               <table className="reviewWriteTable">
                 <tr>
-                  <td className="reviewTd">진료비</td>
+                  <td className="reviewTd">&nbsp; 진료비</td>
                   <td>
                     <Form.Control
-                      className="writeTitle reportReasonWrite reviewCostInputFormControl"
+                      className="writeTitle reportReasonWrite reviewCostInputFormControl review-number"
                       type="number"
-                      placeholder="(원)"
+                      placeholder="숫자만입력"
                       name="reportReasonContent"
+                      defaultValue={0}
                       ref={medicalCost}
                     />
                   </td>
                 </tr>
                 <tr>
-                  <td className="reviewTd">수술비</td>
+                  <td className="reviewTd">&nbsp; 수술비</td>
                   <td>
                     <Form.Control
-                      className="writeTitle reportReasonWrite reviewCostInputFormControl"
+                      className="writeTitle reportReasonWrite reviewCostInputFormControl review-number"
                       type="number"
-                      placeholder="(원)"
+                      placeholder="숫자만입력"
                       name="reportReasonContent"
+                      defaultValue={0}
                       ref={surgeryCost}
-                    />
+                    ></Form.Control>
                   </td>
                 </tr>
                 <tr>
-                  <td className="reviewTd">총 비용</td>
+                  <td className="reviewTd">* 총 비용</td>
                   <td>
                     <Form.Control
-                      className="writeTitle reportReasonWrite reviewCostInputFormControl"
+                      className="writeTitle reportReasonWrite reviewCostInputFormControl review-number"
                       type="number"
-                      placeholder="&nbsp;&nbsp;* 필수 입력 &nbsp;(원)"
+                      placeholder="숫자만입력"
                       name="reportReasonContent"
+                      defaultValue={0}
                       ref={totalCost}
                       required
                     />
@@ -310,10 +234,11 @@ const ReviewWriteComponent = () => {
                 <tr>
                   <td>
                     <Form.Control
-                      className="writeTitle reportReasonWrite reviewCostInputFormControl"
+                      className="writeTitle reportReasonWrite reviewCostInputFormControl review-number"
                       type="hidden"
-                      placeholder="(원)"
+                      placeholder="숫자만입력"
                       name="reportReasonContent"
+                      defaultValue={0}
                       ref={medicalCost}
                     />
                   </td>
@@ -321,24 +246,26 @@ const ReviewWriteComponent = () => {
                 <tr>
                   <td>
                     <Form.Control
-                      className="writeTitle reportReasonWrite reviewCostInputFormControl"
+                      className="writeTitle reportReasonWrite reviewCostInputFormControl review-number"
                       type="hidden"
-                      placeholder="(원)"
+                      placeholder="숫자만입력"
                       name="reportReasonContent"
+                      defaultValue={0}
                       ref={surgeryCost}
                     />
                   </td>
                 </tr>
 
                 <tr>
-                  <td className="reviewTd">총 비용</td>
+                  <td className="reviewTd">* 총 비용</td>
                   <td>
                     <div>
                       <Form.Control
-                        className="writeTitle reportReasonWrite reviewCostInputFormControl"
+                        className="writeTitle reportReasonWrite reviewCostInputFormControl review-number"
                         type="number"
-                        placeholder="&nbsp;* 필수 입력 &nbsp;(원)"
+                        placeholder="숫자만입력"
                         name="reportReasonContent"
+                        defaultValue={0}
                         ref={totalCost}
                         required
                       />
@@ -363,6 +290,7 @@ const ReviewWriteComponent = () => {
                 className="contentForm reviewContentForm"
                 ref={reviewWriteContentTextArea}
                 maxLength={500}
+                style={{ resize: "none" }}
                 onChange={() => {
                   setReviewWriteContentText(
                     reviewWriteContentTextArea.current.value.length
@@ -389,7 +317,7 @@ const ReviewWriteComponent = () => {
                 className=""
                 onClick={handleClick}
               >
-                <img className="uploadBtnImg" src="img/uploading.png" alt="" />
+                <img className="uploadBtnImg" src="/img/uploading.png" alt="" />
               </Button>
             </div>
 
@@ -431,18 +359,20 @@ const ReviewWriteComponent = () => {
               className="btn btn-sm btn-outline-primary submit reviewWriteSubmit"
               onClick={handleUploadClick}
             >
-              작성 완료
+              작성
             </button>
-            {/* <button
-              type="button"
-              className="btn btn-sm btn-outline-primary boardListBtn"
+            <button
+              className="btn btn-sm btn-outline-primary submit reviewWriteSubmit"
+              onClick={() => {
+                setReviewAction(0);
+              }}
             >
-              글목록
-            </button> */}
+              돌아가기
+            </button>
           </div>
         </div>
       </div>
     </>
   );
 };
-export default ReviewWriteComponent;
+export default MapReviewWrite;

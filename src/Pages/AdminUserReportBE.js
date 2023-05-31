@@ -17,7 +17,7 @@ const AdminUserReportBE = () => {
 
   const handleReportProcessing = (reportid) => {
     axios
-      .post("http://localhost:8080/report/reportprogress", {
+      .post("/report/reportprogress", {
         id: reportid,
         processingStatus: "PROGRESS_COMPLETE",
       })

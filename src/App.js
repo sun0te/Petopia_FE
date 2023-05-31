@@ -37,6 +37,7 @@ import ReviewMain from "./Pages/ReviewMain";
 import UserWatchlist from "./Pages/UserWatchlist";
 import MyReview from "./Components/MyPage/MyReview";
 import MyReviewDetailPage from "./Pages/MyReviewDetailPage";
+import NoticeWrite from "./Components/NoticeBoard/NoticeWrite";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -86,9 +87,10 @@ const App = () => {
       <Route path="/adminuserreport1" element={<AdminUserReport />} />
       <Route path="/adminuserreport" element={<AdminUserReportBE />} />
       <Route path="/adminstatistics" element={<AdminStatistics />} />
-      <Route path="/reviewpage/:lat/:lng" element={<ReviewMain />} />
+      <Route path="/reviewpage/:id" element={<ReviewMain />} />
       <Route path="/myreview" element={<MyReview />} />
       <Route path="myreviewdetail" element={<MyReviewDetailPage />} />
+      <Route path="noticewrite" element={<NoticeWrite />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
