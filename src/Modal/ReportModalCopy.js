@@ -8,7 +8,7 @@ import { useEffect, useState, useRef } from "react";
 import { async } from "q";
 import axios from "axios";
 
-const ReportModalCopy = ({ open, close, header }) => {
+const ReportModalCopy = ({ open, close, header, reviewid }) => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
 
   const [reportReason, setReportReason] = useState("DISGUST");
@@ -31,8 +31,8 @@ const ReportModalCopy = ({ open, close, header }) => {
   const writeReason = () => {
     const reportBoard = () => {
       axios
-        .post("http://localhost:8080/report/boardreport", {
-          //   post: { id: id },
+        .post("/report/reviewreport", {
+          review: { id: reviewid },
           reporter: { email: sessionStorage.getItem("email") },
           reason: reportReason,
           otherReason: reportReasonContent.current.value,

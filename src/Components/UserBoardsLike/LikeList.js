@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -71,7 +72,7 @@ const LikeList = ({ setMyPageAction }) => {
       </div>
       <LikeContainer>
         <UserBoardWrapper>
-          <TitleSearchWrap>
+          {/* <TitleSearchWrap>
             <div className="CommunitySearch">
               <Form className="d-flex">
                 <Form.Control
@@ -89,7 +90,7 @@ const LikeList = ({ setMyPageAction }) => {
                 </Button>
               </Form>
             </div>
-          </TitleSearchWrap>
+          </TitleSearchWrap> */}
           <LikeCardList interestList={interestList} />
         </UserBoardWrapper>
       </LikeContainer>

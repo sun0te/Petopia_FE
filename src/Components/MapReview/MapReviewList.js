@@ -46,10 +46,13 @@ const MapReviewList = ({
 
   // ㅡㅡㅡ 모달창 카피본 ㅡㅡㅡ
 
+  const [reviewid, setReviewid] = useState(0);
+
   return (
     <>
       <ReportModalCopy
         open={modalOpen}
+        reviewid={reviewid}
         close={() => {
           closeModal();
         }}
@@ -95,7 +98,10 @@ const MapReviewList = ({
                   className="btm-sm reportBtn reviewListFont1"
                   variant="outline-danger"
                   style={{ padding: "4px 0px 3px 0px" }}
-                  onClick={openModal}
+                  onClick={() => {
+                    setReviewid(review.id);
+                    openModal();
+                  }}
                 >
                   🚨신고
                 </Button>

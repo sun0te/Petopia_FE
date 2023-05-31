@@ -28,7 +28,7 @@ const ReportModal = (props) => {
   const writeReason = () => {
     const reportBoard = () => {
       axios
-        .post("http://localhost:8080/report/boardreport", {
+        .post("/report/boardreport", {
           post: { id: id },
           reporter: { email: sessionStorage.getItem("email") },
           reason: reportReason,

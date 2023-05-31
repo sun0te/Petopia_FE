@@ -50,38 +50,20 @@ const MyInquiryMain = ({
             <hr className="inquiryhr2" />
           </div>
         ))
-      ) : sessionStorage.getItem("email") != null ? (
-        <div className="inquiryNone">문의내역이 없습니다.</div>
       ) : (
-        <div className="inquiryNone">로그인을 해주세요.</div>
+        <div className="inquiryNone">문의내역이 없습니다.</div>
       )}
 
-      {sessionStorage.getItem("email") != null ? (
-        <div className="inquiryBox">
-          <button
-            className="inquiryBtn"
-            onClick={() => {
-              setInquiryAction(1);
-            }}
-          >
-            문의하기
-          </button>
-        </div>
-      ) : (
-        // sessionStorage.getItem("email") == null 일 경우 로그인 이동 버튼 활성화
-        <NavLink to="/login" style={{ textDecoration: "none" }}>
-          <div className="inquiryBox">
-            <button
-              className="inquiryBtn"
-              onClick={() => {
-                setInquiryAction(1);
-              }}
-            >
-              로그인
-            </button>
-          </div>
-        </NavLink>
-      )}
+      <div className="inquiryBox">
+        <button
+          className="inquiryBtn"
+          onClick={() => {
+            setInquiryAction(1);
+          }}
+        >
+          문의하기
+        </button>
+      </div>
     </>
   );
 };

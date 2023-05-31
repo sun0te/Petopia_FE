@@ -256,7 +256,11 @@ const UserMypage = () => {
               <div
                 className="user-section"
                 onClick={() => {
-                  setMyPageAction(2); // [액션 2 : 관심목록]
+                  if (sessionStorage.getItem("email") != null) {
+                    setMyPageAction(2); // [액션 2 : 관심목록]
+                  } else {
+                    navigate("/login");
+                  }
                 }}
               >
                 <div className="user-section-icon">
@@ -288,7 +292,11 @@ const UserMypage = () => {
               <div
                 className="user-section"
                 onClick={() => {
-                  setMyPageAction(4); // [액션 4 : 1:1 문의]
+                  if (sessionStorage.getItem("email") != null) {
+                    setMyPageAction(4); // [액션 4 : 1:1 문의]
+                  } else {
+                    navigate("/login");
+                  }
                 }}
               >
                 <div className="user-section-icon">

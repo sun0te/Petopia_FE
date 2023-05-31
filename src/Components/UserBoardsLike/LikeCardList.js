@@ -166,8 +166,6 @@ const LikeCardList = ({ interestList }) => {
   //     });
   // }, []);
 
-  useEffect(() => {}, []);
-
   return (
     <>
       {interestList.length !== 0 ? (
@@ -209,7 +207,9 @@ const LikeCardList = ({ interestList }) => {
             </Link>
           ))}
         </CardList>
-      ) : null}
+      ) : (
+        <div className="inquiryNone">저정한 게시글이 없습니다.</div>
+      )}
     </>
   );
 };
