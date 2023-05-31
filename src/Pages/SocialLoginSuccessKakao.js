@@ -52,7 +52,7 @@ const SocialLoginSuccessKakao = () => {
 
   const signUpCheck = () => {
     axios
-      .post("/user/getuserinfo", {
+      .post("http://localhost:8080/user/getuserinfo", {
         email: userEmail,
         //provider: "kakao",
       })
@@ -78,7 +78,7 @@ const SocialLoginSuccessKakao = () => {
 
   const signUpKakao = () => {
     axios
-      .post("/user/signupkakao", {
+      .post("http://localhost:8080/user/signupkakao", {
         email: userEmail,
         provider: provider,
         password: "",

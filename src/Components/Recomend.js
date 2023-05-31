@@ -59,7 +59,7 @@ const Recomend = () => {
 
   const callTravelBest = () => {
     axios
-      .post("/travelboard/travelbest", {
+      .post("http://localhost:8080/travelboard/travelbest", {
         category: "TRAVEL",
       })
       .then((res) => {
@@ -70,7 +70,7 @@ const Recomend = () => {
 
   const callTravelAll = () => {
     axios
-      .post("/travelboard/travelall", {
+      .post("http://localhost:8080/travelboard/travelall", {
         category: "TRAVEL",
       })
       .then((res) => {
@@ -82,6 +82,11 @@ const Recomend = () => {
   const imagePath = "/uploadimgs/";
   const MAX_BESTTITLE_LENGTH = 37;
   const MAX_TITLE_LENGTH = 11;
+
+  const [limit, setLimit] = useState(2);
+  const [page, setPage] = useState(1);
+  const offset = (page - 1) * limit;
+
   return (
     <div className="RecomendBody">
       <h2 className="h2_Recomend">여행 추천</h2>
@@ -156,38 +161,46 @@ const Recomend = () => {
         {/* <Board /> */}
         <NoticeContainer>
           <BoardWrapper>
-            {travelAllData.map((travelalldata) => {
-              return (
-                <StyledLink
-                  to={`/recomend_best?id=${travelalldata.id}`}
-                  key={travelalldata.id}
-                  state={{ boardid: travelalldata.id }}
-                >
-                  <RecommendCard
-                    picture={
-                      travelalldata.thumbnailImage !== undefined
-                        ? imagePath + travelalldata.thumbnailImage
-                        : null
-                    }
-                    title={
-                      travelalldata.title.length > MAX_TITLE_LENGTH
-                        ? travelalldata.title.slice(0, MAX_TITLE_LENGTH) + "..."
-                        : travelalldata.title
-                    }
-                    recommends={travelalldata.recommends}
-                    writerimg={travelalldata.author.profileImage}
-                    writer={travelalldata.author.nickname}
-                    view={travelalldata.views}
-                    like={travelalldata.likes}
-                    createdat={travelalldata.createdAt}
-                  />
-                </StyledLink>
-              );
-            })}
+            {travelAllData
+              .slice(offset, offset + limit)
+              .map((travelalldata) => {
+                return (
+                  <StyledLink
+                    to={`/recomend_best?id=${travelalldata.id}`}
+                    key={travelalldata.id}
+                    state={{ boardid: travelalldata.id }}
+                  >
+                    <RecommendCard
+                      picture={
+                        travelalldata.thumbnailImage !== undefined
+                          ? imagePath + travelalldata.thumbnailImage
+                          : null
+                      }
+                      title={
+                        travelalldata.title.length > MAX_TITLE_LENGTH
+                          ? travelalldata.title.slice(0, MAX_TITLE_LENGTH) +
+                            "..."
+                          : travelalldata.title
+                      }
+                      recommends={travelalldata.recommends}
+                      writerimg={travelalldata.author.profileImage}
+                      writer={travelalldata.author.nickname}
+                      view={travelalldata.views}
+                      like={travelalldata.likes}
+                      createdat={travelalldata.createdAt}
+                    />
+                  </StyledLink>
+                );
+              })}
           </BoardWrapper>
         </NoticeContainer>
 
-        <Paginationcm />
+        <Paginationcm
+          total={travelAllData.length}
+          limit={limit}
+          page={page}
+          setPage={setPage}
+        />
       </div>
       {/* <Recomend_Viewall /> */}
     </div>

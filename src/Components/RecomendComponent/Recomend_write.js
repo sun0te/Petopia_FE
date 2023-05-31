@@ -98,7 +98,7 @@ const Recomend_write = () => {
     });
 
     axios
-      .post("/board/write", {
+      .post("http://localhost:8080/board/write", {
         author: { email: sessionStorage.getItem("email") },
         title: writeTitleText.current.value,
         content: writeContentTextArea.current.value,
@@ -131,7 +131,7 @@ const Recomend_write = () => {
 
   const submitTravelInfo = (boardid) => {
     axios
-      .post("/travel/writeinfo", {
+      .post("http://localhost:8080/travel/writeinfo", {
         post: { id: boardid },
         placeName: "장소이름 지정 기능 아직 없음",
         category: placeOption,

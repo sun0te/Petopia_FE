@@ -22,7 +22,7 @@ const LoginComponent = ({ user, setUser }) => {
   const clickLoginBtn = () => {
     if (email.current.value !== "" && password.current.value !== "") {
       axios
-        .post("/user/getuserinfo", {
+        .post("http://localhost:8080/user/getuserinfo", {
           email: email.current.value,
         })
         .then((res) => {
@@ -44,7 +44,7 @@ const LoginComponent = ({ user, setUser }) => {
 
   const idpwCheck = () => {
     axios
-      .post("h/user/getuserpetopia", {
+      .post("http://localhost:8080/user/getuserpetopia", {
         email: email.current.value,
         password: password.current.value,
       })

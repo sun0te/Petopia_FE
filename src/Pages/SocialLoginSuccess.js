@@ -18,7 +18,7 @@ const SocialLoginSuccess = ({ user, setUser }) => {
 
   const signUpCheck = () => {
     axios
-      .post("/user/getuserinfo", {
+      .post("http://localhost:8080/user/getuserinfo", {
         email: user.email,
         //provider: "naver",
       })
@@ -47,7 +47,7 @@ const SocialLoginSuccess = ({ user, setUser }) => {
 
   const signUpNaver = () => {
     axios
-      .post("/user/signupnaver", {
+      .post("http://localhost:8080/user/signupnaver", {
         email: user.email,
         provider: "naver",
         password: "",
