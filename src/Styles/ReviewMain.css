@@ -16,7 +16,7 @@
 
 .reviewMainCounting{
     position: absolute;
-    top:10px;
+    top:9px;
     left: 160px;
     font-size: 14px;
     font-weight: bold;
@@ -78,3 +78,52 @@
     position: absolute;
     top:7px;
 }
+
+.reviewButtonBox{
+    padding: 10px 10px 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+}
+
+.reviewButtonBox1{
+    width: 170px;
+    height: 40px;
+    font-size: 14px;
+    border: 2px solid #BDBDBD;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.reviewList-icon{
+    margin-bottom: 3px;
+}
+
+
+.reviewListBack{
+    position: absolute;
+    top:0px;
+    left: 15px;
+}
+
+.reviewListTitle{
+    position: relative;
+    margin-top: 10px;
+    padding: 0 5px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+
+.reviewListRating{
+    position: relative;
+    left: -15px;
+}
+
+.reviewMainRatingScore{
+    position: absolute;
+    top:3px;
+    font-size: 18px;
+}
+
+

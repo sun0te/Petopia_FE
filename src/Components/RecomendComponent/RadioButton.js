@@ -6,7 +6,7 @@ const RadioButton = ({ options, clickPlace }) => {
   const [value, setValue] = useState("");
 
   const click = (value) => {
-    console.log("RadioButton Conponent : " + value);
+    //console.log("RadioButton Conponent : " + value);
     setValue(value);
   };
 

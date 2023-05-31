@@ -2,8 +2,9 @@ import "../Styles/Login.css";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FaAngleLeft } from "react-icons/fa";
 
-const UserUpdateComponent = () => {
+const UserUpdateComponent = ({ setMyPageAction }) => {
   const name = useRef("");
   const nickname = useRef("");
   const password1 = useRef("");
@@ -27,9 +28,7 @@ const UserUpdateComponent = () => {
   const clickUserUpdate = (event) => {
     if (
       regCheck.test(name.current.value) ||
-      regCheck.test(nickname.current.value) ||
-      regCheck.test(password1.current.value) ||
-      regCheck.test(password2.current.value)
+      regCheck.test(nickname.current.value)
     ) {
       alert("특수문자는 포함될 수 없습니다.");
     } else if (password1.current.value !== password2.current.value) {
@@ -53,6 +52,8 @@ const UserUpdateComponent = () => {
           alert("가입되지 않은 회원입니다.");
         } else if (res.data.provider !== "petopia") {
           alert("펫토피아 계정이 아닙니다.");
+          setCurrentName(res.data.name);
+          setCurrentNickname(res.data.nickname);
         } else {
           setCurrentName(res.data.name);
           setCurrentNickname(res.data.nickname);
@@ -73,22 +74,39 @@ const UserUpdateComponent = () => {
       })
       .then((res) => {
         alert("회원 정보를 수정하였습니다. \n다시 로그인 해주세요.");
-        sessionStorage.removeItem("email");
-        sessionStorage.removeItem("socialSession");
-        window.location.href = `http://localhost:3000/login`;
+        removeSessionStorage().then(() => {
+          window.location.href = `http://localhost:3000/login`;
+        });
       })
       .catch((e) => {
         console.error(e);
       });
   };
 
+  const removeSessionStorage = async () => {
+    sessionStorage.removeItem("email");
+    sessionStorage.removeItem("socialSession");
+    localStorage.removeItem("com.naver.nid.access_token");
+    localStorage.removeItem("access_token");
+  };
+
   return (
     <>
+      <div className="inquiryHeader">
+        <div
+          className="inquiryBack-left"
+          onClick={() => {
+            setMyPageAction(0);
+          }}
+        >
+          <FaAngleLeft className="inquiryBack-icon" />
+        </div>
+        <h4>회원정보 수정</h4>
+      </div>
       <div className="container loginComponent">
         <div className="input-form-backgroud row">
           <div className="input-form col-md-12 mx-auto signUpForm">
             <h4 className="mb-3 signUpText">회원 정보 수정</h4>
-
             <form
               className="validation-form is-invalid"
               id="submitForm"

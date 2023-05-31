@@ -58,7 +58,7 @@
 }
 
 .reviewCostInputFormControl::placeholder {
-    float: right;
+    /* float: right; */
 }
 
 .reviewWriteCostInput {
@@ -144,4 +144,10 @@
 .reviewWriteContentTextP {
     text-align: right;
     margin: -10px 5px 0px 0;
+}
+
+.review-number::-webkit-inner-spin-button,
+.review-number::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

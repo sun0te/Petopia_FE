@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import Header from "../Components/Header.js";
+import React, { useEffect, useState } from "react";
+import HeaderAdmin from "../Components/HeaderAdmin.js";
 import Footer from "../Components/Footer.js";
 import BgAdmin from "../Components/BgAdmin.js";
 import "../Styles/AdminUserReport.css";
+import axios from "axios";
 
 const AdminUserReport = () => {
   const [reports, setReports] = useState([
@@ -129,7 +130,7 @@ const AdminUserReport = () => {
       <BgAdmin />
 
       <main className="admin-main">
-        <Header />
+        <HeaderAdmin />
         <section className="admin-page">
           <div className="userlist-title">
             <h3>신고 관리</h3>

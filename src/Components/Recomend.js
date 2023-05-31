@@ -1,18 +1,95 @@
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
-import Recomend_best from "./RecomendComponent/Recomend_best";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Recomend_Viewall from "./RecomendComponent/Recomend_viewall";
+import styled from "styled-components";
 import "../Styles/RecomendStyle.css";
-import { Link } from "react-router-dom";
-import Board from "./HomeBestBoard/Board";
 import Paginationcm from "./Paginationcm";
+import RecomendBest from "./RecomendComponent/Recomend_best";
+import RecommendCard from "./RecomendComponent/RecommendCard";
+import { Link } from "react-router-dom";
+
+const NoticeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+`;
+
+const BoardWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  width: 100%;
+`;
 
 const Recomend = () => {
+  const [viewMode, setViewMode] = useState(0);
+  const clickViewAllBtn = () => {
+    if (viewMode === 0) {
+      setViewMode(1);
+    } else {
+      setViewMode(0);
+    }
+  };
+
+  const clickTravelWriteBtn = () => {
+    if (sessionStorage.getItem("email") === null) {
+      document.location.href = "/login";
+    } else {
+      document.location.href = "/routetripwrite";
+    }
+  };
+
+  const [travelBestData, setTravelBestData] = useState([]);
+  const [travelAllData, setTravelAllData] = useState([]);
+
+  useEffect(() => {
+    callTravelBest();
+    callTravelAll();
+  }, [setTravelBestData, setTravelAllData]);
+
+  const callTravelBest = () => {
+    axios
+      .post("/travelboard/travelbest", {
+        category: "TRAVEL",
+      })
+      .then((res) => {
+        setTravelBestData(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const callTravelAll = () => {
+    axios
+      .post("/travelboard/travelall", {
+        category: "TRAVEL",
+      })
+      .then((res) => {
+        setTravelAllData(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const imagePath = "/uploadimgs/";
+  const MAX_BESTTITLE_LENGTH = 37;
+  const MAX_TITLE_LENGTH = 11;
+
+  const [limit, setLimit] = useState(2);
+  const [page, setPage] = useState(1);
+  const offset = (page - 1) * limit;
+
   return (
     <div className="RecomendBody">
-      <h2 className="h2_Recomend">공간 보기</h2>
-
+      <h2 className="h2_Recomend">여행 추천</h2>
       <div>
         <Form className="d-flex">
           <Form.Control
@@ -27,46 +104,104 @@ const Recomend = () => {
         </Form>
       </div>
 
-      <h3 className="h3_Recomend">금주의 BEST!</h3>
+      {viewMode === 0 ? (
+        <bestSection>
+          <h3 className="h3_Recomend">금주의 BEST!</h3>
+          <div className="viweAllBtnDiv">
+            <p className="bestFoldBtn" onClick={clickViewAllBtn}>
+              {viewMode === 0 ? <>Best 접기 ▲</> : <>Best 보기 ▼</>}
+            </p>
+          </div>
+          {travelBestData.map((traveldata) => {
+            return (
+              <RecomendBest
+                id={traveldata.id}
+                picture={
+                  traveldata.thumbnailImage !== undefined
+                    ? imagePath + traveldata.thumbnailImage
+                    : null
+                }
+                title={
+                  traveldata.title.length > MAX_BESTTITLE_LENGTH
+                    ? traveldata.title.slice(0, MAX_BESTTITLE_LENGTH) + "..."
+                    : traveldata.title
+                }
+                recommends={traveldata.recommends}
+                writerimg={traveldata.author.profileImage}
+                writer={traveldata.author.nickname}
+                view={traveldata.views}
+                like={traveldata.likes}
+              />
+            );
+          })}
+        </bestSection>
+      ) : (
+        <div className="recommendBestWhiteSpaceDiv">
+          <div className="recommendBestWhiteSpace"></div>
+          <p className="bestUnfoldBtn" onClick={clickViewAllBtn}>
+            {viewMode === 0 ? <>Best 접기 ▲</> : <>Best 보기 ▼</>}
+          </p>
+          <hr className="hr_Recomend" style={{ color: "#537fe7" }} />
+        </div>
+      )}
 
-      <Recomend_best
-        picture="img/recommend_best1.png"
-        title="안동 한옥마을의 전경이 한 눈..안동 한옥마을의 전경이 한 눈..안동 한옥마을의 전경이 한 눈..안동 한옥마을의 전경이 한 눈..안동 한옥마을의 전경이 한 눈..안동 한옥마을의 전경이 한 눈..안동 한옥마을의 전경이 한 눈.."
-        writer="petopia"
-        view="111"
-        like="5"
-      />
-      <Recomend_best
-        picture="img/recommend_best2.png"
-        title="양양 여행코스 추천!!"
-        writer="fasd"
-        view="612"
-        like="63"
-      />
-      <Recomend_best
-        picture="img/recommend_best3.png"
-        title="송도 센트럴파크 안 가면 손해야"
-        writer="qwer"
-        view="437"
-        like="44"
-      />
-
-      <h3 className="h3_Recomend">전체 보기</h3>
-
+      <h3 className="h3_Recomend">전체 글</h3>
       <div className="recomendWriteBtn">
-        <Link to="/routetripwrite">
-          <Button className="searchBtn" variant="outline-primary" size="sm">
-            추천 등록하기
-          </Button>
-        </Link>
+        <Button
+          className="searchBtn"
+          variant="outline-primary"
+          size="sm"
+          onClick={clickTravelWriteBtn}
+        >
+          추천 글쓰기
+        </Button>
       </div>
-
       <div className="recommendation recommendAllBoardDiv">
         <div className="recommendation-title"></div>
-        <Board />
-        <Paginationcm />
-      </div>
+        {/* <Board /> */}
+        <NoticeContainer>
+          <BoardWrapper>
+            {travelAllData
+              .slice(offset, offset + limit)
+              .map((travelalldata) => {
+                return (
+                  <StyledLink
+                    to={`/recomend_best?id=${travelalldata.id}`}
+                    key={travelalldata.id}
+                    state={{ boardid: travelalldata.id }}
+                  >
+                    <RecommendCard
+                      picture={
+                        travelalldata.thumbnailImage !== undefined
+                          ? imagePath + travelalldata.thumbnailImage
+                          : null
+                      }
+                      title={
+                        travelalldata.title.length > MAX_TITLE_LENGTH
+                          ? travelalldata.title.slice(0, MAX_TITLE_LENGTH) +
+                            "..."
+                          : travelalldata.title
+                      }
+                      recommends={travelalldata.recommends}
+                      writerimg={travelalldata.author.profileImage}
+                      writer={travelalldata.author.nickname}
+                      view={travelalldata.views}
+                      like={travelalldata.likes}
+                      createdat={travelalldata.createdAt}
+                    />
+                  </StyledLink>
+                );
+              })}
+          </BoardWrapper>
+        </NoticeContainer>
 
+        <Paginationcm
+          total={travelAllData.length}
+          limit={limit}
+          page={page}
+          setPage={setPage}
+        />
+      </div>
       {/* <Recomend_Viewall /> */}
     </div>
   );

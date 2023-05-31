@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 
-const StarRating = ({ ratingtest1 }) => {
-  const AVR_RATE = ratingtest1; // 별점 계산 식 들어가는 자리
+const StarRating = ({ ratingScore }) => {
+  const AVR_RATE = ratingScore; // 별점 계산 식 들어가는 자리
   const STAR_IDX_ARR = ["first", "second", "third", "fourth", "last"];
   const [ratesResArr, setRatesResArr] = useState([0, 0, 0, 0, 0]);
   const calcStarRates = () => {
@@ -19,7 +19,7 @@ const StarRating = ({ ratingtest1 }) => {
   };
   useEffect(() => {
     setRatesResArr(calcStarRates);
-  }, [ratingtest1]);
+  }, [ratingScore]);
   return (
     <StarRateWrap>
       {STAR_IDX_ARR.map((item, idx) => {

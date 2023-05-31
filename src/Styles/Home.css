@@ -22,7 +22,7 @@
 }
 
 /* 이미지 슬라이드 */
-.slick-slide img {
+.homeSlideImg {
   width: 100%;
   height: auto;
 }

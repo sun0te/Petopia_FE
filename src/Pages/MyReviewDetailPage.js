@@ -14,7 +14,7 @@ const RatingStar = styled(AiFillStar)`
   color: #ffb950;
 `;
 
-const ReviewPage = () => {
+const ReviewPage = ({ setMyPageReviewAction, reviewdata }) => {
   const [reviews] = useState([
     {
       ratingIndex: 4,
@@ -30,60 +30,63 @@ const ReviewPage = () => {
 
   return (
     <>
-      <BgLeft />
+      {/* <BgLeft />
       <main>
-        <Header />
-        <section className="myReviewDetailPage_wrapper">
-          <div className="myReviewDetail">
-            <h2 className="myReviewTitle">내 리뷰 보기</h2>
-            <hr className="hr-line" />
-            {reviews.map((review) => (
-              <div key={review.ratingIndex}>
-                <div className="starDiv">
-                  {[...Array(review.ratingIndex)].map((_, index) => (
-                    <RatingStar size={30} key={index} />
-                  ))}
-                </div>
-                <MyReviewDetail
-                  rating={review.ratingIndex}
-                  compareOption={review.compareOption}
-                  shopType={review.shopType}
-                  totalCost={review.totalCost}
-                  reviewContent={review.reviewContent}
-                />
+        <Header /> */}
+
+      <section className="myReviewDetailPage_wrapper">
+        <div className="myReviewDetail">
+          {/* <h2 className="myReviewTitle">내 리뷰 보기</h2>
+          <hr className="hr-line" /> */}
+          {reviews.map((review) => (
+            <div key={review.ratingIndex}>
+              <div className="starDiv">
+                {[...Array(review.ratingIndex)].map((_, index) => (
+                  <RatingStar size={30} key={index} />
+                ))}
               </div>
-            ))}
-          </div>
-          <hr className="hr-line" />
-          <div className="myReviewBtns">
-            <Button
-              className="btn btn-sm btn-outline-primary submit reviewWriteSubmit"
-              onClick={() => {
-                navigate("/myreview");
-              }}
-            >
-              글목록
-            </Button>
-            <Button
-              className="btn btn-sm btn-default submit reviewWriteSubmit"
-              onClick={() => {
-                navigate("/reviewwrite");
-              }}
-            >
-              수정
-            </Button>
-            <Button
-              className="btn btn-sm btn-danger reviewWriteSubmit"
-              onClick={() => {
-                navigate("/myreview");
-              }}
-            >
-              삭제
-            </Button>
-          </div>
-        </section>
-        <Footer />
-      </main>
+              <MyReviewDetail
+                rating={review.ratingIndex}
+                compareOption={review.compareOption}
+                shopType={review.shopType}
+                totalCost={review.totalCost}
+                reviewContent={review.reviewContent}
+                reviewdata={reviewdata}
+              />
+            </div>
+          ))}
+        </div>
+        <hr className="hr-line" />
+        <div className="myReviewBtns">
+          <Button
+            className="btn btn-sm btn-outline-primary submit reviewWriteSubmit"
+            onClick={() => {
+              navigate("/myreview");
+            }}
+          >
+            글목록
+          </Button>
+          <Button
+            className="btn btn-sm btn-default submit reviewWriteSubmit"
+            onClick={() => {
+              // navigate("/reviewwrite");
+              setMyPageReviewAction(2);
+            }}
+          >
+            수정
+          </Button>
+          <Button
+            className="btn btn-sm btn-danger reviewWriteSubmit"
+            onClick={() => {
+              navigate("/myreview");
+            }}
+          >
+            삭제
+          </Button>
+        </div>
+      </section>
+      {/* <Footer />
+      </main> */}
     </>
   );
 };

@@ -7,7 +7,7 @@ import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
 import Board from "../Components/HomeBestBoard/Board";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Kakao2 from "../Map/Kakao2.js";
 import axios from "axios";
 
@@ -42,8 +42,6 @@ const Home = () => {
     arrows: false, // 좌우 화살표 비활성화
   };
 
-  let navigate = useNavigate();
-
   // 카테고리 분류 useState
   const [maplist1, setMaplist1] = useState([]);
   const [maplist2, setMaplist2] = useState([]);
@@ -63,13 +61,13 @@ const Home = () => {
   const [county, setCounty] = useState("강남구"); // 지역2 DB 컬럼 county_name에 해당
 
   useEffect(() => {
-    getList(); // 메인페이지 랜더링시 DB데이터 받아오는 함수 호출 ( 지역 선택시 )
+    getMapList(); // 메인페이지 랜더링시 DB데이터 받아오는 함수 호출 ( 지역 선택시 )
   }, [city, county]);
 
   // DB로부터 장소 받아오기
-  const getList = () => {
+  const getMapList = () => {
     axios
-      .get("/maplist", {})
+      .get("http://localhost:8080/maplist", {})
       .then((res) => {
         const { data } = res;
         const category1 = []; // 동물병원
@@ -185,7 +183,7 @@ const Home = () => {
             <Slider {...settings}>
               {slides.map((slide) => (
                 <div key={slide.id}>
-                  <img src={slide.image} />
+                  <img className="homeSlideImg" src={slide.image} />
                 </div>
               ))}
             </Slider>

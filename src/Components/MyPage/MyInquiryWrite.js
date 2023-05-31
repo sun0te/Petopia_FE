@@ -4,9 +4,7 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { FaAngleLeft } from "react-icons/fa";
 
-const MyInquiryWrite = ({ setInquiryAction, inquirydbtest }) => {
-  // ㅡㅡㅡㅡㅡㅡㅡㅡㅡdb 연동 테스트ㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
+const MyInquiryWrite = ({ setInquiryAction, inquirydblist }) => {
   const titleRef = useRef();
   const contentRef = useRef();
 
@@ -30,17 +28,16 @@ const MyInquiryWrite = ({ setInquiryAction, inquirydbtest }) => {
         title: titleRef.current.value,
         content: contentRef.current.value,
         answer_status: "PENDING",
-        username: "test1", // 로그인 구현시 수정
+        username: sessionStorage.getItem("email"),
       })
       .then((res) => {
-        inquirydbtest();
+        inquirydblist();
         setInquiryAction(0);
       })
       .catch((e) => {
         console.log(e);
       });
   };
-  // ㅡㅡㅡㅡㅡㅡㅡㅡㅡdb 연동 테스트ㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
   const inquiryEnter = () => {
     if (titleRef.current.value !== "") {
@@ -65,6 +62,9 @@ const MyInquiryWrite = ({ setInquiryAction, inquirydbtest }) => {
     }
   };
 
+  const [inquiryWriteLength, setInquiryWriteLength] = useState(0); // 문의 제목 길이
+  const [inquiryWriteLength2, setInquiryWriteLength2] = useState(0); // 문의 내용 길이
+
   return (
     <>
       <div className="inquiryHeader">
@@ -87,8 +87,10 @@ const MyInquiryWrite = ({ setInquiryAction, inquirydbtest }) => {
               type="text"
               placeholder="제목"
               ref={titleRef}
+              maxLength={30}
               onChange={() => {
                 inquiryTitleChange();
+                setInquiryWriteLength(titleRef.current.value.length);
               }}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
@@ -99,9 +101,24 @@ const MyInquiryWrite = ({ setInquiryAction, inquirydbtest }) => {
             />
           </Form.Group>
           {inquiryalert === 1 ? (
-            <div className="inquiryWriteAlert">제목을 입력하세요.</div>
+            <div className="inquiryWriteAlert">
+              <p>제목을 입력하세요.</p>
+            </div>
+          ) : inquiryWriteLength < 30 ? (
+            <div className="inquiryWriteTitleLength">
+              <div className="inquiryWriteTitleBox">
+                <p>{inquiryWriteLength} / 30</p>
+              </div>
+            </div>
           ) : (
-            <div className="inquiryWriteAlert">&nbsp;</div>
+            <div className="inquiryWriteTitleLength">
+              <div className="inquiryWriteTitleBox">
+                <p>
+                  <span className="inquiryWriteRed">{inquiryWriteLength}</span>/
+                  30
+                </p>
+              </div>
+            </div>
           )}
           <Form.Group className="mb-3 writeFormContent">
             <Form.Label></Form.Label>
@@ -111,65 +128,36 @@ const MyInquiryWrite = ({ setInquiryAction, inquirydbtest }) => {
               placeholder="문의 내용을 입력하세요"
               className="contentForm"
               ref={contentRef}
+              maxLength={500}
               style={{ resize: "none" }}
               onChange={() => {
                 inquiryContentChange();
+                setInquiryWriteLength2(contentRef.current.value.length);
               }}
             />
           </Form.Group>
           {inquiryalert === 2 ? (
-            <div className="inquiryWriteAlert">내용을 입력하세요.</div>
+            <div className="inquiryWriteAlert">
+              <p>내용을 입력하세요.</p>
+            </div>
+          ) : inquiryWriteLength2 < 500 ? (
+            <div className="inquiryWriteTitleLength">
+              <div className="inquiryWriteTitleBox">
+                <p>{inquiryWriteLength2} / 500</p>
+              </div>
+            </div>
           ) : (
-            <div className="inquiryWriteAlert">&nbsp;</div>
+            <div className="inquiryWriteTitleLength">
+              <div className="inquiryWriteTitleBox">
+                <p>
+                  <span className="inquiryWriteRed">{inquiryWriteLength2}</span>
+                  / 500
+                </p>
+              </div>
+            </div>
           )}
         </Form>
       </div>
-      {/* <div>
-        <div>
-          <div className="uploadBtn">
-            <Button
-              variant="outline-secondary"
-              className=""
-              onClick={handleClick}
-            >
-              <img className="uploadBtnImg" src="img/uploading.png" alt="" />
-            </Button>
-          </div>
-
-          <input
-            className="uploadInput"
-            type="file"
-            multiple
-            onChange={handleFileInputChange}
-            ref={inputRef}
-          />
-        </div>
-        <div className="uploadImgDiv">
-          <ListGroup>
-            {selectedFiles.map((file, index) => (
-              <ListGroup.Item className="listGroupItem">
-                <div key={index}>
-                  <img
-                    className="uploadImg"
-                    src={URL.createObjectURL(file)}
-                    alt={`${file.name}`}
-                  />
-                  <p className="imgTitle">{file.name}</p>
-                  <div className="imgDeleteBtnDiv">
-                    <button
-                      className="imgDeleteBtn"
-                      onClick={() => handleRemoveImage(index)}
-                    >
-                      <BsTrash3 />
-                    </button>
-                  </div>
-                </div>
-              </ListGroup.Item>
-            ))}
-          </ListGroup>
-        </div>
-      </div> */}
-      {/* <br /> <br /> <br /> */}
       <div className="inquiryWriteBox">
         <button
           className="inquiryBtn"
@@ -180,18 +168,6 @@ const MyInquiryWrite = ({ setInquiryAction, inquirydbtest }) => {
         >
           작성완료
         </button>
-        {/* <button
-          className="inquiryBtn2"
-          onClick={() => {
-            if (window.confirm("취소하시겠습니까?")) {
-              setInquiryAction(0);
-            } else {
-              return;
-            }
-          }}
-        >
-          취소
-        </button> */}
       </div>
     </>
   );

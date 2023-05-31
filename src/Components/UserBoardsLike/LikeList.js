@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { FaAngleLeft } from "react-icons/fa";
 
 import LikeCardList from "./LikeCardList";
 
@@ -31,9 +32,20 @@ const TitleSearchWrap = styled.div`
   align-items: center;
 `;
 
-const LikeList = () => {
+const LikeList = ({ setMyPageAction }) => {
   return (
     <>
+      <div className="inquiryHeader">
+        <div
+          className="inquiryBack-left"
+          onClick={() => {
+            setMyPageAction(0);
+          }}
+        >
+          <FaAngleLeft className="inquiryBack-icon" />
+        </div>
+        <h4>관심목록</h4>
+      </div>
       <LikeContainer>
         <UserBoardWrapper>
           <TitleSearchWrap>
