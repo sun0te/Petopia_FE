@@ -40,7 +40,7 @@ const ReportModalCopy = ({ open, close, header, reviewid }) => {
         })
         .then((res) => {
           alert("게시글 신고가 접수되었습니다.");
-          window.location.reload();
+          close();
         })
         .catch((err) => {});
     };
