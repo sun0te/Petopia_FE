@@ -2,6 +2,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import { BsHandThumbsUp, BsHeart, BsPerson } from "react-icons/bs";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import ReportModal from "../../Modal/ReportModal";
@@ -141,7 +142,6 @@ const Noticedetail = () => {
         id: boardid,
       })
       .then((res) => {
-        getTravelInfo(res.data.id);
         setBoardData({
           title: res.data.title,
           email: res.data.author.email,
