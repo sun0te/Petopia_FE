@@ -17,13 +17,7 @@ const ReportModalCopy = ({ open, close, header, reviewid }) => {
     setReportReason(e.target.value);
   };
 
-  //   useEffect(() => {
-  //     setReportReason(reportReason);
-  //   }, [reportReason]);
-
-  useEffect(() => {
-    // setReportReason(reportReason);
-  }, []);
+  useEffect(() => {}, []);
 
   const [reportReasonText, setReportReasonText] = useState("");
   const reportReasonContent = useRef(null);
