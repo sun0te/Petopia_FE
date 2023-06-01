@@ -277,7 +277,11 @@ const UserMypage = () => {
               <div
                 className="user-section"
                 onClick={() => {
-                  setMyPageAction(3); // [액션 3 : 리뷰 관리]
+                  if (sessionStorage.getItem("email") != null) {
+                    setMyPageAction(3); // [액션 3 : 리뷰 관리]
+                  } else {
+                    navigate("/login");
+                  }
                 }}
               >
                 <div className="user-section-icon">

@@ -50,6 +50,23 @@
 
 /* ====================================== */
 
+/* ============== 리뷰 추가 ============== */
+
+.report-select-container{
+    position: relative;
+    margin: 0 auto;
+    width: 95%;
+}
+
+.report-select{
+  position: absolute;
+  right: 0px;
+  bottom: 10px;
+  width: 130px;
+}
+
+/* ============== 리뷰 추가 ============== */
+
 .report-table-container {
     display: flex;
     justify-content: center;

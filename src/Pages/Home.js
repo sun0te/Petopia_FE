@@ -191,7 +191,7 @@ const Home = () => {
 
           {/*지도 코드 들어갈 위치 */}
           <div className="containerIh">
-            <div className="testmap">
+            <div className="mapContainer">
               <Kakao2
                 maplist1={maplist1}
                 maplist2={maplist2}

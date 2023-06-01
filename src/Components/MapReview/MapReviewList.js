@@ -116,7 +116,9 @@ const MapReviewList = ({
                   variant="outline-secondary"
                   style={{ padding: "4px 0px 3px 0px" }}
                   onClick={() => {
-                    reviewDelete(review.id);
+                    if (window.confirm("삭제하시겠습니까?")) {
+                      reviewDelete(review.id);
+                    }
                   }}
                 >
                   삭제
