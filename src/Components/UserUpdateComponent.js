@@ -91,21 +91,18 @@ const UserUpdateComponent = ({ setMyPageAction }) => {
   };
 
   const clickUserDelete = () => {
-    const deleteConfirm = window.confirm("회원 탈퇴 하시겠습니까?");
-    if (deleteConfirm) {
-      axios
-        .post("http://localhost:8080/user/withdrawal", {
-          email: sessionStorage.getItem("email"),
-        })
-        .then((res) => {
-          localStorage.removeItem("com.naver.nid.access_token");
-          localStorage.removeItem("access_token");
-          sessionStorage.removeItem("email");
-          sessionStorage.removeItem("socialSession");
-          alert("계정을 탈퇴처리 하였습니다.");
-          window.location.href = `http://localhost:3000/`;
-        });
-    }
+    axios
+      .post("/user/withdrawal", {
+        email: sessionStorage.getItem("email"),
+      })
+      .then((res) => {
+        localStorage.removeItem("com.naver.nid.access_token");
+        localStorage.removeItem("access_token");
+        sessionStorage.removeItem("email");
+        sessionStorage.removeItem("socialSession");
+        // alert("계정을 탈퇴처리 하였습니다.");
+        // window.location.href = `http://localhost:3000/`;
+      });
   };
 
   return (
