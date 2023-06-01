@@ -118,7 +118,6 @@ const ReportModalCopy = ({ open, close, header, reviewid }) => {
               />
             )}
           </div>
-
           <div className="reportModalFooterDiv">
             {/* <button className="reportModalCloseBtn" onClick={close}>
               close
