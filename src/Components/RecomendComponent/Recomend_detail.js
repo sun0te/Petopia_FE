@@ -1,6 +1,6 @@
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
@@ -8,6 +8,7 @@ import { BsHandThumbsUp, BsHeart, BsPerson } from "react-icons/bs";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import ReportModal from "../../Modal/ReportModal";
 import "../../Styles/RecomendStyle.css";
+import Comment from "../Comment";
 
 const Recomend_detail = () => {
   const location = useLocation();
@@ -178,6 +179,17 @@ const Recomend_detail = () => {
       });
   };
 
+  const [commentList, setCommentList] = useState([]);
+  const getCommentlist = (boardid) => {
+    axios
+      .post("http://localhost:8080/comment/findall", {
+        post: { id: boardid },
+      })
+      .then((res) => {
+        setCommentList(res.data);
+      });
+  };
+
   useEffect(() => {
     const thumbIsClicked = document.getElementById("thumb");
     const heartIsClicked = document.getElementById("heart");
@@ -226,6 +238,8 @@ const Recomend_detail = () => {
     getBoardInfo();
     checkBoardRecommend();
     checkBoardLike();
+    getCommentlist();
+    console.log(commentList);
   }, []);
 
   const imagePath = "/uploadimgs/";
@@ -238,6 +252,27 @@ const Recomend_detail = () => {
       axios.post("/board/delete", { id: boardid }).then((res) => {
         navigate("/routetrip");
       });
+    }
+  };
+
+  // 댓글 달기
+  const commentRef = useRef(null);
+
+  const clickWriteCommentBtn = () => {
+    if (
+      sessionStorage.getItem("email") === null ||
+      sessionStorage.getItem("email") === "" ||
+      sessionStorage.getItem("email") === undefined
+    ) {
+      alert("로그인 후 가능합니다.");
+    } else {
+      axios
+        .post("http://localhost:8080/comment/write", {
+          post: { id: boardid },
+          author: { email: sessionStorage.getItem("email") },
+          content: commentRef.current.value,
+        })
+        .then((res) => {});
     }
   };
 
@@ -471,6 +506,30 @@ const Recomend_detail = () => {
               </Link>
             </div>
           ) : null}
+
+          <Comment />
+
+          <div className="writeCommentDiv">
+            <Form.Group className="mb-3 writeFormContent">
+              <Form.Label></Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="댓글을 입력하세요"
+                className="writeCommentTextarea"
+                ref={commentRef}
+              />
+              <Button
+                className="btn-sm writeCommentBtn"
+                variant="primary"
+                onClick={() => {
+                  clickWriteCommentBtn();
+                }}
+              >
+                댓글달기
+              </Button>
+            </Form.Group>
+          </div>
         </div>
       </div>
     </>

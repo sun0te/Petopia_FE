@@ -48,7 +48,7 @@ const Recommend_update = () => {
   useEffect(() => {
     const getImgInfo = () => {
       axios
-        .post("http://localhost:8080/board/detailimg", {
+        .post("/board/detailimg", {
           post: { id: boardid },
         })
         .then((res) => {
@@ -61,7 +61,7 @@ const Recommend_update = () => {
 
     const getBoardInfo = () => {
       axios
-        .post("http://localhost:8080/board/detail", {
+        .post("/board/detail", {
           id: boardid,
           category: "TRAVEL",
         })
@@ -88,7 +88,7 @@ const Recommend_update = () => {
 
     const getTravelInfo = (boardid) => {
       axios
-        .post("http://localhost:8080/travel/getinfo", { post: { id: boardid } })
+        .post("/travel/getinfo", { post: { id: boardid } })
         .then((res) => {
           setPlaceCategory(res.data.category);
           setPetProvisionsData(res.data.petProvisions);
@@ -223,7 +223,7 @@ const Recommend_update = () => {
     });
 
     axios
-      .post("http://localhost:8080/board/update", {
+      .post("/board/update", {
         id: boardid,
         // author: { email: sessionStorage.getItem("email") },
         title: writeTitleText.current.value,
@@ -240,7 +240,7 @@ const Recommend_update = () => {
       .then(() => {
         if (selectedFiles.length > 0) {
           axios
-            .post("http://localhost:8080/board/uploadfilesupdate", formData)
+            .post("/board/uploadfilesupdate", formData)
             .then((res) => {
               navigate("/routetrip");
             })
@@ -256,7 +256,7 @@ const Recommend_update = () => {
 
   const submitTravelInfo = (boardid) => {
     axios
-      .post("http://localhost:8080/travel/updateinfo", {
+      .post("/travel/updateinfo", {
         post: { id: boardid },
         placeName: "장소이름 지정 기능 아직 없음",
         category: placeOption,
