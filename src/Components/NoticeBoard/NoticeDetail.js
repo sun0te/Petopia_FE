@@ -1,16 +1,14 @@
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import { BsHandThumbsUp, BsHeart, BsPerson } from "react-icons/bs";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import ReportModal from "../../Modal/ReportModal";
 import "../../Styles/RecomendStyle.css";
-import Comment from "../Comment";
 
-const Recomend_detail = () => {
+const Noticedetail = () => {
   const location = useLocation();
   const boardid = location.state.boardid;
 
@@ -124,14 +122,10 @@ const Recomend_detail = () => {
 
   const [boardData, setBoardData] = useState(null);
   const [boardImgs, setBoardImgs] = useState([]);
-  const [travelData, setTravelData] = useState(null);
-
-  const [placeCategory, setPlaceCategory] = useState("");
-  const [petProvisionsData, setPetProvisionsData] = useState([]);
 
   const getImgInfo = () => {
     axios
-      .post("/board/detailimg", {
+      .post("/notice/detailimg", {
         post: { id: boardid },
       })
       .then((res) => {
@@ -144,12 +138,10 @@ const Recomend_detail = () => {
 
   const getBoardInfo = () => {
     axios
-      .post("/board/detail", {
+      .post("/notice/detail", {
         id: boardid,
-        category: "TRAVEL",
       })
       .then((res) => {
-        getTravelInfo(res.data.id);
         setBoardData({
           title: res.data.title,
           email: res.data.author.email,
@@ -165,29 +157,6 @@ const Recomend_detail = () => {
         console.log(err);
       })
       .then(getImgInfo());
-  };
-
-  const getTravelInfo = (boardid) => {
-    axios
-      .post("/travel/getinfo", { post: { id: boardid } })
-      .then((res) => {
-        setPlaceCategory(res.data.category);
-        setPetProvisionsData(res.data.petProvisions);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const [commentList, setCommentList] = useState([]);
-  const getCommentlist = (boardid) => {
-    axios
-      .post("http://localhost:8080/comment/findall", {
-        post: { id: boardid },
-      })
-      .then((res) => {
-        setCommentList(res.data);
-      });
   };
 
   useEffect(() => {
@@ -238,8 +207,6 @@ const Recomend_detail = () => {
     getBoardInfo();
     checkBoardRecommend();
     checkBoardLike();
-    getCommentlist();
-    console.log(commentList);
   }, []);
 
   const imagePath = "/uploadimgs/";
@@ -249,30 +216,9 @@ const Recomend_detail = () => {
   const deleteBoard = () => {
     const deleteConfirm = window.confirm("게시글을 삭제하시겠습니까?");
     if (deleteConfirm) {
-      axios.post("/board/delete", { id: boardid }).then((res) => {
-        navigate("/routetrip");
+      axios.post("/notice/delete", { id: boardid }).then((res) => {
+        navigate("/notice");
       });
-    }
-  };
-
-  // 댓글 달기
-  const commentRef = useRef(null);
-
-  const clickWriteCommentBtn = () => {
-    if (
-      sessionStorage.getItem("email") === null ||
-      sessionStorage.getItem("email") === "" ||
-      sessionStorage.getItem("email") === undefined
-    ) {
-      alert("로그인 후 가능합니다.");
-    } else {
-      axios
-        .post("http://localhost:8080/comment/write", {
-          post: { id: boardid },
-          author: { email: sessionStorage.getItem("email") },
-          content: commentRef.current.value,
-        })
-        .then((res) => {});
     }
   };
 
@@ -400,52 +346,6 @@ const Recomend_detail = () => {
           </div>
           <br />
 
-          <Card className="cardRecomendDetail">
-            <Card.Body className="cardRecomendDetailBody jangso">
-              ✅ 장소 정보
-            </Card.Body>
-            <Card.Body className="cardRecomendDetailBody">
-              📌 어떤 종류의 장소인가요? <br /> <br />
-              {placeCategory === "RESTAURANT" ? (
-                <span>- 음식점</span>
-              ) : placeCategory === "PARK" ? (
-                <span>- 공원</span>
-              ) : placeCategory === "CAFE" ? (
-                <span>- 카페</span>
-              ) : placeCategory === "ACCOMMODATION" ? (
-                <span>- 숙소</span>
-              ) : null}
-            </Card.Body>
-            <Card.Body className="cardRecomendDetailBody">
-              📌 반려견 동반 시 유의사항 <br /> <br />
-              {petProvisionsData.includes("PET_SNACK") && (
-                <span>
-                  - 펫 간식 제공 <br />
-                </span>
-              )}
-              {petProvisionsData.includes("PET_SUPPLIES_PROVIDED") && (
-                <span>
-                  - 펫방석 혹은 담요 제공 <br />
-                </span>
-              )}
-              {petProvisionsData.includes("PET_MANNER_BELT") && (
-                <span>
-                  - 마킹이 심한 반려견은 매너벨트 착용 <br />
-                </span>
-              )}
-              {petProvisionsData.includes("NO_LARGE_DOG_ALLOWED") && (
-                <span>
-                  - 15 kg 이상 대형견은 업체 문의 <br />
-                </span>
-              )}
-              - 심한 짖음, 공격성 있는 반려견 동반 불가
-            </Card.Body>
-
-            <Card.Body className="cardRecomendDetailBodyAlert">
-              💡기본적인 펫티켓을 꼭 지켜주세요💡
-            </Card.Body>
-          </Card>
-
           <div className="thumbsHeart">
             <br />
             <div className="thumbs">
@@ -480,7 +380,7 @@ const Recomend_detail = () => {
           </div>
 
           <div className="Div_boardListBtn">
-            <Link to="/routetrip">
+            <Link to="/notice">
               <button
                 type="button"
                 className="btn btn-sm btn-outline-primary boardListBtn"
@@ -493,7 +393,7 @@ const Recomend_detail = () => {
           {boardData?.email === sessionStorage.getItem("email") ? (
             <div className="recommendUpdateBtnDiv">
               <Link
-                to={`/recommendupdate?id=${boardid}`}
+                to={`/noticeupdate?id=${boardid}`}
                 state={{ boardid: boardid }}
               >
                 <button
@@ -506,34 +406,10 @@ const Recomend_detail = () => {
               </Link>
             </div>
           ) : null}
-
-          <Comment />
-
-          <div className="writeCommentDiv">
-            <Form.Group className="mb-3 writeFormContent">
-              <Form.Label></Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                placeholder="댓글을 입력하세요"
-                className="writeCommentTextarea"
-                ref={commentRef}
-              />
-              <Button
-                className="btn-sm writeCommentBtn"
-                variant="primary"
-                onClick={() => {
-                  clickWriteCommentBtn();
-                }}
-              >
-                댓글달기
-              </Button>
-            </Form.Group>
-          </div>
         </div>
       </div>
     </>
   );
 };
 
-export default Recomend_detail;
+export default Noticedetail;
