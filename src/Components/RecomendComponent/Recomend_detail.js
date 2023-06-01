@@ -507,7 +507,7 @@ const Recomend_detail = () => {
             </div>
           ) : null}
 
-          <Comment />
+          {/* <Comment />
 
           <div className="writeCommentDiv">
             <Form.Group className="mb-3 writeFormContent">
@@ -529,7 +529,7 @@ const Recomend_detail = () => {
                 댓글달기
               </Button>
             </Form.Group>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
