@@ -31,7 +31,9 @@ const MapReviewList = ({
       });
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    getPlaceReview();
+  }, []);
 
   // ㅡㅡㅡ 모달창 카피본 ㅡㅡㅡ
 
