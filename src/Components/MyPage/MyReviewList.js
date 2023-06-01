@@ -1,13 +1,11 @@
 import styled from "styled-components";
 import React, { useState, useEffect, Fragment } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import LoginComponent from "../LoginComponent";
 import { FaAngleLeft } from "react-icons/fa";
-import MyReviewDetailPage from "../../Pages/MyReviewDetailPage";
 import ReviewWriteComponent from "../ReviewWriteComponent";
 import axios from "axios";
+import MyReviewDetail from "./MyReviewDetail";
 
 const ReviewContainer = styled.div`
   width: 100%;
@@ -76,7 +74,6 @@ const ReviewButtonsWrap = styled.div`
 
 const ReviewList = ({ setMyPageAction }) => {
   const [checkedReviews, setCheckedReviews] = useState([]);
-  const navigate = useNavigate();
 
   const handleCheckAll = (e) => {
     if (e.target.checked) {
@@ -105,24 +102,6 @@ const ReviewList = ({ setMyPageAction }) => {
         console.error(e);
       });
   };
-
-  const [reviews, setReviews] = useState([
-    {
-      id: 1,
-      date: "2022.05.01",
-      content: "이 가게 추천합니다",
-    },
-    {
-      id: 2,
-      date: "2022.04.28",
-      content: "이 가게 추천합니다",
-    },
-    {
-      id: 3,
-      date: "2022.04.25",
-      content: "이 가게 추천합니다",
-    },
-  ]);
 
   const [myPageReviewAction, setMyPageReviewAction] = useState(0); // 마이 리뷰 액션
   // [액션 0 : 리뷰 리스트] [액션 1 : 리뷰 상세] , [액션 2 : 리뷰 수정]
@@ -240,9 +219,11 @@ const ReviewList = ({ setMyPageAction }) => {
             </div>
             <h4>내 리뷰 관리</h4>
           </div>
-          <MyReviewDetailPage
+          {/* <MyReviewDetailPage /> */}
+          <MyReviewDetail
             setMyPageReviewAction={setMyPageReviewAction}
             reviewdata={reviewdata}
+            handleDelete={handleDelete}
           />
         </>
       ) : (

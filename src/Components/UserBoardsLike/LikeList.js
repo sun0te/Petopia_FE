@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -33,6 +34,29 @@ const TitleSearchWrap = styled.div`
 `;
 
 const LikeList = ({ setMyPageAction }) => {
+  const [interestList, setInterestList] = useState([]);
+
+  const getInterestList = () => {
+    axios
+      .get("/interest/list", {
+        params: {
+          email: sessionStorage.getItem("email"),
+        },
+      })
+      .then((res) => {
+        const { data } = res;
+        console.log("데이터 값", data);
+        setInterestList(data);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
+
+  useEffect(() => {
+    getInterestList();
+  }, []);
+
   return (
     <>
       <div className="inquiryHeader">
@@ -48,7 +72,7 @@ const LikeList = ({ setMyPageAction }) => {
       </div>
       <LikeContainer>
         <UserBoardWrapper>
-          <TitleSearchWrap>
+          {/* <TitleSearchWrap>
             <div className="CommunitySearch">
               <Form className="d-flex">
                 <Form.Control
@@ -66,8 +90,8 @@ const LikeList = ({ setMyPageAction }) => {
                 </Button>
               </Form>
             </div>
-          </TitleSearchWrap>
-          <LikeCardList />
+          </TitleSearchWrap> */}
+          <LikeCardList interestList={interestList} />
         </UserBoardWrapper>
       </LikeContainer>
     </>
