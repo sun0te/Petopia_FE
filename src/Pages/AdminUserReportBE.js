@@ -102,19 +102,23 @@ const AdminUserReportBE = () => {
                           //console.log(`Report ${report.id} clicked`);
                         }}
                       >
-                        {/* {report.post.category === "TRAVEL" ? (
-                          <div>
-                            <Link
-                              to={`/recomend_best?id=${report.id}`}
-                              key={report.id}
-                              state={{ boardid: report.post.id }}
-                            >
-                              {report.post.title}
-                            </Link>
-                          </div>
-                        ) : (
-                          <>{report.post.title}</>
-                        )} */}
+                        {
+                          report.review === null ? (
+                            report.post.category === "TRAVEL" ? (
+                              <div>
+                                <Link
+                                  to={`/recomend_best?id=${report.id}`}
+                                  key={report.id}
+                                  state={{ boardid: report.post.id }}
+                                >
+                                  {report.post.title}
+                                </Link>
+                              </div>
+                            ) : (
+                              <>{report.post.title}</>
+                            )
+                          ) : null // 리뷰 관련 추가
+                        }
                       </td>
                       <td className="admin-user-report-item-date">
                         {report.reporter.nickname}
@@ -180,13 +184,16 @@ const AdminUserReportBE = () => {
                             <div className="report-tilte">
                               <b>게시글 제목</b>
                             </div>
-                            {selectedReport.post.title}
-
+                            {selectedReport.review === null
+                              ? selectedReport.post.title
+                              : null}
                             <div className="report-tilte">
                               <br />
                               <b>게시글 내용</b>
                             </div>
-                            {selectedReport.post.content}
+                            {selectedReport.review === null
+                              ? selectedReport.post.content
+                              : null}
                           </div>
                         </>
                       ) : (
@@ -216,13 +223,17 @@ const AdminUserReportBE = () => {
                             <div className="report-tilte">
                               <b>게시글 제목</b>
                             </div>
-                            {selectedReport.post.title}
+                            {selectedReport.review === null
+                              ? selectedReport.post.title
+                              : null}
 
                             <div className="report-tilte">
                               <br />
                               <b>게시글 내용</b>
                             </div>
-                            {selectedReport.post.content}
+                            {selectedReport.review === null
+                              ? selectedReport.post.content
+                              : null}
                           </div>
                         </>
                       )}
