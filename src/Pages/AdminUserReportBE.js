@@ -17,7 +17,7 @@ const AdminUserReportBE = () => {
 
   const handleReportProcessing = (reportid) => {
     axios
-      .post("/report/reportprogress", {
+      .post("http://localhost:8080/report/reportprogress", {
         id: reportid,
         processingStatus: "PROGRESS_COMPLETE",
       })
@@ -32,18 +32,20 @@ const AdminUserReportBE = () => {
   const [progressReports, setProgressReports] = useState(null);
   const [completeReports, setCompleteReports] = useState(null);
   useEffect(() => {
-    axios.get("/report/boardreportlist", {}).then((res) => {
-      setReports(res.data);
-      setTotalReports(res.data.length);
+    axios
+      .get("http://localhost:8080/report/boardreportlist", {})
+      .then((res) => {
+        setReports(res.data);
+        setTotalReports(res.data.length);
 
-      res.data.map((data) => {
-        if (data.processingStatus === "PROCEEDING") progressReportsData++;
-        else if (data.processingStatus === "PROGRESS_COMPLETE")
-          completeReportsData++;
+        res.data.map((data) => {
+          if (data.processingStatus === "PROCEEDING") progressReportsData++;
+          else if (data.processingStatus === "PROGRESS_COMPLETE")
+            completeReportsData++;
+        });
+        setProgressReports(progressReportsData);
+        setCompleteReports(completeReportsData);
       });
-      setProgressReports(progressReportsData);
-      setCompleteReports(completeReportsData);
-    });
   }, [completeReportsData, progressReportsData, setSelectedReport]);
 
   return (

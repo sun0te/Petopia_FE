@@ -44,7 +44,7 @@ const UserUpdateComponent = ({ setMyPageAction }) => {
 
   const selectUserInfo = () => {
     axios
-      .post("/user/getuserinfo", {
+      .post("http://localhost:8080/user/getuserinfo", {
         email: sessionStorage.getItem("email"),
       })
       .then((res) => {
@@ -66,7 +66,7 @@ const UserUpdateComponent = ({ setMyPageAction }) => {
 
   const updateUserInfo = () => {
     axios
-      .post("/user/updateuserinfo", {
+      .post("http://localhost:8080/user/updateuserinfo", {
         email: sessionStorage.getItem("email"),
         name: currentName,
         nickname: currentNickname,
@@ -88,6 +88,21 @@ const UserUpdateComponent = ({ setMyPageAction }) => {
     sessionStorage.removeItem("socialSession");
     localStorage.removeItem("com.naver.nid.access_token");
     localStorage.removeItem("access_token");
+  };
+
+  const clickUserDelete = () => {
+    axios
+      .post("http://localhost:8080/user/withdrawal", {
+        email: sessionStorage.getItem("email"),
+      })
+      .then((res) => {
+        localStorage.removeItem("com.naver.nid.access_token");
+        localStorage.removeItem("access_token");
+        sessionStorage.removeItem("email");
+        sessionStorage.removeItem("socialSession");
+        // alert("계정을 탈퇴처리 하였습니다.");
+        // window.location.href = `http://localhost:3000/`;
+      });
   };
 
   return (
@@ -203,6 +218,10 @@ const UserUpdateComponent = ({ setMyPageAction }) => {
                 >
                   수정
                 </button>
+              </div>
+
+              <div>
+                <button onClick={() => clickUserDelete()}>회원 탈퇴</button>
               </div>
             </form>
           </div>
