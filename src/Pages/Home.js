@@ -7,9 +7,35 @@ import Header from "../Components/Header.js";
 import Footer from "../Components/Footer.js";
 import BgLeft from "../Components/BgLeft.js";
 import Board from "../Components/HomeBestBoard/Board";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import Kakao2 from "../Map/Kakao2.js";
 import axios from "axios";
+import RecommendCard from "../Components/RecomendComponent/RecommendCard";
+import "bootstrap/dist/css/bootstrap.css";
+import styled from "styled-components";
+import RecommendBest from "../Components/RecomendComponent/Recomend_best";
+import { BsHandThumbsUp } from "react-icons/bs";
+
+const NoticeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+`;
+
+const BoardWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  width: 100%;
+`;
 
 const slides = [
   {
@@ -67,7 +93,7 @@ const Home = () => {
   // DB로부터 장소 받아오기
   const getMapList = () => {
     axios
-      .get("/maplist", {})
+      .get("http://localhost:8080/maplist", {})
       .then((res) => {
         const { data } = res;
         const category1 = []; // 동물병원
@@ -173,6 +199,27 @@ const Home = () => {
       });
   };
 
+  const [travelBestData, setTravelBestData] = useState([
+    { likes: 0, title: "", author: { profileImage: "" } },
+  ]);
+
+  useEffect(() => {
+    callTravelBest();
+  }, [setTravelBestData]);
+
+  const callTravelBest = () => {
+    axios
+      .post("http://localhost:8080/travelboard/travelbest5", {
+        category: "TRAVEL",
+      })
+      .then((res) => {
+        setTravelBestData(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+  const imagePath = "/uploadimgs/";
+  const MAX_BESTTITLE_LENGTH = 37;
+  const MAX_TITLE_LENGTH = 11;
   return (
     <>
       <BgLeft />
@@ -216,10 +263,12 @@ const Home = () => {
           {/* 여행지 추천 div */}
 
           <div className="recommendation">
-            <div className="recommendation-title">
-              <p>이번 주 Best 경로</p>
+            <div style={{ marginTop: "10px" }}></div>
+            {/* <span className="bestcrown">👑</span> */}
+            <div className="recommendation-title" style={{ width: "89%" }}>
+              <p>👑 이번 주 Best 👑</p>
             </div>
-            <NavLink to="/recomend_best" className="home-recommend-link">
+            {/* <NavLink to="/recomend_best" className="home-recommend-link">
               <div className="image-wrapper">
                 <img src="img/recommend_best2.png" alt="image" />
               </div>
@@ -236,14 +285,89 @@ const Home = () => {
                 <span className="star">&#9733;</span>
                 <span className="star">&#9733;</span>
               </div>
-            </NavLink>
+            </NavLink> */}
+
+            {travelBestData.length !== 0 ||
+            travelBestData.length !== undefined ? (
+              <RecommendBest
+                id={
+                  travelBestData[0].id !== undefined
+                    ? travelBestData[0].id
+                    : null
+                }
+                picture={
+                  travelBestData[0].thumbnailImage !== undefined
+                    ? imagePath + travelBestData[0].thumbnailImage
+                    : null
+                }
+                title={
+                  travelBestData[0].title.length > MAX_BESTTITLE_LENGTH
+                    ? travelBestData[0].title.slice(0, MAX_BESTTITLE_LENGTH) +
+                      "..."
+                    : travelBestData[0].title
+                }
+                recommends={travelBestData[0].recommends}
+                writerimg={travelBestData[0].author.profileImage}
+                writer={travelBestData[0].author.nickname}
+                view={travelBestData[0].views}
+                like={travelBestData[0].likes}
+              />
+            ) : null}
           </div>
+
+          {/* <div className="homebestthumbsupDiv">
+            <div>
+              <BsHandThumbsUp className="homebestthumbsup" />
+            </div>
+
+            <div className="bubble">
+              <span>
+                {travelBestData[0].likes !== undefined
+                  ? travelBestData[0].likes
+                  : null}
+              </span>
+            </div>
+          </div> */}
+
           {/* 커뮤니티 게시글 div */}
           <div className="recommendation">
             <div className="recommendation-title">
               <p>이번 주 인기 게시글</p>
             </div>
-            <Board />
+            {/* <Board /> */}
+            <NoticeContainer>
+              <BoardWrapper>
+                {travelBestData.map((travelalldata) => {
+                  return (
+                    <StyledLink
+                      to={`/recomend_best?id=${travelalldata.id}`}
+                      key={travelalldata.id}
+                      state={{ boardid: travelalldata.id }}
+                    >
+                      <RecommendCard
+                        picture={
+                          travelalldata.thumbnailImage !== undefined
+                            ? imagePath + travelalldata.thumbnailImage
+                            : null
+                        }
+                        title={
+                          travelalldata.title.length > MAX_TITLE_LENGTH
+                            ? travelalldata.title.slice(0, MAX_TITLE_LENGTH) +
+                              "..."
+                            : travelalldata.title
+                        }
+                        recommends={travelalldata.recommends}
+                        writerimg={travelalldata.author.profileImage}
+                        writer={travelalldata.author.nickname}
+                        view={travelalldata.views}
+                        like={travelalldata.likes}
+                        createdat={travelalldata.createdAt}
+                      />
+                    </StyledLink>
+                  );
+                })}
+              </BoardWrapper>
+            </NoticeContainer>
           </div>
         </section>
         <Footer />

@@ -13,7 +13,14 @@
 .h3_Recomend {
   font-size: 1.2rem;
   font-weight: bold;
-  margin: 50px auto 0px 40px;
+  margin: 20px auto 0px 40px;
+  color: #222222ef;
+}
+
+.h3_totalboard {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 40px auto -25px 40px;
   color: #222222ef;
 }
 
@@ -28,7 +35,7 @@
   font-size: 13px;
   color: #708090;
   cursor: pointer;
-  margin: 53px 0 -20px 20px;
+  margin: 23px 0 -20px 20px;
   vertical-align: top;
 }
 .bestFoldBtn:hover {
@@ -44,7 +51,7 @@
   display: inline-block;
   /* background-color: black; */
   width: 230px;
-  height: 50px;
+  height: 20px;
 }
 .bestFoldHr {
   width: 90%;
@@ -74,7 +81,7 @@
 
 .recomendWriteBtn {
   float: right;
-  margin: -10px 15px 10px auto;
+  margin: -10px 15px 0px auto;
 }
 
 .recommendAllBoardDiv {
@@ -89,7 +96,7 @@
 
 .recommendCard {
   height: auto;
-  margin: 30px auto 10px auto;
+  margin: 0 auto 10px auto;
   cursor: pointer;
 }
 
@@ -139,7 +146,7 @@
 /* Recomend_viewall-------------------------------- */
 
 .listGroup {
-  margin: 30px auto 30px auto;
+  margin: 5px auto -20px auto;
   width: 90%;
 }
 
@@ -212,7 +219,7 @@
 .p_recomend {
   font-size: 1rem;
   font-weight: bold;
-  margin: 0 20px 10px auto;
+  margin: 0 20px 5px auto;
   float: right;
   display: block;
   cursor: pointer;
@@ -235,11 +242,12 @@
   /*display: flex;*/
   justify-content: center;
   align-items: center;
+  margin: -30px 0 0 0;
 }
 
 .RecomendDetailImg {
   display: block;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 8px auto;
   border: 1px solid #eee;
   border-radius: 2px;
   width: 300px;
@@ -259,17 +267,17 @@
 }
 
 .cardRecomendDetailBody {
-  margin: 0 auto 10px 10px;
+  margin: -5px auto -20px 10px;
   font-size: 0.8rem;
 }
 
 .jangso {
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 1.0rem;
 }
 
 .cardRecomendDetailBodyAlert {
-  margin: 0 auto 10px 10px;
+  margin: 0 auto 0px 10px;
   font-weight: bold;
   font-size: 0.9rem;
 }
@@ -280,7 +288,7 @@
   justify-content: center;
   align-items: center;
   width: 80%;
-  margin: 0 auto 10px auto;
+  margin: -15px auto 10px auto;
   text-align: center;
 }
 
@@ -301,7 +309,7 @@
 }
 
 .thumbsHeartSpan {
-  margin: 0 10px 0 5px;
+  margin: -5px 10px 0 5px;
   display: block;
   padding: 0 10px 0 15px;
   clear: both;
@@ -361,7 +369,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px auto 30px auto;
+  margin: -20px auto 10px auto;
   text-align: center;
 }
 
@@ -385,7 +393,7 @@
 
 .recommendUpdateBtnDiv {
   text-align: right;
-  margin: -60px 30px 0 0;
+  margin: -40px 30px -10px 0;
 }
 
 .recommendUpdateBtn {
@@ -434,7 +442,7 @@
 /* BoardDetail ------------------------------------*/
 
 .detailWriterP {
-  margin: 0 0 20ox 0;
+  margin: 0px 0 20ox 0;
 }
 
 .detailProfileImg {
@@ -459,7 +467,7 @@
 .detailReportBtnDiv {
   display: inline;
   float: right;
-  margin: 30px 20px 20px 0;
+  margin: 20px 20px 10px 0;
 }
 
 .boardListBtnDetail {
