@@ -20,7 +20,7 @@ const FindEmail = () => {
 
   const clickFindEmail = () => {
     axios
-      .post("/user/findemail", {
+      .post("http://localhost:8080/user/findemail", {
         name: name.current.value,
         password: password1.current.value,
         birthday: birthday.current.value,
@@ -58,6 +58,9 @@ const FindEmail = () => {
               id="submitForm"
               onSubmit={(event) => findEmail(event)}
             >
+              <div className="onlyPetopiaAccount">
+                펫토피아 계정만 가능합니다.
+              </div>
               <div className="signUpRow">
                 <div className="col-md-6 mb-3 signUpName">
                   <label htmlFor="name"></label>

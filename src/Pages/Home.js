@@ -200,12 +200,12 @@ const Home = () => {
   };
 
   const [travelBestData, setTravelBestData] = useState([
-    { likes: 0, title: "", author: { profileImage: "" } },
+    { id: 0, likes: 0, title: "", author: { profileImage: "" } },
   ]);
 
   useEffect(() => {
     callTravelBest();
-  }, [setTravelBestData]);
+  }, []);
 
   const callTravelBest = () => {
     axios
@@ -287,8 +287,8 @@ const Home = () => {
               </div>
             </NavLink> */}
 
-            {travelBestData.length !== 0 ||
-            travelBestData.length !== undefined ? (
+            {travelBestData.length !== 0 &&
+            travelBestData[0].id !== undefined ? (
               <RecommendBest
                 id={
                   travelBestData[0].id !== undefined
