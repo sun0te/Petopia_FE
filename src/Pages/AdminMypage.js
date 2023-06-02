@@ -14,6 +14,7 @@ import {
   FaAngleRight,
   FaEdit,
 } from "react-icons/fa";
+import AdminSidebar from "../Components/Admin/AdminSidebar.js";
 
 const AdminMypage = () => {
   const [nickname, setNickname] = useState("관리자");
@@ -55,11 +56,13 @@ const AdminMypage = () => {
   return (
     <>
       <BgAdmin />
-
       <main className="admin-main">
         <HeaderAdmin />
+        <div>
+          <AdminSidebar />
+        </div>
         <section className="admin-page">
-          <div className="user-mypage-area">
+          {/* <div className="user-mypage-area">
             <div className="admin-profile">
               <div className="profile-image">
                 <label htmlFor="profile-image-upload">
@@ -119,8 +122,8 @@ const AdminMypage = () => {
                 관리자 댓글 <span className="category-count">2</span>
               </div>
             </div>
-          </div>
-          <div className="separationArea" />
+          </div> */}
+          {/* <div className="separationArea" />
           <div className="user-sections">
             <NavLink to="/adminuserlist" className="active-link">
               <div className="user-section">
@@ -144,7 +147,7 @@ const AdminMypage = () => {
                 </div>
               </div>
             </NavLink>
-            <NavLink to="/usermypageinquiryadmin" className="active-link">
+            <NavLink to="/admininquiry" className="active-link">
               <div className="user-section">
                 <div className="user-section-icon">
                   <FaInfoCircle className="user-info-icon" />
@@ -167,14 +170,14 @@ const AdminMypage = () => {
               </div>
             </NavLink>
           </div>
-          <div className="separationArea" />
-          <div className="user-mypage-area">
+          <div className="separationArea" /> */}
+          {/* <div className="user-mypage-area">
             <div class="button-wrapper">
               <div class="logout-button-wrapper">
                 <button class="logout-button">로그아웃</button>
               </div>
             </div>
-          </div>
+          </div> */}
         </section>
         <Footer />
       </main>

@@ -65,6 +65,12 @@
   width: 130px;
 }
 
+.report-review-content{
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-top: 3px;
+}
+
 /* ============== 리뷰 추가 ============== */
 
 .report-table-container {

@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import StarRating1 from "../StarRating1.js";
 import axios from "axios";
-import MyReviewSlider from "./MyReviewSlider.js";
 import styled from "styled-components";
 import Button from "react-bootstrap/Button";
+import MyReviewSlider from "../MyPage/MyReviewSlider";
 
 const ReviewButtonsWrap = styled.div`
   display: flex;
   justify-content: space-evenly;
-  margin-top: 5px;
+  margin-top: 10px;
 `;
 
-const MyReviewDetail = ({
+const AdminReportReviewDetail = ({
   setMyPageReviewAction,
   reviewdata,
   handleDelete,
@@ -47,8 +47,8 @@ const MyReviewDetail = ({
           </span>
         </div>
         <div className="reviewListStar">
-          <StarRating1 score={reviewdata.rating} index={0} />
-          <span className="reviewListScore">{reviewdata.rating}.0</span>
+          <StarRating1 className="test13" score={reviewdata.rating} index={0} />
+          <span className="reviewListScore1">{reviewdata.rating}.0</span>
         </div>
         {reviewdata.location.category3 === "동물병원" ? (
           <div className="reviewListCost">
@@ -130,23 +130,8 @@ const MyReviewDetail = ({
           </div>
         </div>
       </div>
-      <ReviewButtonsWrap>
-        <Button
-          className="mt-2 float-right"
-          variant="primary"
-          size="sm"
-          onClick={() => {
-            if (window.confirm("삭제하시겠습니까?")) {
-              handleDelete(reviewId);
-              setMyPageReviewAction(0);
-            }
-          }}
-        >
-          삭제
-        </Button>
-      </ReviewButtonsWrap>
     </>
   );
 };
 
-export default MyReviewDetail;
+export default AdminReportReviewDetail;

@@ -1,12 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 
 const AdminUserReportBoard = ({
-  totalReports,
-  progressReports,
-  completeReports,
-  setReportSelect,
   reports,
   setSelectedReport,
   selectedReport,
@@ -14,41 +10,6 @@ const AdminUserReportBoard = ({
 }) => {
   return (
     <>
-      <div className="userlist-title">
-        <h3>신고 관리</h3>
-      </div>
-      <div className="hr-line-container">
-        <hr className="hr-line" />
-      </div>
-      <div className="report-category">
-        <div className="report-category-item">
-          전체 신고 <span className="category-count">{totalReports}</span>
-        </div>
-        <div className="report-category-item">
-          신고 대기 <span className="category-count">{progressReports}</span>
-        </div>
-        <div className="report-category-item">
-          처리 완료 <span className="category-count">{completeReports}</span>
-        </div>
-      </div>
-      <div className="separationArea" />
-      <div className="userlist-title">
-        <p>신고 리스트</p>
-      </div>
-
-      <div className="report-select-container">
-        <Form.Select
-          className="report-select"
-          aria-label="Default select example"
-          size="sm"
-          onChange={(e) => {
-            setReportSelect(e.target.value);
-          }}
-        >
-          <option value="0">게시판</option>
-          <option value="1">리뷰</option>
-        </Form.Select>
-      </div>
       <div className="report-table-container">
         <table className="admin-user-report-table">
           <thead className="admin-table-title">

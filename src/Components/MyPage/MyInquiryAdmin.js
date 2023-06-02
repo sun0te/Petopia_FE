@@ -30,31 +30,31 @@ const MyInquiryAdmin = () => {
 
   return (
     <>
-      <BgLeft />
+      {/* <BgLeft />
       <main className="admin-main">
         <HeaderAdmin />
-        <section className="admin-page">
-          <div className="admin-Inquiry-container">
-            {inquiryAdminAction === 0 && ( // 문의 리스트
-              <MyInquiryAdminList
-                inquiryAdminList={inquiryAdminList}
-                setInquiryAdminData={setInquiryAdminData}
-                setInquiryAdminAction={setInquiryAdminAction}
-              />
-            )}
-            {inquiryAdminAction === 1 && ( // 문의 상세내용
-              <MyInquiryAdminDetail
-                inquiryAdminList={inquiryAdminList}
-                inquiryAdminData={inquiryAdminData}
-                setInquiryAdminData={setInquiryAdminData}
-                setInquiryAdminAction={setInquiryAdminAction}
-                getInquiryListAll={getInquiryListAll}
-              />
-            )}
-          </div>
-        </section>
+        <section className="admin-page"> */}
+      <div className="admin-Inquiry-container">
+        {inquiryAdminAction === 0 && ( // 문의 리스트
+          <MyInquiryAdminList
+            inquiryAdminList={inquiryAdminList}
+            setInquiryAdminData={setInquiryAdminData}
+            setInquiryAdminAction={setInquiryAdminAction}
+          />
+        )}
+        {inquiryAdminAction === 1 && ( // 문의 상세내용
+          <MyInquiryAdminDetail
+            inquiryAdminList={inquiryAdminList}
+            inquiryAdminData={inquiryAdminData}
+            setInquiryAdminData={setInquiryAdminData}
+            setInquiryAdminAction={setInquiryAdminAction}
+            getInquiryListAll={getInquiryListAll}
+          />
+        )}
+      </div>
+      {/* </section>
         <Footer />
-      </main>
+      </main> */}
     </>
   );
 };

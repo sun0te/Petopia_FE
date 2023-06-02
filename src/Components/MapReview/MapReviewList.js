@@ -97,7 +97,7 @@ const MapReviewList = ({
             <div className="reviewListReport">
               {sessionStorage.getItem("email") !== null ? (
                 <Button
-                  className="btm-sm reportBtn reviewListFont1"
+                  className="btm-sm reportBtn"
                   variant="outline-danger"
                   style={{ padding: "4px 0px 3px 0px" }}
                   onClick={() => {
@@ -109,10 +109,11 @@ const MapReviewList = ({
                 </Button>
               ) : null}
             </div>
-            {sessionStorage.getItem("email") === review.writer.email ? (
+            {sessionStorage.getItem("email") === review.writer.email ||
+            sessionStorage.getItem("email") === "admin@admin.com" ? (
               <div className="reviewListDelete">
                 <Button
-                  className="btm-sm reportBtn reviewListFont2"
+                  className="btm-sm reportBtn"
                   variant="outline-secondary"
                   style={{ padding: "4px 0px 3px 0px" }}
                   onClick={() => {

@@ -81,7 +81,7 @@ const App = () => {
       <Route path="/usermypage" element={<UserMypage />} />
       <Route path="/userwatchlist" element={<UserWatchlist />} />
       <Route path="/usermypageinquiry" element={<MyInquiry />} />
-      <Route path="/usermypageinquiryadmin" element={<MyInquiryAdmin />} />
+      <Route path="/admininquiry" element={<MyInquiryAdmin />} />
       <Route path="/adminmypage" element={<AdminMypage />} />
       <Route path="/adminuserlist" element={<AdminUserList />} />
       <Route path="/adminuserreport1" element={<AdminUserReport />} />

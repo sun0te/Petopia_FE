@@ -7,6 +7,7 @@
 
 .reviewListMainHeader{
     margin-left: 7px;
+    max-width: 200px;
 }
 
 .reviewListStarBox{
@@ -19,17 +20,27 @@
 }
 
 .reviewListStar{
+    position: relative;
     margin-left: 7px;
     margin-top: -5px;
     padding-bottom: 5px;
+    max-width: 200px;
 }
 
 .reviewListScore{
-    font-size: 15px;
+    display: inline-block;
+    vertical-align: middle;
     font-weight: bold;
-    position: absolute;
-    margin-top: 3px;
-    margin-left: 3px;
+    margin-top: 0px;
+    font-size: 15px;
+}
+
+.reviewListScore1{
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: bold;
+    margin-top: -2px;
+    font-size: 15px;
 }
 
 .reviewListName{

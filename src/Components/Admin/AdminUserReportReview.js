@@ -1,59 +1,39 @@
-import React from "react";
-import Form from "react-bootstrap/Form";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import AdminReportReviewDetail from "./AdminReportReviewDetail";
 
 const AdminUserReportReview = ({
-  totalReports,
-  progressReports,
-  completeReports,
-  setReportSelect,
   reports,
   setSelectedReport,
   selectedReport,
   handleReportProcessing,
 }) => {
+  const [reviewImg, setReviewImg] = useState([]);
+
+  const getReviewImg = (reviewId) => {
+    axios
+      .get("/mapReportImg", {
+        params: { id: reviewId },
+      })
+      .then((res) => {
+        const { data } = res;
+        setReviewImg(data);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
+
+  useEffect(() => {}, [reviewImg]);
+
   return (
     <>
-      <div className="userlist-title">
-        <h3>신고 관리</h3>
-      </div>
-      <div className="hr-line-container">
-        <hr className="hr-line" />
-      </div>
-      <div className="report-category">
-        <div className="report-category-item">
-          전체 신고 <span className="category-count">{totalReports}</span>
-        </div>
-        <div className="report-category-item">
-          신고 대기 <span className="category-count">{progressReports}</span>
-        </div>
-        <div className="report-category-item">
-          처리 완료 <span className="category-count">{completeReports}</span>
-        </div>
-      </div>
-      <div className="separationArea" />
-      <div className="userlist-title">
-        <p>신고 리스트</p>
-      </div>
-
-      <div className="report-select-container">
-        <Form.Select
-          className="report-select"
-          aria-label="Default select example"
-          size="sm"
-          onChange={(e) => {
-            setReportSelect(e.target.value);
-          }}
-        >
-          <option value="0">게시판</option>
-          <option value="1">리뷰</option>
-        </Form.Select>
-      </div>
       <div className="report-table-container">
         <table className="admin-user-report-table">
           <thead className="admin-table-title">
             <tr>
-              <th className="admin-user-report-item-title">제목</th>
+              <th className="admin-user-report-item-title">업체명</th>
               <th className="admin-user-report-item-date">신고자</th>
               <th className="admin-user-report-item-date">날짜</th>
               <th className="admin-user-report-item-date">진행</th>
@@ -72,25 +52,14 @@ const AdminUserReportReview = ({
                   <td
                     className="admin-user-report-item-title"
                     onClick={() => {
-                      //console.log(`Report ${report.id} clicked`);
+                      // console.log("콘솔값", report.review.id);
+                      getReviewImg(report.review.id);
                     }}
                   >
                     {
-                      report.review === null ? (
-                        report.post.category === "TRAVEL" ? (
-                          <div>
-                            <Link
-                              to={`/recomend_best?id=${report.id}`}
-                              key={report.id}
-                              state={{ boardid: report.post.id }}
-                            >
-                              {report.post.title}
-                            </Link>
-                          </div>
-                        ) : (
-                          <>{report.post.title}</>
-                        )
-                      ) : null // 리뷰 관련 추가
+                      report.review === null ? null : (
+                        <>{report.review.location.facility_name}</>
+                      ) // 리뷰 관련 추가
                     }
                   </td>
                   <td className="admin-user-report-item-date">
@@ -151,21 +120,17 @@ const AdminUserReportReview = ({
                           </>
                         ) : null}
                       </p>
-                      <br />
                       <div className="report-modal-board">
                         <div className="report-tilte">
-                          <b>게시글 제목</b>
+                          <b>리뷰 내용</b>
                         </div>
-                        {selectedReport.review === null
-                          ? selectedReport.post.title
-                          : null}
-                        <div className="report-tilte">
-                          <br />
-                          <b>게시글 내용</b>
+                        <div className="report-review-content">
+                          <AdminReportReviewDetail
+                            setMyPageReviewAction={0}
+                            reviewdata={selectedReport.review}
+                            handleDelete={0}
+                          />
                         </div>
-                        {selectedReport.review === null
-                          ? selectedReport.post.content
-                          : null}
                       </div>
                     </>
                   ) : (
@@ -193,19 +158,15 @@ const AdminUserReportReview = ({
 
                       <div className="report-modal-board">
                         <div className="report-tilte">
-                          <b>게시글 제목</b>
+                          <b>리뷰 내용</b>
                         </div>
-                        {selectedReport.review === null
-                          ? selectedReport.post.title
-                          : null}
-
-                        <div className="report-tilte">
-                          <br />
-                          <b>게시글 내용</b>
+                        <div className="report-review-content">
+                          <AdminReportReviewDetail
+                            setMyPageReviewAction={0}
+                            reviewdata={selectedReport.review}
+                            handleDelete={0}
+                          />
                         </div>
-                        {selectedReport.review === null
-                          ? selectedReport.post.content
-                          : null}
                       </div>
                     </>
                   )}
