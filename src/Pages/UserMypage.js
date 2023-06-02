@@ -109,7 +109,7 @@ const UserMypage = () => {
       sessionStorage.getItem("email") !== null
     ) {
       axios
-        .post("/user/getuserinfo", {
+        .post("http://localhost:8080/user/getuserinfo", {
           email: sessionStorage.getItem("email"),
         })
         .then((res) => {
@@ -335,11 +335,13 @@ const UserMypage = () => {
                     로그아웃
                   </button>
                 </div>
-                <div class="admin-button-wrapper">
-                  <NavLink to="/adminmypage">
-                    <button class="admin-button">관리자 페이지</button>
-                  </NavLink>
-                </div>
+                {sessionStorage.getItem("email") === "admin@admin.com" ? (
+                  <div class="admin-button-wrapper">
+                    <NavLink to="/adminmypage">
+                      <button class="admin-button">관리자 페이지</button>
+                    </NavLink>
+                  </div>
+                ) : null}
               </div>
             ) : null}
           </div>
