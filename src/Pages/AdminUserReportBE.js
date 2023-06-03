@@ -106,15 +106,10 @@ const AdminUserReportBE = () => {
       </div>
       {reportSelect === "0" ? (
         <AdminUserReportBoard
-          totalReports={totalReports}
-          progressReports={progressReports}
-          completeReports={completeReports}
-          setReportSelect={setReportSelect}
           reports={reports}
           setSelectedReport={setSelectedReport}
           selectedReport={selectedReport}
           handleReportProcessing={handleReportProcessing}
-          reportSelect={reportSelect}
         />
       ) : (
         <AdminUserReportReview

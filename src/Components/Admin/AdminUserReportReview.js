@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import AdminReportReviewDetail from "./AdminReportReviewDetail";
 
@@ -26,6 +26,25 @@ const AdminUserReportReview = ({
   };
 
   useEffect(() => {}, [reviewImg]);
+
+  const modalRef = useRef(null);
+
+  const handleCloseModal = () => {
+    setSelectedReport(null);
+  };
+
+  const handleClickOutside = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      handleCloseModal();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
@@ -92,7 +111,7 @@ const AdminUserReportReview = ({
             )}
           </tbody>
           {selectedReport && (
-            <div className="modal-wrapper">
+            <div className="modal-wrapper" ref={modalRef}>
               <div className="modal-content admin-user-report-modal">
                 <div className="modal-header">
                   <h2>신고 정보</h2>

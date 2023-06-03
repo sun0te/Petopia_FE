@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 
@@ -8,6 +8,25 @@ const AdminUserReportBoard = ({
   selectedReport,
   handleReportProcessing,
 }) => {
+  const modalRef = useRef(null);
+
+  const handleCloseModal = () => {
+    setSelectedReport(null);
+  };
+
+  const handleClickOutside = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      handleCloseModal();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <>
       <div className="report-table-container">
@@ -84,7 +103,7 @@ const AdminUserReportBoard = ({
             )}
           </tbody>
           {selectedReport && (
-            <div className="modal-wrapper">
+            <div className="modal-wrapper" ref={modalRef}>
               <div className="modal-content admin-user-report-modal">
                 <div className="modal-header">
                   <h2>신고 정보</h2>

@@ -56,9 +56,9 @@ const AdminUserList = () => {
       <main className="admin-main">
         <HeaderAdmin />
         <section className="admin-page"> */}
-      {/* <div className="userlist-title">
+      <div className="userlist-title">
         <h3>회원 리스트</h3>
-      </div> */}
+      </div>
       <div className="member-list-container">
         <table className="member-table">
           <thead className="admin-table-title">
