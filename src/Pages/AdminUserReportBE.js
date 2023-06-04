@@ -102,7 +102,7 @@ const AdminUserReportBE = () => {
                           //console.log(`Report ${report.id} clicked`);
                         }}
                       >
-                        {report.post.category === "TRAVEL" ? (
+                        {/* {report.post.category === "TRAVEL" ? (
                           <div>
                             <Link
                               to={`/recomend_best?id=${report.id}`}
@@ -114,7 +114,7 @@ const AdminUserReportBE = () => {
                           </div>
                         ) : (
                           <>{report.post.title}</>
-                        )}
+                        )} */}
                       </td>
                       <td className="admin-user-report-item-date">
                         {report.reporter.nickname}

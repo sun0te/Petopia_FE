@@ -1,26 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 
-const MapReviewSlider = ({ review, reviewImgList }) => {
+const MyReviewSlider = ({ reviewImgList }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const handleSlideChange = (oldIndex, newIndex) => {
+  const reviewSlideChange = (oldIndex, newIndex) => {
     setCurrentSlide(newIndex);
   };
-
-  const [reviewImgUrl, setReviewImgUrl] = useState([]);
-
-  useEffect(() => {
-    setReviewImgUrl(
-      reviewImgList.filter((item) => item.review.id === review.id)
-    );
-  }, []);
 
   return (
     <>
       <div className="reviewSlideBox">
-        <Slider arrows={false} beforeChange={handleSlideChange}>
-          {reviewImgUrl.map((data, i) => (
+        <Slider arrows={false} beforeChange={reviewSlideChange}>
+          {reviewImgList.map((data, i) => (
             <>
               <div className="reviewListImg1" key={i}>
                 <img
@@ -34,11 +26,11 @@ const MapReviewSlider = ({ review, reviewImgList }) => {
           ))}
         </Slider>
         <div className="reviewImgNum">
-          {currentSlide + 1}/{reviewImgUrl.length}
+          {currentSlide + 1}/{reviewImgList.length}
         </div>
       </div>
     </>
   );
 };
 
-export default MapReviewSlider;
+export default MyReviewSlider;

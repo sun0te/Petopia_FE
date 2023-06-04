@@ -59,7 +59,7 @@ const Recomend = () => {
 
   const callTravelBest = () => {
     axios
-      .post("/travelboard/travelbest", {
+      .post("http://localhost:8080/travelboard/travelbest", {
         category: "TRAVEL",
       })
       .then((res) => {
@@ -70,7 +70,7 @@ const Recomend = () => {
 
   const callTravelAll = () => {
     axios
-      .post("/travelboard/travelall", {
+      .post("http://localhost:8080/travelboard/travelall", {
         category: "TRAVEL",
       })
       .then((res) => {
@@ -83,7 +83,7 @@ const Recomend = () => {
   const MAX_BESTTITLE_LENGTH = 37;
   const MAX_TITLE_LENGTH = 11;
 
-  const [limit, setLimit] = useState(2);
+  const [limit, setLimit] = useState(5);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
 
@@ -115,7 +115,7 @@ const Recomend = () => {
           {travelBestData.map((traveldata) => {
             return (
               <RecomendBest
-                id={traveldata.id}
+                id={traveldata.id !== undefined ? traveldata.id : null}
                 picture={
                   traveldata.thumbnailImage !== undefined
                     ? imagePath + traveldata.thumbnailImage
@@ -145,7 +145,7 @@ const Recomend = () => {
         </div>
       )}
 
-      <h3 className="h3_Recomend">전체 글</h3>
+      <h3 className="h3_totalboard">전체 글</h3>
       <div className="recomendWriteBtn">
         <Button
           className="searchBtn"

@@ -147,7 +147,9 @@ const RecommendCard = (props) => {
           </CardInfoContainer>
           <CardDate>
             <span style={{ whiteSpace: "pre" }}>
-              {props.createdat.substring(5, 16).replace("T", "\u00A0\u00A0")}
+              {props.createdat !== undefined
+                ? props.createdat.substring(5, 16).replace("T", "\u00A0\u00A0")
+                : null}
             </span>
           </CardDate>
         </ContentContainer>

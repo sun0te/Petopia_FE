@@ -241,6 +241,11 @@ input[type="date"]::-webkit-datetime-edit-year-field {
     text-align: center;
 }
 
+.onlyPetopiaAccount {
+    color: gray;
+    text-align: center;
+}
+
 /* NaverLogin ---------------------------------------------------------------------------------------------*/
 
 .naverIdLoginImgDiv {
@@ -308,4 +313,22 @@ input[type="date"]::-webkit-datetime-edit-year-field {
 
 .socialLoginSuccessAgreeDiv {
     margin: 0px 0 -20px 0;
+}
+
+/* userUpdateComponent */
+
+
+.withdrawal{
+   
+    display: inline-block;
+    color: rgb(165, 165, 165);
+    font-size: 12px;
+    text-align: center; 
+
+    
+}
+
+.withdrawal span{
+    cursor: pointer;
+    margin: 50px 0 -100px 0;
 }

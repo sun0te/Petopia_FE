@@ -7,6 +7,7 @@ import MapReviewSlider from "./MapReviewSlider.js";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
+import ReportModalCopy from "../../Modal/ReportModalCopy.js";
 
 const MapReviewList = ({
   setReviewAction,
@@ -17,8 +18,6 @@ const MapReviewList = ({
   setReviewListState,
   getPlaceReview,
 }) => {
-  const [test, setTest] = useState([]);
-
   const reviewDelete = (reviewIds) => {
     const delete1 = [reviewIds];
 
@@ -32,14 +31,34 @@ const MapReviewList = ({
       });
   };
 
-  useEffect(() => {
-    setTest(
-      reviewImgList.filter((item) => item.review.id === reviewList[0].id)
-    );
-  }, []);
+  useEffect(() => {}, []);
+
+  // ㅡㅡㅡ 모달창 카피본 ㅡㅡㅡ
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  // ㅡㅡㅡ 모달창 카피본 ㅡㅡㅡ
+
+  const [reviewid, setReviewid] = useState(0);
 
   return (
     <>
+      <ReportModalCopy
+        open={modalOpen}
+        reviewid={reviewid}
+        close={() => {
+          closeModal();
+        }}
+        header="게시글 신고"
+        // id={boardid}
+      ></ReportModalCopy>
       <div className="reviewListTitle">
         <span>{placedata.facility_name}</span>
         <div
@@ -74,13 +93,19 @@ const MapReviewList = ({
         <>
           <div className="reviewListMain">
             <div className="reviewListReport">
-              <Button
-                className="btm-sm reportBtn reviewListFont1"
-                variant="outline-danger"
-                style={{ padding: "4px 0px 3px 0px" }}
-              >
-                🚨신고
-              </Button>
+              {sessionStorage.getItem("email") !== null ? (
+                <Button
+                  className="btm-sm reportBtn reviewListFont1"
+                  variant="outline-danger"
+                  style={{ padding: "4px 0px 3px 0px" }}
+                  onClick={() => {
+                    setReviewid(review.id);
+                    openModal();
+                  }}
+                >
+                  🚨신고
+                </Button>
+              ) : null}
             </div>
             {sessionStorage.getItem("email") === review.writer.email ? (
               <div className="reviewListDelete">
@@ -192,8 +217,6 @@ const MapReviewList = ({
                   ) : (
                     <>
                       <MapReviewSlider
-                        test={test}
-                        setTest={setTest}
                         review={review}
                         reviewImgList={reviewImgList}
                       />

@@ -109,7 +109,7 @@ const UserMypage = () => {
       sessionStorage.getItem("email") !== null
     ) {
       axios
-        .post("/user/getuserinfo", {
+        .post("http://localhost:8080/user/getuserinfo", {
           email: sessionStorage.getItem("email"),
         })
         .then((res) => {
@@ -158,82 +158,83 @@ const UserMypage = () => {
       <main>
         <Header />
         <section className="user-mypage">
-          <div className="user-profile">
-            <div className="profile-image">
-              <label htmlFor="profile-image-upload">
-                <img
-                  src={
-                    userInfo.profile !== null &&
-                    userInfo.profile !== undefined &&
-                    userInfo.profile !== ""
-                      ? userInfo.profile
-                      : defaultProfileImage
-                  }
-                  // src={imageSrc || defaultProfileImage}
-                  alt="프로필 이미지"
-                  className="profile-image-preview"
-                />
-              </label>
-              <input
-                type="file"
-                id="profile-image-upload"
-                accept="image/*"
-                onChange={handleImageChange}
-                style={{ display: "none" }}
-              />
-            </div>
-            {editingNickname ? (
-              <>
+          <div className="user-mypage-area">
+            <div className="user-profile">
+              <div className="profile-image">
+                <label htmlFor="profile-image-upload">
+                  <img
+                    src={
+                      userInfo.profile !== null &&
+                      userInfo.profile !== undefined &&
+                      userInfo.profile !== ""
+                        ? userInfo.profile
+                        : defaultProfileImage
+                    }
+                    // src={imageSrc || defaultProfileImage}
+                    alt="프로필 이미지"
+                    className="profile-image-preview"
+                  />
+                </label>
                 <input
-                  type="text"
-                  value={tempNickname}
-                  onChange={handleNicknameChange}
-                  className="user-nickname-edit"
+                  type="file"
+                  id="profile-image-upload"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  style={{ display: "none" }}
                 />
-                <div className="edit-buttons">
-                  <button className="edit-check" onClick={handleConfirmClick}>
-                    <FaCheck className="edit-icon" />
+              </div>
+              {editingNickname ? (
+                <>
+                  <input
+                    type="text"
+                    value={tempNickname}
+                    onChange={handleNicknameChange}
+                    className="user-nickname-edit"
+                  />
+                  <div className="edit-buttons">
+                    <button className="edit-check" onClick={handleConfirmClick}>
+                      <FaCheck className="edit-icon" />
+                    </button>
+                    <button className="edit-cancle" onClick={handleCancelClick}>
+                      <FaTimes className="edit-icon" />
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="user-nickname">
+                    {userInfo.nickname !== null &&
+                    userInfo.nickname !== undefined &&
+                    userInfo.nickname !== ""
+                      ? userInfo.nickname
+                      : "사용자 닉네임"}
+                  </div>
+                  <button
+                    className="edit-nickname-button"
+                    onClick={handleEditClick}
+                  >
+                    <FaEdit className="edit-icon" />
                   </button>
-                  <button className="edit-cancle" onClick={handleCancelClick}>
-                    <FaTimes className="edit-icon" />
-                  </button>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="user-nickname">
-                  {userInfo.nickname !== null &&
-                  userInfo.nickname !== undefined &&
-                  userInfo.nickname !== ""
-                    ? userInfo.nickname
-                    : "사용자 닉네임"}
-                </div>
-                <button
-                  className="edit-nickname-button"
-                  onClick={handleEditClick}
-                >
-                  <FaEdit className="edit-icon" />
-                </button>
-              </>
-            )}
-          </div>
-
-          <div className="hr-line-container">
-            <hr className="hr-line" />
-          </div>
-
-          <div className="user-category">
-            <div className="category-item">
-              내 글 <span className="category-count">3</span>
+                </>
+              )}
             </div>
-            <div className="category-item">
-              내 댓글 <span className="category-count">2</span>
+
+            <div className="hr-line-container">
+              <hr className="hr-line" />
             </div>
-            <div className="category-item">
-              내 리뷰 <span className="category-count">7</span>
+
+            <div className="user-category">
+              <div className="category-item">
+                내 글 <span className="category-count">3</span>
+              </div>
+              <div className="category-item">
+                내 댓글 <span className="category-count">2</span>
+              </div>
+              <div className="category-item">
+                내 리뷰 <span className="category-count">7</span>
+              </div>
             </div>
           </div>
-
           <div className="separationArea" />
           {myPageAction === 0 ? (
             <div className="user-sections">
@@ -256,7 +257,11 @@ const UserMypage = () => {
               <div
                 className="user-section"
                 onClick={() => {
-                  setMyPageAction(2); // [액션 2 : 관심목록]
+                  if (sessionStorage.getItem("email") != null) {
+                    setMyPageAction(2); // [액션 2 : 관심목록]
+                  } else {
+                    navigate("/login");
+                  }
                 }}
               >
                 <div className="user-section-icon">
@@ -288,7 +293,11 @@ const UserMypage = () => {
               <div
                 className="user-section"
                 onClick={() => {
-                  setMyPageAction(4); // [액션 4 : 1:1 문의]
+                  if (sessionStorage.getItem("email") != null) {
+                    setMyPageAction(4); // [액션 4 : 1:1 문의]
+                  } else {
+                    navigate("/login");
+                  }
                 }}
               >
                 <div className="user-section-icon">
@@ -311,29 +320,31 @@ const UserMypage = () => {
               <LikeList setMyPageAction={setMyPageAction} />
             </>
           ) : myPageAction === 3 ? ( // [액션 3 : 리뷰 관리]
-            <>
-              <MyReviewList setMyPageAction={setMyPageAction} />
-            </>
+            <MyReviewList setMyPageAction={setMyPageAction} />
           ) : myPageAction === 4 ? ( // [액션 4 : 1:1 문의]
             <>
               <MyInquiry setMyPageAction={setMyPageAction} />
             </>
           ) : null}
 
-          {myPageAction === 0 ? (
-            <div class="button-wrapper">
-              <div class="logout-button-wrapper">
-                <button class="logout-button" onClick={handleLogoutClick}>
-                  로그아웃
-                </button>
+          <div className="user-mypage-area">
+            {myPageAction === 0 ? (
+              <div class="button-wrapper">
+                <div class="logout-button-wrapper">
+                  <button class="logout-button" onClick={handleLogoutClick}>
+                    로그아웃
+                  </button>
+                </div>
+                {sessionStorage.getItem("email") === "admin@admin.com" ? (
+                  <div class="admin-button-wrapper">
+                    <NavLink to="/adminmypage">
+                      <button class="admin-button">관리자 페이지</button>
+                    </NavLink>
+                  </div>
+                ) : null}
               </div>
-              <div class="admin-button-wrapper">
-                <NavLink to="/adminmypage">
-                  <button class="admin-button">관리자 페이지</button>
-                </NavLink>
-              </div>
-            </div>
-          ) : null}
+            ) : null}
+          </div>
         </section>
         <Footer />
       </main>
