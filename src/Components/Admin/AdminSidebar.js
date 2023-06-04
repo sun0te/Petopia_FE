@@ -14,9 +14,12 @@ const AdmimSlideContainer = styled.div`
 `;
 
 const AdminSide = styled.div`
-  width: ${({ expanded }) => (expanded ? "230px" : "0px")};
+  width: ${({ expanded }) => (expanded ? "240px" : "0px")};
   transition: width 0.3s ease;
   overflow: hidden;
+  background-color: #fff;
+  border-right: ${({ expanded }) => (expanded ? "1px solid #ccc" : "none")};
+  height: ${({ expanded }) => (expanded ? "100vh" : "auto")};
 `;
 
 const AdminContent = styled.div`
@@ -25,8 +28,8 @@ const AdminContent = styled.div`
 
 const AdminToggleButton = styled.button`
   position: absolute;
-  top: 10px;
-  left: ${({ expanded }) => (expanded ? "240px" : "30px")};
+  top: 0px;
+  left: ${({ expanded }) => (expanded ? "240px" : "0px")};
   transition: left 0.3s ease;
   z-index: 999;
 `;
@@ -47,25 +50,33 @@ const AdminSidebar = () => {
   if (selectedCategory === "/management") {
     content = (
       <>
-        <AdminUserList />
+        <section className="admin-page">
+          <AdminUserList />
+        </section>
       </>
     );
   } else if (selectedCategory === "/report") {
     content = (
       <>
-        <AdminUserReportBE />
+        <section className="admin-page">
+          <AdminUserReportBE />
+        </section>
       </>
     );
   } else if (selectedCategory === "/inquiry") {
     content = (
       <>
-        <MyInquiryAdmin />
+        <section className="admin-page">
+          <MyInquiryAdmin />
+        </section>
       </>
     );
   } else if (selectedCategory === "/statistics") {
     content = (
       <>
-        <AdminStatistics />
+        <section className="admin-page">
+          <AdminStatistics />
+        </section>
       </>
     );
   }

@@ -58,11 +58,9 @@ const AdminMypage = () => {
       <BgAdmin />
       <main className="admin-main">
         <HeaderAdmin />
-        <div>
-          <AdminSidebar />
-        </div>
-        <section className="admin-page">
-          {/* <div className="user-mypage-area">
+        <AdminSidebar />
+        {/* <section className="admin-page"> */}
+        {/* <div className="user-mypage-area">
             <div className="admin-profile">
               <div className="profile-image">
                 <label htmlFor="profile-image-upload">
@@ -123,7 +121,7 @@ const AdminMypage = () => {
               </div>
             </div>
           </div> */}
-          {/* <div className="separationArea" />
+        {/* <div className="separationArea" />
           <div className="user-sections">
             <NavLink to="/adminuserlist" className="active-link">
               <div className="user-section">
@@ -171,14 +169,14 @@ const AdminMypage = () => {
             </NavLink>
           </div>
           <div className="separationArea" /> */}
-          {/* <div className="user-mypage-area">
+        {/* <div className="user-mypage-area">
             <div class="button-wrapper">
               <div class="logout-button-wrapper">
                 <button class="logout-button">로그아웃</button>
               </div>
             </div>
           </div> */}
-        </section>
+        {/* </section> */}
         <Footer />
       </main>
     </>
