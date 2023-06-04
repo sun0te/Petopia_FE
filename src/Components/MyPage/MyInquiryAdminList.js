@@ -94,7 +94,7 @@ const MyInquiryAdminList = ({
               setInquiryAdminAction(1);
             }}
           >
-            <div className="inquiryMain1">
+            <div className="inquiryAdminList">
               <div className="inquiryAdminTitleEllipsis">
                 <b className="inquiryMainTitle">{a.title}</b>
               </div>

@@ -1,3 +1,7 @@
+.report-container{
+    min-height: calc(100vh - 25vh);
+}
+
 .user-mypagereport {
     display: flex;
     flex-direction: column;
@@ -130,7 +134,7 @@
 
 .modal-wrapper {
     position: fixed;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
@@ -187,7 +191,7 @@
     background-color: #ddd;
 }
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
 
     .modal-wrapper {
         top: 0;
@@ -205,4 +209,4 @@
         max-height: none;
         overflow: auto;
     }
-}
+} */

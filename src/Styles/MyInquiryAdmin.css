@@ -55,6 +55,16 @@
     word-break: break-all;
 }
 
+.inquiryAdminList{
+    position: relative;
+    padding: 5px;
+}
+
+.inquiryAdminList:hover{
+    background-color: lightgray;
+    opacity: 0.9;
+}
+
 .inquiryadminStatus{
     position: absolute;
     right: 30px;
@@ -72,7 +82,7 @@
 
 .inquiryadminStatusWait{
     position: absolute;
-    right: 60px;
+    right: 10px;
     margin-top: -15px;
     padding: 0 5px;
     font-size: 14px;
@@ -88,7 +98,7 @@
 
 .inquiryadminStatusComplete{
     position: absolute;
-    right: 60px;
+    right: 10px;
     margin-top: -15px;
     padding: 0 5px;
     font-size: 14px;
@@ -113,11 +123,20 @@
     /* padding: 5px; */
 }
 
+.inquiryAdminBack-Box{
+    width: 90%;
+    position: relative;
+    margin: 0 auto;
+}
+
 .inquiryAdminBack-left {
     position: absolute; 
-    left: 30px;
-    margin-right: auto;
-    padding: 0 15px;
+    /* margin-right: auto; */
+    /* padding: 0 15px; */
+}
+
+.inquiryAdminBack-left:hover{
+    opacity: 0.5;
 }
 
 .inquiryWriteBox{

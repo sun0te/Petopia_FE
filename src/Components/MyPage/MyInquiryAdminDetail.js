@@ -32,13 +32,15 @@ const MyInquiryAdminDetail = ({
   return (
     <>
       <div className="inquiryHeader">
-        <div
-          className="inquiryAdminBack-left"
-          onClick={() => {
-            setInquiryAdminAction(0);
-          }}
-        >
-          <FaAngleLeft className="inquiryBack-icon" />
+        <div className="inquiryAdminBack-Box">
+          <div
+            className="inquiryAdminBack-left"
+            onClick={() => {
+              setInquiryAdminAction(0);
+            }}
+          >
+            <FaAngleLeft className="inquiryBack-icon" />
+          </div>
         </div>
         <h4>1:1문의 관리</h4>
       </div>

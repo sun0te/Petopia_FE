@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navigation } from "react-minimal-side-navigation";
 import "react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css";
 import styled from "styled-components";
@@ -17,34 +17,24 @@ const AdminSide = styled.div`
   width: ${({ expanded }) => (expanded ? "240px" : "0px")};
   transition: width 0.3s ease;
   overflow: hidden;
-  background-color: #fff;
+  // background-color: #f5f5f5;
   border-right: ${({ expanded }) => (expanded ? "1px solid #ccc" : "none")};
   height: ${({ expanded }) => (expanded ? "auto" : "auto")};
+  white-space: nowrap;
 `;
 
 const AdminContent = styled.div`
   flex: 1;
+  overflow: auto; /* 스크롤 가능하도록 설정 */
 `;
 
 const AdminToggleButton = styled.button`
   position: absolute;
   top: 0px;
-  left: ${({ expanded }) => (expanded ? "240px" : "0px")};
+  left: ${({ expanded }) => (expanded ? "220px" : "0px")};
   transition: left 0.3s ease;
+  width: 20px;
   z-index: 999;
-`;
-
-const NavItem = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const ItemIcon = styled.div`
-  margin-right: 10px;
-`;
-
-const ItemText = styled.div`
-  white-space: nowrap;
 `;
 
 const AdminSidebar = () => {
@@ -63,33 +53,25 @@ const AdminSidebar = () => {
   if (selectedCategory === "/management") {
     content = (
       <>
-        <section className="admin-page">
-          <AdminUserList />
-        </section>
+        <AdminUserList />
       </>
     );
   } else if (selectedCategory === "/report") {
     content = (
       <>
-        <section className="admin-page">
-          <AdminUserReportBE />
-        </section>
+        <AdminUserReportBE />
       </>
     );
   } else if (selectedCategory === "/inquiry") {
     content = (
       <>
-        <section className="admin-page">
-          <MyInquiryAdmin />
-        </section>
+        <MyInquiryAdmin />
       </>
     );
   } else if (selectedCategory === "/statistics") {
     content = (
       <>
-        <section className="admin-page">
-          <AdminStatistics />
-        </section>
+        <AdminStatistics />
       </>
     );
   }
@@ -98,15 +80,10 @@ const AdminSidebar = () => {
     <>
       <AdmimSlideContainer>
         <AdminSide expanded={expanded}>
+          <div>관리자님 환영합니다</div>
           <Navigation
-            renderItem={({ title, itemId, elemBefore }) => (
-              <NavItem key={itemId}>
-                {elemBefore && <ItemIcon>{elemBefore()}</ItemIcon>}
-                <ItemText>{title}</ItemText>
-              </NavItem>
-            )}
             // you can use your own router's api to get pathname
-            activeItemId="/management/members"
+            activeItemId={selectedCategory}
             onSelect={({ itemId }) => {
               handleSelectCategory(itemId);
               // maybe push to the route

@@ -68,65 +68,67 @@ const AdminUserReportBE = () => {
       <main className="admin-main">
         <HeaderAdmin />
         <section className="admin-page"> */}
-      <div className="userlist-title">
-        <h3>신고 관리</h3>
-      </div>
-      {/* <div className="hr-line-container">
+      <div className="report-container">
+        <div className="userlist-title">
+          <h3>신고 관리</h3>
+        </div>
+        {/* <div className="hr-line-container">
         <hr className="hr-line" />
       </div> */}
-      <br />
-      <div className="report-category">
-        <div className="report-category-item">
-          전체 신고 <span className="category-count">{totalReports}</span>
+        <br />
+        <div className="report-category">
+          <div className="report-category-item">
+            전체 신고 <span className="category-count">{totalReports}</span>
+          </div>
+          <div className="report-category-item">
+            신고 대기 <span className="category-count">{progressReports}</span>
+          </div>
+          <div className="report-category-item">
+            처리 완료 <span className="category-count">{completeReports}</span>
+          </div>
         </div>
-        <div className="report-category-item">
-          신고 대기 <span className="category-count">{progressReports}</span>
+        <div className="separationArea" />
+        <div className="userlist-title">
+          <p>신고 리스트</p>
         </div>
-        <div className="report-category-item">
-          처리 완료 <span className="category-count">{completeReports}</span>
-        </div>
-      </div>
-      <div className="separationArea" />
-      <div className="userlist-title">
-        <p>신고 리스트</p>
-      </div>
 
-      <div className="report-select-container">
-        <Form.Select
-          className="report-select"
-          aria-label="Default select example"
-          size="sm"
-          onChange={(e) => {
-            setReportSelect(e.target.value);
-          }}
-        >
-          <option value="0">게시판</option>
-          <option value="1">리뷰</option>
-        </Form.Select>
-      </div>
-      {reportSelect === "0" ? (
-        <AdminUserReportBoard
-          reports={reports}
-          setSelectedReport={setSelectedReport}
-          selectedReport={selectedReport}
-          handleReportProcessing={handleReportProcessing}
-        />
-      ) : (
-        <AdminUserReportReview
-          totalReports={totalReports}
-          progressReports={progressReports}
-          completeReports={completeReports}
-          setReportSelect={setReportSelect}
-          reports={reports}
-          setSelectedReport={setSelectedReport}
-          selectedReport={selectedReport}
-          handleReportProcessing={handleReportProcessing}
-          reportSelect={reportSelect}
-        />
-      )}
-      {/* </section>
+        <div className="report-select-container">
+          <Form.Select
+            className="report-select"
+            aria-label="Default select example"
+            size="sm"
+            onChange={(e) => {
+              setReportSelect(e.target.value);
+            }}
+          >
+            <option value="0">게시판</option>
+            <option value="1">리뷰</option>
+          </Form.Select>
+        </div>
+        {reportSelect === "0" ? (
+          <AdminUserReportBoard
+            reports={reports}
+            setSelectedReport={setSelectedReport}
+            selectedReport={selectedReport}
+            handleReportProcessing={handleReportProcessing}
+          />
+        ) : (
+          <AdminUserReportReview
+            totalReports={totalReports}
+            progressReports={progressReports}
+            completeReports={completeReports}
+            setReportSelect={setReportSelect}
+            reports={reports}
+            setSelectedReport={setSelectedReport}
+            selectedReport={selectedReport}
+            handleReportProcessing={handleReportProcessing}
+            reportSelect={reportSelect}
+          />
+        )}
+        {/* </section>
         <Footer />
       </main> */}
+      </div>
     </>
   );
 };
