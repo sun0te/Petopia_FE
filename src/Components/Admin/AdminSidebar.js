@@ -19,7 +19,7 @@ const AdminSide = styled.div`
   overflow: hidden;
   background-color: #fff;
   border-right: ${({ expanded }) => (expanded ? "1px solid #ccc" : "none")};
-  height: ${({ expanded }) => (expanded ? "100vh" : "auto")};
+  height: ${({ expanded }) => (expanded ? "auto" : "auto")};
 `;
 
 const AdminContent = styled.div`
@@ -32,6 +32,19 @@ const AdminToggleButton = styled.button`
   left: ${({ expanded }) => (expanded ? "240px" : "0px")};
   transition: left 0.3s ease;
   z-index: 999;
+`;
+
+const NavItem = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const ItemIcon = styled.div`
+  margin-right: 10px;
+`;
+
+const ItemText = styled.div`
+  white-space: nowrap;
 `;
 
 const AdminSidebar = () => {
@@ -86,6 +99,12 @@ const AdminSidebar = () => {
       <AdmimSlideContainer>
         <AdminSide expanded={expanded}>
           <Navigation
+            renderItem={({ title, itemId, elemBefore }) => (
+              <NavItem key={itemId}>
+                {elemBefore && <ItemIcon>{elemBefore()}</ItemIcon>}
+                <ItemText>{title}</ItemText>
+              </NavItem>
+            )}
             // you can use your own router's api to get pathname
             activeItemId="/management/members"
             onSelect={({ itemId }) => {
