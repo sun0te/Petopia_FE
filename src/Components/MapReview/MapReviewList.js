@@ -99,7 +99,7 @@ const MapReviewList = ({
                 <Button
                   className="btm-sm reportBtn"
                   variant="outline-danger"
-                  style={{ padding: "4px 0px 3px 0px" }}
+                  style={{ padding: "4px 0px 3px 0px", fontSize: "10px" }}
                   onClick={() => {
                     setReviewid(review.id);
                     openModal();
@@ -115,7 +115,7 @@ const MapReviewList = ({
                 <Button
                   className="btm-sm reportBtn"
                   variant="outline-secondary"
-                  style={{ padding: "4px 0px 3px 0px" }}
+                  style={{ padding: "4px 0px 3px 0px", fontSize: "10px" }}
                   onClick={() => {
                     if (window.confirm("삭제하시겠습니까?")) {
                       reviewDelete(review.id);
