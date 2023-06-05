@@ -77,7 +77,7 @@ const NoticeBoard = () => {
             </Button>
           )}
         </Link>
-        <Paginationcm />
+        {/* <Paginationcm /> */}
       </BoardWrapper>
     </NoticeContainer>
   );

@@ -11,11 +11,7 @@ import { Link } from "react-router-dom";
 import ReportModal from "../Modal/ReportModal";
 
 const Recomend_detail = () => {
-  const thumbsClick = () => {
-    alert("thumbs up clicked");
-  };
-  // const [session, setSession] = useState("admin"); //버튼 보이게 하기 위해 작성 추후 admin 삭제하고 id
-  // //const session = sessionStorage.getItem("id"); 로그인 id 받아올 때 쓰면 됨
+  const thumbsClick = () => {};
 
   const [modalOpen, setModalOpen] = useState(false);
 

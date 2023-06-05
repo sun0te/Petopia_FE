@@ -23,7 +23,7 @@ const FindPassword = () => {
 
   const clickFindPassword = () => {
     axios
-      .post("/user/findpassword", {
+      .post("http://localhost:8080/user/findpassword", {
         name: name.current.value,
         email: email.current.value,
         birthday: birthday.current.value,
@@ -59,6 +59,7 @@ const FindPassword = () => {
           id="submitForm"
           onSubmit={(event) => findPassword(event)}
         >
+          <div className="onlyPetopiaAccount">펫토피아 계정만 가능합니다.</div>
           <div className="signUpRow">
             <div className="col-md-6 mb-3 signUpName">
               <label htmlFor="name"></label>

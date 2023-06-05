@@ -109,7 +109,7 @@ const UserMypage = () => {
       sessionStorage.getItem("email") !== null
     ) {
       axios
-        .post("/user/getuserinfo", {
+        .post("http://localhost:8080/user/getuserinfo", {
           email: sessionStorage.getItem("email"),
         })
         .then((res) => {
@@ -257,7 +257,11 @@ const UserMypage = () => {
               <div
                 className="user-section"
                 onClick={() => {
-                  setMyPageAction(2); // [액션 2 : 관심목록]
+                  if (sessionStorage.getItem("email") != null) {
+                    setMyPageAction(2); // [액션 2 : 관심목록]
+                  } else {
+                    navigate("/login");
+                  }
                 }}
               >
                 <div className="user-section-icon">
@@ -289,7 +293,11 @@ const UserMypage = () => {
               <div
                 className="user-section"
                 onClick={() => {
-                  setMyPageAction(4); // [액션 4 : 1:1 문의]
+                  if (sessionStorage.getItem("email") != null) {
+                    setMyPageAction(4); // [액션 4 : 1:1 문의]
+                  } else {
+                    navigate("/login");
+                  }
                 }}
               >
                 <div className="user-section-icon">
@@ -312,9 +320,7 @@ const UserMypage = () => {
               <LikeList setMyPageAction={setMyPageAction} />
             </>
           ) : myPageAction === 3 ? ( // [액션 3 : 리뷰 관리]
-            <>
-              <MyReviewList setMyPageAction={setMyPageAction} />
-            </>
+            <MyReviewList setMyPageAction={setMyPageAction} />
           ) : myPageAction === 4 ? ( // [액션 4 : 1:1 문의]
             <>
               <MyInquiry setMyPageAction={setMyPageAction} />
@@ -329,11 +335,13 @@ const UserMypage = () => {
                     로그아웃
                   </button>
                 </div>
-                <div class="admin-button-wrapper">
-                  <NavLink to="/adminmypage">
-                    <button class="admin-button">관리자 페이지</button>
-                  </NavLink>
-                </div>
+                {sessionStorage.getItem("email") === "admin@admin.com" ? (
+                  <div class="admin-button-wrapper">
+                    <NavLink to="/adminmypage">
+                      <button class="admin-button">관리자 페이지</button>
+                    </NavLink>
+                  </div>
+                ) : null}
               </div>
             ) : null}
           </div>

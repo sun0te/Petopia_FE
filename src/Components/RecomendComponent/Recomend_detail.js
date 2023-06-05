@@ -1,6 +1,6 @@
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
@@ -8,6 +8,7 @@ import { BsHandThumbsUp, BsHeart, BsPerson } from "react-icons/bs";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import ReportModal from "../../Modal/ReportModal";
 import "../../Styles/RecomendStyle.css";
+import Comment from "../Comment";
 
 const Recomend_detail = () => {
   const location = useLocation();
@@ -22,14 +23,14 @@ const Recomend_detail = () => {
       sessionStorage.getItem("email") !== undefined
     ) {
       axios
-        .post("/recommend/confirm", {
+        .post("http://localhost:8080/recommend/confirm", {
           post: { id: boardid },
           user: { email: sessionStorage.getItem("email") },
         })
         .then((res) => {
           if (res.data === false) {
             axios
-              .post("/recommend/upper", {
+              .post("http://localhost:8080/recommend/upper", {
                 post: { id: boardid },
                 user: { email: sessionStorage.getItem("email") },
               })
@@ -42,7 +43,7 @@ const Recomend_detail = () => {
               });
           } else if (res.data === true) {
             axios
-              .post("/recommend/lower", {
+              .post("http://localhost:8080/recommend/lower", {
                 post: { id: boardid },
                 user: { email: sessionStorage.getItem("email") },
               })
@@ -70,14 +71,14 @@ const Recomend_detail = () => {
       sessionStorage.getItem("email") !== undefined
     ) {
       axios
-        .post("/interest/confirmlike", {
+        .post("http://localhost:8080/interest/confirmlike", {
           post: { id: boardid },
           user: { email: sessionStorage.getItem("email") },
         })
         .then((res) => {
           if (res.data === false) {
             axios
-              .post("/interest/upperlike", {
+              .post("http://localhost:8080/interest/upperlike", {
                 post: { id: boardid },
                 user: { email: sessionStorage.getItem("email") },
               })
@@ -90,7 +91,7 @@ const Recomend_detail = () => {
               });
           } else if (res.data === true) {
             axios
-              .post("/interest/lowerlike", {
+              .post("http://localhost:8080/interest/lowerlike", {
                 post: { id: boardid },
                 user: { email: sessionStorage.getItem("email") },
               })
@@ -130,7 +131,7 @@ const Recomend_detail = () => {
 
   const getImgInfo = () => {
     axios
-      .post("/board/detailimg", {
+      .post("http://localhost:8080/board/detailimg", {
         post: { id: boardid },
       })
       .then((res) => {
@@ -143,7 +144,7 @@ const Recomend_detail = () => {
 
   const getBoardInfo = () => {
     axios
-      .post("/board/detail", {
+      .post("http://localhost:8080/board/detail", {
         id: boardid,
         category: "TRAVEL",
       })
@@ -168,13 +169,24 @@ const Recomend_detail = () => {
 
   const getTravelInfo = (boardid) => {
     axios
-      .post("/travel/getinfo", { post: { id: boardid } })
+      .post("http://localhost:8080/travel/getinfo", { post: { id: boardid } })
       .then((res) => {
         setPlaceCategory(res.data.category);
         setPetProvisionsData(res.data.petProvisions);
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+
+  const [commentList, setCommentList] = useState([]);
+  const getCommentlist = (boardid) => {
+    axios
+      .post("http://localhost:8080/comment/findall", {
+        post: { id: boardid },
+      })
+      .then((res) => {
+        setCommentList(res.data);
       });
   };
 
@@ -188,7 +200,7 @@ const Recomend_detail = () => {
         sessionStorage.getItem("email") !== undefined
       ) {
         axios
-          .post("/recommend/confirm", {
+          .post("http://localhost:8080/recommend/confirm", {
             post: { id: boardid },
             user: { email: sessionStorage.getItem("email") },
           })
@@ -209,7 +221,7 @@ const Recomend_detail = () => {
         sessionStorage.getItem("email") !== undefined
       ) {
         axios
-          .post("/interest/confirmlike", {
+          .post("http://localhost:8080/interest/confirmlike", {
             post: { id: boardid },
             user: { email: sessionStorage.getItem("email") },
           })
@@ -226,6 +238,8 @@ const Recomend_detail = () => {
     getBoardInfo();
     checkBoardRecommend();
     checkBoardLike();
+    getCommentlist();
+    console.log(commentList);
   }, []);
 
   const imagePath = "/uploadimgs/";
@@ -238,6 +252,27 @@ const Recomend_detail = () => {
       axios.post("/board/delete", { id: boardid }).then((res) => {
         navigate("/routetrip");
       });
+    }
+  };
+
+  // 댓글 달기
+  const commentRef = useRef(null);
+
+  const clickWriteCommentBtn = () => {
+    if (
+      sessionStorage.getItem("email") === null ||
+      sessionStorage.getItem("email") === "" ||
+      sessionStorage.getItem("email") === undefined
+    ) {
+      alert("로그인 후 가능합니다.");
+    } else {
+      axios
+        .post("http://localhost:8080/comment/write", {
+          post: { id: boardid },
+          author: { email: sessionStorage.getItem("email") },
+          content: commentRef.current.value,
+        })
+        .then((res) => {});
     }
   };
 
@@ -277,7 +312,11 @@ const Recomend_detail = () => {
             <Button
               className="btm-sm reportBtn"
               variant="outline-secondary"
-              style={{ padding: "4px 0px 3px 0px", marginRight: "10px" }}
+              style={{
+                padding: "4px 0px 3px 0px",
+                marginRight: "10px",
+                fontSize: "5px",
+              }}
               onClick={() => {
                 deleteBoard();
               }}
@@ -288,7 +327,7 @@ const Recomend_detail = () => {
           <Button
             className="btm-sm reportBtn"
             variant="outline-danger"
-            style={{ padding: "4px 0px 3px 0px" }}
+            style={{ padding: "4px 0px 3px 0px", fontSize: "5px" }}
             onClick={openModal}
           >
             🚨신고
@@ -365,12 +404,16 @@ const Recomend_detail = () => {
           </div>
           <br />
 
-          <Card className="cardRecomendDetail">
+          <Card
+            className="cardRecomendDetail"
+            style={{ backgroundColor: "rgb(207, 207, 207)" }}
+          >
             <Card.Body className="cardRecomendDetailBody jangso">
               ✅ 장소 정보
             </Card.Body>
             <Card.Body className="cardRecomendDetailBody">
-              📌 어떤 종류의 장소인가요? <br /> <br />
+              📌 어떤 종류의 장소인가요? <br />
+              <br />
               {placeCategory === "RESTAURANT" ? (
                 <span>- 음식점</span>
               ) : placeCategory === "PARK" ? (
@@ -380,9 +423,12 @@ const Recomend_detail = () => {
               ) : placeCategory === "ACCOMMODATION" ? (
                 <span>- 숙소</span>
               ) : null}
+              <br />
+              <br />
             </Card.Body>
             <Card.Body className="cardRecomendDetailBody">
-              📌 반려견 동반 시 유의사항 <br /> <br />
+              📌 반려견 동반 시 유의사항 <br />
+              <br />
               {petProvisionsData.includes("PET_SNACK") && (
                 <span>
                   - 펫 간식 제공 <br />
@@ -471,6 +517,30 @@ const Recomend_detail = () => {
               </Link>
             </div>
           ) : null}
+
+          {/* <Comment />
+
+          <div className="writeCommentDiv">
+            <Form.Group className="mb-3 writeFormContent">
+              <Form.Label></Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="댓글을 입력하세요"
+                className="writeCommentTextarea"
+                ref={commentRef}
+              />
+              <Button
+                className="btn-sm writeCommentBtn"
+                variant="primary"
+                onClick={() => {
+                  clickWriteCommentBtn();
+                }}
+              >
+                댓글달기
+              </Button>
+            </Form.Group>
+          </div> */}
         </div>
       </div>
     </>

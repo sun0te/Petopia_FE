@@ -8,9 +8,8 @@ import { useEffect, useState, useRef } from "react";
 import { async } from "q";
 import axios from "axios";
 
-const ReportModal = (props) => {
+const ReportModalCopy = ({ open, close, header, reviewid }) => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
-  const { open, close, header, id } = props;
 
   const [reportReason, setReportReason] = useState("DISGUST");
 
@@ -18,9 +17,7 @@ const ReportModal = (props) => {
     setReportReason(e.target.value);
   };
 
-  useEffect(() => {
-    setReportReason(reportReason);
-  }, [reportReason]);
+  useEffect(() => {}, []);
 
   const [reportReasonText, setReportReasonText] = useState("");
   const reportReasonContent = useRef(null);
@@ -28,8 +25,8 @@ const ReportModal = (props) => {
   const writeReason = () => {
     const reportBoard = () => {
       axios
-        .post("/report/boardreport", {
-          post: { id: id },
+        .post("/report/reviewreport", {
+          review: { id: reviewid },
           reporter: { email: sessionStorage.getItem("email") },
           reason: reportReason,
           otherReason: reportReasonContent.current.value,
@@ -37,7 +34,7 @@ const ReportModal = (props) => {
         })
         .then((res) => {
           alert("게시글 신고가 접수되었습니다.");
-          window.location.reload();
+          close();
         })
         .catch((err) => {});
     };
@@ -50,7 +47,7 @@ const ReportModal = (props) => {
     } else reportBoard();
   };
 
-  useEffect(() => {}, [reportReasonText]);
+  //   useEffect(() => {}, [reportReasonText]);
 
   return (
     // 모달이 열릴때 openModal 클래스가 생성된다.
@@ -63,14 +60,13 @@ const ReportModal = (props) => {
               className="reportModalCloseBtn"
               onClick={() => {
                 close();
-                window.location.reload();
               }}
             >
               &times;
             </button>
           </div>
           <div className="reportModalMainDiv">
-            {props.children}
+            <p>신고 사유를 선택해 주세요</p>
             <Form.Select
               aria-label="신고 사유"
               size="sm"
@@ -116,7 +112,6 @@ const ReportModal = (props) => {
               />
             )}
           </div>
-
           <div className="reportModalFooterDiv">
             {/* <button className="reportModalCloseBtn" onClick={close}>
               close
@@ -139,4 +134,4 @@ const ReportModal = (props) => {
   );
 };
 
-export default ReportModal;
+export default ReportModalCopy;
