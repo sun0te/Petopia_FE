@@ -31,7 +31,7 @@ const MyInquiryAdminList = ({
   // inquiryadminstate = 0 => 전체 문의 , inquiryadminstate = 1 => 답변 대기 , inquiryadminstate = 2 = > 답변 완료
   return (
     <>
-      <div className="inquiryHeader">
+      <div className="inquiryAdminHeader">
         <h4>1:1문의 관리</h4>
       </div>
       <div className="inquiryadminbox">
@@ -94,7 +94,7 @@ const MyInquiryAdminList = ({
               setInquiryAdminAction(1);
             }}
           >
-            <div className="inquiryMain1">
+            <div className="inquiryAdminList">
               <div className="inquiryAdminTitleEllipsis">
                 <b className="inquiryMainTitle">{a.title}</b>
               </div>
@@ -121,7 +121,7 @@ const MyInquiryAdminList = ({
                 setInquiryAdminAction(1);
               }}
             >
-              <div className="inquiryMain1">
+              <div className="inquiryAdminList">
                 <div className="inquiryAdminTitleEllipsis">
                   <b className="inquiryMainTitle">{a.title}</b>
                 </div>
@@ -148,7 +148,7 @@ const MyInquiryAdminList = ({
                 setInquiryAdminAction(1);
               }}
             >
-              <div className="inquiryMain1">
+              <div className="inquiryAdminList">
                 <div className="inquiryAdminTitleEllipsis">
                   <b className="inquiryMainTitle">{a.title}</b>
                 </div>

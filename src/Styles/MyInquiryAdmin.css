@@ -2,9 +2,15 @@
     min-height: calc(100vh - 25vh);
 }
 
+.inquiryAdminHeader{
+    margin-top: 2em;
+    /* padding: 10px 0; */
+    text-align: center;
+}
+
 .inquiryadminbox{
     /* border: 1px solid black; */
-    margin-top: 10px;
+    margin-top: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,6 +45,12 @@
     padding: 10px 20px;
 } */
 
+.inquiryAdminhr{
+    width: 90%; 
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
 .inquiryadmincount{
     font-size: 12px;
 }
@@ -53,6 +65,16 @@
     margin-top: 20px;
     word-wrap: break-word;
     word-break: break-all;
+}
+
+.inquiryAdminList{
+    position: relative;
+    padding: 5px;
+}
+
+.inquiryAdminList:hover{
+    background-color: lightgray;
+    opacity: 0.9;
 }
 
 .inquiryadminStatus{
@@ -72,7 +94,7 @@
 
 .inquiryadminStatusWait{
     position: absolute;
-    right: 60px;
+    right: 10px;
     margin-top: -15px;
     padding: 0 5px;
     font-size: 14px;
@@ -88,7 +110,7 @@
 
 .inquiryadminStatusComplete{
     position: absolute;
-    right: 60px;
+    right: 10px;
     margin-top: -15px;
     padding: 0 5px;
     font-size: 14px;
@@ -113,11 +135,20 @@
     /* padding: 5px; */
 }
 
+.inquiryAdminBack-Box{
+    width: 90%;
+    position: relative;
+    margin: 0 auto;
+}
+
 .inquiryAdminBack-left {
     position: absolute; 
-    left: 30px;
-    margin-right: auto;
-    padding: 0 15px;
+    /* margin-right: auto; */
+    /* padding: 0 15px; */
+}
+
+.inquiryAdminBack-left:hover{
+    opacity: 0.5;
 }
 
 .inquiryWriteBox{

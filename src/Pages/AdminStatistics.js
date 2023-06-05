@@ -32,39 +32,39 @@ const AdminStatistics = () => {
 
   return (
     <>
-      <BgAdmin />
+      {/* <BgAdmin />
 
       <main className="admin-main">
         <HeaderAdmin />
-        <section className="admin-page">
-          <div className="admin-statistics-container">
-            <div className="statistics-title">
-              <h3>Petopia 월간 통계</h3>
-            </div>
-            <hr className="hr-line" />
-            <div className="statistics-container">
-              <div className="statistics-item">
-                <BarChart
-                  width={730}
-                  height={250}
-                  data={data}
-                  margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="view" fill="#8884d8" />
-                  <Bar dataKey="register" fill="#82ca9d" />
-                </BarChart>
-              </div>
-            </div>
+        <section className="admin-page"> */}
+      <div className="admin-statistics-container">
+        <div className="statistics-title">
+          <h3>Petopia 월간 통계</h3>
+        </div>
+        <hr className="hr-line" />
+        <div className="statistics-container">
+          <div className="statistics-item">
+            <BarChart
+              width={730}
+              height={250}
+              data={data}
+              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="view" fill="#8884d8" />
+              <Bar dataKey="register" fill="#82ca9d" />
+            </BarChart>
           </div>
-        </section>
+        </div>
+      </div>
+      {/* </section>
 
         <Footer />
-      </main>
+      </main> */}
     </>
   );
 };

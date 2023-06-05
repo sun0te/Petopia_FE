@@ -1,3 +1,7 @@
+.userlist-container{
+    min-height: calc(100vh - 25vh);
+}
+
 .userlist-title {
     width: 100%;
     display: flex;

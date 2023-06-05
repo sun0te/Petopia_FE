@@ -184,6 +184,20 @@
     border-radius: 50%;
 }
 
+.user-section-icon-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+    margin-left: 0;
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 2px #787878;
+    border-radius: 50%;
+}
+
 .user-info-icon {
     color: #777777;
 }

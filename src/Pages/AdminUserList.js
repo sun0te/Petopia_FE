@@ -51,77 +51,79 @@ const AdminUserList = () => {
 
   return (
     <>
-      <BgAdmin />
+      {/* <BgAdmin />
 
       <main className="admin-main">
         <HeaderAdmin />
-        <section className="admin-page">
-          <div className="userlist-title">
-            <h3>회원 리스트</h3>
-          </div>
-          <div className="member-list-container">
-            <table className="member-table">
-              <thead className="admin-table-title">
-                <tr>
-                  <th className="member-checkbox"></th>
-                  <th className="member-id">num</th>
-                  <th className="member-name">이름</th>
-                  <th className="member-email">이메일</th>
-                  <th className="member-join-date">가입일</th>
-                  <th className="member-memo">기타</th>
-                </tr>
-              </thead>
-              <tbody>
-                {members.map((member) => (
-                  <tr key={member.id} className="member-row">
-                    <td className="member-checkbox">
-                      <input
-                        type="checkbox"
-                        className="member-checkbox"
-                        checked={selected.includes(member.id)}
-                        onChange={() => handleCheckboxChange(member.id)}
-                      />
-                    </td>
-                    <td className="member-id">{member.id}</td>
-                    <td className="member-name">{member.name}</td>
-                    <td className="member-email">{member.email}</td>
-                    <td className="member-join-date">{member.joinDate}</td>
-                    <td className="member-memo">
-                      <textarea
-                        className="member-memo-textarea"
-                        value={member.memo}
-                        onChange={(e) =>
-                          setMembers(
-                            members.map((m) =>
-                              m.id === member.id
-                                ? { ...m, memo: e.target.value }
-                                : m
-                            )
+        <section className="admin-page"> */}
+      <div className="userlist-container">
+        <div className="userlist-title">
+          <h4>회원 리스트</h4>
+        </div>
+        <div className="member-list-container">
+          <table className="member-table">
+            <thead className="admin-table-title">
+              <tr>
+                <th className="member-checkbox"></th>
+                <th className="member-id">num</th>
+                <th className="member-name">이름</th>
+                <th className="member-email">이메일</th>
+                <th className="member-join-date">가입일</th>
+                <th className="member-memo">기타</th>
+              </tr>
+            </thead>
+            <tbody>
+              {members.map((member) => (
+                <tr key={member.id} className="member-row">
+                  <td className="member-checkbox">
+                    <input
+                      type="checkbox"
+                      className="member-checkbox"
+                      checked={selected.includes(member.id)}
+                      onChange={() => handleCheckboxChange(member.id)}
+                    />
+                  </td>
+                  <td className="member-id">{member.id}</td>
+                  <td className="member-name">{member.name}</td>
+                  <td className="member-email">{member.email}</td>
+                  <td className="member-join-date">{member.joinDate}</td>
+                  <td className="member-memo">
+                    <textarea
+                      className="member-memo-textarea"
+                      value={member.memo}
+                      onChange={(e) =>
+                        setMembers(
+                          members.map((m) =>
+                            m.id === member.id
+                              ? { ...m, memo: e.target.value }
+                              : m
                           )
-                        }
-                      />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <div className="list-button">
-            {selected.length > 0 && (
-              <div className="member-list-actions">
-                <button
-                  style={{ backgroundColor: "red" }}
-                  onClick={handleDeleteClick}
-                >
-                  삭제
-                </button>
-                <button onClick={handleCancelClick}>취소</button>
-              </div>
-            )}
-          </div>
-        </section>
+                        )
+                      }
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="list-button">
+          {selected.length > 0 && (
+            <div className="member-list-actions">
+              <button
+                style={{ backgroundColor: "red" }}
+                onClick={handleDeleteClick}
+              >
+                삭제
+              </button>
+              <button onClick={handleCancelClick}>취소</button>
+            </div>
+          )}
+        </div>
+        {/* </section>
         <Footer />
-      </main>
+      </main> */}
+      </div>
     </>
   );
 };

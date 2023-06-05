@@ -113,27 +113,29 @@ const ReviewMain = () => {
         <Header />
         <section>
           {reviewAction === 0 ? (
-            <Map // 지도를 표시할 Container
-              center={{
-                // 지도의 중심좌표
-                lat: reviewlocation.lat,
-                lng: reviewlocation.lng,
-              }}
-              style={{
-                // 지도의 크기
-                width: "360px",
-                height: "350px",
-              }}
-              level={3} // 지도의 확대 레벨
-            >
-              <MapMarker // 마커를 생성합니다
-                position={{
-                  // 마커가 표시될 위치입니다
-                  lat: placedata.lat,
-                  lng: placedata.lng,
+            <div className="reviewMapBox">
+              <Map // 지도를 표시할 Container
+                center={{
+                  // 지도의 중심좌표
+                  lat: reviewlocation.lat,
+                  lng: reviewlocation.lng,
                 }}
-              />
-            </Map>
+                style={{
+                  // 지도의 크기
+                  width: "358px",
+                  height: "350px",
+                }}
+                level={3} // 지도의 확대 레벨
+              >
+                <MapMarker // 마커를 생성합니다
+                  position={{
+                    // 마커가 표시될 위치입니다
+                    lat: placedata.lat,
+                    lng: placedata.lng,
+                  }}
+                />
+              </Map>
+            </div>
           ) : null}
           {reviewAction === 0 ? (
             <>
@@ -147,19 +149,17 @@ const ReviewMain = () => {
                 ) : (
                   <b className="reviewMainRatingScore">(0)</b>
                 )}
-
-                {/* ㅡㅡㅡ 수정 예정 ㅡㅡㅡ */}
                 <span
                   className="reviewMainCounting"
                   onClick={() => {
-                    // navigate(-1); // 리뷰페이지로 이동
-                    setReviewAction(1);
+                    if (reviewList.length !== 0) {
+                      setReviewAction(1);
+                    }
                   }}
                 >
                   리뷰 {reviewList.length}개
                   <FaAngleRight className="reviewList-icon" />
                 </span>
-                {/* ㅡㅡㅡ 수정 예정 ㅡㅡㅡ */}
               </div>
             </>
           ) : null}
@@ -167,20 +167,16 @@ const ReviewMain = () => {
           {reviewAction === 0 ? (
             <>
               <div className="reviewButtonBox">
-                {reviewList.length !== 0 ? (
-                  <button
-                    className="reviewButtonBox1"
-                    onClick={() => {
+                <button
+                  className="reviewButtonBox1"
+                  onClick={() => {
+                    if (reviewList.length !== 0) {
                       setReviewAction(1);
-                    }}
-                  >
-                    리뷰 {reviewList.length}
-                  </button>
-                ) : (
-                  <button className="reviewButtonBox1" onClick={() => {}}>
-                    리뷰 {reviewList.length}
-                  </button>
-                )}
+                    }
+                  }}
+                >
+                  리뷰 {reviewList.length}
+                </button>
                 &nbsp;
                 <button
                   className="reviewButtonBox1"

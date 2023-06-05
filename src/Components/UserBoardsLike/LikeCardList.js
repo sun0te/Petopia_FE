@@ -190,7 +190,16 @@ const LikeCardList = ({ interestList }) => {
                 />
                 <ContentContainer>
                   <div className="cardti">
-                    <CardTitle>{community.title}</CardTitle>
+                    <CardTitle
+                      style={{
+                        maxWidth: "170px",
+                        textOverflow: "ellipsis",
+                        overflow: "hidden",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {community.title}
+                    </CardTitle>
                     {/* 답글 수 */}
                     {/* <CardComments>({community.recommends})</CardComments> */}
                   </div>

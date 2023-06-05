@@ -1,3 +1,7 @@
+.report-container{
+    min-height: calc(100vh - 25vh);
+}
+
 .user-mypagereport {
     display: flex;
     flex-direction: column;
@@ -49,6 +53,29 @@
 }
 
 /* ====================================== */
+
+/* ============== 리뷰 추가 ============== */
+
+.report-select-container{
+    position: relative;
+    margin: 0 auto;
+    width: 95%;
+}
+
+.report-select{
+  position: absolute;
+  right: 0px;
+  bottom: 10px;
+  width: 130px;
+}
+
+.report-review-content{
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-top: 3px;
+}
+
+/* ============== 리뷰 추가 ============== */
 
 .report-table-container {
     display: flex;
@@ -164,7 +191,7 @@
     background-color: #ddd;
 }
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
 
     .modal-wrapper {
         top: 0;
@@ -182,4 +209,4 @@
         max-height: none;
         overflow: auto;
     }
-}
+} */

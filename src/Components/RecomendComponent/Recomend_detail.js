@@ -182,7 +182,7 @@ const Recomend_detail = () => {
   const [commentList, setCommentList] = useState([]);
   const getCommentlist = (boardid) => {
     axios
-      .post("http://localhost:8080/comment/findall", {
+      .post("/comment/findall", {
         post: { id: boardid },
       })
       .then((res) => {
@@ -267,7 +267,7 @@ const Recomend_detail = () => {
       alert("로그인 후 가능합니다.");
     } else {
       axios
-        .post("http://localhost:8080/comment/write", {
+        .post("/comment/write", {
           post: { id: boardid },
           author: { email: sessionStorage.getItem("email") },
           content: commentRef.current.value,
