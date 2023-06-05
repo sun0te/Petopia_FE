@@ -58,7 +58,7 @@ const AdminUserList = () => {
         <section className="admin-page"> */}
       <div className="userlist-container">
         <div className="userlist-title">
-          <h3>회원 리스트</h3>
+          <h4>회원 리스트</h4>
         </div>
         <div className="member-list-container">
           <table className="member-table">

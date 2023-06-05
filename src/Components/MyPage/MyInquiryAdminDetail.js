@@ -31,7 +31,7 @@ const MyInquiryAdminDetail = ({
 
   return (
     <>
-      <div className="inquiryHeader">
+      <div className="inquiryAdminHeader">
         <div className="inquiryAdminBack-Box">
           <div
             className="inquiryAdminBack-left"
@@ -44,7 +44,7 @@ const MyInquiryAdminDetail = ({
         </div>
         <h4>1:1문의 관리</h4>
       </div>
-      <hr className="inquiryhr1" />
+      <hr className="inquiryAdminhr" />
       <div className="inquiryDetail1">
         <div className="inquiryDetail2">
           <div className="inquiryMainTitleBox">

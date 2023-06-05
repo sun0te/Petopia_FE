@@ -2,9 +2,15 @@
     min-height: calc(100vh - 25vh);
 }
 
+.inquiryAdminHeader{
+    margin-top: 2em;
+    /* padding: 10px 0; */
+    text-align: center;
+}
+
 .inquiryadminbox{
     /* border: 1px solid black; */
-    margin-top: 10px;
+    margin-top: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,6 +44,12 @@
     text-align: center;
     padding: 10px 20px;
 } */
+
+.inquiryAdminhr{
+    width: 90%; 
+    margin: 0 auto;
+    margin-top: 20px;
+}
 
 .inquiryadmincount{
     font-size: 12px;

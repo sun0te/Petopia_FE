@@ -3,10 +3,12 @@ import { Navigation } from "react-minimal-side-navigation";
 import "react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css";
 import styled from "styled-components";
 import { FaUser, FaFlag, FaInfoCircle, FaChartBar } from "react-icons/fa";
+import { IoIosMenu, IoIosArrowBack } from "react-icons/io";
 import MyInquiryAdmin from "../MyPage/MyInquiryAdmin";
 import AdminUserList from "../../Pages/AdminUserList";
 import AdminStatistics from "../../Pages/AdminStatistics";
 import AdminUserReportBE from "../../Pages/AdminUserReportBE";
+import "../../Styles/AdminSide.css";
 
 const AdmimSlideContainer = styled.div`
   display: flex;
@@ -30,11 +32,31 @@ const AdminContent = styled.div`
 
 const AdminToggleButton = styled.button`
   position: absolute;
-  top: 0px;
-  left: ${({ expanded }) => (expanded ? "220px" : "0px")};
+  top: ${({ expanded }) => (expanded ? "13px" : "0px")};
+  left: ${({ expanded }) => (expanded ? "203px" : "0px")};
   transition: left 0.3s ease;
-  width: 20px;
+  width: ${({ expanded }) => (expanded ? "30px" : "40px")};
+  height: ${({ expanded }) => (expanded ? "30px" : "40px")};
+  border: ${({ expanded }) => (expanded ? "none" : "3px solid #bdbdbd")};
+  border-radius: 7px;
   z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    opacity: 0.5;
+  }
+`;
+
+const ArrowBackIcon = styled(IoIosArrowBack)`
+  color: #a4a4a4; /* 아이콘 색상 설정 */
+  font-size: 20px; /* 아이콘 크기 설정 */
+`;
+
+const MenuIcon = styled(IoIosMenu)`
+  color: #a4a4a4; /* 아이콘 색상 설정 */
+  font-size: 30px; /* 아이콘 크기 설정 */
 `;
 
 const AdminSidebar = () => {
@@ -80,7 +102,8 @@ const AdminSidebar = () => {
     <>
       <AdmimSlideContainer>
         <AdminSide expanded={expanded}>
-          <div>관리자님 환영합니다</div>
+          <div className="admin-side-header">관리자님 환영합니다</div>
+          <hr className="admin-side-hr" />
           <Navigation
             // you can use your own router's api to get pathname
             activeItemId={selectedCategory}
@@ -133,7 +156,7 @@ const AdminSidebar = () => {
         </AdminSide>
         <AdminContent>{content}</AdminContent>
         <AdminToggleButton expanded={expanded} onClick={handleToggle}>
-          {expanded ? "<" : ">"}
+          {expanded ? <ArrowBackIcon /> : <MenuIcon />}
         </AdminToggleButton>
       </AdmimSlideContainer>
     </>

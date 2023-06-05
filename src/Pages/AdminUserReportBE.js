@@ -70,7 +70,7 @@ const AdminUserReportBE = () => {
         <section className="admin-page"> */}
       <div className="report-container">
         <div className="userlist-title">
-          <h3>신고 관리</h3>
+          <h4>신고 관리</h4>
         </div>
         {/* <div className="hr-line-container">
         <hr className="hr-line" />
