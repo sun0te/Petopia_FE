@@ -93,7 +93,7 @@ const Home = () => {
   // DB로부터 장소 받아오기
   const getMapList = () => {
     axios
-      .get("http://localhost:8080/maplist", {})
+      .get("/maplist", {})
       .then((res) => {
         const { data } = res;
         const category1 = []; // 동물병원
@@ -209,7 +209,7 @@ const Home = () => {
 
   const callTravelBest = () => {
     axios
-      .post("http://localhost:8080/travelboard/travelbest5", {
+      .post("/travelboard/travelbest5", {
         category: "TRAVEL",
       })
       .then((res) => {
