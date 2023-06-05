@@ -62,7 +62,7 @@ const FreeBoardDetail = () => {
               <Button
                 className="btm-sm reportBtn"
                 variant="outline-danger"
-                style={{ padding: "4px 0px 3px 0px" }}
+                style={{ padding: "4px 0px 3px 0px", width: "70px" }}
                 onClick={openModal}
               >
                 🚨신고
@@ -115,6 +115,8 @@ const FreeBoardDetail = () => {
                 <p className="RecomendDetailP">
                   제1항의 해임건의는 국회재적의원 3분의 1 이상의 발의에 의하여
                   국회재적의원 과반수의 찬성이 있어야 한다.
+                  <br />
+                  <br />
                   <br />
                 </p>
               </div>
