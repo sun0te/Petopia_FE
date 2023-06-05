@@ -101,21 +101,11 @@ const UserBoard = () => {
             {/* -- 자유 게시판 / 지역 게시판 선택 버튼 끝 -- */}
 
             <div className="totalBoard">
-              <div className="totalBoardTitle">
-                {cityChk1 && `${cityChk1} `}
-                {boards} 게시판 보기
-              </div>
               {/* 전체 지역 게시판 글 or 특정 지역 게시판 글 선택 버튼 */}
               {regionSelectBoxesView && (
                 <div className="RegionSelectBoxes">
                   <RegionSelect>
                     <div className="RegionSelectBtns">
-                      <button
-                        type="button"
-                        class="btn btn-primary RegionSelectBox btn-sm"
-                      >
-                        전체
-                      </button>
                       <button
                         type="button"
                         class="btn btn-primary RegionSelectBox btn-sm"
