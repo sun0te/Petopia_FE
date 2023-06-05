@@ -23,14 +23,14 @@ const Recomend_detail = () => {
       sessionStorage.getItem("email") !== undefined
     ) {
       axios
-        .post("http://localhost:8080/recommend/confirm", {
+        .post("/recommend/confirm", {
           post: { id: boardid },
           user: { email: sessionStorage.getItem("email") },
         })
         .then((res) => {
           if (res.data === false) {
             axios
-              .post("http://localhost:8080/recommend/upper", {
+              .post("/recommend/upper", {
                 post: { id: boardid },
                 user: { email: sessionStorage.getItem("email") },
               })
@@ -43,7 +43,7 @@ const Recomend_detail = () => {
               });
           } else if (res.data === true) {
             axios
-              .post("http://localhost:8080/recommend/lower", {
+              .post("/recommend/lower", {
                 post: { id: boardid },
                 user: { email: sessionStorage.getItem("email") },
               })
@@ -71,14 +71,14 @@ const Recomend_detail = () => {
       sessionStorage.getItem("email") !== undefined
     ) {
       axios
-        .post("http://localhost:8080/interest/confirmlike", {
+        .post("/interest/confirmlike", {
           post: { id: boardid },
           user: { email: sessionStorage.getItem("email") },
         })
         .then((res) => {
           if (res.data === false) {
             axios
-              .post("http://localhost:8080/interest/upperlike", {
+              .post("/interest/upperlike", {
                 post: { id: boardid },
                 user: { email: sessionStorage.getItem("email") },
               })
@@ -91,7 +91,7 @@ const Recomend_detail = () => {
               });
           } else if (res.data === true) {
             axios
-              .post("http://localhost:8080/interest/lowerlike", {
+              .post("/interest/lowerlike", {
                 post: { id: boardid },
                 user: { email: sessionStorage.getItem("email") },
               })
@@ -131,7 +131,7 @@ const Recomend_detail = () => {
 
   const getImgInfo = () => {
     axios
-      .post("http://localhost:8080/board/detailimg", {
+      .post("/board/detailimg", {
         post: { id: boardid },
       })
       .then((res) => {
@@ -144,7 +144,7 @@ const Recomend_detail = () => {
 
   const getBoardInfo = () => {
     axios
-      .post("http://localhost:8080/board/detail", {
+      .post("/board/detail", {
         id: boardid,
         category: "TRAVEL",
       })
@@ -169,7 +169,7 @@ const Recomend_detail = () => {
 
   const getTravelInfo = (boardid) => {
     axios
-      .post("http://localhost:8080/travel/getinfo", { post: { id: boardid } })
+      .post("/travel/getinfo", { post: { id: boardid } })
       .then((res) => {
         setPlaceCategory(res.data.category);
         setPetProvisionsData(res.data.petProvisions);
@@ -200,7 +200,7 @@ const Recomend_detail = () => {
         sessionStorage.getItem("email") !== undefined
       ) {
         axios
-          .post("http://localhost:8080/recommend/confirm", {
+          .post("/recommend/confirm", {
             post: { id: boardid },
             user: { email: sessionStorage.getItem("email") },
           })
@@ -221,7 +221,7 @@ const Recomend_detail = () => {
         sessionStorage.getItem("email") !== undefined
       ) {
         axios
-          .post("http://localhost:8080/interest/confirmlike", {
+          .post("/interest/confirmlike", {
             post: { id: boardid },
             user: { email: sessionStorage.getItem("email") },
           })

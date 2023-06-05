@@ -45,7 +45,6 @@ const LikeList = ({ setMyPageAction }) => {
       })
       .then((res) => {
         const { data } = res;
-        console.log("데이터 값", data);
         setInterestList(data);
       })
       .catch((e) => {
