@@ -12,7 +12,7 @@ import FindAccountEmail from "./Pages/FindAccountEmail";
 import FindAccountPassword from "./Pages/FindAccountPassword";
 import Notice from "./Pages/Notice";
 import RouteTrip from "./Pages/RouteTrip";
-// import RouteTripDetail from "./Pages/RouteTripDetail";
+import RouteTripDetail from "./Pages/RouteTripDetail";
 import RouteTripUpdate from "./Pages/RouteTripUpdate";
 import RouteTripWrite from "./Pages/RouteTripWrite";
 import Write from "./Pages/Write";
@@ -67,7 +67,7 @@ const App = () => {
       <Route path="/notice" element={<Notice />} />
       <Route path="/routetrip" element={<RouteTrip />} />
       <Route path="/routetripwrite" element={<RouteTripWrite />} />
-      {/* <Route path="/recomend_best" element={<RouteTripDetail />} /> */}
+      <Route path="/recomend_best" element={<RouteTripDetail />} />
       <Route path="/recommendupdate" element={<RouteTripUpdate />} />
       <Route path="/write" element={<Write />} />
       <Route path="/update" element={<Update />} />
@@ -81,7 +81,7 @@ const App = () => {
       <Route path="/usermypage" element={<UserMypage />} />
       <Route path="/userwatchlist" element={<UserWatchlist />} />
       <Route path="/usermypageinquiry" element={<MyInquiry />} />
-      <Route path="/admininquiry" element={<MyInquiryAdmin />} />
+      <Route path="/usermypageinquiryadmin" element={<MyInquiryAdmin />} />
       <Route path="/adminmypage" element={<AdminMypage />} />
       <Route path="/adminuserlist" element={<AdminUserList />} />
       <Route path="/adminuserreport1" element={<AdminUserReport />} />
