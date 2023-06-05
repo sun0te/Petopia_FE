@@ -40,13 +40,13 @@ const RatingSection = ({ ratingIndex, setRatingIndex }) => {
             className={arrayindex <= ratingIndex ? "active" : "inactive"}
             onClick={() => {
               setRatingIndex(arrayindex);
-              console.log(
-                "arrayindex : " +
-                  arrayindex +
-                  "\n" +
-                  "ratingIndex : " +
-                  ratingIndex
-              );
+              // console.log(
+              //   "arrayindex : " +
+              //     arrayindex +
+              //     "\n" +
+              //     "ratingIndex : " +
+              //     ratingIndex
+              // );
               setRatingIndex(arrayindex); // 부모 컴포넌트에도 ratingIndex 값 전달
             }}
           />

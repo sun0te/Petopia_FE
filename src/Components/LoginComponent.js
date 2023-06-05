@@ -44,7 +44,7 @@ const LoginComponent = ({ user, setUser }) => {
 
   const idpwCheck = () => {
     axios
-      .post("h/user/getuserpetopia", {
+      .post("/user/getuserpetopia", {
         email: email.current.value,
         password: password.current.value,
       })

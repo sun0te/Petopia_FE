@@ -56,7 +56,7 @@ const MapReviewWrite = ({ setReviewAction, placedata, getPlaceReview }) => {
     } else {
       alert("이미 네 장의 사진이 선택되어 있습니다.");
     }
-    console.log(files.length);
+    // console.log(files.length);
   };
 
   const handleRemoveImage = (index) => {
@@ -69,6 +69,15 @@ const MapReviewWrite = ({ setReviewAction, placedata, getPlaceReview }) => {
     inputRef.current.click();
   };
 
+  const handleInputChange = (e) => {
+    const inputValue = e.target.value;
+    const regex = /^[0-9\b]+$/; // 숫자만 입력 받도록 정규식 패턴
+
+    if (!regex.test(inputValue)) {
+      e.target.value = inputValue.replace(/[^0-9]/g, ""); // 숫자 이외의 값을 제거
+    }
+  };
+
   const consoleUpWrite = () => {
     if (
       reviewWriteContentTextArea.current.value === null ||
@@ -79,6 +88,16 @@ const MapReviewWrite = ({ setReviewAction, placedata, getPlaceReview }) => {
       reviewWriteContentTextArea.current.focus();
     } else {
       alert("리뷰 업로드");
+
+      if (medicalCost.current.value === "") {
+        medicalCost.current.value = 0;
+      }
+      if (surgeryCost.current.value === "") {
+        surgeryCost.current.value = 0;
+      }
+      if (totalCost.current.value === "") {
+        totalCost.current.value = 0;
+      }
 
       axios
         .post("/mapReviewWrite", {
@@ -191,11 +210,12 @@ const MapReviewWrite = ({ setReviewAction, placedata, getPlaceReview }) => {
                   <td>
                     <Form.Control
                       className="writeTitle reportReasonWrite reviewCostInputFormControl review-number"
-                      type="number"
+                      type="text"
                       placeholder="숫자만입력"
                       name="reportReasonContent"
                       defaultValue={0}
                       ref={medicalCost}
+                      onInput={handleInputChange}
                     />
                   </td>
                 </tr>
@@ -204,11 +224,12 @@ const MapReviewWrite = ({ setReviewAction, placedata, getPlaceReview }) => {
                   <td>
                     <Form.Control
                       className="writeTitle reportReasonWrite reviewCostInputFormControl review-number"
-                      type="number"
+                      type="text"
                       placeholder="숫자만입력"
                       name="reportReasonContent"
                       defaultValue={0}
                       ref={surgeryCost}
+                      onInput={handleInputChange}
                     ></Form.Control>
                   </td>
                 </tr>
@@ -217,11 +238,12 @@ const MapReviewWrite = ({ setReviewAction, placedata, getPlaceReview }) => {
                   <td>
                     <Form.Control
                       className="writeTitle reportReasonWrite reviewCostInputFormControl review-number"
-                      type="number"
+                      type="text"
                       placeholder="숫자만입력"
                       name="reportReasonContent"
                       defaultValue={0}
                       ref={totalCost}
+                      onInput={handleInputChange}
                       required
                     />
                   </td>
@@ -262,11 +284,12 @@ const MapReviewWrite = ({ setReviewAction, placedata, getPlaceReview }) => {
                     <div>
                       <Form.Control
                         className="writeTitle reportReasonWrite reviewCostInputFormControl review-number"
-                        type="number"
+                        type="text"
                         placeholder="숫자만입력"
                         name="reportReasonContent"
                         defaultValue={0}
                         ref={totalCost}
+                        onInput={handleInputChange}
                         required
                       />
                     </div>

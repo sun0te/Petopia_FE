@@ -82,11 +82,19 @@ const Header = ({ page }) => {
             </div>
           </NavLink>
 
-          <NavLink to="/usermypage">
-            <div className="headerBtns-right">
-              <FaCog className="user-info-icon" />
-            </div>
-          </NavLink>
+          {sessionStorage.getItem("email") != null ? (
+            <NavLink to="/usermypage">
+              <div className="headerBtns-right">
+                <FaCog className="user-info-icon" />
+              </div>
+            </NavLink>
+          ) : (
+            <NavLink to="/login">
+              <div className="headerBtns-right">
+                <FaCog className="user-info-icon" />
+              </div>
+            </NavLink>
+          )}
         </div>
       </div>
       <div

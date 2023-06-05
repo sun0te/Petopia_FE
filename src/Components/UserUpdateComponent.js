@@ -91,18 +91,21 @@ const UserUpdateComponent = ({ setMyPageAction }) => {
   };
 
   const clickUserDelete = () => {
-    axios
-      .post("/user/withdrawal", {
-        email: sessionStorage.getItem("email"),
-      })
-      .then((res) => {
-        localStorage.removeItem("com.naver.nid.access_token");
-        localStorage.removeItem("access_token");
-        sessionStorage.removeItem("email");
-        sessionStorage.removeItem("socialSession");
-        // alert("계정을 탈퇴처리 하였습니다.");
-        // window.location.href = `http://localhost:3000/`;
-      });
+    const deleteConfirm = window.confirm("회원 탈퇴 하시겠습니까?");
+    if (deleteConfirm) {
+      axios
+        .post("/user/withdrawal", {
+          email: sessionStorage.getItem("email"),
+        })
+        .then((res) => {
+          localStorage.removeItem("com.naver.nid.access_token");
+          localStorage.removeItem("access_token");
+          sessionStorage.removeItem("email");
+          sessionStorage.removeItem("socialSession");
+          alert("계정을 탈퇴처리 하였습니다.");
+          window.location.href = `http://localhost:3000/`;
+        });
+    }
   };
 
   return (
@@ -219,12 +222,15 @@ const UserUpdateComponent = ({ setMyPageAction }) => {
                   수정
                 </button>
               </div>
-
-              <div>
-                <button onClick={() => clickUserDelete()}>회원 탈퇴</button>
-              </div>
             </form>
           </div>
+        </div>
+
+        <div
+          className="withdrawal"
+          style={{ margin: "40px 0 0 130px", textAlign: "right" }}
+        >
+          <span onClick={() => clickUserDelete()}>회원 탈퇴</span>
         </div>
       </div>
     </>
