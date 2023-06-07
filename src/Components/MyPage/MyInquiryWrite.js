@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { FaAngleLeft } from "react-icons/fa";
 
-const MyInquiryWrite = ({ setInquiryAction, inquirydblist }) => {
+const MyInquiryWrite = ({ setInquiryAction, inquirydblist, inquiryCount }) => {
   const titleRef = useRef();
   const contentRef = useRef();
 
@@ -33,6 +33,7 @@ const MyInquiryWrite = ({ setInquiryAction, inquirydblist }) => {
       .then((res) => {
         inquirydblist();
         setInquiryAction(0);
+        inquiryCount();
       })
       .catch((e) => {
         console.log(e);

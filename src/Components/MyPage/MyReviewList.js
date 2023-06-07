@@ -72,7 +72,7 @@ const ReviewButtonsWrap = styled.div`
   margin-top: 20px;
 `;
 
-const ReviewList = ({ setMyPageAction }) => {
+const ReviewList = ({ setMyPageAction, reviewCount }) => {
   const [checkedReviews, setCheckedReviews] = useState([]);
 
   const handleCheckAll = (e) => {
@@ -97,6 +97,7 @@ const ReviewList = ({ setMyPageAction }) => {
       .post("/myreviewdelete", reviewIds)
       .then((res) => {
         myReviewList();
+        reviewCount();
       })
       .catch((e) => {
         console.error(e);

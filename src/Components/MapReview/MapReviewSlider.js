@@ -21,8 +21,8 @@ const MapReviewSlider = ({ review, reviewImgList }) => {
       <div className="reviewSlideBox">
         <Slider arrows={false} beforeChange={handleSlideChange}>
           {reviewImgUrl.map((data, i) => (
-            <>
-              <div className="reviewListImg1" key={i}>
+            <React.Fragment key={i}>
+              <div className="reviewListImg1">
                 <img
                   className="reviewListImg2"
                   src={process.env.PUBLIC_URL + "/uploadimgs/" + data.imageUrl}
@@ -30,7 +30,7 @@ const MapReviewSlider = ({ review, reviewImgList }) => {
                   style={{ objectFit: "contain" }}
                 />
               </div>
-            </>
+            </React.Fragment>
           ))}
         </Slider>
         <div className="reviewImgNum">

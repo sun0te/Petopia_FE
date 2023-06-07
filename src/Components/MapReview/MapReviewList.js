@@ -92,8 +92,8 @@ const MapReviewList = ({
       </Form.Select>
       {/* 반복문 */}
       {reviewList.map((review, index) => (
-        <>
-          <div className="reviewListMain">
+        <React.Fragment>
+          <div className="reviewListMain" key={index}>
             <div className="reviewListReport">
               {sessionStorage.getItem("email") !== null ? (
                 <Button
@@ -235,7 +235,7 @@ const MapReviewList = ({
             </div>
           </div>
           <hr style={{ height: "3px", backgroundColor: "lightgray" }} />
-        </>
+        </React.Fragment>
       ))}
     </>
   );

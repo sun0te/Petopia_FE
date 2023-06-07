@@ -330,7 +330,7 @@ const Modal1 = ({
       {open ? (
         <div className="mapModalContainer">
           <div className="mapModalHeader">
-            <b>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;지역선택</b>
+            <b>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;지역선택</b>
             <button
               className="mapModalBtn1"
               onClick={() => {

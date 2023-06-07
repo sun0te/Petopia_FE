@@ -7,7 +7,7 @@ import MyInquiryUpdate from "./MyInquiryUpdate";
 import axios from "axios";
 import "../../Styles/MyInquiry.css";
 
-const MyInquiry = ({ setMyPageAction }) => {
+const MyInquiry = ({ setMyPageAction, inquiryCount }) => {
   // 1:1 문의 페이지 액션 useState
   // 0 : 문의 리스트 , 1 : 문의 작성 , 2 : 문의 상세 내용 , 3 : 문의 수정
   const [inquiryAction, setInquiryAction] = useState(0);
@@ -54,6 +54,7 @@ const MyInquiry = ({ setMyPageAction }) => {
         <MyInquiryWrite
           inquirydblist={inquirydblist}
           setInquiryAction={setInquiryAction}
+          inquiryCount={inquiryCount}
         />
       )}
       {inquiryAction === 2 && ( // 문의 상세내용
@@ -61,6 +62,7 @@ const MyInquiry = ({ setMyPageAction }) => {
           inquirydata={inquirydata}
           setInquiryAction={setInquiryAction}
           inquirydblist={inquirydblist}
+          inquiryCount={inquiryCount}
         />
       )}
       {inquiryAction === 3 && ( // 문의내용 수정

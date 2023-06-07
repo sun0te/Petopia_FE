@@ -205,83 +205,38 @@ const MapReviewWrite = ({ setReviewAction, placedata, getPlaceReview }) => {
           {placedata.category3 === "동물병원" ? (
             <div>
               <table className="reviewWriteTable">
-                <tr>
-                  <td className="reviewTd">&nbsp; 진료비</td>
-                  <td>
-                    <Form.Control
-                      className="writeTitle reportReasonWrite reviewCostInputFormControl review-number"
-                      type="text"
-                      placeholder="숫자만입력"
-                      name="reportReasonContent"
-                      defaultValue={0}
-                      ref={medicalCost}
-                      onInput={handleInputChange}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td className="reviewTd">&nbsp; 수술비</td>
-                  <td>
-                    <Form.Control
-                      className="writeTitle reportReasonWrite reviewCostInputFormControl review-number"
-                      type="text"
-                      placeholder="숫자만입력"
-                      name="reportReasonContent"
-                      defaultValue={0}
-                      ref={surgeryCost}
-                      onInput={handleInputChange}
-                    ></Form.Control>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="reviewTd">* 총 비용</td>
-                  <td>
-                    <Form.Control
-                      className="writeTitle reportReasonWrite reviewCostInputFormControl review-number"
-                      type="text"
-                      placeholder="숫자만입력"
-                      name="reportReasonContent"
-                      defaultValue={0}
-                      ref={totalCost}
-                      onInput={handleInputChange}
-                      required
-                    />
-                  </td>
-                </tr>
-              </table>
-            </div>
-          ) : (
-            <div>
-              <table className="reviewWriteTable">
-                <tr>
-                  <td>
-                    <Form.Control
-                      className="writeTitle reportReasonWrite reviewCostInputFormControl review-number"
-                      type="hidden"
-                      placeholder="숫자만입력"
-                      name="reportReasonContent"
-                      defaultValue={0}
-                      ref={medicalCost}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <Form.Control
-                      className="writeTitle reportReasonWrite reviewCostInputFormControl review-number"
-                      type="hidden"
-                      placeholder="숫자만입력"
-                      name="reportReasonContent"
-                      defaultValue={0}
-                      ref={surgeryCost}
-                    />
-                  </td>
-                </tr>
-
-                <tr>
-                  <td className="reviewTd">* 총 비용</td>
-                  <td>
-                    <div>
+                <tbody>
+                  <tr>
+                    <td className="reviewTd">&nbsp; 진료비</td>
+                    <td>
+                      <Form.Control
+                        className="writeTitle reportReasonWrite reviewCostInputFormControl review-number"
+                        type="text"
+                        placeholder="숫자만입력"
+                        name="reportReasonContent"
+                        defaultValue={0}
+                        ref={medicalCost}
+                        onInput={handleInputChange}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="reviewTd">&nbsp; 수술비</td>
+                    <td>
+                      <Form.Control
+                        className="writeTitle reportReasonWrite reviewCostInputFormControl review-number"
+                        type="text"
+                        placeholder="숫자만입력"
+                        name="reportReasonContent"
+                        defaultValue={0}
+                        ref={surgeryCost}
+                        onInput={handleInputChange}
+                      ></Form.Control>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="reviewTd">* 총 비용</td>
+                    <td>
                       <Form.Control
                         className="writeTitle reportReasonWrite reviewCostInputFormControl review-number"
                         type="text"
@@ -292,9 +247,58 @@ const MapReviewWrite = ({ setReviewAction, placedata, getPlaceReview }) => {
                         onInput={handleInputChange}
                         required
                       />
-                    </div>
-                  </td>
-                </tr>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div>
+              <table className="reviewWriteTable">
+                <tbody>
+                  <tr>
+                    <td>
+                      <Form.Control
+                        className="writeTitle reportReasonWrite reviewCostInputFormControl review-number"
+                        type="hidden"
+                        placeholder="숫자만입력"
+                        name="reportReasonContent"
+                        defaultValue={0}
+                        ref={medicalCost}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Form.Control
+                        className="writeTitle reportReasonWrite reviewCostInputFormControl review-number"
+                        type="hidden"
+                        placeholder="숫자만입력"
+                        name="reportReasonContent"
+                        defaultValue={0}
+                        ref={surgeryCost}
+                      />
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td className="reviewTd">* 총 비용</td>
+                    <td>
+                      <div>
+                        <Form.Control
+                          className="writeTitle reportReasonWrite reviewCostInputFormControl review-number"
+                          type="text"
+                          placeholder="숫자만입력"
+                          name="reportReasonContent"
+                          defaultValue={0}
+                          ref={totalCost}
+                          onInput={handleInputChange}
+                          required
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
               </table>
               {/* <div className="whiteSpace"></div> */}
             </div>
@@ -356,8 +360,12 @@ const MapReviewWrite = ({ setReviewAction, placedata, getPlaceReview }) => {
           <div className="uploadImgDiv reviewWriteUploadImgDiv">
             <ListGroup>
               {selectedFiles.map((file, index) => (
-                <ListGroup.Item className="listGroupItem" id="listGroupItemId">
-                  <div key={index}>
+                <ListGroup.Item
+                  className="listGroupItem"
+                  id="listGroupItemId"
+                  key={index}
+                >
+                  <div>
                     <img
                       className="uploadImg"
                       src={URL.createObjectURL(file)}

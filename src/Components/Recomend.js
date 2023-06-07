@@ -105,14 +105,15 @@ const Recomend = () => {
       </div>
 
       {viewMode === 0 ? (
-        <bestSection>
+        <>
+          {/* <bestSection> */}
           <h3 className="h3_Recomend">금주의 BEST!</h3>
           <div className="viweAllBtnDiv">
             <p className="bestFoldBtn" onClick={clickViewAllBtn}>
               {viewMode === 0 ? <>Best 접기 ▲</> : <>Best 보기 ▼</>}
             </p>
           </div>
-          {travelBestData.map((traveldata) => {
+          {travelBestData.map((traveldata, index) => {
             return (
               <RecomendBest
                 id={traveldata.id !== undefined ? traveldata.id : null}
@@ -131,10 +132,12 @@ const Recomend = () => {
                 writer={traveldata.author.nickname}
                 view={traveldata.views}
                 like={traveldata.likes}
+                key={index}
               />
             );
           })}
-        </bestSection>
+          {/* </bestSection> */}
+        </>
       ) : (
         <div className="recommendBestWhiteSpaceDiv">
           <div className="recommendBestWhiteSpace"></div>
@@ -163,7 +166,7 @@ const Recomend = () => {
           <BoardWrapper>
             {travelAllData
               .slice(offset, offset + limit)
-              .map((travelalldata) => {
+              .map((travelalldata, index) => {
                 return (
                   <StyledLink
                     to={`/recomend_best?id=${travelalldata.id}`}

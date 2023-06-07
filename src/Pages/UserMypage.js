@@ -32,6 +32,9 @@ const UserMypage = () => {
   const [tempNickname, setTempNickname] = useState("");
   const [imageSrc, setImageSrc] = useState(null); // 이미지 미리보기 URL
   const defaultProfileImage = "/img/Default_profile.png"; // 기본 이미지 파일명
+  const [postCount, setPostCount] = useState(0);
+  const [userReviewCount, setUserReviewCount] = useState(0);
+  const [userInquiryCount, setUserInquiryCount] = useState(0);
   const handleNicknameChange = (event) => {
     setTempNickname(event.target.value);
   };
@@ -143,12 +146,54 @@ const UserMypage = () => {
     }
   };
 
+  const myPostCount = () => {
+    axios
+      .get("/myPostCount", {
+        params: { email: sessionStorage.getItem("email") },
+      })
+      .then((response) => {
+        setPostCount(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const reviewCount = () => {
+    axios
+      .get("/mapReviewCount", {
+        params: { email: sessionStorage.getItem("email") },
+      })
+      .then((response) => {
+        setUserReviewCount(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const inquiryCount = () => {
+    axios
+      .get("/inquiryCount", {
+        params: { email: sessionStorage.getItem("email") },
+      })
+      .then((response) => {
+        setUserInquiryCount(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   const [myPageAction, setMyPageAction] = useState(0); // 마이페이지 액션
   // [액션 1 : 회원정보 수정] , [액션 2 : 관심목록] , [액션 3 : 리뷰 관리] , [액션 4 : 1:1 문의]
 
   useEffect(() => {
     signUpCheck();
     setMyPageAction(0);
+    myPostCount();
+    reviewCount();
+    inquiryCount();
   }, []);
 
   return (
@@ -225,13 +270,15 @@ const UserMypage = () => {
 
             <div className="user-category">
               <div className="category-item">
-                내 글 <span className="category-count">3</span>
+                내 글 <span className="category-count">{postCount}</span>
               </div>
               <div className="category-item">
-                내 댓글 <span className="category-count">2</span>
+                내 리뷰
+                <span className="category-count">{userReviewCount}</span>
               </div>
               <div className="category-item">
-                내 리뷰 <span className="category-count">7</span>
+                내 문의
+                <span className="category-count">{userInquiryCount}</span>
               </div>
             </div>
           </div>
@@ -324,10 +371,16 @@ const UserMypage = () => {
               <LikeList setMyPageAction={setMyPageAction} />
             </>
           ) : myPageAction === 3 ? ( // [액션 3 : 리뷰 관리]
-            <MyReviewList setMyPageAction={setMyPageAction} />
+            <MyReviewList
+              setMyPageAction={setMyPageAction}
+              reviewCount={reviewCount}
+            />
           ) : myPageAction === 4 ? ( // [액션 4 : 1:1 문의]
             <>
-              <MyInquiry setMyPageAction={setMyPageAction} />
+              <MyInquiry
+                setMyPageAction={setMyPageAction}
+                inquiryCount={inquiryCount}
+              />
             </>
           ) : null}
 

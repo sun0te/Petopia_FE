@@ -239,7 +239,7 @@ const Recomend_detail = () => {
     checkBoardRecommend();
     checkBoardLike();
     getCommentlist();
-    console.log(commentList);
+    // console.log(commentList);
   }, []);
 
   const imagePath = "/uploadimgs/";
@@ -382,13 +382,14 @@ const Recomend_detail = () => {
           <div>
             {boardImgs !== null ? (
               <>
-                {boardImgs.map((img) => {
+                {boardImgs.map((img, index) => {
                   return (
                     <>
                       <img
                         className="RecomendDetailImg"
                         src={imagePath + img.imageUrl}
                         alt="fasd"
+                        key={index}
                       />
                     </>
                   );

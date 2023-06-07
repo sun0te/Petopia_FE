@@ -2,7 +2,12 @@ import React from "react";
 import axios from "axios";
 import { FaAngleLeft } from "react-icons/fa";
 
-const MyInquiryDetail = ({ inquirydata, setInquiryAction, inquirydblist }) => {
+const MyInquiryDetail = ({
+  inquirydata,
+  setInquiryAction,
+  inquirydblist,
+  inquiryCount,
+}) => {
   //문의 삭제
   const inquiryDelete = () => {
     axios
@@ -12,6 +17,7 @@ const MyInquiryDetail = ({ inquirydata, setInquiryAction, inquirydblist }) => {
       .then((res) => {
         inquirydblist();
         setInquiryAction(0);
+        inquiryCount();
       })
       .catch((e) => {
         console.error(e);

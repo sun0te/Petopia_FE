@@ -444,9 +444,9 @@ const Kakao2 = ({
             }}
           >
             {selectedCategory === "hospital" &&
-              maplist1.map((position) => (
+              maplist1.map((position, index) => (
                 <>
-                  <EventMarkerContainer position={position} />
+                  <EventMarkerContainer position={position} key={index} />
                 </>
               ))}
           </MarkerClusterer>
@@ -460,9 +460,9 @@ const Kakao2 = ({
             minClusterSize={1}
           >
             {selectedCategory === "pharmacy" &&
-              maplist2.map((position) => (
+              maplist2.map((position, index) => (
                 <>
-                  <EventMarkerContainer position={position} />
+                  <EventMarkerContainer position={position} key={index} />
                 </>
               ))}
           </MarkerClusterer>
@@ -476,8 +476,8 @@ const Kakao2 = ({
             minClusterSize={1}
           >
             {selectedCategory === "culturalCenter" &&
-              maplist3.map((position) => (
-                <EventMarkerContainer position={position} />
+              maplist3.map((position, index) => (
+                <EventMarkerContainer position={position} key={index} />
               ))}
           </MarkerClusterer>
           {/* -----마커 클러스터화 종료----- */}
@@ -490,8 +490,8 @@ const Kakao2 = ({
             minClusterSize={1}
           >
             {selectedCategory === "artmuseum" &&
-              maplist4.map((position) => (
-                <EventMarkerContainer position={position} />
+              maplist4.map((position, index) => (
+                <EventMarkerContainer position={position} key={index} />
               ))}
           </MarkerClusterer>
 
@@ -503,8 +503,8 @@ const Kakao2 = ({
             minClusterSize={1}
           >
             {selectedCategory === "beauty" &&
-              maplist5.map((position) => (
-                <EventMarkerContainer position={position} />
+              maplist5.map((position, index) => (
+                <EventMarkerContainer position={position} key={index} />
               ))}
           </MarkerClusterer>
 
@@ -516,8 +516,8 @@ const Kakao2 = ({
             minClusterSize={1}
           >
             {selectedCategory === "museum" &&
-              maplist6.map((position) => (
-                <EventMarkerContainer position={position} />
+              maplist6.map((position, index) => (
+                <EventMarkerContainer position={position} key={index} />
               ))}
           </MarkerClusterer>
           {/* -----마커 클러스터화 종료----- */}
@@ -530,8 +530,8 @@ const Kakao2 = ({
             minClusterSize={1}
           >
             {selectedCategory === "petGoods" &&
-              maplist7.map((position) => (
-                <EventMarkerContainer position={position} />
+              maplist7.map((position, index) => (
+                <EventMarkerContainer position={position} key={index} />
               ))}
           </MarkerClusterer>
           {/* -----마커 클러스터화 종료----- */}
@@ -544,8 +544,8 @@ const Kakao2 = ({
             minClusterSize={1}
           >
             {selectedCategory === "restaurant" &&
-              maplist8.map((position) => (
-                <EventMarkerContainer position={position} />
+              maplist8.map((position, index) => (
+                <EventMarkerContainer position={position} key={index} />
               ))}
           </MarkerClusterer>
           {/* -----마커 클러스터화 종료----- */}
@@ -558,8 +558,8 @@ const Kakao2 = ({
             minClusterSize={1}
           >
             {selectedCategory === "travel" &&
-              maplist9.map((position) => (
-                <EventMarkerContainer position={position} />
+              maplist9.map((position, index) => (
+                <EventMarkerContainer position={position} key={index} />
               ))}
           </MarkerClusterer>
           {/* -----마커 클러스터화 종료----- */}
@@ -572,8 +572,8 @@ const Kakao2 = ({
             minClusterSize={1}
           >
             {selectedCategory === "management" &&
-              maplist10.map((position) => (
-                <EventMarkerContainer position={position} />
+              maplist10.map((position, index) => (
+                <EventMarkerContainer position={position} key={index} />
               ))}
           </MarkerClusterer>
           {/* -----마커 클러스터화 종료----- */}
@@ -586,8 +586,8 @@ const Kakao2 = ({
             minClusterSize={1}
           >
             {selectedCategory === "cafe" &&
-              maplist11.map((position) => (
-                <EventMarkerContainer position={position} />
+              maplist11.map((position, index) => (
+                <EventMarkerContainer position={position} key={index} />
               ))}
           </MarkerClusterer>
           {/* -----마커 클러스터화 종료----- */}
@@ -600,8 +600,8 @@ const Kakao2 = ({
             minClusterSize={1}
           >
             {selectedCategory === "pension" &&
-              maplist12.map((position) => (
-                <EventMarkerContainer position={position} />
+              maplist12.map((position, index) => (
+                <EventMarkerContainer position={position} key={index} />
               ))}
           </MarkerClusterer>
           {/* -----마커 클러스터화 종료----- */}
